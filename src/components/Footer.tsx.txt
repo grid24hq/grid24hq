@@ -1,0 +1,92 @@
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+export default function Footer() {
+  const { t } = useTranslation()
+
+  return (
+    <footer className="bg-brand-dark border-t border-brand-border mt-8">
+      <div className="max-w-7xl mx-auto px-8 py-10">
+        <div className="grid grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
+          <div className="col-span-1">
+            <div className="font-head font-black text-2xl tracking-widest uppercase mb-3">
+              GRID<span className="text-brand-orange">24</span>HQ
+            </div>
+            <p className="font-ui text-xs text-brand-muted leading-relaxed">
+              {t('footer.tagline')}
+            </p>
+          </div>
+
+          {/* Racing links */}
+          <div>
+            <h4 className="font-ui text-xs font-semibold uppercase tracking-[2px] text-brand-muted mb-3">
+              {t('footer.racing')}
+            </h4>
+            {['WEC', 'MotoGP', 'GT3', 'WorldSBK', 'IMSA', 'Moto2', 'Moto3'].map((s) => (
+              <Link
+                key={s}
+                to={`/${s.toLowerCase()}`}
+                className="block font-ui text-sm text-brand-muted hover:text-brand-orange transition-colors mb-1.5"
+              >
+                {s}
+              </Link>
+            ))}
+          </div>
+
+          {/* Platform links */}
+          <div>
+            <h4 className="font-ui text-xs font-semibold uppercase tracking-[2px] text-brand-muted mb-3">
+              {t('footer.platform')}
+            </h4>
+            {[
+              { label: 'Live Center', to: '/live' },
+              { label: 'Circuits',    to: '/circuits' },
+              { label: 'Teams',       to: '/teams' },
+              { label: 'Kalender',    to: '/calendar' },
+              { label: 'Community',   to: '/community' },
+            ].map(({ label, to }) => (
+              <Link
+                key={to}
+                to={to}
+                className="block font-ui text-sm text-brand-muted hover:text-brand-orange transition-colors mb-1.5"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Account links */}
+          <div>
+            <h4 className="font-ui text-xs font-semibold uppercase tracking-[2px] text-brand-muted mb-3">
+              {t('footer.account')}
+            </h4>
+            {[
+              { label: 'Inloggen',    to: '/login' },
+              { label: 'Registreren', to: '/register' },
+              { label: 'Instellingen',to: '/settings' },
+            ].map(({ label, to }) => (
+              <Link
+                key={to}
+                to={to}
+                className="block font-ui text-sm text-brand-muted hover:text-brand-orange transition-colors mb-1.5"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-brand-border pt-6 flex justify-between items-center">
+          <p className="font-ui text-xs text-brand-muted">{t('footer.rights')}</p>
+          <a
+            href="https://grid24hq.pages.dev"
+            className="font-ui text-xs text-brand-muted hover:text-brand-orange transition-colors"
+          >
+            grid24hq.pages.dev
+          </a>
+        </div>
+      </div>
+    </footer>
+  )
+}
