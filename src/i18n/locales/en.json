@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home":        "Home",
+    "series":      "Racing Series",
+    "teams":       "Teams & Drivers",
+    "circuits":    "Circuits",
+    "live":        "Live Center",
+    "community":   "Community",
+    "calendar":    "Calendar",
+    "login":       "Log In",
+    "register":    "Sign Up",
+    "logout":      "Log Out",
+    "liveNow":     "Live Now"
+  },
+  "hero": {
+    "tag":         "The Ultimate Racing Hub",
+    "subtitle":    "Live timing · Race data · WEC · GT3 · MotoGP · WorldSBK · Endurance",
+    "cta_live":    "Live Center",
+    "cta_cal":     "2025 Calendar"
+  },
+  "sections": {
+    "liveRecent":  "Live & Recent",
+    "upcoming":    "Upcoming Races",
+    "news":        "Trending News",
+    "series":      "Racing Series",
+    "circuits":    "Featured Circuits",
+    "standings":   "Championship Standings",
+    "seeAll":      "See all →",
+    "fullCal":     "Full calendar →",
+    "allNews":     "All news →",
+    "allCircuits": "All circuits →"
+  },
+  "status": {
+    "live":        "Live",
+    "upcoming":    "Upcoming",
+    "finished":    "Finished",
+    "today":       "Today",
+    "tomorrow":    "Tomorrow"
+  },
+  "auth": {
+    "login":              "Log In",
+    "register":           "Create Account",
+    "email":              "Email address",
+    "password":           "Password",
+    "confirmPassword":    "Confirm password",
+    "displayName":        "Display name",
+    "forgotPassword":     "Forgot password?",
+    "noAccount":          "Don't have an account?",
+    "haveAccount":        "Already have an account?",
+    "orContinueWith":     "Or continue with",
+    "loginGoogle":        "Continue with Google",
+    "loginRequired":      "You need an account to access Live Center.",
+    "createFree":         "Create a free account"
+  },
+  "live": {
+    "title":       "Live Center",
+    "subtitle":    "Onboard feeds · Live timing · Race telemetry",
+    "locked":      "Login required",
+    "lockedDesc":  "Live Center is only available to logged-in users."
+  },
+  "footer": {
+    "tagline":     "The Ultimate Racing Hub. Live timing, news and everything real motorsport fans need.",
+    "racing":      "Racing",
+    "platform":    "Platform",
+    "account":     "Account",
+    "rights":      "© 2025 Grid24HQ — The Ultimate Racing Hub"
+  }
+}

@@ -1,0 +1,41 @@
+import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth'
+import { useTranslation } from 'react-i18next'
+
+interface Props {
+  children: React.ReactNode
+}
+
+/**
+ * Wraps any route that requires authentication.
+ * Redirects to /login with a `from` state so we can redirect back after login.
+ */
+export default function ProtectedRoute({ children }: Props) {
+  const { isLoggedIn, isLoading } = useAuth()
+  const location = useLocation()
+  const { t } = useTranslation()
+
+  // Still checking Firebase auth state — show spinner
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-brand-black">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-2 border-brand-border border-t-brand-orange rounded-full animate-spin" />
+          <p className="font-ui text-sm text-brand-muted">Laden...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <Navigate
+        to="/login"
+        state={{ from: location.pathname, message: t('auth.loginRequired') }}
+        replace
+      />
+    )
+  }
+
+  return <>{children}</>
+}
