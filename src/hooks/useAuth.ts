@@ -1,26 +1,21 @@
 import { useEffect } from 'react'
-import { onAuthStateChanged } from '@/services/firebase'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { getUserProfile } from '@/services/firebase'
 import { useAuthStore } from '@/store/authStore'
 
-/**
- * Initialises Firebase auth listener and keeps Zustand store in sync.
- * Call once at the top of your app (in App.tsx or a provider).
- */
 export function useAuthInit(): void {
   const { setUser, setLoading, clearUser } = useAuthStore()
 
   useEffect(() => {
+    const auth = getAuth()
     setLoading(true)
 
-    const unsubscribe = onAuthStateChanged(async (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Load full profile from Firestore
         const profile = await getUserProfile(firebaseUser.uid)
         if (profile) {
           setUser(profile)
         } else {
-          // Fallback: use Firebase user data directly
           setUser({
             uid:         firebaseUser.uid,
             email:       firebaseUser.email ?? '',
@@ -47,9 +42,6 @@ export function useAuthInit(): void {
   }, [setUser, setLoading, clearUser])
 }
 
-/**
- * Returns auth state for use in any component.
- */
 export function useAuth() {
   const { user, isLoading, isLoggedIn } = useAuthStore()
   return { user, isLoading, isLoggedIn }
