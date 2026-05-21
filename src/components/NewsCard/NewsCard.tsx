@@ -1,4 +1,4 @@
-import SeriesBadge from './SeriesBadge'
+notepad C:\grid24hq\src\components\NewsCard\NewsCard.tsx
 import { formatRaceDate } from '@/lib/utils'
 import type { NewsArticle } from '@/types'
 

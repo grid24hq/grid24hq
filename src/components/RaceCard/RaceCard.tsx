@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatRaceDate, daysUntil, countryToFlag } from '@/lib/utils'
-import SeriesBadge from './SeriesBadge'
+import SeriesBadge from '@/components/SeriesBadge'
 import type { RaceEvent } from '@/types'
 
 interface Props {

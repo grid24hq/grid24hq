@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import SeriesBadge from './SeriesBadge'
+import SeriesBadge from '@/components/SeriesBadge'
 import type { Driver } from '@/types'
 
 interface Props {
