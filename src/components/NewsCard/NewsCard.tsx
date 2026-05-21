@@ -11,7 +11,7 @@ export default function NewsCard({ article, featured = false }: Props) {
   const published = formatRaceDate(article.publishedAt)
 
   return (
-    
+    <a
       href={article.url}
       target="_blank"
       rel="noopener noreferrer"
