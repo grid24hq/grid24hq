@@ -1,6 +1,27 @@
 import axios from 'axios'
 import type { RaceEvent, TimingEntry, ApiResponse, PaginatedResponse } from '@/types'
 
+// ─── Firebase Helper Interfaces (Toegevoegd voor TypeScript Build) ────────────
+
+interface FirebaseRiderData {
+  car_bike_nr: string;
+  naam: string;
+  team: string;
+  huidige_positie: number;
+  huidige_ronde: number;
+  laatste_rondetijd: string;
+  snelste_rondetijd: string;
+  sprint?: {
+    sectoren: { s1: string; s2: string; s3: string };
+    banden: { voor: string; achter: string };
+    topsnelheid: string;
+  };
+}
+
+interface FirebaseLiveTimingResponse {
+  [key: string]: FirebaseRiderData;
+}
+
 // ─── Axios instance ───────────────────────────────────────────────────────────
 
 const api = axios.create({
@@ -45,8 +66,8 @@ export async function getLiveEvents(): Promise<RaceEvent[]> {
 /** Get live timing for a session */
 export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
   try {
-    // 1. Directe REST API link naar de F1 Canada GP in Firebase
-    const firebaseEndpoint = "https://firebasedatabase.app";
+    // 1. Jouw unieke Europese Firebase REST API link voor de F1 Canada GP!
+    const firebaseEndpoint = "https://grid24hq-4ecf5-default-rtdb.europe-west1.firebasedatabase.app";
     
     const response = await fetch(firebaseEndpoint);
     if (!response.ok) throw new Error("Firebase REST API ophaalfout");
@@ -66,17 +87,17 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
         teamName: rider.team,
         lastLapTime: rider.laatste_rondetijd,
         gap: gapValue,
-        gapToLeader: gapValue, // Toegevoegd voor TS
-        bestLapTime: rider.snelste_rondetijd, // Toegevoegd voor TS
+        gapToLeader: gapValue, 
+        bestLapTime: rider.snelste_rondetijd, 
         sector1: rider.sprint?.sectoren.s1 ?? '-',
         sector2: rider.sprint?.sectoren.s2 ?? '-',
-        sector3: rider.sprint?.sectoren.s3 ?? '-', // Typefout hersteld!
+        sector3: rider.sprint?.sectoren.s3 ?? '-', 
         status: rider.huidige_positie === 1 ? 'racing' : 'racing',
-        pits: 0 // Toegevoegd voor TS
+        pits: 0 
       };
     });
 
-    // 3. Sorteer direct netjes op positie
+    // 3. Sorteer direct netjes op positie (P1 bovenaan)
     return mappedEntries.sort((a, b) => a.position - b.position);
 
   } catch (error) {
@@ -84,8 +105,6 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
     return [];
   }
 }
-
-
 
 // ─── Standings ────────────────────────────────────────────────────────────────
 
