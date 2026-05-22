@@ -6,14 +6,14 @@ import SeriesBadge from '@/components/SeriesBadge/SeriesBadge'
 import LiveTiming from '@/components/LiveTiming/LiveTiming'
 import { getLiveSessies, type LiveSessie } from '@/services/raceApi'
 
-// Klasse → SeriesBadge type mapping
-const klasseToSeries: Record<string, 'wec' | 'motogp' | 'gt3' | 'imsa' | 'worldsbk' | 'f1'> = {
+// Klasse → SeriesBadge type mapping (moet overeenkomen met SeriesId in types/index.ts)
+const klasseToSeries: Record<string, 'wec' | 'motogp' | 'gt3' | 'imsa' | 'wsb'> = {
   WEC:      'wec',
   MotoGP:   'motogp',
   GT3:      'gt3',
   IMSA:     'imsa',
-  WorldSBK: 'worldsbk',
-  F1:       'f1',
+  WorldSBK: 'wsb',
+  // F1 staat niet in SeriesId, wordt getoond als tekst
 }
 
 const klasseKleur: Record<string, string> = {
@@ -160,7 +160,7 @@ export default function LiveCenter() {
                   Live Timing — {actieveSessie.klasse} {actieveSessie.gpNaam}
                 </h2>
                 {klasseToSeries[actieveSessie.klasse] && (
-                  <SeriesBadge series={klasseToSeries[actieveSessie.klasse]} size="md" />
+                  <SeriesBadge series={klasseToSeries[actieveSessie.klasse]!} size="md" />
                 )}
               </div>
               <LiveTiming
