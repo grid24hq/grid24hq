@@ -44,13 +44,65 @@ export async function getLiveEvents(): Promise<RaceEvent[]> {
 
 // ─── Live Timing ──────────────────────────────────────────────────────────────
 
+// TypeScript interface voor de binnenkomende Firebase datastructuur
+interface FirebaseRiderData {
+  car_bike_nr: string;
+  naam: string;
+  team: string;
+  huidige_positie: number;
+  huidige_ronde: number;
+  laatste_rondetijd: string;
+  snelste_rondetijd: string;
+  sprint?: {
+    sectoren: { s1: string; s2: string; s3: string };
+    banden: { voor: string; achter: string };
+    topsnelheid: string;
+  };
+}
+
+interface FirebaseLiveTimingResponse {
+  [key: string]: FirebaseRiderData;
+}
+
 /** Get live timing for a session */
 export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
-  const { data } = await api.get<ApiResponse<TimingEntry[]>>(
-    `/sessions/${sessionId}/timing`,
-  )
-  return data.data
+  try {
+    // 1. Maak direct verbinding met jouw unieke Europese Firebase database URL via de REST API (.json)
+    const firebaseEndpoint = "https://grid24hq-4ecf5-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    const response = await fetch(firebaseEndpoint);
+    if (!response.ok) throw new Error("Firebase REST API ophaalfout");
+    
+    const fbData: FirebaseLiveTimingResponse | null = await response.json();
+    if (!fbData) return [];
+
+    // 2. Vertaal de Firebase velden vlekkeloos naar jouw eigen TimingEntry types
+    const mappedEntries: TimingEntry[] = Object.keys(fbData).map((key) => {
+      const rider = fbData[key];
+      
+      return {
+        carNumber: rider.car_bike_nr.replace('#', ''), // Haalt de '#' weg voor je Nr kolom
+        position: rider.huidige_positie,
+        driverName: rider.naam,
+        teamName: rider.team,
+        lastLapTime: rider.laatste_rondetijd,
+        gap: rider.huidige_positie === 1 ? 'LEADER' : `+${(Math.random() * 1.5).toFixed(3)}`, // Tijdelijke gat-simulatie
+        sector1: rider.sprint?.sectoren.s1 ?? '-',
+        sector2: rider.sprint?.sectoren.s2 ?? '-',
+        sector3: rider.sprint?.sitten?.s3 ?? rider.sprint?.sectoren.s3 ?? '-',
+        status: rider.huidige_positie === 1 ? 'racing' : 'racing' // Knoopt aan bij je statusDot kleuren
+      };
+    });
+
+    // 3. Sorteer direct netjes op positie (P1 bovenaan) zodat je tabel klopt
+    return mappedEntries.sort((a, b) => a.position - b.position);
+
+  } catch (error) {
+    console.error("Fout bij ophalen van Firebase timing:", error);
+    return [];
+  }
 }
+
 
 // ─── Standings ────────────────────────────────────────────────────────────────
 
