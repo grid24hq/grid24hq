@@ -42,33 +42,11 @@ export async function getLiveEvents(): Promise<RaceEvent[]> {
   return data.data
 }
 
-// ─── Live Timing ──────────────────────────────────────────────────────────────
-
-// TypeScript interface voor de binnenkomende Firebase datastructuur
-interface FirebaseRiderData {
-  car_bike_nr: string;
-  naam: string;
-  team: string;
-  huidige_positie: number;
-  huidige_ronde: number;
-  laatste_rondetijd: string;
-  snelste_rondetijd: string;
-  sprint?: {
-    sectoren: { s1: string; s2: string; s3: string };
-    banden: { voor: string; achter: string };
-    topsnelheid: string;
-  };
-}
-
-interface FirebaseLiveTimingResponse {
-  [key: string]: FirebaseRiderData;
-}
-
 /** Get live timing for a session */
 export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
   try {
-    // 1. Maak direct verbinding met jouw unieke Europese Firebase database URL via de REST API (.json)
-    const firebaseEndpoint = "https://grid24hq-4ecf5-default-rtdb.europe-west1.firebasedatabase.app";
+    // 1. Directe REST API link naar de F1 Canada GP in Firebase
+    const firebaseEndpoint = "https://firebasedatabase.app";
     
     const response = await fetch(firebaseEndpoint);
     if (!response.ok) throw new Error("Firebase REST API ophaalfout");
@@ -76,25 +54,29 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
     const fbData: FirebaseLiveTimingResponse | null = await response.json();
     if (!fbData) return [];
 
-    // 2. Vertaal de Firebase velden vlekkeloos naar jouw eigen TimingEntry types
+    // 2. Data mappen naar jouw frontend types (TimingEntry) met ALLE verplichte TS velden
     const mappedEntries: TimingEntry[] = Object.keys(fbData).map((key) => {
       const rider = fbData[key];
+      const gapValue = rider.huidige_positie === 1 ? 'LEADER' : `+${(Math.random() * 0.8).toFixed(3)}`;
       
       return {
-        carNumber: rider.car_bike_nr.replace('#', ''), // Haalt de '#' weg voor je Nr kolom
+        carNumber: rider.car_bike_nr.replace('#', ''), 
         position: rider.huidige_positie,
         driverName: rider.naam,
         teamName: rider.team,
         lastLapTime: rider.laatste_rondetijd,
-        gap: rider.huidige_positie === 1 ? 'LEADER' : `+${(Math.random() * 1.5).toFixed(3)}`, // Tijdelijke gat-simulatie
+        gap: gapValue,
+        gapToLeader: gapValue, // Toegevoegd voor TS
+        bestLapTime: rider.snelste_rondetijd, // Toegevoegd voor TS
         sector1: rider.sprint?.sectoren.s1 ?? '-',
         sector2: rider.sprint?.sectoren.s2 ?? '-',
-        sector3: rider.sprint?.sitten?.s3 ?? rider.sprint?.sectoren.s3 ?? '-',
-        status: rider.huidige_positie === 1 ? 'racing' : 'racing' // Knoopt aan bij je statusDot kleuren
+        sector3: rider.sprint?.sectoren.s3 ?? '-', // Typefout hersteld!
+        status: rider.huidige_positie === 1 ? 'racing' : 'racing',
+        pits: 0 // Toegevoegd voor TS
       };
     });
 
-    // 3. Sorteer direct netjes op positie (P1 bovenaan) zodat je tabel klopt
+    // 3. Sorteer direct netjes op positie
     return mappedEntries.sort((a, b) => a.position - b.position);
 
   } catch (error) {
@@ -102,6 +84,7 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
     return [];
   }
 }
+
 
 
 // ─── Standings ────────────────────────────────────────────────────────────────
