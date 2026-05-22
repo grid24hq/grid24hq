@@ -1,13 +1,56 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/hooks/useAuth'
 import SeriesBadge from '@/components/SeriesBadge/SeriesBadge'
+import LiveTiming from '@/components/LiveTiming/LiveTiming'
+import { getLiveSessies, type LiveSessie } from '@/services/raceApi'
+
+// Klasse → SeriesBadge type mapping
+const klasseToSeries: Record<string, 'wec' | 'motogp' | 'gt3' | 'imsa' | 'worldsbk' | 'f1'> = {
+  WEC:      'wec',
+  MotoGP:   'motogp',
+  GT3:      'gt3',
+  IMSA:     'imsa',
+  WorldSBK: 'worldsbk',
+  F1:       'f1',
+}
+
+const klasseKleur: Record<string, string> = {
+  F1:       '#e10600',
+  MotoGP:   '#f97316',
+  WEC:      '#3b82f6',
+  GT3:      '#22c55e',
+  IMSA:     '#a855f7',
+  WorldSBK: '#eab308',
+}
 
 export default function LiveCenter() {
-  const { isLoggedIn } = useAuth()
-  const { t } = useTranslation()
+  const { isLoggedIn }                    = useAuth()
+  const { t }                             = useTranslation()
+  const [sessies,     setSessies]         = useState<LiveSessie[]>([])
+  const [actieveSessie, setActieveSessie] = useState<LiveSessie | null>(null)
+  const [laden,       setLaden]           = useState(true)
 
-  // ProtectedRoute handles redirect, but we double-guard here too
+  // Haal live sessies op uit Firebase
+  useEffect(() => {
+    if (!isLoggedIn) return
+
+    async function laadSessies() {
+      setLaden(true)
+      const gevonden = await getLiveSessies()
+      setSessies(gevonden)
+      if (gevonden.length > 0) setActieveSessie(gevonden[0])
+      setLaden(false)
+    }
+
+    laadSessies()
+    // Ververs elke 30 seconden
+    const interval = setInterval(laadSessies, 30_000)
+    return () => clearInterval(interval)
+  }, [isLoggedIn])
+
+  // Niet ingelogd
   if (!isLoggedIn) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-8">
@@ -28,6 +71,7 @@ export default function LiveCenter() {
 
   return (
     <div className="max-w-7xl mx-auto px-8 py-10">
+
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
@@ -39,67 +83,93 @@ export default function LiveCenter() {
         <p className="font-ui text-sm text-brand-muted">{t('live.subtitle')}</p>
       </div>
 
-      {/* Live sessions grid */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        {[
-          { title: '6h Spa', series: 'wec' as const,    status: 'Lap 142/177', color: '#3b82f6' },
-          { title: 'Mugello FP3', series: 'motogp' as const, status: 'Session Active', color: '#f97316' },
-          { title: 'Nürb 24h', series: 'gt3' as const,  status: '6h Remaining', color: '#22c55e' },
-        ].map(({ title, series, status, color }) => (
-          <div key={title} className="card card-accent p-5 cursor-pointer hover:border-brand-orange transition-colors">
-            <div className="flex items-center justify-between mb-3">
-              <SeriesBadge series={series} />
-              <span className="flex items-center gap-1.5 font-ui text-[10px] font-bold uppercase tracking-wider" style={{ color }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: color }} />
-                Live
-              </span>
-            </div>
-            <div className="font-head text-xl font-bold uppercase mb-1">{title}</div>
-            <div className="font-ui text-xs text-brand-muted">{status}</div>
-            <div className="mt-4 h-1 bg-brand-border rounded-full overflow-hidden">
-              <div className="h-full rounded-full animate-pulse" style={{ width: '62%', background: `linear-gradient(90deg, ${color}80, ${color})` }} />
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Laden */}
+      {laden && (
+        <div className="flex items-center justify-center gap-3 py-20">
+          <div className="w-6 h-6 border-2 border-brand-border border-t-brand-orange rounded-full animate-spin" />
+          <span className="font-ui text-sm text-brand-muted">Live sessies ophalen...</span>
+        </div>
+      )}
 
-      {/* Live timing table placeholder */}
-      <div className="card card-accent p-5">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-head font-bold text-lg uppercase tracking-wide">Live Timing — WEC Spa</h2>
-          <SeriesBadge series="wec" size="md" />
+      {/* Geen sessies */}
+      {!laden && sessies.length === 0 && (
+        <div className="card p-12 text-center">
+          <div className="text-4xl mb-4">🏁</div>
+          <h2 className="font-head text-xl font-bold uppercase mb-2">Geen live sessies</h2>
+          <p className="font-ui text-sm text-brand-muted">
+            Start je Python tracker om data naar Firebase te sturen.
+          </p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-brand-border">
-                {['Pos', 'Nr', 'Rijder', 'Team', 'Laatste Lap', 'Gap', 'Stint'].map((h) => (
-                  <th key={h} className="font-ui text-[10px] font-semibold uppercase tracking-wider text-brand-muted text-left pb-2 pr-4">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { pos: 1, nr: '#8',  driver: 'Buemi/Hartley',   team: 'Toyota',    lap: '1:52.834', gap: 'Leader', stint: 12 },
-                { pos: 2, nr: '#7',  driver: 'Conway/Kobayashi', team: 'Toyota',    lap: '1:53.001', gap: '+12.4s', stint: 11 },
-                { pos: 3, nr: '#93', driver: 'Jenson/Cullen',    team: 'Peugeot',   lap: '1:54.211', gap: '+48.2s', stint: 10 },
-                { pos: 4, nr: '#51', driver: 'Pier Guidi',       team: 'Ferrari',   lap: '1:53.998', gap: '+1:02.1',stint: 13 },
-                { pos: 5, nr: '#6',  driver: 'Estre/Vanthoor',   team: 'Porsche',   lap: '1:54.891', gap: '+1:18.3',stint: 9  },
-              ].map(({ pos, nr, driver, team, lap, gap, stint }) => (
-                <tr key={pos} className="border-b border-brand-border/50 hover:bg-white/[0.02] transition-colors">
-                  <td className={`py-2.5 pr-4 font-head text-lg font-black ${pos <= 3 ? 'text-brand-orange' : 'text-brand-muted'}`}>{pos}</td>
-                  <td className="py-2.5 pr-4 font-ui text-xs font-bold text-brand-orange">{nr}</td>
-                  <td className="py-2.5 pr-4 font-head text-sm font-bold">{driver}</td>
-                  <td className="py-2.5 pr-4 font-ui text-xs text-brand-muted">{team}</td>
-                  <td className="py-2.5 pr-4 font-ui text-xs font-mono text-brand-light">{lap}</td>
-                  <td className="py-2.5 pr-4 font-ui text-xs font-semibold text-brand-orange">{gap}</td>
-                  <td className="py-2.5 font-ui text-xs text-brand-muted">{stint}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      )}
+
+      {/* Live sessie kaarten */}
+      {!laden && sessies.length > 0 && (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            {sessies.map((sessie) => {
+              const kleur    = klasseKleur[sessie.klasse] ?? '#f97316'
+              const series   = klasseToSeries[sessie.klasse]
+              const isActief = actieveSessie?.gp === sessie.gp && actieveSessie?.klasse === sessie.klasse
+
+              return (
+                <div
+                  key={`${sessie.klasse}-${sessie.gp}`}
+                  onClick={() => setActieveSessie(sessie)}
+                  className={`card p-5 cursor-pointer transition-colors ${
+                    isActief ? 'border-brand-orange' : 'hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    {series
+                      ? <SeriesBadge series={series} />
+                      : <span className="font-ui text-xs font-bold uppercase tracking-wider" style={{ color: kleur }}>{sessie.klasse}</span>
+                    }
+                    <span className="flex items-center gap-1.5 font-ui text-[10px] font-bold uppercase tracking-wider" style={{ color: kleur }}>
+                      <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: kleur }} />
+                      Live
+                    </span>
+                  </div>
+
+                  <div className="font-head text-xl font-bold uppercase mb-1">{sessie.gpNaam}</div>
+                  <div className="font-ui text-xs text-brand-muted mb-1">{sessie.status}</div>
+
+                  {sessie.weer && (
+                    <div className="font-ui text-[10px] text-brand-muted mt-2 flex gap-3">
+                      <span>🌡 Baan: {sessie.weer.baan}</span>
+                      <span>💨 Lucht: {sessie.weer.lucht}</span>
+                      <span>{sessie.weer.conditie}</span>
+                    </div>
+                  )}
+
+                  <div className="mt-4 h-1 bg-brand-border rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full animate-pulse"
+                      style={{ width: '62%', background: `linear-gradient(90deg, ${kleur}80, ${kleur})` }}
+                    />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Live timing tabel voor actieve sessie */}
+          {actieveSessie && (
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-head font-bold text-lg uppercase tracking-wide">
+                  Live Timing — {actieveSessie.klasse} {actieveSessie.gpNaam}
+                </h2>
+                {klasseToSeries[actieveSessie.klasse] && (
+                  <SeriesBadge series={klasseToSeries[actieveSessie.klasse]} size="md" />
+                )}
+              </div>
+              <LiveTiming
+                sessionId={`${actieveSessie.klasse}/${actieveSessie.jaar}/${actieveSessie.gp}`}
+              />
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
 }
