@@ -59,30 +59,37 @@ export interface LiveSessie {
   weer?:   FirebaseAlgemeenSessie['weer']
 }
 
-/** Haalt alle actieve sessies op uit Firebase — doorzoekt alle klasses/jaren/gps */
+// Bekende race series — Kalender en andere keys worden overgeslagen
+const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'GT3', 'IMSA', 'WorldSBK']
+
+/** Haalt alle actieve sessies op — doorzoekt alleen bekende race series */
 export async function getLiveSessies(): Promise<LiveSessie[]> {
   try {
-    const res = await fetch(`${FIREBASE_RTDB}.json`)
-    if (!res.ok) throw new Error('Firebase ophaalfout')
-    const root: Record<string, Record<string, Record<string, { Algemeen_Sessie?: FirebaseAlgemeenSessie }>>> | null = await res.json()
-    if (!root) return []
-
     const sessies: LiveSessie[] = []
 
-    for (const [klasse, jaren] of Object.entries(root)) {
-      for (const [jaar, gps] of Object.entries(jaren)) {
-        for (const [gp, gpData] of Object.entries(gps)) {
-          if (gpData?.Algemeen_Sessie) {
-            sessies.push({
-              klasse,
-              jaar,
-              gp,
-              gpNaam: gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-              status: gpData.Algemeen_Sessie.status,
-              weer:   gpData.Algemeen_Sessie.weer,
-            })
+    for (const klasse of RACE_SERIES) {
+      try {
+        const res = await fetch(`${FIREBASE_RTDB}/${klasse}.json`)
+        if (!res.ok) continue
+        const jaren: Record<string, Record<string, { Algemeen_Sessie?: FirebaseAlgemeenSessie }>> | null = await res.json()
+        if (!jaren) continue
+
+        for (const [jaar, gps] of Object.entries(jaren)) {
+          for (const [gp, gpData] of Object.entries(gps)) {
+            if (gpData?.Algemeen_Sessie) {
+              sessies.push({
+                klasse,
+                jaar,
+                gp,
+                gpNaam: gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+                status: gpData.Algemeen_Sessie.status,
+                weer:   gpData.Algemeen_Sessie.weer,
+              })
+            }
           }
         }
+      } catch {
+        continue
       }
     }
 
