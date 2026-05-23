@@ -114,12 +114,24 @@ function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void 
               )}
             </div>
 
-            {/* Circuit SVG placeholder */}
+            {/* Circuit SVG */}
             <div
-              className="mt-4 rounded-lg flex items-center justify-center"
-              style={{ height: 120, background: `${kleur}08`, border: `1px dashed ${kleur}30` }}
+              className="mt-4 rounded-lg flex items-center justify-center overflow-hidden"
+              style={{ height: 160, background: `${kleur}08`, border: `1px solid ${kleur}20` }}
             >
-              <span className="font-ui text-xs text-brand-muted">Circuit layout — binnenkort</span>
+              <img
+                src={`/circuits/${race.id}.svg`}
+                alt={`${race.baan} layout`}
+                style={{ maxHeight: 150, maxWidth: '100%', opacity: 0.9 }}
+                onError={(e) => {
+                  const target = e.currentTarget
+                  target.style.display = 'none'
+                  target.nextElementSibling?.removeAttribute('style')
+                }}
+              />
+              <span className="font-ui text-xs text-brand-muted" style={{ display: 'none' }}>
+                Circuit layout — binnenkort
+              </span>
             </div>
           </div>
 
