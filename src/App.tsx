@@ -21,6 +21,7 @@ const IMSA     = lazy(() => import('@/pages/IMSA'))
 const WorldSBK = lazy(() => import('@/pages/WorldSBK'))
 const Circuits = lazy(() => import('@/pages/Circuits'))
 const Teams    = lazy(() => import('@/pages/Teams'))
+const Kalender = lazy(() => import('@/pages/Kalender'))
 
 // ── React Query client ────────────────────────────────────────────────────────
 const queryClient = new QueryClient({
@@ -71,6 +72,7 @@ export default function App() {
               <Route path="worldsbk"element={<WorldSBK />} />
               <Route path="circuits"element={<Circuits />} />
               <Route path="teams"   element={<Teams />} />
+              <Route path="kalender" element={<Kalender />} />
 
               {/* 🔒 Protected — login required */}
               <Route
