@@ -22,7 +22,7 @@ export default function Navbar() {
     { to: '/gt3',       label: 'GT3' },
     { to: '/circuits',  label: t('nav.circuits') },
     { to: '/live',      label: t('nav.live') },
-    { to: '/calendar',  label: t('nav.calendar') },
+    { to: '/kalender',  label: t('nav.calendar') },
   ]
 
   return (
