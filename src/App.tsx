@@ -19,6 +19,7 @@ const MotoGP   = lazy(() => import('@/pages/MotoGP'))
 const GT3      = lazy(() => import('@/pages/GT3'))
 const IMSA     = lazy(() => import('@/pages/IMSA'))
 const WorldSBK = lazy(() => import('@/pages/WorldSBK'))
+const F1       = lazy(() => import('@/pages/F1'))
 const Circuits = lazy(() => import('@/pages/Circuits'))
 const Teams    = lazy(() => import('@/pages/Teams'))
 const Kalender = lazy(() => import('@/pages/Kalender'))
@@ -69,6 +70,7 @@ export default function App() {
               <Route path="motogp"  element={<MotoGP />} />
               <Route path="gt3"     element={<GT3 />} />
               <Route path="imsa"    element={<IMSA />} />
+              <Route path="f1"      element={<F1 />} />
               <Route path="worldsbk"element={<WorldSBK />} />
               <Route path="circuits"element={<Circuits />} />
               <Route path="teams"   element={<Teams />} />
