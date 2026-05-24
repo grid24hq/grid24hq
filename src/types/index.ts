@@ -9,6 +9,7 @@ export type SeriesId =
   | 'imsa'
   | 'wsb'
   | 'ssp'
+  | 'f1'
 
 export interface Series {
   id: SeriesId
