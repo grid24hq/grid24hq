@@ -104,10 +104,10 @@ export default function Navbar() {
           to="/live"
           className="flex items-center gap-1.5 text-white px-3.5 py-1.5 rounded text-xs font-ui font-bold uppercase tracking-wider bg-brand-orange hover:bg-orange-600 transition-colors"
         >
-          <span className={`w-1.5 h-1.5 rounded-full ${
+          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
             isLive
-              ? 'bg-green-400 animate-pulse'
-              : 'bg-red-400 opacity-50'
+              ? 'bg-green-400 animate-pulse shadow-[0_0_6px_#4ade80]'
+              : 'bg-red-500 opacity-60'
           }`} />
           {t('nav.liveNow')}
         </Link>
