@@ -99,15 +99,15 @@ export default function Navbar() {
           }`}>EN</span>
         </button>
 
-        {/* Live button — groen als live, rood als niet */}
+        {/* Live button — altijd oranje, dot groen als live rood/fade als niet */}
         <Link
           to="/live"
-          className={`flex items-center gap-1.5 text-white px-3.5 py-1.5 rounded text-xs font-ui font-bold uppercase tracking-wider transition-colors ${
-            isLive ? 'bg-green-600' : 'bg-brand-red'
-          }`}
+          className="flex items-center gap-1.5 text-white px-3.5 py-1.5 rounded text-xs font-ui font-bold uppercase tracking-wider bg-brand-orange hover:bg-orange-600 transition-colors"
         >
-          <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${
-            isLive ? 'bg-green-200' : 'bg-red-200'
+          <span className={`w-1.5 h-1.5 rounded-full ${
+            isLive
+              ? 'bg-green-400 animate-pulse'
+              : 'bg-red-400 opacity-50'
           }`} />
           {t('nav.liveNow')}
         </Link>
