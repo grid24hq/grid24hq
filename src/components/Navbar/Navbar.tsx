@@ -107,7 +107,7 @@ export default function Navbar() {
           <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
             isLive
               ? 'bg-green-400 animate-pulse shadow-[0_0_6px_#4ade80]'
-              : 'bg-red-500 opacity-60'
+              : 'bg-white opacity-70'
           }`} />
           {t('nav.liveNow')}
         </Link>
