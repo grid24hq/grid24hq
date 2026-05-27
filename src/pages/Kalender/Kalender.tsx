@@ -120,7 +120,7 @@ function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void 
               style={{ height: 160, background: `${kleur}08`, border: `1px solid ${kleur}20` }}
             >
               <img
-                src={`/circuits/${race.id}.svg`}
+                src={`/circuits/${race.serie.toLowerCase()}_${race.id}.svg`}
                 alt={`${race.baan} layout`}
                 style={{ maxHeight: 150, maxWidth: '100%', opacity: 0.9 }}
                 onError={(e) => {
