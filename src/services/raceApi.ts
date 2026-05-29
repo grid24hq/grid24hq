@@ -119,9 +119,46 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
     const liveTiming: Record<string, FirebaseRijderData> | null = await res.json()
     if (!liveTiming) return []
 
-    const entries: TimingEntry[] = Object.values(liveTiming).map((rijder) => {
+    // Helper: rondetijd "1:23.456" -> milliseconden
+    function tijdNaarMs(tijd: string): number | null {
+      if (!tijd || tijd === '-' || tijd === '--:--.---') return null
+      const match = tijd.match(/^(\d+):(\d+\.\d+)$/)
+      if (!match) return null
+      return parseInt(match[1]) * 60_000 + parseFloat(match[2]) * 1000
+    }
+
+    // Sorteer op positie voor gap-berekening
+    const alleRijders = Object.values(liveTiming).sort(
+      (a, b) => a.huidige_positie - b.huidige_positie
+    )
+
+    // Leider referentietijd
+    const leider      = alleRijders.find(r => r.huidige_positie === 1)
+    const leiderTijdMs = leider
+      ? (tijdNaarMs(leider.snelste_rondetijd) ?? tijdNaarMs(leider.laatste_rondetijd))
+      : null
+
+    const entries: TimingEntry[] = alleRijders.map((rijder) => {
       const isLeider = rijder.huidige_positie === 1
-      const gap      = isLeider ? 'LEADER' : `+${(Math.random() * 45).toFixed(3)}`
+
+      let gap = 'LEADER'
+      if (!isLeider) {
+        const rijderTijdMs =
+          tijdNaarMs(rijder.snelste_rondetijd) ?? tijdNaarMs(rijder.laatste_rondetijd)
+        if (rijderTijdMs !== null && leiderTijdMs !== null) {
+          const diffMs = rijderTijdMs - leiderTijdMs
+          gap = diffMs >= 0 ? `+${(diffMs / 1000).toFixed(3)}` : '-'
+        } else {
+          gap = '-'
+        }
+      }
+
+      // Status bepalen op basis van optioneel status-veld
+      let status: TimingEntry['status'] = 'racing'
+      const s = ((rijder as any).status ?? '').toLowerCase()
+      if (s.includes('pit'))                         status = 'pit'
+      if (s.includes('out') || s.includes('dnf'))   status = 'out'
+      if (s.includes('slow'))                        status = 'slow'
 
       return {
         carNumber:   rijder.car_bike_nr.replace('#', ''),
@@ -135,7 +172,7 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
         sector1:     rijder.sprint?.sectoren.s1 ?? '-',
         sector2:     rijder.sprint?.sectoren.s2 ?? '-',
         sector3:     rijder.sprint?.sectoren.s3 ?? '-',
-        status:      'racing' as const,
+        status,
         pits:        rijder.endurance?.totaal_pitstops ?? 0,
       }
     })
