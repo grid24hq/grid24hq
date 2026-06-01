@@ -62,6 +62,58 @@ export interface LiveSessie {
 // Bekende race series — Kalender en andere keys worden overgeslagen
 const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'GT3', 'IMSA', 'WorldSBK']
 
+// ─── Sessie Status (schakelaar vanuit Command Center) ─────────────────────────
+
+/**
+ * Haalt de /Sessie_Status node op uit Firebase.
+ * De Command Center schrijft hier naar toe bij start/stop van een sessie.
+ * Voorbeeld: { motogp_live: true, f1_live: false, wec_live: false }
+ */
+export async function getSessieStatus(): Promise<Record<string, boolean>> {
+  try {
+    const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json`)
+    if (!res.ok) return {}
+    const data = await res.json()
+    return data ?? {}
+  } catch {
+    return {}
+  }
+}
+
+// ─── Championship Standings (uit Firebase, gepusht via update_standings.py) ───
+
+export interface ChampionshipRijder {
+  positie: number
+  nummer:  string
+  naam:    string
+  team:    string
+  punten:  number
+}
+
+/**
+ * Haalt kampioenschapsstand op voor een serie.
+ * Pad: /{serie}/{jaar}/championship_standings/riders
+ * Voorbeeld: /MotoGP/2026/championship_standings/riders
+ */
+export async function getChampionshipStandings(
+  klasse: string,
+  jaar = '2026',
+): Promise<ChampionshipRijder[]> {
+  try {
+    const res = await fetch(`${FIREBASE_RTDB}/${klasse}/${jaar}/championship_standings/riders.json`)
+    if (!res.ok) return []
+    const data = await res.json()
+    if (!data) return []
+    // Data kan een array of een object zijn
+    const lijst: ChampionshipRijder[] = Array.isArray(data)
+      ? data
+      : Object.values(data)
+    return lijst.sort((a, b) => a.positie - b.positie)
+  } catch {
+    return []
+  }
+}
+
 /** Haalt alle actieve sessies op — doorzoekt alleen bekende race series */
 export async function getLiveSessies(): Promise<LiveSessie[]> {
   try {
