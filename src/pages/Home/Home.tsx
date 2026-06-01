@@ -1,6 +1,12 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SeriesBadge from '@/components/SeriesBadge'
+import { getKalender, type KalenderRace } from '@/services/kalenderApi'
+
+const serieToSeriesId: Record<string, string> = {
+  F1: 'f1', WEC: 'wec', MotoGP: 'motogp', GT3: 'gt3', IMSA: 'imsa', WorldSBK: 'wsb',
+}
 
 // ─── Ticker ───────────────────────────────────────────────────────────────────
 function LiveTicker() {
@@ -98,13 +104,24 @@ function LiveRaceCard() {
 // ─── Upcoming Races ───────────────────────────────────────────────────────────
 function UpcomingRaces() {
   const { t } = useTranslation()
-  const races = [
-    { date: '25', month: 'MEI', event: 'Canadian GP',    series: 'f1'     as const, circuit: 'Circuit Gilles Villeneuve', next: true },
-    { date: '01', month: 'JUN', event: 'Mugello GP',     series: 'motogp' as const, circuit: 'Autodromo del Mugello' },
-    { date: '14', month: 'JUN', event: '24h Le Mans',    series: 'wec'    as const, circuit: 'Circuit de la Sarthe' },
-    { date: '22', month: 'JUN', event: 'Assen TT',       series: 'motogp' as const, circuit: 'TT Circuit Assen' },
-    { date: '28', month: 'JUN', event: 'Misano WSBK',    series: 'wsb'    as const, circuit: 'Marco Simoncelli' },
-  ]
+  const [races, setRaces] = useState<KalenderRace[]>([])
+  const [laden, setLaden] = useState(true)
+
+  useEffect(() => {
+    getKalender().then((maanden) => {
+      const vandaag = new Date()
+      vandaag.setHours(0, 0, 0, 0)
+      // Verzamel alle toekomstige races, sorteer op datum, pak de eerste 5
+      const alleRaces = maanden.flatMap((m) => m.races)
+      const komend = alleRaces
+        .filter((r) => new Date(r.datum) >= vandaag)
+        .sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
+        .slice(0, 5)
+      setRaces(komend)
+      setLaden(false)
+    })
+  }, [])
+
   return (
     <section>
       <div className="flex items-center justify-between mb-4">
@@ -113,17 +130,38 @@ function UpcomingRaces() {
           {t('sections.fullCal')}
         </Link>
       </div>
-      <div className="flex gap-2.5 overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible">
-        {races.map((r, i) => (
-          <div key={i} className={`card p-3 md:p-4 text-center cursor-pointer hover:border-brand-orange transition-colors flex-shrink-0 w-36 md:w-auto ${r.next ? 'border-brand-red bg-red-950/10' : ''}`}>
-            <div className="font-head text-xl md:text-2xl font-black text-brand-orange leading-none">{r.date}</div>
-            <div className="font-ui text-[10px] text-brand-muted uppercase tracking-wider mb-2">{r.month}</div>
-            <div className="font-head text-xs md:text-sm font-bold leading-tight mb-1">{r.event}</div>
-            <SeriesBadge series={r.series} />
-            <div className="font-ui text-[10px] text-brand-muted mt-1 truncate">{r.circuit}</div>
-          </div>
-        ))}
-      </div>
+      {laden ? (
+        <div className="flex items-center gap-2 py-6">
+          <div className="w-4 h-4 border-2 border-brand-border border-t-brand-orange rounded-full animate-spin" />
+          <span className="font-ui text-xs text-brand-muted">Laden...</span>
+        </div>
+      ) : (
+        <div className="flex gap-2.5 overflow-x-auto pb-2 md:grid md:grid-cols-5 md:overflow-visible">
+          {races.map((r, i) => {
+            const datum = new Date(r.datum)
+            const seriesId = serieToSeriesId[r.serie] as any
+            const isNext = i === 0
+            const dag = String(datum.getDate()).padStart(2, '0')
+            const maand = datum.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCase()
+            return (
+              <Link
+                key={`${r.serie}-${r.id}`}
+                to="/kalender"
+                className={`card p-3 md:p-4 text-center hover:border-brand-orange transition-colors flex-shrink-0 w-36 md:w-auto ${isNext ? 'border-brand-red bg-red-950/10' : ''}`}
+              >
+                <div className="font-head text-xl md:text-2xl font-black text-brand-orange leading-none">{dag}</div>
+                <div className="font-ui text-[10px] text-brand-muted uppercase tracking-wider mb-2">{maand}</div>
+                <div className="font-head text-xs md:text-sm font-bold leading-tight mb-1">{r.naam}</div>
+                {seriesId && <SeriesBadge series={seriesId} />}
+                <div className="font-ui text-[10px] text-brand-muted mt-1 truncate">{r.baan}</div>
+              </Link>
+            )
+          })}
+          {races.length === 0 && (
+            <div className="col-span-5 font-ui text-sm text-brand-muted py-6 text-center">Geen aankomende races gevonden.</div>
+          )}
+        </div>
+      )}
     </section>
   )
 }
@@ -218,11 +256,7 @@ function Standings() {
   const [idx, setIdx] = useState(0)
   const current   = STANDINGS_DATA[idx]
 
-  // Wissel automatisch elke 5 seconden
-  useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % STANDINGS_DATA.length), 5000)
-    return () => clearInterval(timer)
-  }, [])
+  // Automatisch wisselen verwijderd — gebruiker kiest zelf via de tabs
 
   return (
     <section>
@@ -254,8 +288,6 @@ function Standings() {
     </section>
   )
 }
-
-import { useState, useEffect } from 'react'
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
