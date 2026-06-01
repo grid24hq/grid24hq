@@ -1,51 +1,48 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/hooks/useAuth'
 import LiveTiming from '@/components/LiveTiming/LiveTiming'
-import { getLiveSessies, type LiveSessie } from '@/services/raceApi'
-import { getKalender, getDagenTot, type KalenderRace } from '@/services/kalenderApi'
+import {
+  getLiveSessies,
+  getSessieStatus,
+  getChampionshipStandings,
+  type LiveSessie,
+  type ChampionshipRijder,
+} from '@/services/raceApi'
+import { getKalender, type KalenderRace } from '@/services/kalenderApi'
 
-// ─── Configuratie per serie ───────────────────────────────────────────────────
-const SERIE_CONFIG: Record<string, {
-  kleur: string; gradient: string; naam: string; subklassen?: string[]
-}> = {
-  F1:       { kleur: '#e10600', gradient: 'from-red-950/60',   naam: 'Formula 1' },
-  MotoGP:   { kleur: '#f97316', gradient: 'from-orange-950/60', naam: 'MotoGP World Championship', subklassen: ['MotoGP', 'Moto2', 'Moto3'] },
-  WEC:      { kleur: '#3b82f6', gradient: 'from-blue-950/60',  naam: 'World Endurance Championship', subklassen: ['Hypercar', 'LMP2', 'GT3 Am'] },
-  GT3:      { kleur: '#22c55e', gradient: 'from-green-950/60', naam: 'GT3 Racing' },
-  IMSA:     { kleur: '#a855f7', gradient: 'from-purple-950/60', naam: 'IMSA SportsCar Championship' },
-  WorldSBK: { kleur: '#eab308', gradient: 'from-yellow-950/60', naam: 'WorldSBK Championship', subklassen: ['Superbike', 'Supersport'] },
+const FIREBASE_RTDB = 'https://grid24hq-4ecf5-default-rtdb.europe-west1.firebasedatabase.app'
+
+// ─── Serie config ─────────────────────────────────────────────────────────────
+const SERIE_CONFIG: Record<string, { kleur: string; naam: string }> = {
+  F1:       { kleur: '#e10600', naam: 'Formula 1' },
+  MotoGP:   { kleur: '#f97316', naam: 'MotoGP World Championship' },
+  WEC:      { kleur: '#3b82f6', naam: 'World Endurance Championship' },
+  GT3:      { kleur: '#22c55e', naam: 'GT3 Racing' },
+  IMSA:     { kleur: '#a855f7', naam: 'IMSA SportsCar Championship' },
+  WorldSBK: { kleur: '#eab308', naam: 'WorldSBK Championship' },
 }
 
-// ─── Countdown blokje ─────────────────────────────────────────────────────────
+// ─── Countdown ────────────────────────────────────────────────────────────────
 function Countdown({ targetDate }: { targetDate: string }) {
-  const [parts, setParts] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-
+  const [p, setP] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   useEffect(() => {
-    function update() {
+    function upd() {
       const diff = new Date(targetDate).getTime() - Date.now()
-      if (diff <= 0) { setParts({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
-      setParts({
+      if (diff <= 0) { setP({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
+      setP({
         days:    Math.floor(diff / 86_400_000),
         hours:   Math.floor((diff % 86_400_000) / 3_600_000),
         minutes: Math.floor((diff % 3_600_000) / 60_000),
         seconds: Math.floor((diff % 60_000) / 1_000),
       })
     }
-    update()
-    const iv = setInterval(update, 1_000)
-    return () => clearInterval(iv)
+    upd(); const iv = setInterval(upd, 1_000); return () => clearInterval(iv)
   }, [targetDate])
-
   return (
     <div className="flex gap-2 mt-4">
-      {[
-        { v: parts.days,    l: 'Days'    },
-        { v: parts.hours,   l: 'Hours'   },
-        { v: parts.minutes, l: 'Minutes' },
-        { v: parts.seconds, l: 'Seconds' },
-      ].map(({ v, l }) => (
+      {[{ v: p.days, l: 'Days' }, { v: p.hours, l: 'Hours' }, { v: p.minutes, l: 'Minutes' }, { v: p.seconds, l: 'Seconds' }].map(({ v, l }) => (
         <div key={l} className="flex-1 text-center rounded-lg py-2" style={{ background: '#c0392b' }}>
           <div className="font-head font-black text-2xl leading-none text-white">{v}</div>
           <div className="font-ui text-[9px] uppercase tracking-wider text-white/70 mt-0.5">{l}</div>
@@ -58,12 +55,10 @@ function Countdown({ targetDate }: { targetDate: string }) {
 // ─── Upcoming Event kaart ─────────────────────────────────────────────────────
 function UpcomingEventCard() {
   const [volgend, setVolgend] = useState<KalenderRace | null>(null)
-
   useEffect(() => {
-    getKalender().then((maanden) => {
+    getKalender().then(maanden => {
       const vandaag = new Date(); vandaag.setHours(0, 0, 0, 0)
-      const alle = maanden.flatMap(m => m.races)
-      const komend = alle
+      const komend = maanden.flatMap(m => m.races)
         .filter(r => new Date(r.datum) >= vandaag)
         .sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
       setVolgend(komend[0] ?? null)
@@ -76,30 +71,16 @@ function UpcomingEventCard() {
     </div>
   )
 
-  const cfg   = SERIE_CONFIG[volgend.serie]
-  const kleur = cfg?.kleur ?? '#f97316'
-  const start = new Date(volgend.datum)
-  // Sessies: bepaal eerste en laatste sessie datum
-  const sessieData = Object.values(volgend.sessies)
-  const sessieKeys = Object.entries(volgend.sessies)
-
+  const sessieKeys = Object.entries(volgend.sessies ?? {})
   return (
     <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.1)' }}>
       <div className="font-ui text-[10px] font-bold uppercase tracking-[2px] text-brand-muted mb-3">Upcoming event</div>
-
-      {/* Land en baan */}
-      <div className="flex items-center gap-2 mb-1">
-        <span className="font-ui text-sm font-semibold text-brand-light">{volgend.land}</span>
-      </div>
+      <div className="font-ui text-sm font-semibold text-brand-light mb-0.5">{volgend.land}</div>
       <div className="font-head font-black text-2xl uppercase text-white mb-1">{volgend.stad?.toUpperCase() ?? volgend.land.toUpperCase()}</div>
       <div className="font-ui text-xs text-brand-muted mb-4">
-        {start.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} ·{' '}
-        {volgend.baan}
+        {new Date(volgend.datum).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} · {volgend.baan}
       </div>
-
       <Countdown targetDate={volgend.datum} />
-
-      {/* Key sessions */}
       {sessieKeys.length > 0 && (
         <div className="mt-4">
           <div className="font-ui text-[9px] uppercase tracking-[2px] text-brand-muted mb-2">Key sessions (times local to you)</div>
@@ -109,10 +90,8 @@ function UpcomingEventCard() {
               const isRace   = key === 'race' || key === 'race1' || key === 'race2'
               return (
                 <span key={key} className="flex items-center gap-1.5 font-ui text-[10px] font-semibold">
-                  <span
-                    className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
-                    style={{ background: isSprint ? '#9333ea' : isRace ? '#e10600' : '#374151', color: '#fff' }}
-                  >
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
+                    style={{ background: isSprint ? '#9333ea' : isRace ? '#e10600' : '#374151', color: '#fff' }}>
                     {isSprint ? 'SPR' : isRace ? 'RAC' : 'FP'}
                   </span>
                   <span className="text-brand-muted">
@@ -124,7 +103,6 @@ function UpcomingEventCard() {
           </div>
         </div>
       )}
-
       <Link to="/kalender" className="mt-4 inline-block font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors">
         View schedule
       </Link>
@@ -132,28 +110,103 @@ function UpcomingEventCard() {
   )
 }
 
-// ─── Live sessie selector tabs ────────────────────────────────────────────────
-function SerieTabs({ sessies, actief, onKies }: {
-  sessies: LiveSessie[]
-  actief:  LiveSessie | null
-  onKies:  (s: LiveSessie) => void
-}) {
+// ─── Championship Standings widget ────────────────────────────────────────────
+function ChampionshipStandingsWidget({ klasse, kleur }: { klasse: string; kleur: string }) {
+  const [rijders, setRijders]   = useState<ChampionshipRijder[]>([])
+  const [laden, setLaden]       = useState(true)
+
+  useEffect(() => {
+    setLaden(true)
+    getChampionshipStandings(klasse).then(data => {
+      setRijders(data)
+      setLaden(false)
+    })
+  }, [klasse])
+
+  return (
+    <div className="rounded-xl overflow-hidden h-full" style={{ background: '#1c1c1c', border: `1px solid ${kleur}30` }}>
+      {/* Header */}
+      <div className="px-5 py-3 flex items-center justify-between" style={{ background: kleur + '15', borderBottom: `1px solid ${kleur}25` }}>
+        <span className="font-ui text-[10px] font-bold uppercase tracking-[2px]" style={{ color: kleur }}>
+          {klasse} 2026 Championship Standings
+        </span>
+      </div>
+
+      {laden && (
+        <div className="flex items-center justify-center py-10">
+          <div className="w-4 h-4 border-2 border-white/10 rounded-full animate-spin" style={{ borderTopColor: kleur }} />
+        </div>
+      )}
+
+      {!laden && rijders.length === 0 && (
+        <div className="flex items-center justify-center py-10 px-5 text-center">
+          <div>
+            <div className="text-2xl mb-2">📊</div>
+            <p className="font-ui text-xs text-brand-muted">
+              Nog geen standen beschikbaar.<br />
+              Voer <code className="text-brand-orange">update_standings.py</code> uit via het Command Center.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {!laden && rijders.length > 0 && (
+        <div className="overflow-y-auto" style={{ maxHeight: 340 }}>
+          {rijders.slice(0, 10).map((r, i) => (
+            <div
+              key={r.nummer}
+              className="flex items-center gap-3 px-5 py-3 border-b border-white/5 hover:bg-white/[0.03] transition-colors"
+              style={i === 0 ? { background: kleur + '10' } : undefined}
+            >
+              {/* Positie */}
+              <span className={`font-head font-black text-xl w-7 flex-shrink-0 ${
+                i === 0 ? 'text-yellow-400' : i === 1 ? 'text-gray-300' : i === 2 ? 'text-amber-600' : 'text-brand-muted'
+              }`}>{r.positie}</span>
+
+              {/* Foto placeholder + info */}
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-head text-xs font-black"
+                style={{ background: kleur + '30', color: kleur }}>
+                {r.naam.split(' ').map(n => n[0]).join('').slice(0, 2)}
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <div className="font-head text-sm font-bold text-white truncate">{r.naam}</div>
+                <div className="font-ui text-[10px] text-brand-muted truncate">{r.team}</div>
+              </div>
+
+              {/* Punten */}
+              <div className="text-right flex-shrink-0">
+                <span className="font-head font-black text-sm" style={{ color: kleur }}>{r.punten}</span>
+                <span className="font-ui text-[10px] text-brand-muted ml-0.5">pts</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="px-5 py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <Link to={`/${klasse.toLowerCase()}`}
+          className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors inline-block">
+          View full standings
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+// ─── Serie tabs (meerdere live sessies) ───────────────────────────────────────
+function SerieTabs({ sessies, actief, onKies }: { sessies: LiveSessie[]; actief: LiveSessie | null; onKies: (s: LiveSessie) => void }) {
   return (
     <div className="flex flex-wrap gap-2 mb-6">
-      {sessies.map((s) => {
-        const cfg    = SERIE_CONFIG[s.klasse]
-        const kleur  = cfg?.kleur ?? '#f97316'
+      {sessies.map(s => {
+        const kleur    = SERIE_CONFIG[s.klasse]?.kleur ?? '#f97316'
         const isActief = actief?.klasse === s.klasse && actief?.gp === s.gp
         return (
-          <button
-            key={`${s.klasse}-${s.gp}`}
-            onClick={() => onKies(s)}
+          <button key={`${s.klasse}-${s.gp}`} onClick={() => onKies(s)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg border transition-all font-ui text-xs font-bold uppercase tracking-wider"
             style={isActief
               ? { background: kleur + '22', borderColor: kleur, color: kleur }
-              : { background: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#888' }
-            }
-          >
+              : { background: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#888' }}>
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: kleur }} />
             {s.klasse} — {s.gpNaam}
           </button>
@@ -163,14 +216,14 @@ function SerieTabs({ sessies, actief, onKies }: {
   )
 }
 
-// ─── Geen live scherm ─────────────────────────────────────────────────────────
+// ─── Geen live ────────────────────────────────────────────────────────────────
 function GeenLive() {
   return (
     <div className="rounded-xl p-12 text-center" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
       <div className="text-5xl mb-4">🏁</div>
       <h2 className="font-head font-black text-2xl uppercase tracking-wide mb-3">Geen live sessies</h2>
       <p className="font-ui text-sm text-brand-muted max-w-sm mx-auto">
-        Start je Python tracker om data naar Firebase te sturen. Zodra een sessie live gaat verschijnt de timing hier automatisch.
+        Zodra je via het Command Center een sessie start verschijnt de live timing hier automatisch.
       </p>
     </div>
   )
@@ -178,25 +231,43 @@ function GeenLive() {
 
 // ─── Hoofdpagina ──────────────────────────────────────────────────────────────
 export default function LiveCenter() {
-  const { isLoggedIn }                      = useAuth()
-  const { t }                               = useTranslation()
-  const [sessies,      setSessies]          = useState<LiveSessie[]>([])
-  const [actieveSessie, setActieveSessie]   = useState<LiveSessie | null>(null)
-  const [laden,        setLaden]            = useState(true)
+  const { isLoggedIn }    = useAuth()
+  const { t }             = useTranslation()
 
+  const [sessies,          setSessies]         = useState<LiveSessie[]>([])
+  const [actieveSessie,    setActieveSessie]   = useState<LiveSessie | null>(null)
+  const [sessieStatus,     setSessieStatus]    = useState<Record<string, boolean>>({})
+  const [laden,            setLaden]           = useState(true)
+
+  // Welke klasse is nu echt live op basis van /Sessie_Status?
+  const actieveKlasse = actieveSessie?.klasse ?? null
+  const statusKey     = actieveKlasse ? `${actieveKlasse.toLowerCase()}_live` : null
+  const isNuLive      = statusKey ? (sessieStatus[statusKey] === true) : sessies.length > 0
+
+  const cfg   = actieveKlasse ? SERIE_CONFIG[actieveKlasse] : null
+  const kleur = cfg?.kleur ?? '#f97316'
+
+  // ── Polling: sessies + Sessie_Status samen elke 10s ──
   useEffect(() => {
     if (!isLoggedIn) return
+    let cancelled = false
 
-    async function laadSessies() {
-      const gevonden = await getLiveSessies()
+    async function laad() {
+      const [gevonden, status] = await Promise.all([
+        getLiveSessies(),
+        getSessieStatus(),
+      ])
+      if (cancelled) return
       setSessies(gevonden)
-      if (gevonden.length > 0 && !actieveSessie) setActieveSessie(gevonden[0])
+      setSessieStatus(status)
+      // Auto-selecteer eerste sessie als nog niets gekozen
+      setActieveSessie(prev => prev ?? (gevonden[0] ?? null))
       setLaden(false)
     }
 
-    laadSessies()
-    const interval = setInterval(laadSessies, 30_000)
-    return () => clearInterval(interval)
+    laad()
+    const interval = setInterval(laad, 10_000)
+    return () => { cancelled = true; clearInterval(interval) }
   }, [isLoggedIn])
 
   // ── Niet ingelogd ──
@@ -223,45 +294,7 @@ export default function LiveCenter() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-10">
 
-      {/* ── Bovenste rij: Upcoming + actief kampioenschap ── */}
-      {actieveSessie && (() => {
-        const cfg   = SERIE_CONFIG[actieveSessie.klasse]
-        const kleur = cfg?.kleur ?? '#f97316'
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {/* Upcoming event */}
-            <UpcomingEventCard />
-
-            {/* Kampioenschap standings placeholder */}
-            <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: `1px solid ${kleur}30` }}>
-              <div className="font-ui text-[10px] font-bold uppercase tracking-[2px] mb-3" style={{ color: kleur }}>
-                {actieveSessie.klasse} 2026 Championship Standings
-              </div>
-              <div className="flex items-center justify-center h-32 text-brand-muted font-ui text-xs">
-                Kampioenschapsstand komt beschikbaar via API.
-              </div>
-              <Link to={`/${actieveSessie.klasse.toLowerCase()}`} className="mt-2 inline-block font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors">
-                View full standings
-              </Link>
-            </div>
-          </div>
-        )
-      })()}
-
-      {/* Geen live: toon alleen upcoming */}
-      {!laden && !heeftLive && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <UpcomingEventCard />
-          <GeenLive />
-        </div>
-      )}
-
-      {/* ── Sessie tabs (als er meerdere live zijn) ── */}
-      {!laden && heeftLive && sessies.length > 1 && (
-        <SerieTabs sessies={sessies} actief={actieveSessie} onKies={setActieveSessie} />
-      )}
-
-      {/* ── Laden indicator ── */}
+      {/* ── Laden ── */}
       {laden && (
         <div className="flex items-center justify-center gap-3 py-20">
           <div className="w-6 h-6 border-2 border-white/10 border-t-orange-500 rounded-full animate-spin" />
@@ -269,15 +302,77 @@ export default function LiveCenter() {
         </div>
       )}
 
-      {/* ── Live timing tabel ── */}
-      {!laden && heeftLive && actieveSessie && (
-        <LiveTiming
-          sessionId={`${actieveSessie.klasse}/${actieveSessie.jaar}/${actieveSessie.gp}`}
-          klasse={actieveSessie.klasse}
-          sessieNaam={actieveSessie.status}
-          status={actieveSessie.status}
-          land={actieveSessie.gpNaam}
-        />
+      {!laden && (
+        <>
+          {/* ── Bovenste rij: Upcoming event + SCHAKELAAR (standings of live badge) ── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <UpcomingEventCard />
+
+            {/* Rechts: als live → live badge + sessie info, anders → championship standings */}
+            {isNuLive && actieveSessie ? (
+              <div className="rounded-xl p-5 flex flex-col justify-between" style={{ background: '#1c1c1c', border: `2px solid ${kleur}` }}>
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-3 h-3 rounded-full animate-pulse" style={{ background: kleur, boxShadow: `0 0 8px ${kleur}` }} />
+                    <span className="font-ui text-xs font-bold uppercase tracking-wider" style={{ color: kleur }}>
+                      {actieveSessie.klasse} — Live nu
+                    </span>
+                  </div>
+                  <div className="font-head font-black text-2xl uppercase text-white mb-1">{actieveSessie.gpNaam}</div>
+                  <div className="font-ui text-sm text-brand-muted mb-4">{actieveSessie.status}</div>
+                  {actieveSessie.weer && (
+                    <div className="flex gap-4 font-ui text-xs text-brand-muted">
+                      <span>🌡 Baan: {actieveSessie.weer.baan}</span>
+                      <span>💨 Lucht: {actieveSessie.weer.lucht}</span>
+                      <span>{actieveSessie.weer.conditie}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-4 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                  <div className="h-full rounded-full animate-pulse" style={{ width: '70%', background: `linear-gradient(90deg, ${kleur}60, ${kleur})` }} />
+                </div>
+              </div>
+            ) : (
+              <ChampionshipStandingsWidget
+                klasse={actieveKlasse ?? 'MotoGP'}
+                kleur={kleur}
+              />
+            )}
+          </div>
+
+          {/* ── Sessie tabs (meerdere live) ── */}
+          {heeftLive && sessies.length > 1 && (
+            <SerieTabs sessies={sessies} actief={actieveSessie} onKies={setActieveSessie} />
+          )}
+
+          {/* ── Geen live sessies ── */}
+          {!heeftLive && <GeenLive />}
+
+          {/* ── SCHAKELAAR: Live Timing ÓÓÓF Championship Standings ── */}
+          {heeftLive && actieveSessie && (
+            isNuLive ? (
+              /* Live timing tabel */
+              <LiveTiming
+                sessionId={`${actieveSessie.klasse}/${actieveSessie.jaar}/${actieveSessie.gp}`}
+                klasse={actieveSessie.klasse}
+                sessieNaam={actieveSessie.status}
+                status={actieveSessie.status}
+                land={actieveSessie.gpNaam}
+              />
+            ) : (
+              /* Grote championship standings tabel als race klaar/gestopt is */
+              <div className="rounded-xl overflow-hidden" style={{ background: '#1c1c1c', border: `1px solid ${kleur}30` }}>
+                <div className="px-6 py-4 flex items-center justify-between" style={{ background: kleur + '15', borderBottom: `1px solid ${kleur}25` }}>
+                  <span className="font-head font-black text-lg uppercase tracking-wide" style={{ color: kleur }}>
+                    {actieveSessie.klasse} 2026 Championship Standings
+                  </span>
+                  <span className="font-ui text-[10px] text-brand-muted uppercase tracking-wider">Na afloop sessie</span>
+                </div>
+                <ChampionshipStandingsWidget klasse={actieveSessie.klasse} kleur={kleur} />
+              </div>
+            )
+          )}
+        </>
       )}
     </div>
   )
