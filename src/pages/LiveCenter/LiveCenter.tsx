@@ -239,11 +239,12 @@ export default function LiveCenter() {
   const [sessieStatus,     setSessieStatus]    = useState<Record<string, boolean>>({})
   const [laden,            setLaden]           = useState(true)
 
-  // Welke klasse is nu echt live op basis van /Sessie_Status?
+  // Welke specifieke GP is nu geselecteerd (bijv: 'motogp_race')?
   const actieveKlasse = actieveSessie?.klasse ?? null
-  const statusKey     = actieveKlasse ? `${actieveKlasse.toLowerCase()}_live` : null
-  const isNuLive      = statusKey ? (sessieStatus[statusKey] === true) : sessies.length > 0
-
+  const statusKey = actieveSessie?.gp ?? null // Pakt direct 'motogp_race' of 'moto2_race'
+  
+  // De website is LIVE als de geselecteerde gp-sleutel op TRUE staat in Firebase
+  const isNuLive = statusKey ? (sessieStatus[statusKey] === true) : false
   const cfg   = actieveKlasse ? SERIE_CONFIG[actieveKlasse] : null
   const kleur = cfg?.kleur ?? '#f97316'
 
@@ -266,7 +267,7 @@ export default function LiveCenter() {
     }
 
     laad()
-    const interval = setInterval(laad, 10_000)
+    const interval = setInterval(laad, 2000)
     return () => { cancelled = true; clearInterval(interval) }
   }, [isLoggedIn])
 
