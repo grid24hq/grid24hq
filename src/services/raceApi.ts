@@ -65,34 +65,20 @@ const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'GT3', 'IMSA', 'WorldSBK']
 // ─── Sessie Status (schakelaar vanuit Command Center) ─────────────────────────
 
 /**
- * Live Schakelaar Luisteraar vanuit het Command Center.
- * Luistert continu naar wijzigingen in /Sessie_Status.
+ * Haalt de /Sessie_Status node op uit Firebase.
+ * De Command Center schrijft hier naar toe bij start/stop van een sessie.
+ * Voorbeeld: { motogp_live: true, f1_live: false, wec_live: false }
  */
-export function listenToSessieStatus(callback: (status: Record<string, boolean>) => void): () => void {
-  // We gebruiken de browser native EventSource of WebSocket verbinding via Firebase REST streaming,
-  // of we bouwen een simpele interval omdat we met fetch werken in deze service.
-  // De meest React-vriendelijke manier zonder volledige Firebase SDK is deze live poll:
-  
-  const poll = async () => {
-    try {
-      const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json`);
-      if (res.ok) {
-        const data = await res.json();
-        callback(data ?? {});
-      }
-    } catch (err) {
-      console.error("Fout bij streamen status:", err);
-    }
-  };
-
-  // Start direct en check daarna elke 3 seconden automatisch
-  poll();
-  const intervalId = setInterval(poll, 3000);
-
-  // Return een opschoon-functie (cleanup) voor je useEffect!
-  return () => clearInterval(intervalId);
+export async function getSessieStatus(): Promise<Record<string, boolean>> {
+  try {
+    const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json`)
+    if (!res.ok) return {}
+    const data = await res.json()
+    return data ?? {}
+  } catch {
+    return {}
+  }
 }
-
 
 // ─── Championship Standings (uit Firebase, gepusht via update_standings.py) ───
 
