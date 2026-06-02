@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import LiveTiming from '@/components/LiveTiming/LiveTiming'
 import {
   getLiveSessies,
-  getSessieStatus,
+  listenToSessieStatus,
   getChampionshipStandings,
   type LiveSessie,
   type ChampionshipRijder,
