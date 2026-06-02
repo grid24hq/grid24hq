@@ -256,7 +256,7 @@ export default function LiveCenter() {
     async function laad() {
       const [gevonden, status] = await Promise.all([
         getLiveSessies(),
-        getSessieStatus(),
+        listenToSessieStatus(),
       ])
       if (cancelled) return
       setSessies(gevonden)
