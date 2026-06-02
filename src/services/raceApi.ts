@@ -71,6 +71,7 @@ const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'GT3', 'IMSA', 'WorldSBK']
  */
 export async function getSessieStatus(): Promise<Record<string, boolean>> {
   try {
+    // Haalt direct de actuele /Sessie_Status.json op uit Firebase
     const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json`)
     if (!res.ok) return {}
     const data = await res.json()
@@ -100,14 +101,17 @@ export async function getChampionshipStandings(
   jaar = '2026',
 ): Promise<ChampionshipRijder[]> {
   try {
-    const res = await fetch(`${FIREBASE_RTDB}/${klasse}/${jaar}/championship_standings/riders.json`)
+    // Vlijmscherp pad dat exact matcht met de output van update_standings.py
+    const res = await fetch(`${FIREBASE_RTDB}/${klasse}/${jaar}/championship_standings.json`)
     if (!res.ok) return []
     const data = await res.json()
-    if (!data) return []
-    // Data kan een array of een object zijn
-    const lijst: ChampionshipRijder[] = Array.isArray(data)
-      ? data
-      : Object.values(data)
+    if (!data || !data.riders) return []
+    
+    // Converteert Firebase objecten of arrays direct naar een schone lijst
+    const lijst: ChampionshipRijder[] = Array.isArray(data.riders)
+      ? data.riders
+      : Object.values(data.riders)
+      
     return lijst.sort((a, b) => a.positie - b.positie)
   } catch {
     return []
