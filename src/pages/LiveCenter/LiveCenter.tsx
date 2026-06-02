@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import LiveTiming from '@/components/LiveTiming/LiveTiming'
 import {
   getLiveSessies,
-  listenToSessieStatus,
+  getSessieStatus,
   getChampionshipStandings,
   type LiveSessie,
   type ChampionshipRijder,
@@ -239,12 +239,11 @@ export default function LiveCenter() {
   const [sessieStatus,     setSessieStatus]    = useState<Record<string, boolean>>({})
   const [laden,            setLaden]           = useState(true)
 
-  // Welke specifieke GP is nu geselecteerd (bijv: 'motogp_race')?
+  // Welke klasse is nu echt live op basis van /Sessie_Status?
   const actieveKlasse = actieveSessie?.klasse ?? null
-  const statusKey = actieveSessie?.gp ?? null // Pakt direct 'motogp_race' of 'moto2_race'
-  
-  // De website is LIVE als de geselecteerde gp-sleutel op TRUE staat in Firebase
-  const isNuLive = statusKey ? (sessieStatus[statusKey] === true) : false
+  const statusKey     = actieveKlasse ? `${actieveKlasse.toLowerCase()}_live` : null
+  const isNuLive      = statusKey ? (sessieStatus[statusKey] === true) : sessies.length > 0
+
   const cfg   = actieveKlasse ? SERIE_CONFIG[actieveKlasse] : null
   const kleur = cfg?.kleur ?? '#f97316'
 
@@ -256,7 +255,7 @@ export default function LiveCenter() {
     async function laad() {
       const [gevonden, status] = await Promise.all([
         getLiveSessies(),
-        listenToSessieStatus(),
+        getSessieStatus(),
       ])
       if (cancelled) return
       setSessies(gevonden)
@@ -267,7 +266,7 @@ export default function LiveCenter() {
     }
 
     laad()
-    const interval = setInterval(laad, 2000)
+    const interval = setInterval(laad, 10_000)
     return () => { cancelled = true; clearInterval(interval) }
   }, [isLoggedIn])
 
