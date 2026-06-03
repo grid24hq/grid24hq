@@ -44,7 +44,7 @@ const GRID_2026 = [
   { id: 'bearman',     voornaam: 'Oliver',    naam: 'BEARMAN',    landCode: 'gb', nummer: 87, teamId: 'haas',     teamNaam: 'Haas F1 Team'                   },
   { id: 'ocon',        voornaam: 'Esteban',   naam: 'OCON',       landCode: 'fr', nummer: 31, teamId: 'haas',     teamNaam: 'Haas F1 Team'                   },
   { id: 'lawson',      voornaam: 'Liam',      naam: 'LAWSON',     landCode: 'nz', nummer: 30, teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls'     },
-  { id: 'lindblad',    voornaam: 'Arvid',     naam: 'LINDBLAD',   landCode: 'se', nummer: 8,  teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls'     },
+  { id: 'lindblad',    voornaam: 'Arvid',     naam: 'LINDBLAD',   landCode: 'gb', nummer: 8,  teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls'     },
 ]
 
 // ─── Rijder rij ───────────────────────────────────────────────────────────────
