@@ -23,28 +23,28 @@ const TEAM_KLEUREN: Record<string, string> = {
 }
 
 const GRID_2026 = [
-  { id: 'verstappen',  voornaam: 'Max',       naam: 'VERSTAPPEN', landCode: 'nl', nummer: 1,  teamId: 'redbull',  teamNaam: 'Oracle Red Bull Racing'         },
-  { id: 'hadjar',      voornaam: 'Isack',     naam: 'HADJAR',     landCode: 'fr', nummer: 6,  teamId: 'redbull',  teamNaam: 'Oracle Red Bull Racing'         },
-  { id: 'leclerc',     voornaam: 'Charles',   naam: 'LECLERC',    landCode: 'mc', nummer: 16, teamId: 'ferrari',  teamNaam: 'Scuderia Ferrari HP'            },
-  { id: 'hamilton',    voornaam: 'Lewis',     naam: 'HAMILTON',   landCode: 'gb', nummer: 44, teamId: 'ferrari',  teamNaam: 'Scuderia Ferrari HP'            },
-  { id: 'russell',     voornaam: 'George',    naam: 'RUSSELL',    landCode: 'gb', nummer: 63, teamId: 'mercedes', teamNaam: 'Mercedes-AMG PETRONAS'          },
-  { id: 'antonelli',   voornaam: 'Kimi',      naam: 'ANTONELLI',  landCode: 'it', nummer: 12, teamId: 'mercedes', teamNaam: 'Mercedes-AMG PETRONAS'          },
-  { id: 'norris',      voornaam: 'Lando',     naam: 'NORRIS',     landCode: 'gb', nummer: 4,  teamId: 'mclaren',  teamNaam: 'McLaren Mastercard'             },
-  { id: 'piastri',     voornaam: 'Oscar',     naam: 'PIASTRI',    landCode: 'au', nummer: 81, teamId: 'mclaren',  teamNaam: 'McLaren Mastercard'             },
-  { id: 'alonso',      voornaam: 'Fernando',  naam: 'ALONSO',     landCode: 'es', nummer: 14, teamId: 'aston',    teamNaam: 'Aston Martin Aramco'            },
-  { id: 'stroll',      voornaam: 'Lance',     naam: 'STROLL',     landCode: 'ca', nummer: 18, teamId: 'aston',    teamNaam: 'Aston Martin Aramco'            },
-  { id: 'hulkenberg',  voornaam: 'Nico',      naam: 'HÜLKENBERG', landCode: 'de', nummer: 27, teamId: 'audi',     teamNaam: 'Audi F1 Team'                   },
-  { id: 'bortoleto',   voornaam: 'Gabriel',   naam: 'BORTOLETO',  landCode: 'br', nummer: 5,  teamId: 'audi',     teamNaam: 'Audi F1 Team'                   },
-  { id: 'perez',       voornaam: 'Sergio',    naam: 'PÉREZ',      landCode: 'mx', nummer: 11, teamId: 'cadillac', teamNaam: 'Cadillac F1 Team'               },
-  { id: 'bottas',      voornaam: 'Valtteri',  naam: 'BOTTAS',     landCode: 'fi', nummer: 77, teamId: 'cadillac', teamNaam: 'Cadillac F1 Team'               },
-  { id: 'albon',       voornaam: 'Alexander', naam: 'ALBON',      landCode: 'th', nummer: 23, teamId: 'williams', teamNaam: 'Williams Racing'                },
-  { id: 'sainz',       voornaam: 'Carlos',    naam: 'SAINZ JR.',  landCode: 'es', nummer: 55, teamId: 'williams', teamNaam: 'Williams Racing'                },
-  { id: 'gasly',       voornaam: 'Pierre',    naam: 'GASLY',      landCode: 'fr', nummer: 10, teamId: 'alpine',   teamNaam: 'Alpine F1 Team'                 },
-  { id: 'colapinto',   voornaam: 'Franco',    naam: 'COLAPINTO',  landCode: 'ar', nummer: 43, teamId: 'alpine',   teamNaam: 'Alpine F1 Team'                 },
-  { id: 'bearman',     voornaam: 'Oliver',    naam: 'BEARMAN',    landCode: 'gb', nummer: 87, teamId: 'haas',     teamNaam: 'Haas F1 Team'                   },
-  { id: 'ocon',        voornaam: 'Esteban',   naam: 'OCON',       landCode: 'fr', nummer: 31, teamId: 'haas',     teamNaam: 'Haas F1 Team'                   },
-  { id: 'lawson',      voornaam: 'Liam',      naam: 'LAWSON',     landCode: 'nz', nummer: 30, teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls'     },
-  { id: 'lindblad',    voornaam: 'Arvid',     naam: 'LINDBLAD',   landCode: 'gb', nummer: 8,  teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls'     },
+  { id: 'norris',      voornaam: 'Lando',     naam: 'NORRIS',     landCode: 'gb', nummer: 1,  teamId: 'mclaren',  teamNaam: 'McLaren Mastercard F1 Team'        },
+  { id: 'piastri',     voornaam: 'Oscar',     naam: 'PIASTRI',    landCode: 'au', nummer: 81, teamId: 'mclaren',  teamNaam: 'McLaren Mastercard F1 Team'        },
+  { id: 'verstappen',  voornaam: 'Max',       naam: 'VERSTAPPEN', landCode: 'nl', nummer: 3,  teamId: 'redbull',  teamNaam: 'Oracle Red Bull Racing'            },
+  { id: 'hadjar',      voornaam: 'Isack',     naam: 'HADJAR',     landCode: 'fr', nummer: 6,  teamId: 'redbull',  teamNaam: 'Oracle Red Bull Racing'            },
+  { id: 'leclerc',     voornaam: 'Charles',   naam: 'LECLERC',    landCode: 'mc', nummer: 16, teamId: 'ferrari',  teamNaam: 'Scuderia Ferrari HP'               },
+  { id: 'hamilton',    voornaam: 'Lewis',     naam: 'HAMILTON',   landCode: 'gb', nummer: 44, teamId: 'ferrari',  teamNaam: 'Scuderia Ferrari HP'               },
+  { id: 'russell',     voornaam: 'George',    naam: 'RUSSELL',    landCode: 'gb', nummer: 63, teamId: 'mercedes', teamNaam: 'Mercedes-AMG PETRONAS F1 Team'     },
+  { id: 'antonelli',   voornaam: 'Kimi',      naam: 'ANTONELLI',  landCode: 'it', nummer: 12, teamId: 'mercedes', teamNaam: 'Mercedes-AMG PETRONAS F1 Team'     },
+  { id: 'alonso',      voornaam: 'Fernando',  naam: 'ALONSO',     landCode: 'es', nummer: 14, teamId: 'aston',    teamNaam: 'Aston Martin Aramco F1 Team'       },
+  { id: 'stroll',      voornaam: 'Lance',     naam: 'STROLL',     landCode: 'ca', nummer: 18, teamId: 'aston',    teamNaam: 'Aston Martin Aramco F1 Team'       },
+  { id: 'albon',       voornaam: 'Alexander', naam: 'ALBON',      landCode: 'th', nummer: 23, teamId: 'williams', teamNaam: 'Atlassian Williams F1 Team'        },
+  { id: 'sainz',       voornaam: 'Carlos',    naam: 'SAINZ',      landCode: 'es', nummer: 55, teamId: 'williams', teamNaam: 'Atlassian Williams F1 Team'        },
+  { id: 'lawson',      voornaam: 'Liam',      naam: 'LAWSON',     landCode: 'nz', nummer: 30, teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls F1 Team'},
+  { id: 'lindblad',    voornaam: 'Arvid',     naam: 'LINDBLAD',   landCode: 'gb', nummer: 41, teamId: 'rb',       teamNaam: 'Visa Cash App Racing Bulls F1 Team'},
+  { id: 'ocon',        voornaam: 'Esteban',   naam: 'OCON',       landCode: 'fr', nummer: 31, teamId: 'haas',     teamNaam: 'TGR Haas F1 Team'                 },
+  { id: 'bearman',     voornaam: 'Oliver',    naam: 'BEARMAN',    landCode: 'gb', nummer: 87, teamId: 'haas',     teamNaam: 'TGR Haas F1 Team'                 },
+  { id: 'hulkenberg',  voornaam: 'Nico',      naam: 'HÜLKENBERG', landCode: 'de', nummer: 27, teamId: 'audi',     teamNaam: 'Audi Revolut F1 Team'             },
+  { id: 'bortoleto',   voornaam: 'Gabriel',   naam: 'BORTOLETO',  landCode: 'br', nummer: 5,  teamId: 'audi',     teamNaam: 'Audi Revolut F1 Team'             },
+  { id: 'gasly',       voornaam: 'Pierre',    naam: 'GASLY',      landCode: 'fr', nummer: 10, teamId: 'alpine',   teamNaam: 'BWT Alpine F1 Team'               },
+  { id: 'colapinto',   voornaam: 'Franco',    naam: 'COLAPINTO',  landCode: 'ar', nummer: 43, teamId: 'alpine',   teamNaam: 'BWT Alpine F1 Team'               },
+  { id: 'perez',       voornaam: 'Sergio',    naam: 'PÉREZ',      landCode: 'mx', nummer: 11, teamId: 'cadillac', teamNaam: 'Cadillac Formula 1 Team'           },
+  { id: 'bottas',      voornaam: 'Valtteri',  naam: 'BOTTAS',     landCode: 'fi', nummer: 77, teamId: 'cadillac', teamNaam: 'Cadillac Formula 1 Team'           },
 ]
 
 // ─── Rijder rij ───────────────────────────────────────────────────────────────
@@ -83,13 +83,25 @@ function RijderRij({ rijder, isEven }: { rijder: typeof GRID_2026[0]; isEven: bo
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
             onError={e => {
               const img = e.currentTarget as HTMLImageElement
-              if (img.src.endsWith('.webp')) {
+              if (img.src.includes('.webp')) {
+                img.src = `/f1/drivers/${rijder.id}.svg`
+              } else if (img.src.includes('.svg')) {
                 img.src = `/f1/drivers/${rijder.id}.png`
               } else {
-                img.style.visibility = 'hidden'
+                // Geen foto — toon initialen
+                img.style.display = 'none'
+                const fb = img.nextElementSibling as HTMLElement
+                if (fb) fb.style.display = 'flex'
               }
             }}
           />
+          {/* Fallback initialen */}
+          <div
+            className="w-full h-full items-center justify-center font-head font-black text-sm"
+            style={{ display: 'none', background: teamKleur + '30', color: teamKleur }}
+          >
+            {rijder.voornaam[0]}{rijder.naam[0]}
+          </div>
         </div>
         {/* Naam */}
         <div className="flex items-baseline gap-2 min-w-0">
