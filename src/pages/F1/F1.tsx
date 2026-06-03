@@ -75,6 +75,22 @@ function RijderRij({ rijder, isEven }: { rijder: typeof GRID_2026[0]; isEven: bo
           style={{ width: 36, height: 24, objectFit: 'cover' }}
           onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }}
         />
+        {/* Rijder foto */}
+        <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: 64, height: 48, background: teamKleur + '18' }}>
+          <img
+            src={`/f1/drivers/${rijder.id}.webp`}
+            alt={rijder.naam}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+            onError={e => {
+              const img = e.currentTarget as HTMLImageElement
+              if (img.src.endsWith('.webp')) {
+                img.src = `/f1/drivers/${rijder.id}.png`
+              } else {
+                img.style.visibility = 'hidden'
+              }
+            }}
+          />
+        </div>
         {/* Naam */}
         <div className="flex items-baseline gap-2 min-w-0">
           <span className="font-ui text-sm text-brand-muted group-hover:text-white transition-colors truncate">
