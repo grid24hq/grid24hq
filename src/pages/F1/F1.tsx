@@ -53,106 +53,127 @@ function RijderRij({ rijder, isEven }: { rijder: typeof GRID_2026[0]; isEven: bo
 
   return (
     <div
-      className="flex items-center gap-0 group transition-colors"
+      className="relative grid items-center group transition-colors"
       style={{
+        gridTemplateColumns: '40px 96px 280px 60px 220px 1fr',
         background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
+        minHeight: 64,
       }}
     >
-      {/* Hover highlight */}
+      {/* Hover streep links */}
       <div
         className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r"
         style={{ background: teamKleur }}
       />
 
-      {/* ── DRIVER kolom ── */}
-      <div className="flex items-center gap-3 px-4 py-3 flex-1 min-w-0">
-        {/* Vlag */}
+      {/* 1 — Vlag 40px */}
+      <div className="flex items-center justify-center pl-3">
         <img
           src={`/f1/flags/${rijder.landCode}.svg`}
           alt={rijder.landCode}
-          className="flex-shrink-0 rounded-sm"
-          style={{ width: 36, height: 24, objectFit: 'cover' }}
+          className="rounded-sm"
+          style={{ width: 28, height: 18, objectFit: 'cover' }}
           onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }}
         />
-        {/* Rijder foto */}
-        <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: 64, height: 48, background: teamKleur + '18' }}>
-          <img
-            src={`/f1/drivers/${rijder.id}.webp`}
-            alt={rijder.naam}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
-            onError={e => {
-              const img = e.currentTarget as HTMLImageElement
-              if (img.src.includes('.webp')) {
-                img.src = `/f1/drivers/${rijder.id}.svg`
-              } else if (img.src.includes('.svg')) {
-                img.src = `/f1/drivers/${rijder.id}.png`
-              } else {
-                // Geen foto — toon initialen
-                img.style.display = 'none'
-                const fb = img.nextElementSibling as HTMLElement
-                if (fb) fb.style.display = 'flex'
-              }
-            }}
-          />
-          {/* Fallback initialen */}
-          <div
-            className="w-full h-full items-center justify-center font-head font-black text-sm"
-            style={{ display: 'none', background: teamKleur + '30', color: teamKleur }}
-          >
-            {rijder.voornaam[0]}{rijder.naam[0]}
-          </div>
+      </div>
+
+      {/* 2 — Driver foto 96px */}
+      <div
+        className="flex items-center justify-center py-1"
+        style={{ width: 96, height: 72 }}
+      >
+        <img
+          src={`/f1/drivers/${rijder.id}.webp`}
+          alt={rijder.naam}
+          style={{
+            width: 96,
+            height: 72,
+            objectFit: 'cover',
+            objectPosition: 'top center',
+          }}
+          onError={e => {
+            const img = e.currentTarget as HTMLImageElement
+            if (img.src.includes('.webp')) {
+              img.src = `/f1/drivers/${rijder.id}.svg`
+            } else if (img.src.includes('.svg')) {
+              img.src = `/f1/drivers/${rijder.id}.png`
+            } else {
+              img.style.display = 'none'
+              const fb = img.nextElementSibling as HTMLElement
+              if (fb) fb.style.display = 'flex'
+            }
+          }}
+        />
+        {/* Fallback initialen */}
+        <div
+          className="items-center justify-center font-head font-black text-sm rounded"
+          style={{ display: 'none', width: 96, height: 72, background: teamKleur + '25', color: teamKleur }}
+        >
+          {rijder.voornaam[0]}{rijder.naam[0]}
         </div>
-        {/* Naam */}
-        <div className="flex items-baseline gap-2 min-w-0">
-          <span className="font-ui text-sm text-brand-muted group-hover:text-white transition-colors truncate">
-            {rijder.voornaam}
-          </span>
-          <span className="font-head font-black text-base uppercase text-white tracking-wide truncate">
-            {rijder.naam}
-          </span>
-        </div>
-        {/* Nummer badge */}
+      </div>
+
+      {/* 3 — Naam 280px */}
+      <div className="flex items-baseline gap-2 px-3 overflow-hidden">
+        <span className="font-ui text-sm text-brand-muted group-hover:text-white transition-colors whitespace-nowrap">
+          {rijder.voornaam}
+        </span>
+        <span className="font-head font-black text-base uppercase text-white tracking-wide whitespace-nowrap">
+          {rijder.naam}
+        </span>
+      </div>
+
+      {/* 4 — Race nummer 60px */}
+      <div className="flex items-center justify-center">
         <span
-          className="flex-shrink-0 font-head font-black text-xs px-2 py-0.5 rounded ml-auto"
-          style={{ background: teamKleur + '33', color: teamKleur, border: `1px solid ${teamKleur}55` }}
+          className="font-head font-black text-sm w-10 h-7 flex items-center justify-center rounded"
+          style={{
+            background: teamKleur + '33',
+            color: teamKleur,
+            border: `1px solid ${teamKleur}55`,
+          }}
         >
           {rijder.nummer}
         </span>
       </div>
 
-      {/* ── TEAM kolom ── */}
-      <div className="flex items-center gap-3 px-4 py-2 w-[55%] min-w-0">
-        {/* Auto SVG — past zich aan naar beschikbare ruimte */}
-        <div
-          className="flex-shrink-0 rounded-lg flex items-center justify-center"
+      {/* 5 — F1 Auto 220px */}
+      <div
+        className="flex items-center justify-center rounded-lg"
+        style={{
+          width: 220,
+          height: 48,
+          background: `linear-gradient(135deg, ${teamKleur}15 0%, rgba(255,255,255,0.03) 100%)`,
+          border: `1px solid ${teamKleur}25`,
+        }}
+      >
+        <img
+          src={`/f1/cars/${rijder.teamId}.webp`}
+          alt={rijder.teamNaam}
           style={{
-            width: 180,
-            height: 72,
-            background: `linear-gradient(135deg, ${teamKleur}18 0%, rgba(255,255,255,0.04) 100%)`,
-            border: `1px solid ${teamKleur}30`,
+            width: 220,
+            height: 48,
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))',
           }}
-        >
-          <img
-            src={`/f1/cars/${rijder.teamId}.webp`}
-            alt={rijder.teamNaam}
-            style={{ width: '90%', height: '90%', objectFit: 'contain', filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.6))' }}
-            onError={e => {
-              const img = e.currentTarget as HTMLImageElement
-              if (img.src.endsWith('.webp')) {
-                img.src = `/f1/cars/${rijder.teamId}.svg`
-              } else if (img.src.endsWith('.svg')) {
-                img.src = `/f1/cars/${rijder.teamId}.png`
-              } else {
-                img.style.visibility = 'hidden'
-              }
-            }}
-          />
-        </div>
+          onError={e => {
+            const img = e.currentTarget as HTMLImageElement
+            if (img.src.includes('.webp')) {
+              img.src = `/f1/cars/${rijder.teamId}.svg`
+            } else if (img.src.includes('.svg')) {
+              img.src = `/f1/cars/${rijder.teamId}.png`
+            } else {
+              img.style.visibility = 'hidden'
+            }
+          }}
+        />
+      </div>
 
-        {/* Team kleur streep + naam */}
+      {/* 6 — Teamnaam 1fr */}
+      <div className="flex items-center gap-2 px-4 overflow-hidden">
         <div
-          className="w-0.5 flex-shrink-0 self-stretch my-1 rounded-full"
+          className="w-0.5 flex-shrink-0 self-stretch my-2 rounded-full"
           style={{ background: teamKleur }}
         />
         <span className="font-ui text-sm text-brand-muted group-hover:text-white transition-colors truncate">
@@ -230,11 +251,26 @@ export default function F1() {
       <div className="rounded-xl overflow-hidden relative" style={{ background: '#111', border: '1px solid #222' }}>
 
         {/* Header rij */}
-        <div className="flex items-center" style={{ background: '#0d0d0d', borderBottom: '2px solid #222' }}>
-          <div className="flex-1 px-4 py-3">
+        <div
+          className="grid items-center"
+          style={{
+            gridTemplateColumns: '40px 96px 280px 60px 220px 1fr',
+            background: '#0d0d0d',
+            borderBottom: '2px solid #222',
+          }}
+        >
+          <div /> {/* vlag */}
+          <div /> {/* foto */}
+          <div className="px-3 py-3">
             <span className="font-ui text-xs font-bold uppercase tracking-[2px] text-white">Driver</span>
           </div>
-          <div className="w-[55%] px-4 py-3">
+          <div className="flex justify-center py-3">
+            <span className="font-ui text-xs font-bold uppercase tracking-[2px] text-white">#</span>
+          </div>
+          <div className="px-2 py-3">
+            <span className="font-ui text-xs font-bold uppercase tracking-[2px] text-white">Car</span>
+          </div>
+          <div className="px-4 py-3">
             <span className="font-ui text-xs font-bold uppercase tracking-[2px] text-white">Team</span>
           </div>
         </div>
