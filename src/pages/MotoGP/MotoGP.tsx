@@ -161,126 +161,105 @@ function RiderImg({ rijder, klasse, style }: { rijder: Rijder; klasse: Klasse; s
   )
 }
 
-// ─── Popup ────────────────────────────────────────────────────────────────────
+// ─── Nieuwe Geoptimaliseerde Popup ─────────────────────────────────────────────
 function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klasse; onSluit: () => void }) {
   const klasseKleur = KLASSE_CONFIG[klasse].kleur
-  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
-
+  const merkKleur = MERK_KLEUREN[rijder.merk] ?? klasseKleur
+ 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.88)' }} onClick={onSluit}>
+      style={{ background: 'rgba(0,0,0,0.88)' }} onClick={onSluit}> {/* 0.1.6 */}
       <div className="relative w-full max-w-3xl rounded-2xl overflow-hidden flex"
-        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '88vh' }}
+        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '92vh' }} {/* 0.1.6 */}
         onClick={e => e.stopPropagation()}>
-
+ 
         {/* ── Linker paneel ── */}
-        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 220, background: `linear-gradient(180deg, ${klasseKleur}25 0%, #0a0a0a 55%)` }}>
+        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 220,
+          background: `linear-gradient(180deg, ${klasseKleur}25 0%, #0a0a0a 55%)` }}> {/* 0.1.6 */}
           {/* Klasse badge */}
-          <div className="px-4 pt-4 pb-1">
+          <div className="px-4 pt-4 pb-1"> {/* 0.1.6 */}
             <span className="font-ui text-[10px] font-bold uppercase tracking-[2px] px-2 py-1 rounded"
-              style={{ background: klasseKleur + '22', color: klasseKleur, border: `1px solid ${klasseKleur}44` }}>
-              {klasse}
+              style={{ background: klasseKleur + '22', color: klasseKleur, border: `1px solid ${klasseKleur}44` }}> {/* 0.1.6 */}
+              {klasse} {/* 0.1.6 */}
             </span>
           </div>
           {/* Naam + nummer */}
-          <div className="px-4 pb-2">
-            <div className="font-ui text-sm text-white/60">{rijder.voornaam}</div>
-            <div className="font-head font-black text-2xl uppercase text-white leading-tight">{rijder.naam}</div>
-            <div className="flex items-center gap-2 mt-1">
-              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
-                className="rounded-sm" style={{ width: 24, height: 16, objectFit: 'cover' }}
-                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-              <span className="font-ui text-xs text-white/40 uppercase">{rijder.landCode}</span>
+          <div className="px-4 pb-2"> {/* 0.1.6 */}
+            <div className="font-ui text-sm text-white/60">{rijder.voornaam}</div> {/* 0.1.6 */}
+            <div className="font-head font-black text-2xl uppercase text-white leading-tight">{rijder.naam}</div> {/* 0.1.6 */}
+            <div className="flex items-center gap-2 mt-1"> {/* 0.1.6 */}
+              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode} className="rounded-sm" style={{ width: 24, height: 16, objectFit: 'cover' }} /> {/* 0.1.6 */}
+              <span className="font-ui text-xs text-white/40 uppercase">{rijder.landCode}</span> {/* 0.1.6 */}
             </div>
           </div>
-
+ 
           {/* Rijder foto */}
-          <div className="relative flex-1 mx-3 rounded-xl overflow-hidden" style={{ minHeight: 180 }}>
-            <RiderImg rijder={rijder} klasse={klasse}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
-            <div className="absolute bottom-0 left-0 right-0 h-16"
-              style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
-            {/* Groot nummer overlay */}
-            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none"
-              style={{ color: klasseKleur, opacity: 0.35 }}>
-              {rijder.nummer}
-            </div>
+          <div className="relative flex-1 mx-3 rounded-xl overflow-hidden" style={{ minHeight: 180 }}> {/* 0.1.6 */}
+            <RiderImg rijder={rijder} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} /> {/* 0.1.6 */}
+            <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} /> {/* 0.1.6 */}
+            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none" style={{ color: klasseKleur, opacity: 0.35 }}>{rijder.nummer}</div> {/* 0.1.6 */}
           </div>
-
+ 
           {/* Info */}
-          <div className="px-4 py-4 space-y-2">
+          <div className="px-4 py-4 space-y-2"> {/* 0.1.7 */}
             {[
-              { icon: '#️⃣', label: 'Racenummer', val: `#${rijder.nummer}` },
-              { icon: '🏭', label: 'Merk',       val: rijder.merk },
-              { icon: '🏁', label: 'Team',       val: rijder.team },
+              { icon: '🔢', label: 'Racenummer', val: `#${rijder.nummer}` }, {/* 0.1.7 */}
+              { icon: '🏭', label: 'Merk', val: rijder.merk }, {/* 0.1.7 */}
+              { icon: '🏁', label: 'Team', val: rijder.team }, {/* 0.1.7 */}
             ].map(({ icon, label, val }) => (
-              <div key={label} className="flex items-start gap-2">
-                <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
+              <div key={label} className="flex items-start gap-2"> {/* 0.1.7 */}
+                <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span> {/* 0.1.7 */}
                 <div>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/25">{label}</div>
-                  <div className="font-ui text-xs text-white/75 leading-tight">{val}</div>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/25">{label}</div> {/* 0.1.7 */}
+                  <div className="font-ui text-xs text-white/77 leading-tight truncate" style={{ maxWidth: 160 }}>{val}</div> {/* 0.1.7 */}
                 </div>
               </div>
             ))}
           </div>
         </div>
-
+ 
         {/* ── Rechter paneel ── */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden"> {/* 0.1.7 */}
           {/* Header */}
-          <div className="flex items-center justify-between px-6 pt-5 pb-4"
-            style={{ borderBottom: `1px solid ${klasseKleur}25` }}>
+          <div className="flex items-center justify-between px-6 pt-5 pb-4" style={{ borderBottom: `1px solid ${klasseKleur}25` }}> {/* 0.1.7 */}
             <div>
-              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-1" style={{ color: klasseKleur }}>
-                {rijder.team}
-              </div>
-              <div className="font-head font-black text-xl uppercase text-white">{rijder.voornaam} {rijder.naam}</div>
+              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-1" style={{ color: klasseKleur }}>{rijder.team}</div> {/* 0.1.7 */}
+              <div className="font-head font-black text-xl uppercase text-white">{rijder.voornaam} {rijder.naam}</div> {/* 0.1.7 */}
             </div>
-            <button onClick={onSluit}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">
-              ✕
-            </button>
+            <button onClick={onSluit} className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">✕</button> {/* 0.1.7 */}
           </div>
-
-          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+ 
+          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5"> {/* 0.1.7 */}
             {/* Stats blokjes */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3"> {/* 0.1.7 */}
               {[
-                { label: 'Klasse',      val: klasse },
-                { label: 'Racenummer', val: `#${rijder.nummer}` },
-                { label: 'Merk',       val: rijder.merk },
-                { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
+                { label: 'Klasse', val: klasse }, {/* 0.1.7 */}
+                { label: 'Racenummer', val: `#${rijder.nummer}` }, {/* 0.1.7 */}
+                { label: 'Merk', val: rijder.merk }, {/* 0.1.7 */}
+                { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() }, {/* 0.1.7 */}
               ].map(({ label, val }) => (
-                <div key={label} className="rounded-xl p-3"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
-                  <div className="font-ui text-sm font-semibold text-white">{val}</div>
+                <div key={label} className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}> {/* 0.1.7 */}
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div> {/* 0.1.7 */}
+                  <div className="font-ui text-sm font-semibold text-white">{val}</div> {/* 0.1.7 */}
                 </div>
               ))}
             </div>
-
-            {/* Motor */}
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
-                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
-                  {rijder.merk} · 2026 Motor
-                </span>
+ 
+            {/* Grote Motor Box */}
+            <div className="flex flex-col flex-1">
+              <div className="flex items-center gap-2 mb-2"> {/* 0.1.7 */}
+                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} /> {/* 0.1.7 */}
+                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">{rijder.merk} · 2026 Officiële Motor</span> {/* 0.1.7 */}
               </div>
-              <div className="rounded-xl flex items-center justify-center p-4"
-                style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 130 }}>
-                <BikeImg merk={rijder.merk} klasse={klasse}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 16px ${merkKleur}50)` }} />
+              {/* Hoogte verhoogd van 130 naar 240 px voor maximaal resultaat met front-renders! */}
+              <div className="rounded-xl flex items-center justify-center p-2"
+                style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 240 }}> {/* 0.1.8 */}
+                <BikeImg merk={rijder.merk} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 8px 24px ${merkKleur}60)` }} /> {/* 0.1.8 */}
               </div>
-            </div>
-
-            {/* Team */}
-            <div className="rounded-xl p-4" style={{ background: `linear-gradient(135deg, ${klasseKleur}10, rgba(255,255,255,0.02))`, border: `1px solid ${klasseKleur}20` }}>
-              <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">Team 2026</div>
-              <div className="font-ui text-sm font-semibold text-white">{rijder.team}</div>
             </div>
           </div>
         </div>
+ 
       </div>
     </div>
   )
