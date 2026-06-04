@@ -161,105 +161,173 @@ function RiderImg({ rijder, klasse, style }: { rijder: Rijder; klasse: Klasse; s
   )
 }
 
-// ─── Nieuwe Geoptimaliseerde Popup ─────────────────────────────────────────────
+// ─── F1-stijl Tabbed Popup voor MotoGP / Moto2 / Moto3 ─────────────────────────
 function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klasse; onSluit: () => void }) {
+  const [actiefTab, setActiefTab] = useState<'overzicht' | 'motor' | 'stats'>('overzicht')
   const klasseKleur = KLASSE_CONFIG[klasse].kleur
   const merkKleur = MERK_KLEUREN[rijder.merk] ?? klasseKleur
- 
+
+  // Dynamische specificaties per klasse voor de Motor-tab
+  const motorSpecs = {
+    MotoGP: { cc: '1000cc', type: 'V4 / L4 Viertakt', pk: '± 300 pk', gewicht: '157 kg', top: '360+ km/u' },
+    Moto2:  { cc: '765cc',  type: 'Triumph 3-cilinder', pk: '± 145 pk', gewicht: '145 kg', top: '300+ km/u' },
+    Moto3:  { cc: '250cc',  type: '1-cilinder Viertakt', pk: '± 60 pk',  gewicht: '84 kg',  top: '245+ km/u' }
+  }[klasse]
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.88)' }} onClick={onSluit}> {/* 0.1.6 */}
+      style={{ background: 'rgba(0,0,0,0.90)' }} onClick={onSluit}>
       <div className="relative w-full max-w-3xl rounded-2xl overflow-hidden flex"
-        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '92vh' }} {/* 0.1.6 */}
+        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}40`, maxHeight: '90vh' }}
         onClick={e => e.stopPropagation()}>
- 
-        {/* ── Linker paneel ── */}
-        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 220,
-          background: `linear-gradient(180deg, ${klasseKleur}25 0%, #0a0a0a 55%)` }}> {/* 0.1.6 */}
-          {/* Klasse badge */}
-          <div className="px-4 pt-4 pb-1"> {/* 0.1.6 */}
-            <span className="font-ui text-[10px] font-bold uppercase tracking-[2px] px-2 py-1 rounded"
-              style={{ background: klasseKleur + '22', color: klasseKleur, border: `1px solid ${klasseKleur}44` }}> {/* 0.1.6 */}
-              {klasse} {/* 0.1.6 */}
+
+        {/* ── Linker paneel (Rijder Profiel) ── */}
+        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 230, background: `linear-gradient(180deg, ${merkKleur}20 0%, #0a0a0a 60%)` }}>
+          <div className="px-4 pt-4 pb-1">
+            <span className="font-ui text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded"
+              style={{ background: klasseKleur + '15', color: klasseKleur, border: `1px solid ${klasseKleur}30` }}>
+              {klasse}
             </span>
           </div>
-          {/* Naam + nummer */}
-          <div className="px-4 pb-2"> {/* 0.1.6 */}
-            <div className="font-ui text-sm text-white/60">{rijder.voornaam}</div> {/* 0.1.6 */}
-            <div className="font-head font-black text-2xl uppercase text-white leading-tight">{rijder.naam}</div> {/* 0.1.6 */}
-            <div className="flex items-center gap-2 mt-1"> {/* 0.1.6 */}
-              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode} className="rounded-sm" style={{ width: 24, height: 16, objectFit: 'cover' }} /> {/* 0.1.6 */}
-              <span className="font-ui text-xs text-white/40 uppercase">{rijder.landCode}</span> {/* 0.1.6 */}
+          
+          <div className="px-4 pb-2">
+            <div className="font-ui text-xs text-white/50">{rijder.voornaam}</div>
+            <div className="font-head font-black text-2xl uppercase text-white leading-tight tracking-wide">{rijder.naam}</div>
+            <div className="flex items-center gap-2 mt-1.5">
+              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode} className="rounded-sm shadow-md" style={{ width: 22, height: 14, objectFit: 'cover' }} />
+              <span className="font-ui text-[10px] text-white/40 uppercase font-semibold">{rijder.landCode}</span>
             </div>
           </div>
- 
-          {/* Rijder foto */}
-          <div className="relative flex-1 mx-3 rounded-xl overflow-hidden" style={{ minHeight: 180 }}> {/* 0.1.6 */}
-            <RiderImg rijder={rijder} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} /> {/* 0.1.6 */}
-            <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} /> {/* 0.1.6 */}
-            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none" style={{ color: klasseKleur, opacity: 0.35 }}>{rijder.nummer}</div> {/* 0.1.6 */}
+
+          {/* Rijder foto met subtiel verloop naar zwart */}
+          <div className="relative flex-1 mx-3 mt-2 rounded-xl overflow-hidden bg-white/5">
+            <RiderImg rijder={rijder} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+            <div className="absolute bottom-0 left-0 right-0 h-20" style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
+            <div className="absolute bottom-1 right-3 font-head font-black text-6xl leading-none select-none" style={{ color: merkKleur, opacity: 0.25 }}>
+              {rijder.nummer}
+            </div>
           </div>
- 
-          {/* Info */}
-          <div className="px-4 py-4 space-y-2"> {/* 0.1.7 */}
-            {[
-              { icon: '🔢', label: 'Racenummer', val: `#${rijder.nummer}` }, {/* 0.1.7 */}
-              { icon: '🏭', label: 'Merk', val: rijder.merk }, {/* 0.1.7 */}
-              { icon: '🏁', label: 'Team', val: rijder.team }, {/* 0.1.7 */}
-            ].map(({ icon, label, val }) => (
-              <div key={label} className="flex items-start gap-2"> {/* 0.1.7 */}
-                <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span> {/* 0.1.7 */}
-                <div>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/25">{label}</div> {/* 0.1.7 */}
-                  <div className="font-ui text-xs text-white/77 leading-tight truncate" style={{ maxWidth: 160 }}>{val}</div> {/* 0.1.7 */}
-                </div>
-              </div>
-            ))}
+
+          {/* Kleine vaste details onderaan */}
+          <div className="px-4 py-4 border-t border-white/5 bg-black/40 space-y-1.5">
+            <div className="text-[10px] text-white/30 uppercase tracking-wider">Constructeur</div>
+            <div className="text-xs text-white/80 font-medium flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full" style={{ background: merkKleur }} />
+              {rijder.merk}
+            </div>
           </div>
         </div>
- 
-        {/* ── Rechter paneel ── */}
-        <div className="flex-1 flex flex-col overflow-hidden"> {/* 0.1.7 */}
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 pt-5 pb-4" style={{ borderBottom: `1px solid ${klasseKleur}25` }}> {/* 0.1.7 */}
+
+        {/* ── Rechter paneel (Dynamische Tabs) ── */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Top Header met sluitknop */}
+          <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
             <div>
-              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-1" style={{ color: klasseKleur }}>{rijder.team}</div> {/* 0.1.7 */}
-              <div className="font-head font-black text-xl uppercase text-white">{rijder.voornaam} {rijder.naam}</div> {/* 0.1.7 */}
+              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-0.5" style={{ color: merkKleur }}>{rijder.team}</div>
+              <div className="font-head font-black text-xl uppercase text-white tracking-wide">{rijder.voornaam} {rijder.naam}</div>
             </div>
-            <button onClick={onSluit} className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">✕</button> {/* 0.1.7 */}
+            <button onClick={onSluit} className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">✕</button>
           </div>
- 
-          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5"> {/* 0.1.7 */}
-            {/* Stats blokjes */}
-            <div className="grid grid-cols-2 gap-3"> {/* 0.1.7 */}
-              {[
-                { label: 'Klasse', val: klasse }, {/* 0.1.7 */}
-                { label: 'Racenummer', val: `#${rijder.nummer}` }, {/* 0.1.7 */}
-                { label: 'Merk', val: rijder.merk }, {/* 0.1.7 */}
-                { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() }, {/* 0.1.7 */}
-              ].map(({ label, val }) => (
-                <div key={label} className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}> {/* 0.1.7 */}
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div> {/* 0.1.7 */}
-                  <div className="font-ui text-sm font-semibold text-white">{val}</div> {/* 0.1.7 */}
+
+          {/* F1-Stijl Tab navigatie */}
+          <div className="flex px-6 bg-black/20 border-b border-white/5">
+            {([
+              { id: 'overzicht', label: 'Overzicht' },
+              { id: 'motor', label: 'De Motor' },
+              { id: 'stats', label: 'Statistieken' }
+            ] as const).map(tab => {
+              const actief = actiefTab === tab.id
+              return (
+                <button key={tab.id} onClick={() => setActiefTab(tab.id)}
+                  className="px-4 py-3 font-ui text-xs font-bold uppercase tracking-wider border-b-2 transition-all"
+                  style={{ 
+                    borderColor: actief ? merkKleur : 'transparent', 
+                    color: actief ? '#fff' : 'rgba(255,255,255,0.35)' 
+                  }}>
+                  {tab.label}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Tab Inhoud */}
+          <div className="flex-1 overflow-y-auto px-6 py-5">
+            
+            {/* TAB 1: OVERZICHT */}
+            {actiefTab === 'overzicht' && (
+              <div className="space-y-4 animate-fade-in">
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: 'Klasse', val: klasse, sub: KLASSE_CONFIG[klasse].sub },
+                    { label: 'Startnummer', val: `#${rijder.nummer}`, sub: 'Officieel wedstrijdnummer' },
+                    { label: 'Merk', val: rijder.merk, sub: 'Chassis & Fabrikant' },
+                    { label: 'Nationaliteit', val: rijder.landCode.toUpperCase(), sub: 'Land van herkomst' },
+                  ].map(({ label, val, sub }) => (
+                    <div key={label} className="rounded-xl p-3 bg-white/[0.03] border border-white/[0.06]">
+                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
+                      <div className="font-ui text-sm font-bold text-white mb-0.5">{val}</div>
+                      <div className="font-ui text-[10px] text-white/40">{sub}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
- 
-            {/* Grote Motor Box */}
-            <div className="flex flex-col flex-1">
-              <div className="flex items-center gap-2 mb-2"> {/* 0.1.7 */}
-                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} /> {/* 0.1.7 */}
-                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">{rijder.merk} · 2026 Officiële Motor</span> {/* 0.1.7 */}
+                <div className="rounded-xl p-4 border border-white/[0.05]" style={{ background: `linear-gradient(135deg, ${merkKleur}08, transparent)` }}>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">Officieel Team</div>
+                  <div className="font-ui text-sm font-bold text-white">{rijder.team}</div>
+                </div>
               </div>
-              {/* Hoogte verhoogd van 130 naar 240 px voor maximaal resultaat met front-renders! */}
-              <div className="rounded-xl flex items-center justify-center p-2"
-                style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 240 }}> {/* 0.1.8 */}
-                <BikeImg merk={rijder.merk} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 8px 24px ${merkKleur}60)` }} /> {/* 0.1.8 */}
+            )}
+
+            {/* TAB 2: DE MOTOR (Hier komt de render nu gigantisch groot in!) */}
+            {actiefTab === 'motor' && (
+              <div className="space-y-4 animate-fade-in flex flex-col h-full">
+                {/* De gigantische motor display box */}
+                <div className="rounded-xl flex items-center justify-center p-4 relative overflow-hidden"
+                  style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.01))`, border: `1px solid ${merkKleur}25`, height: 200 }}>
+                  <BikeImg merk={rijder.merk} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 10px 25px ${merkKleur}50)` }} />
+                </div>
+                
+                {/* Technische Specificaties Grid */}
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { label: 'Cilinderinhoud', val: motorSpecs.cc },
+                    { label: 'Motorconfiguratie', val: motorSpecs.type },
+                    { label: 'Vermogen', val: motorSpecs.pk },
+                    { label: 'Minimum Gewicht', val: motorSpecs.gewicht },
+                    { label: 'Topsnelheid', val: motorSpecs.top },
+                    { label: 'Banden', val: klasse === 'MotoGP' ? 'Michelin' : 'Pirelli' },
+                  ].map(({ label, val }) => (
+                    <div key={label} className="rounded-lg p-2.5 bg-white/[0.02] border border-white/[0.04] text-center">
+                      <div className="font-ui text-[8px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
+                      <div className="font-ui text-xs font-bold text-white/90">{val}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* TAB 3: STATISTIEKEN */}
+            {actiefTab === 'stats' && (
+              <div className="grid grid-cols-2 gap-3 animate-fade-in">
+                {[
+                  { label: 'WK Punten 2026', val: '0', sub: 'Huidige stand' },
+                  { label: 'GP Overwinningen', val: '—', sub: 'Carrière totaal' },
+                  { label: 'Podiumplaatsen', val: '—', sub: 'Carrière totaal' },
+                  { label: 'Pole Positions', val: '—', sub: 'Carrière totaal' },
+                ].map(({ label, val, sub }) => (
+                  <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/[0.05] flex flex-col justify-between">
+                    <div>
+                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
+                      <div className="font-head font-black text-2xl" style={{ color: merkKleur }}>{val}</div>
+                    </div>
+                    <div className="font-ui text-[10px] text-white/40 mt-2">{sub}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
           </div>
         </div>
- 
+
       </div>
     </div>
   )
