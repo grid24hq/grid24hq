@@ -492,7 +492,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 				)}
 
 				{/* ── STATISTIEKEN TAB ── */}
-				{tab === 'statistieken' && (
+				{tab === 'stats' && (
 				  <div className="space-y-4">
 					<div className="flex items-center gap-2 mb-1">
 					  <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
@@ -509,106 +509,25 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 						{ label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
 						{ label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
 					  ].map(({ label, val, icon, color }) => (
-                <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
-                  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
-                  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
-                    {val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
-                  </div>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+						<div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
+						  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
+						  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
+							{val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
+						  </div>
+						  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
+						</div>
+					  ))}
+					</div>
+				  </div>
+				)}
 
-      </div>
-    </div>
-  );
-}
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  );
+	}
 
-			          {/* Omschrijving */}
-          {info?.omschrijving && (
-            <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-              <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}	  
-
-
-
-                <div className="rounded-xl p-4"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="font-ui text-xs text-white/40 text-center">
-                    Live statistieken worden beschikbaar via het Command Center zodra het seizoen loopt.
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse: Klasse; isEven: boolean; onKlik: () => void }) {
-  const klasseKleur = KLASSE_CONFIG[klasse].kleur
-  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
-
-  return (
-    <div className="relative grid items-center group transition-all cursor-pointer hover:brightness-110"
-      style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent', borderBottom: '1px solid rgba(255,255,255,0.06)', minHeight: 80 }}
-      onClick={onKlik}>
-      <div className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r" style={{ background: klasseKleur }} />
-
-      {/* Vlag */}
-      <div className="flex items-center justify-center pl-3">
-        <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
-          className="rounded-sm" style={{ width: 28, height: 18, objectFit: 'cover' }}
-          onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
-      </div>
-
-      {/* Rijder foto */}
-      <div className="flex items-center justify-center py-2">
-        <div className="overflow-hidden rounded-lg" style={{ width: 96, height: 72 }}>
-          <RiderImg rijder={rijder} klasse={klasse}
-            style={{ width: 96, height: 72, objectFit: 'cover', objectPosition: 'top center' }} />
-        </div>
-      </div>
-
-      {/* Naam */}
-      <div className="flex items-center gap-2 px-4">
-        <span className="font-ui text-sm text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">{rijder.voornaam}</span>
-        <span className="font-head font-black text-lg uppercase text-white tracking-wide whitespace-nowrap">{rijder.naam}</span>
-      </div>
-
-      {/* Nummer */}
-      <div className="flex items-center justify-center">
-        <span className="font-head font-black text-sm w-11 h-8 flex items-center justify-center rounded"
-          style={{ background: klasseKleur + '33', color: klasseKleur, border: `1px solid ${klasseKleur}55` }}>
-          {rijder.nummer}
-        </span>
-      </div>
-
-      {/* Motor */}
-      <div className="flex items-center justify-center rounded-lg mx-2"
-        style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
-        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
-          style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
-      </div>
-
-      {/* Team */}
-      <div className="flex items-center gap-2 px-4">
-        <div className="w-0.5 self-stretch my-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
-        <span className="font-ui text-sm text-white/40 group-hover:text-white transition-colors truncate">{rijder.team}</span>
-      </div>
-    </div>
-  )
-}
 
 // ─── Hoofdpagina ──────────────────────────────────────────────────────────────
 export default function MotoGP() {
