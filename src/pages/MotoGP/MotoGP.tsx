@@ -521,37 +521,17 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 				  </div>
 				)}
 
-			{/* Omschrijving */}
-			{info?.omschrijving && (
-			  <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-				<p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
-			  </div>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
-                </div>
-              ))}
+			          {/* Omschrijving */}
+          {info?.omschrijving && (
+            <div className="rounded-xl p-3 bg-white/5 border border-white/10">
+              <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+      )}
 
-            {/* Grid met Statistieken */}
-<div className="grid grid-cols-3 gap-3">
-  {[
-    { label: 'Races', val: stats?.races ?? '-', icon: '🏁' },
-    { label: 'Overwinningen', val: stats?.wins ?? '-', icon: '🏆' },
-    { label: 'Podiums', val: stats?.podiums ?? '-', icon: '🥇' },
-    { label: 'Poles', val: stats?.poles ?? '-', icon: '⚡' },
-    { label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
-    { label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
-  ].map(({ label, val, icon, color }) => (
-    <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
-      <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
-      <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
-        {val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
-      </div>
-      <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
-    </div>
-  ))}
-</div>
+
+
                 <div className="rounded-xl p-4"
                   style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
                   <p className="font-ui text-xs text-white/40 text-center">
