@@ -1,24 +1,4 @@
-// ─── MotoGP 2026 — MotoGP / Moto2 / Moto3 grid pagina ────────────────────────
-//
-// MAPPENSTRUCTUUR AFBEELDINGEN:
-//
-// public/motogp/
-//   flags/          ← landvlaggen SVG  (zelfde als F1: nl.svg, es.svg etc.)
-//   motogp/
-//     riders/       ← rijder foto's    (320×240 px WebP, bv: marquez.webp)
-//     bikes/        ← motor per merk   (400×200 px WebP, bv: ducati.webp)
-//   moto2/
-//     riders/       ← rijder foto's    (320×240 px WebP)
-//     bikes/        ← motor per merk   (400×200 px WebP, bv: kalex.webp)
-//   moto3/
-//     riders/       ← rijder foto's    (320×240 px WebP)
-//     bikes/        ← motor per merk   (400×200 px WebP, bv: ktm_moto3.webp)
-//
-// MERK IDs (voor bikes map):
-//   MotoGP: ducati, aprilia, ktm, yamaha, honda
-//   Moto2:  kalex, boscoscuro, forward
-//   Moto3:  ktm_moto3, honda_moto3
-// ─────────────────────────────────────────────────────────────────────────────
+// ─── MotoGP 2026 — MotoGP / Moto2 / Moto3 Grid + Premium Popup pagina ────────────────────────
 
 import { useState, useEffect } from 'react'
 
@@ -57,7 +37,7 @@ const RIJDER_INFO: Record<string, {
   bastianini:     { geboortedatum: '30 dec. 1997',  leeftijd: 27, geboorteplaats: 'Rimini, Italië',       lengte: '1.82 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Enea Bastianini rijdt in 2026 voor KTM Tech3 en wil zijn snelheid omzetten in consistente resultaten.' },
   miller:         { geboortedatum: '18 jan. 1995',  leeftijd: 30, geboorteplaats: 'Townsville, Australië',lengte: '1.73 m', debuut: '2015, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Jack Miller is een populaire rijder die in 2026 de Pramac Yamaha op de kaart wil zetten.' },
   razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',      lengte: '1.75 m', debuut: '2026, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.' },
-  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.' },
+  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Johann Zarco geboortedatum: '16 jul. 1990', leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk', lengte: '1.74 m', debuut: '2017, Qatar', wereldtitels: 0, bikeModel: 'RC213V', motor: 'Honda V4', omschrijving: 'Johann Zarco is een ervaren veteraan.' },
   moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',  lengte: '1.70 m', debuut: '2025, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.' },
   marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',       lengte: '1.76 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.' },
   mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',        lengte: '1.74 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.' },
@@ -227,18 +207,33 @@ function teamBikeId(team: string, klasse: Klasse): string {
   return team.split(' ')[0].toLowerCase()
 }
 
-function BikeImg({ team, merk, klasse, style }: { team: string; merk: string; klasse: Klasse; style?: React.CSSProperties }) {
-  const id  = teamBikeId(team, klasse)
-  const pad = `/motogp/${klasse.toLowerCase()}/bikes/${id}`
+function BikeImg({ team, merk, klasse, type = 'side', riderId, style }: { 
+  team: string; 
+  merk: string; 
+  klasse: Klasse; 
+  type?: 'front' | 'side'; 
+  riderId?: string; 
+  style?: React.CSSProperties 
+}) {
+  let pad = '';
+  
+  if (type === 'front' && riderId) {
+    // Unieke voorkant per rijder (bijv. /motogp/motogp/bikes/zarco_front.webp)
+    pad = `/motogp/${klasse.toLowerCase()}/bikes/${riderId}_front`;
+  } else {
+    // Gedeelde zijkant per team (bijv. /motogp/motogp/bikes/lcr_honda_side.webp)
+    const tId = teamBikeId(team, klasse);
+    pad = `/motogp/${klasse.toLowerCase()}/bikes/${tId}_side`;
+  }
+  
   return (
     <img src={`${pad}.webp`} alt={team} style={style}
       onError={e => {
-        const img = e.currentTarget as HTMLImageElement
-        if (img.src.includes('.webp')) img.src = `${pad}.svg`
-        else if (img.src.includes('.svg')) img.src = `${pad}.png`
-        else img.style.visibility = 'hidden'
+        const img = e.currentTarget as HTMLImageElement;
+        if (img.src.includes('.webp')) img.src = `${pad}.png`;
+        else img.style.visibility = 'hidden';
       }} />
-  )
+  );
 }
 
 function RiderImg({ rijder, klasse, style }: { rijder: Rijder; klasse: Klasse; style?: React.CSSProperties }) {
@@ -306,16 +301,20 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
           </div>
 
           {/* Rijder foto */}
-          <div className="relative flex-1 overflow-hidden mx-3 rounded-xl" style={{ minHeight: 200 }}>
-            <RiderImg rijder={rijder} klasse={klasse}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
-            <div className="absolute bottom-0 left-0 right-0 h-20"
-              style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
-            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none"
-              style={{ color: klasseKleur, opacity: 0.4 }}>
-              {rijder.nummer}
-            </div>
-          </div>
+          <div className="relative flex-1 overflow-hidden mx-3 rounded-xl bg-black/20 flex items-center justify-center" style={{ minHeight: 220 }}>
+			  <BikeImg 
+				team={rijder.team} 
+				merk={rijder.merk} 
+				klasse={klasse} 
+				type="front" 
+				riderId={rijder.id} 
+				style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+			  />
+			  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+			  <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none" style={{ color: klasseKleur, opacity: 0.25 }}>
+				{rijder.nummer}
+			  </div>
+			</div>
 
           {/* Persoonlijke info */}
           <div className="px-4 py-4 space-y-2">
