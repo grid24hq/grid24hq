@@ -130,16 +130,67 @@ type Rijder = { id: string; voornaam: string; naam: string; landCode: string; nu
 type Klasse = 'MotoGP' | 'Moto2' | 'Moto3'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function merkMapId(merk: string, klasse: Klasse) {
-  if (klasse === 'Moto3') return merk === 'KTM' ? 'ktm_moto3' : 'honda_moto3'
-  return merk.toLowerCase()
+// ─── Team → bestandsnaam mapping ─────────────────────────────────────────────
+// MotoGP bikes: public/motogp/motogp/bikes/{team_id}.webp
+// Moto2  bikes: public/motogp/moto2/bikes/{team_id}.webp
+// Moto3  bikes: public/motogp/moto3/bikes/{team_id}.webp
+const TEAM_BIKE_ID: Record<string, string> = {
+  // MotoGP
+  'Ducati Lenovo Team':          'ducati_lenovo',
+  'Gresini Racing':              'gresini',
+  'Pertamina VR46 Racing Team':  'vr46',
+  'Aprilia Racing':              'aprilia_racing',
+  'Trackhouse Racing':           'trackhouse',
+  'Red Bull KTM Factory Racing': 'ktm_factory',
+  'Red Bull KTM Tech3':          'ktm_tech3',
+  'Monster Energy Yamaha':       'yamaha_monster',
+  'Prima Pramac Yamaha':         'pramac_yamaha',
+  'LCR Honda':                   'lcr_honda',
+  'Honda HRC Castrol':           'honda_hrc',
+  // Moto2
+  'MSI Racing Team':             'boscoscuro',
+  'Aspar Team':                  'kalex_aspar',
+  'Fantic Racing':               'kalex_fantic',
+  'Red Bull KTM Ajo':            'kalex_ajo',
+  'American Racing Team':        'kalex_american',
+  'Intact GP':                   'kalex_intact',
+  'Marc VDS Racing':             'boscoscuro_marcvds',
+  'Beta Tools SpeedRS Team':     'boscoscuro_speedrs',
+  'KLINT Forward Factory Team':  'forward',
+  'Forward Factory Team':        'forward',
+  'Preicanos Racing Team':       'kalex_preicanos',
+  'Idemitsu Honda Team Asia':    'kalex_asia',
+  'Honda Team Asia':             'kalex_honda_asia',
+  'RW Racing GP':                'kalex_rw',
+  'Italtrans Racing Team':       'kalex_italtrans',
+  // Moto3
+  'BOE Motorsports':             'ktm_boe',
+  'CIP Green Power':             'ktm_cip',
+  'LEVELUP-MTA':                 'ktm_mta',
+  'Aspar Team Moto3':            'ktm_aspar_m3',
+  'Red Bull KTM Ajo Moto3':      'ktm_ajo_m3',
+  'Red Bull KTM Tech3 Moto3':    'ktm_tech3_m3',
+  'Intact GP Moto3':             'ktm_intact_m3',
+  'MLav Racing':                 'honda_mlav',
+  'Honda Team Asia Moto3':       'honda_asia_m3',
+  'Rivacold Snipers Team':       'honda_snipers',
+  'Snipers Team':                'honda_snipers',
+  'Leopard Racing':              'honda_leopard',
+  'SIC58 Squadra Corse':         'honda_sic58',
+  'MT Helmets MSI':              'ktm_msi',
 }
 
-function BikeImg({ merk, klasse, style }: { merk: string; klasse: Klasse; style?: React.CSSProperties }) {
-  const id = merkMapId(merk, klasse)
+function teamBikeId(team: string, klasse: Klasse): string {
+  if (TEAM_BIKE_ID[team]) return TEAM_BIKE_ID[team]
+  // Fallback: merk lowercase
+  return team.split(' ')[0].toLowerCase()
+}
+
+function BikeImg({ team, merk, klasse, style }: { team: string; merk: string; klasse: Klasse; style?: React.CSSProperties }) {
+  const id  = teamBikeId(team, klasse)
   const pad = `/motogp/${klasse.toLowerCase()}/bikes/${id}`
   return (
-    <img src={`${pad}.webp`} alt={merk} style={style}
+    <img src={`${pad}.webp`} alt={team} style={style}
       onError={e => {
         const img = e.currentTarget as HTMLImageElement
         if (img.src.includes('.webp')) img.src = `${pad}.svg`
@@ -161,173 +212,126 @@ function RiderImg({ rijder, klasse, style }: { rijder: Rijder; klasse: Klasse; s
   )
 }
 
-// ─── F1-stijl Tabbed Popup voor MotoGP / Moto2 / Moto3 ─────────────────────────
+// ─── Popup ────────────────────────────────────────────────────────────────────
 function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klasse; onSluit: () => void }) {
-  const [actiefTab, setActiefTab] = useState<'overzicht' | 'motor' | 'stats'>('overzicht')
   const klasseKleur = KLASSE_CONFIG[klasse].kleur
-  const merkKleur = MERK_KLEUREN[rijder.merk] ?? klasseKleur
-
-  // Dynamische specificaties per klasse voor de Motor-tab
-  const motorSpecs = {
-    MotoGP: { cc: '1000cc', type: 'V4 / L4 Viertakt', pk: '± 300 pk', gewicht: '157 kg', top: '360+ km/u' },
-    Moto2:  { cc: '765cc',  type: 'Triumph 3-cilinder', pk: '± 145 pk', gewicht: '145 kg', top: '300+ km/u' },
-    Moto3:  { cc: '250cc',  type: '1-cilinder Viertakt', pk: '± 60 pk',  gewicht: '84 kg',  top: '245+ km/u' }
-  }[klasse]
+  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.90)' }} onClick={onSluit}>
+      style={{ background: 'rgba(0,0,0,0.88)' }} onClick={onSluit}>
       <div className="relative w-full max-w-3xl rounded-2xl overflow-hidden flex"
-        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}40`, maxHeight: '90vh' }}
+        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '88vh' }}
         onClick={e => e.stopPropagation()}>
 
-        {/* ── Linker paneel (Rijder Profiel) ── */}
-        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 230, background: `linear-gradient(180deg, ${merkKleur}20 0%, #0a0a0a 60%)` }}>
+        {/* ── Linker paneel ── */}
+        <div className="relative flex-shrink-0 flex flex-col" style={{ width: 220, background: `linear-gradient(180deg, ${klasseKleur}25 0%, #0a0a0a 55%)` }}>
+          {/* Klasse badge */}
           <div className="px-4 pt-4 pb-1">
-            <span className="font-ui text-[9px] font-bold uppercase tracking-[2px] px-2 py-0.5 rounded"
-              style={{ background: klasseKleur + '15', color: klasseKleur, border: `1px solid ${klasseKleur}30` }}>
+            <span className="font-ui text-[10px] font-bold uppercase tracking-[2px] px-2 py-1 rounded"
+              style={{ background: klasseKleur + '22', color: klasseKleur, border: `1px solid ${klasseKleur}44` }}>
               {klasse}
             </span>
           </div>
-          
+          {/* Naam + nummer */}
           <div className="px-4 pb-2">
-            <div className="font-ui text-xs text-white/50">{rijder.voornaam}</div>
-            <div className="font-head font-black text-2xl uppercase text-white leading-tight tracking-wide">{rijder.naam}</div>
-            <div className="flex items-center gap-2 mt-1.5">
-              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode} className="rounded-sm shadow-md" style={{ width: 22, height: 14, objectFit: 'cover' }} />
-              <span className="font-ui text-[10px] text-white/40 uppercase font-semibold">{rijder.landCode}</span>
+            <div className="font-ui text-sm text-white/60">{rijder.voornaam}</div>
+            <div className="font-head font-black text-2xl uppercase text-white leading-tight">{rijder.naam}</div>
+            <div className="flex items-center gap-2 mt-1">
+              <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
+                className="rounded-sm" style={{ width: 24, height: 16, objectFit: 'cover' }}
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+              <span className="font-ui text-xs text-white/40 uppercase">{rijder.landCode}</span>
             </div>
           </div>
 
-          {/* Rijder foto met subtiel verloop naar zwart */}
-          <div className="relative flex-1 mx-3 mt-2 rounded-xl overflow-hidden bg-white/5">
-            <RiderImg rijder={rijder} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
-            <div className="absolute bottom-0 left-0 right-0 h-20" style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
-            <div className="absolute bottom-1 right-3 font-head font-black text-6xl leading-none select-none" style={{ color: merkKleur, opacity: 0.25 }}>
+          {/* Rijder foto */}
+          <div className="relative flex-1 mx-3 rounded-xl overflow-hidden" style={{ minHeight: 180 }}>
+            <RiderImg rijder={rijder} klasse={klasse}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+            <div className="absolute bottom-0 left-0 right-0 h-16"
+              style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
+            {/* Groot nummer overlay */}
+            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none"
+              style={{ color: klasseKleur, opacity: 0.35 }}>
               {rijder.nummer}
             </div>
           </div>
 
-          {/* Kleine vaste details onderaan */}
-          <div className="px-4 py-4 border-t border-white/5 bg-black/40 space-y-1.5">
-            <div className="text-[10px] text-white/30 uppercase tracking-wider">Constructeur</div>
-            <div className="text-xs text-white/80 font-medium flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: merkKleur }} />
-              {rijder.merk}
-            </div>
+          {/* Info */}
+          <div className="px-4 py-4 space-y-2">
+            {[
+              { icon: '#️⃣', label: 'Racenummer', val: `#${rijder.nummer}` },
+              { icon: '🏭', label: 'Merk',       val: rijder.merk },
+              { icon: '🏁', label: 'Team',       val: rijder.team },
+            ].map(({ icon, label, val }) => (
+              <div key={label} className="flex items-start gap-2">
+                <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
+                <div>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/25">{label}</div>
+                  <div className="font-ui text-xs text-white/75 leading-tight">{val}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* ── Rechter paneel (Dynamische Tabs) ── */}
+        {/* ── Rechter paneel ── */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Top Header met sluitknop */}
-          <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 pt-5 pb-4"
+            style={{ borderBottom: `1px solid ${klasseKleur}25` }}>
             <div>
-              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-0.5" style={{ color: merkKleur }}>{rijder.team}</div>
-              <div className="font-head font-black text-xl uppercase text-white tracking-wide">{rijder.voornaam} {rijder.naam}</div>
+              <div className="font-ui text-[10px] uppercase tracking-[2px] mb-1" style={{ color: klasseKleur }}>
+                {rijder.team}
+              </div>
+              <div className="font-head font-black text-xl uppercase text-white">{rijder.voornaam} {rijder.naam}</div>
             </div>
-            <button onClick={onSluit} className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">✕</button>
+            <button onClick={onSluit}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm">
+              ✕
+            </button>
           </div>
 
-          {/* F1-Stijl Tab navigatie */}
-          <div className="flex px-6 bg-black/20 border-b border-white/5">
-            {([
-              { id: 'overzicht', label: 'Overzicht' },
-              { id: 'motor', label: 'De Motor' },
-              { id: 'stats', label: 'Statistieken' }
-            ] as const).map(tab => {
-              const actief = actiefTab === tab.id
-              return (
-                <button key={tab.id} onClick={() => setActiefTab(tab.id)}
-                  className="px-4 py-3 font-ui text-xs font-bold uppercase tracking-wider border-b-2 transition-all"
-                  style={{ 
-                    borderColor: actief ? merkKleur : 'transparent', 
-                    color: actief ? '#fff' : 'rgba(255,255,255,0.35)' 
-                  }}>
-                  {tab.label}
-                </button>
-              )
-            })}
-          </div>
+          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+            {/* Stats blokjes */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: 'Klasse',      val: klasse },
+                { label: 'Racenummer', val: `#${rijder.nummer}` },
+                { label: 'Merk',       val: rijder.merk },
+                { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
+              ].map(({ label, val }) => (
+                <div key={label} className="rounded-xl p-3"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
+                  <div className="font-ui text-sm font-semibold text-white">{val}</div>
+                </div>
+              ))}
+            </div>
 
-          {/* Tab Inhoud */}
-          <div className="flex-1 overflow-y-auto px-6 py-5">
-            
-            {/* TAB 1: OVERZICHT */}
-            {actiefTab === 'overzicht' && (
-              <div className="space-y-4 animate-fade-in">
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: 'Klasse', val: klasse, sub: KLASSE_CONFIG[klasse].sub },
-                    { label: 'Startnummer', val: `#${rijder.nummer}`, sub: 'Officieel wedstrijdnummer' },
-                    { label: 'Merk', val: rijder.merk, sub: 'Chassis & Fabrikant' },
-                    { label: 'Nationaliteit', val: rijder.landCode.toUpperCase(), sub: 'Land van herkomst' },
-                  ].map(({ label, val, sub }) => (
-                    <div key={label} className="rounded-xl p-3 bg-white/[0.03] border border-white/[0.06]">
-                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
-                      <div className="font-ui text-sm font-bold text-white mb-0.5">{val}</div>
-                      <div className="font-ui text-[10px] text-white/40">{sub}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="rounded-xl p-4 border border-white/[0.05]" style={{ background: `linear-gradient(135deg, ${merkKleur}08, transparent)` }}>
-                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">Officieel Team</div>
-                  <div className="font-ui text-sm font-bold text-white">{rijder.team}</div>
-                </div>
+            {/* Motor groot — liggend formaat voor motorfiets */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
+                  {rijder.merk} · 2026 Motor
+                </span>
               </div>
-            )}
-
-            {/* TAB 2: DE MOTOR (Hier komt de render nu gigantisch groot in!) */}
-            {actiefTab === 'motor' && (
-              <div className="space-y-4 animate-fade-in flex flex-col h-full">
-                {/* De gigantische motor display box */}
-                <div className="rounded-xl flex items-center justify-center p-4 relative overflow-hidden"
-                  style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.01))`, border: `1px solid ${merkKleur}25`, height: 200 }}>
-                  <BikeImg merk={rijder.merk} klasse={klasse} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 10px 25px ${merkKleur}50)` }} />
-                </div>
-                
-                {/* Technische Specificaties Grid */}
-                <div className="grid grid-cols-3 gap-2">
-                  {[
-                    { label: 'Cilinderinhoud', val: motorSpecs.cc },
-                    { label: 'Motorconfiguratie', val: motorSpecs.type },
-                    { label: 'Vermogen', val: motorSpecs.pk },
-                    { label: 'Minimum Gewicht', val: motorSpecs.gewicht },
-                    { label: 'Topsnelheid', val: motorSpecs.top },
-                    { label: 'Banden', val: klasse === 'MotoGP' ? 'Michelin' : 'Pirelli' },
-                  ].map(({ label, val }) => (
-                    <div key={label} className="rounded-lg p-2.5 bg-white/[0.02] border border-white/[0.04] text-center">
-                      <div className="font-ui text-[8px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
-                      <div className="font-ui text-xs font-bold text-white/90">{val}</div>
-                    </div>
-                  ))}
-                </div>
+              <div className="rounded-xl flex items-center justify-center p-4"
+                style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 180 }}>
+                <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 6px 20px ${merkKleur}50)` }} />
               </div>
-            )}
+            </div>
 
-            {/* TAB 3: STATISTIEKEN */}
-            {actiefTab === 'stats' && (
-              <div className="grid grid-cols-2 gap-3 animate-fade-in">
-                {[
-                  { label: 'WK Punten 2026', val: '0', sub: 'Huidige stand' },
-                  { label: 'GP Overwinningen', val: '—', sub: 'Carrière totaal' },
-                  { label: 'Podiumplaatsen', val: '—', sub: 'Carrière totaal' },
-                  { label: 'Pole Positions', val: '—', sub: 'Carrière totaal' },
-                ].map(({ label, val, sub }) => (
-                  <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/[0.05] flex flex-col justify-between">
-                    <div>
-                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
-                      <div className="font-head font-black text-2xl" style={{ color: merkKleur }}>{val}</div>
-                    </div>
-                    <div className="font-ui text-[10px] text-white/40 mt-2">{sub}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-
+            {/* Team */}
+            <div className="rounded-xl p-4" style={{ background: `linear-gradient(135deg, ${klasseKleur}10, rgba(255,255,255,0.02))`, border: `1px solid ${klasseKleur}20` }}>
+              <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">Team 2026</div>
+              <div className="font-ui text-sm font-semibold text-white">{rijder.team}</div>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   )
@@ -376,7 +380,7 @@ function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse:
       {/* Motor */}
       <div className="flex items-center justify-center rounded-lg mx-2"
         style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
-        <BikeImg merk={rijder.merk} klasse={klasse}
+        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
           style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
       </div>
 
