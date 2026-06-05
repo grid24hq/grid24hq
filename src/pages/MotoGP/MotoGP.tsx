@@ -1,4 +1,24 @@
-// ─── MotoGP 2026 — MotoGP / Moto2 / Moto3 Grid + Premium Popup pagina ────────────────────────
+// ─── MotoGP 2026 — MotoGP / Moto2 / Moto3 grid pagina ────────────────────────
+//
+// MAPPENSTRUCTUUR AFBEELDINGEN:
+//
+// public/motogp/
+//   flags/          ← landvlaggen SVG  (zelfde als F1: nl.svg, es.svg etc.)
+//   motogp/
+//     riders/       ← rijder foto's    (320×240 px WebP, bv: marquez.webp)
+//     bikes/        ← motor per merk   (400×200 px WebP, bv: ducati.webp)
+//   moto2/
+//     riders/       ← rijder foto's    (320×240 px WebP)
+//     bikes/        ← motor per merk   (400×200 px WebP, bv: kalex.webp)
+//   moto3/
+//     riders/       ← rijder foto's    (320×240 px WebP)
+//     bikes/        ← motor per merk   (400×200 px WebP, bv: ktm_moto3.webp)
+//
+// MERK IDs (voor bikes map):
+//   MotoGP: ducati, aprilia, ktm, yamaha, honda
+//   Moto2:  kalex, boscoscuro, forward
+//   Moto3:  ktm_moto3, honda_moto3
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect } from 'react'
 
@@ -24,7 +44,7 @@ const RIJDER_INFO: Record<string, {
   martin:         { geboortedatum: '29 jan. 1998',  leeftijd: 27, geboorteplaats: 'Madrid, Spanje',       lengte: '1.80 m', debuut: '2021, Qatar',     wereldtitels: 1, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Jorge Martín is regerend wereldkampioen en maakt in 2026 de overstap naar Aprilia Racing.' },
   bezzecchi:      { geboortedatum: '26 sep. 1998',  leeftijd: 26, geboorteplaats: 'Rimini, Italië',       lengte: '1.73 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Marco Bezzecchi is een van de meest opvallende talenten van zijn generatie en rijdt in 2026 voor Aprilia Racing.' },
   acosta:         { geboortedatum: '25 mei 2004',   leeftijd: 21, geboorteplaats: 'Murcia, Spanje',       lengte: '1.73 m', debuut: '2024, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Pedro Acosta geldt als het grootste talent van zijn generatie en rijdt in 2026 voor het KTM fabrieksteam.' },
-  binder:         { geboortedatum: '22 sep. 1995',  leeftijd: 29, geboorteplaats: 'Potchefstroom, Z-A',   lengte: '1.76 m', debuut: '2020, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Brad Binder is een van de meest consistente rijders in het veld en vertegenwoordigt Zuid-Afrika in MotoGP.' },
+  binder:         { geboortedatum: '22 sep. 1995',  leeftijd: 29, geboorteplaats: 'Potchefstroom, Z-A',  lengte: '1.76 m', debuut: '2020, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Brad Binder is een van de meest consistente rijders in het veld en vertegenwoordigt Zuid-Afrika in MotoGP.' },
   quartararo:     { geboortedatum: '20 apr. 1999',  leeftijd: 26, geboorteplaats: 'Nice, Frankrijk',      lengte: '1.69 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Fabio Quartararo was wereldkampioen in 2021 en probeert in 2026 Yamaha terug naar de top te brengen.' },
   rins:           { geboortedatum: '8 dec. 1995',   leeftijd: 29, geboorteplaats: 'Barcelona, Spanje',    lengte: '1.75 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Alex Rins is een ervaren rijder die in 2026 zijn kracht bundelt met Yamaha.' },
   morbidelli:     { geboortedatum: '4 dec. 1994',   leeftijd: 30, geboorteplaats: 'Rome, Italië',         lengte: '1.75 m', debuut: '2018, Qatar',     wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Franco Morbidelli rijdt in 2026 voor het VR46 team van zijn mentor Valentino Rossi.' },
@@ -37,7 +57,7 @@ const RIJDER_INFO: Record<string, {
   bastianini:     { geboortedatum: '30 dec. 1997',  leeftijd: 27, geboorteplaats: 'Rimini, Italië',       lengte: '1.82 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Enea Bastianini rijdt in 2026 voor KTM Tech3 en wil zijn snelheid omzetten in consistente resultaten.' },
   miller:         { geboortedatum: '18 jan. 1995',  leeftijd: 30, geboorteplaats: 'Townsville, Australië',lengte: '1.73 m', debuut: '2015, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Jack Miller is een populaire rijder die in 2026 de Pramac Yamaha op de kaart wil zetten.' },
   razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',      lengte: '1.75 m', debuut: '2026, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.' },
-  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Johann Zarco is een ervaren veteraan in de MotoGP, bekend om zijn vloeiende rijstijl en technische feedback.' },
+  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.' },
   moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',  lengte: '1.70 m', debuut: '2025, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.' },
   marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',       lengte: '1.76 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.' },
   mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',        lengte: '1.74 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.' },
@@ -207,33 +227,18 @@ function teamBikeId(team: string, klasse: Klasse): string {
   return team.split(' ')[0].toLowerCase()
 }
 
-function BikeImg({ team, merk, klasse, type = 'side', riderId, style }: { 
-  team: string; 
-  merk: string; 
-  klasse: Klasse; 
-  type?: 'front' | 'side'; 
-  riderId?: string; 
-  style?: React.CSSProperties 
-}) {
-  let pad = '';
-  
-  if (type === 'front' && riderId) {
-    // Unieke voorkant per rijder (bijv. /motogp/motogp/bikes/zarco_front.webp)
-    pad = `/motogp/${klasse.toLowerCase()}/bikes/${riderId}_front`;
-  } else {
-    // Gedeelde zijkant per team (bijv. /motogp/motogp/bikes/lcr_honda_side.webp)
-    const tId = teamBikeId(team, klasse);
-    pad = `/motogp/${klasse.toLowerCase()}/bikes/${tId}_side`;
-  }
-  
+function BikeImg({ team, merk, klasse, style }: { team: string; merk: string; klasse: Klasse; style?: React.CSSProperties }) {
+  const id  = teamBikeId(team, klasse)
+  const pad = `/motogp/${klasse.toLowerCase()}/bikes/${id}`
   return (
     <img src={`${pad}.webp`} alt={team} style={style}
       onError={e => {
-        const img = e.currentTarget as HTMLImageElement;
-        if (img.src.includes('.webp')) img.src = `${pad}.png`;
-        else img.style.visibility = 'hidden';
+        const img = e.currentTarget as HTMLImageElement
+        if (img.src.includes('.webp')) img.src = `${pad}.svg`
+        else if (img.src.includes('.svg')) img.src = `${pad}.png`
+        else img.style.visibility = 'hidden'
       }} />
-  );
+  )
 }
 
 function RiderImg({ rijder, klasse, style }: { rijder: Rijder; klasse: Klasse; style?: React.CSSProperties }) {
@@ -301,20 +306,16 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
           </div>
 
           {/* Rijder foto */}
-          <div className="relative flex-1 overflow-hidden mx-3 rounded-xl bg-black/20 flex items-center justify-center" style={{ minHeight: 220 }}>
-			  <BikeImg 
-				team={rijder.team} 
-				merk={rijder.merk} 
-				klasse={klasse} 
-				type="front" 
-				riderId={rijder.id} 
-				style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
-			  />
-			  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
-			  <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none" style={{ color: klasseKleur, opacity: 0.25 }}>
-				{rijder.nummer}
-			  </div>
-			</div>
+          <div className="relative flex-1 overflow-hidden mx-3 rounded-xl" style={{ minHeight: 200 }}>
+            <RiderImg rijder={rijder} klasse={klasse}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+            <div className="absolute bottom-0 left-0 right-0 h-20"
+              style={{ background: 'linear-gradient(transparent, #0a0a0a)' }} />
+            <div className="absolute bottom-2 right-3 font-head font-black text-5xl leading-none"
+              style={{ color: klasseKleur, opacity: 0.4 }}>
+              {rijder.nummer}
+            </div>
+          </div>
 
           {/* Persoonlijke info */}
           <div className="px-4 py-4 space-y-2">
@@ -380,154 +381,184 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 
           <div className="flex-1 overflow-y-auto px-6 py-5">
 
-            {/* ── OVERZICHT TAB ── */}
-        {tab === 'overzicht' && (
-          <div className="flex flex-col h-full justify-between space-y-4">
-            {/* Bovenste rij: Info & Stand compact naast elkaar */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-start">
-              {/* LINKER KANT (2 cols): Info blokken onder elkaar */}
-              <div className="md:col-span-2 flex flex-col gap-2.5">
-                {[
-                  { label: 'Team', val: rijder.team },
-                  { label: 'Racenummer', val: `#${rijder.nummer}` },
-                  { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
-                ].map(({ label, val }) => (
-                  <div key={label} className="rounded-xl p-3 bg-white/5 border border-white/10">
-                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
-                    <div className="font-ui text-xs font-semibold text-white truncate">{val}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* RECHTER KANT (3 cols): Kampioenschapsstand Smaller */}
-              <div className="md:col-span-3">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                  <div className="font-ui text-[9px] uppercase tracking-[1px] text-white/40 mb-2">Stand 2026</div>
-                  {standings && standings.length > 0 ? (
-                    <div className="space-y-1.5 max-h-[125px] overflow-y-auto pr-1">
-                      {standings.map((s) => (
-                        <div key={s.naam} className="flex items-center justify-between text-xs py-1 border-b border-white/5 last:border-0">
-                          <span className="font-head font-black text-white/40 w-4">{s.pos}</span>
-                          <span className="font-ui text-white/80 flex-1 truncate ml-1">{s.naam}</span>
-                          <span className="font-head font-black" style={{ color: klasseKleur }}>{s.punten}</span>
-                        </div>
-                      ))}
+            {/* ── OVERZICHT ── */}
+            {tab === 'overzicht' && (
+              <div className="space-y-5">
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: 'Team',          val: rijder.team },
+                    { label: 'Racenummer',    val: `#${rijder.nummer}` },
+                    { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
+                  ].map(({ label, val }) => (
+                    <div key={label} className="rounded-xl p-3"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
+                      <div className="font-ui text-sm font-semibold text-white truncate">{val}</div>
                     </div>
-                  ) : (
-                    <div className="text-[11px] font-ui text-white/30 py-4 text-center">Geen data beschikbaar via API</div>
-                  )}
+                  ))}
                 </div>
-              </div>
-            </div>
 
-            {/* Onderste gedeelte: Grote liggende motor over de volledige breedte */}
-            <div className="flex-1 flex flex-col justify-end pt-1">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
-                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
-                  {info?.bikeModel ?? rijder.merk} · 2026 Motor
-                </span>
-              </div>
-              <div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
-                   style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '170px' }}>
-                <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
-                         style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 8px 24px ${merkKleur}50)` }} />
-              </div>
-            </div>
+                {/* Motor preview */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+                    <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
+                      {info?.bikeModel ?? rijder.merk} · 2026 Motor
+                    </span>
+                  </div>
+                  <div className="rounded-xl flex items-center justify-center p-4"
+                    style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}25`, height: 150 }}>
+                    <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 16px ${merkKleur}50)` }} />
+                  </div>
+                </div>
 
-            {/* Rijderomschrijving direct onder de grote motor */}
-            {info?.omschrijving && (
-              <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-                <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
+                {info?.omschrijving && (
+                  <div className="rounded-xl p-4"
+                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <p className="font-ui text-sm text-white/60 leading-relaxed">{info.omschrijving}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ── MOTOR TAB ── */}
+            {tab === 'motor' && (
+              <div className="space-y-5">
+                <div>
+                  <div className="font-head font-black text-2xl text-white mb-0.5">
+                    {info?.bikeModel ?? rijder.merk}
+                  </div>
+                  <div className="font-ui text-xs text-white/40 uppercase tracking-wider">2026 · {klasse}</div>
+                </div>
+
+                {/* Motor groot liggend */}
+                <div className="rounded-2xl flex items-center justify-center p-6"
+                  style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 200 }}>
+                  <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 8px 24px ${merkKleur}60)` }} />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { icon: '⚙️', label: 'Motor',    val: info?.motor ?? rijder.merk },
+                    { icon: '🏗️', label: 'Klasse',   val: klasse },
+                    { icon: '🔄', label: 'Banden',    val: 'Michelin' },
+                    { icon: '🏁', label: 'Team',      val: rijder.team },
+                  ].map(({ icon, label, val }) => (
+                    <div key={label} className="rounded-xl p-3 flex items-center gap-3"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                      <span className="text-lg">{icon}</span>
+                      <div>
+                        <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+                        <div className="font-ui text-sm font-semibold text-white truncate">{val}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {info?.omschrijving && (
+                  <div className="rounded-xl p-4"
+                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <p className="font-ui text-sm text-white/60 leading-relaxed">{info.omschrijving}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ── STATISTIEKEN TAB ── */}
+            {tab === 'stats' && (
+              <div className="space-y-5">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+                  <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoenstatistieken 2026</span>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { icon: '🏁', label: 'Races',          val: '—' },
+                    { icon: '🏆', label: 'Overwinningen',  val: '—' },
+                    { icon: '🥇', label: 'Podiums',        val: '—' },
+                    { icon: '⚡', label: 'Poles',          val: '—' },
+                    { icon: '⏱️', label: 'Snelste ronde',  val: '—' },
+                    { icon: '📊', label: 'Punten',         val: '—' },
+                  ].map(({ icon, label, val }) => (
+                    <div key={label} className="rounded-xl p-4 text-center"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                      <div className="text-xl mb-1">{icon}</div>
+                      <div className="font-head font-black text-2xl" style={{ color: klasseKleur }}>{val}</div>
+                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mt-1">{label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="rounded-xl p-4"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="font-ui text-xs text-white/40 text-center">
+                    Live statistieken worden beschikbaar via het Command Center zodra het seizoen loopt.
+                  </p>
+                </div>
               </div>
             )}
           </div>
-        )}
+        </div>
+      </div>
+    </div>
+  )
+}
 
-				{/* ── MOTOR TAB ── */}
-				{tab === 'motor' && (
-				  <div className="space-y-4">
-					<div>
-					  <div className="font-head font-black text-2xl text-white mb-0.5">
-						{info?.bikeModel ?? rijder.merk}
-					  </div>
-					  <div className="font-ui text-xs text-white/40 uppercase tracking-wider">
-						2026 · {klasse}
-					  </div>
-					</div>
+function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse: Klasse; isEven: boolean; onKlik: () => void }) {
+  const klasseKleur = KLASSE_CONFIG[klasse].kleur
+  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
 
-					{/* Motor groot liggend */}
-					<div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
-						 style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '240px' }}>
-					  <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
-							   style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 12px 28px ${merkKleur}50)` }} />
-					</div>
+  return (
+    <div className="relative grid items-center group transition-all cursor-pointer hover:brightness-110"
+      style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent', borderBottom: '1px solid rgba(255,255,255,0.06)', minHeight: 80 }}
+      onClick={onKlik}>
+      <div className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r" style={{ background: klasseKleur }} />
 
-					{/* Specificaties Grid */}
-					<div className="grid grid-cols-2 gap-3">
-					  {[
-						{ icon: '🛠️', label: 'Motor', val: info?.motor ?? rijder.merk },
-						{ icon: '🏍️', label: 'Klasse', val: klasse },
-						{ icon: '🍩', label: 'Banden', val: 'Michelin' },
-						{ icon: '🏁', label: 'Team', val: rijder.team },
-					  ].map(({ icon, label, val }) => (
-						<div key={label} className="rounded-xl p-3 flex items-center gap-3"
-							 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-						  <span className="text-lg">{icon}</span>
-						  <div>
-							<div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
-							<div className="font-ui text-xs font-semibold text-white">{val}</div>
-						  </div>
-						</div>
-					  ))}
-					</div>
+      {/* Vlag */}
+      <div className="flex items-center justify-center pl-3">
+        <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
+          className="rounded-sm" style={{ width: 28, height: 18, objectFit: 'cover' }}
+          onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
+      </div>
 
-					{/* Omschrijving */}
-					{info?.omschrijving && (
-					  <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-						<p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
-					  </div>
-					)}
-				  </div>
-				)}
+      {/* Rijder foto */}
+      <div className="flex items-center justify-center py-2">
+        <div className="overflow-hidden rounded-lg" style={{ width: 96, height: 72 }}>
+          <RiderImg rijder={rijder} klasse={klasse}
+            style={{ width: 96, height: 72, objectFit: 'cover', objectPosition: 'top center' }} />
+        </div>
+      </div>
 
-{/* ── STATISTIEKEN TAB ── */}
-				{tab === 'stats' && (
-				  <div className="space-y-4">
-					<div className="flex items-center gap-2 mb-1">
-					  <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
-					  <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoensstatistieken 2026</span>
-					</div>
+      {/* Naam */}
+      <div className="flex items-center gap-2 px-4">
+        <span className="font-ui text-sm text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">{rijder.voornaam}</span>
+        <span className="font-head font-black text-lg uppercase text-white tracking-wide whitespace-nowrap">{rijder.naam}</span>
+      </div>
 
-					{/* Grid met Statistieken */}
-					<div className="grid grid-cols-3 gap-3">
-					  {[
-						{ label: 'Races', val: info?.races ?? '-', icon: '🏁' },
-						{ label: 'Overwinningen', val: info?.wins ?? '-', icon: '🏆' },
-						{ label: 'Podiums', val: info?.podiums ?? '-', icon: '🥇' },
-						{ label: 'Poles', val: info?.poles ?? '-', icon: '⚡' },
-						{ label: 'Snelste Rondes', val: info?.fastestLaps ?? '-', icon: '⏱️' },
-						{ label: 'Punten', val: info?.punten ?? '-', icon: '📊', color: klasseKleur },
-					  ].map(({ label, val, icon, color }) => (
-						<div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
-						  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
-						  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
-							{val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
-						  </div>
-						  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
-						</div>
-					  ))}
-					</div>
-				  </div>
-				)}
+      {/* Nummer */}
+      <div className="flex items-center justify-center">
+        <span className="font-head font-black text-sm w-11 h-8 flex items-center justify-center rounded"
+          style={{ background: klasseKleur + '33', color: klasseKleur, border: `1px solid ${klasseKleur}55` }}>
+          {rijder.nummer}
+        </span>
+      </div>
 
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  );
-	}
+      {/* Motor */}
+      <div className="flex items-center justify-center rounded-lg mx-2"
+        style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
+        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+          style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
+      </div>
 
+      {/* Team */}
+      <div className="flex items-center gap-2 px-4">
+        <div className="w-0.5 self-stretch my-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
+        <span className="font-ui text-sm text-white/40 group-hover:text-white transition-colors truncate">{rijder.team}</span>
+      </div>
+    </div>
+  )
+}
 
 // ─── Hoofdpagina ──────────────────────────────────────────────────────────────
 export default function MotoGP() {
