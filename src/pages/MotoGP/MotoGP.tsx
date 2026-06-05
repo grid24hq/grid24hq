@@ -491,7 +491,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 				  </div>
 				)}
 
-				{/* ── STATISTIEKEN TAB ── */}
+{/* ── STATISTIEKEN TAB ── */}
 				{tab === 'stats' && (
 				  <div className="space-y-4">
 					<div className="flex items-center gap-2 mb-1">
@@ -502,12 +502,12 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 					{/* Grid met Statistieken */}
 					<div className="grid grid-cols-3 gap-3">
 					  {[
-						{ label: 'Races', val: stats?.races ?? '-', icon: '🏁' },
-						{ label: 'Overwinningen', val: stats?.wins ?? '-', icon: '🏆' },
-						{ label: 'Podiums', val: stats?.podiums ?? '-', icon: '🥇' },
-						{ label: 'Poles', val: stats?.poles ?? '-', icon: '⚡' },
-						{ label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
-						{ label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
+						{ label: 'Races', val: info?.races ?? '-', icon: '🏁' },
+						{ label: 'Overwinningen', val: info?.wins ?? '-', icon: '🏆' },
+						{ label: 'Podiums', val: info?.podiums ?? '-', icon: '🥇' },
+						{ label: 'Poles', val: info?.poles ?? '-', icon: '⚡' },
+						{ label: 'Snelste Rondes', val: info?.fastestLaps ?? '-', icon: '⏱️' },
+						{ label: 'Punten', val: info?.punten ?? '-', icon: '📊', color: klasseKleur },
 					  ].map(({ label, val, icon, color }) => (
 						<div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
 						  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
