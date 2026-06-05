@@ -518,3 +518,139 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
   )
 }
 
+// ─── Rijder rij ───────────────────────────────────────────────────────────────
+function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse: Klasse; isEven: boolean; onKlik: () => void }) {
+  const klasseKleur = KLASSE_CONFIG[klasse].kleur
+  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
+
+  return (
+    <div className="relative grid items-center group transition-all cursor-pointer hover:brightness-110"
+      style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent', borderBottom: '1px solid rgba(255,255,255,0.06)', minHeight: 80 }}
+      onClick={onKlik}>
+      <div className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r" style={{ background: klasseKleur }} />
+      <div className="flex items-center justify-center pl-3">
+        <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
+          className="rounded-sm" style={{ width: 28, height: 18, objectFit: 'cover' }}
+          onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
+      </div>
+      <div className="flex items-center justify-center py-2">
+        <div className="overflow-hidden rounded-lg" style={{ width: 96, height: 72 }}>
+          <RiderImg rijder={rijder} klasse={klasse}
+            style={{ width: 96, height: 72, objectFit: 'cover', objectPosition: 'top center' }} />
+        </div>
+      </div>
+      <div className="flex items-center gap-2 px-4">
+        <span className="font-ui text-sm text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">{rijder.voornaam}</span>
+        <span className="font-head font-black text-lg uppercase text-white tracking-wide whitespace-nowrap">{rijder.naam}</span>
+      </div>
+      <div className="flex items-center justify-center">
+        <span className="font-head font-black text-sm w-11 h-8 flex items-center justify-center rounded"
+          style={{ background: klasseKleur + '33', color: klasseKleur, border: `1px solid ${klasseKleur}55` }}>
+          {rijder.nummer}
+        </span>
+      </div>
+      <div className="flex items-center justify-center rounded-lg mx-2"
+        style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
+        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+          style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
+      </div>
+      <div className="flex items-center gap-2 px-4">
+        <div className="w-0.5 self-stretch my-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
+        <span className="font-ui text-sm text-white/40 group-hover:text-white transition-colors truncate">{rijder.team}</span>
+      </div>
+    </div>
+  )
+}
+
+// ─── Hoofdpagina ──────────────────────────────────────────────────────────────
+export default function MotoGP() {
+  const [klasse, setKlasse]         = useState<Klasse>('MotoGP')
+  const [zoek, setZoek]             = useState('')
+  const [merkFilter, setMerkFilter] = useState<string | null>(null)
+  const [popup, setPopup]           = useState<Rijder | null>(null)
+
+  const grid = klasse === 'MotoGP' ? MOTOGP_GRID : klasse === 'Moto2' ? MOTO2_GRID : MOTO3_GRID
+  const cfg  = KLASSE_CONFIG[klasse]
+  const merken = Array.from(new Set(grid.map(r => r.merk)))
+
+  const gefilterd = grid.filter(r => {
+    const matchMerk = !merkFilter || r.merk === merkFilter
+    const matchZoek = !zoek || `${r.voornaam} ${r.naam} ${r.team} ${r.merk}`.toLowerCase().includes(zoek.toLowerCase())
+    return matchMerk && matchZoek
+  })
+
+  function wisselKlasse(k: Klasse) {
+    setKlasse(k); setMerkFilter(null); setZoek('')
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-10">
+      <div className="mb-1" style={{ color: MGP_ORANJE }}>
+        <span className="font-ui text-[10px] font-bold uppercase tracking-[3px]">2026 Seizoen</span>
+      </div>
+      <div className="flex flex-col md:flex-row md:items-end gap-3 mb-6">
+        <h1 className="font-head font-black text-5xl uppercase tracking-tight leading-none">
+          Moto<span style={{ color: MGP_ORANJE }}>GP</span>
+        </h1>
+        <span className="font-ui text-sm text-white/40 md:mb-1">{cfg.sub} · {grid.length} rijders</span>
+      </div>
+
+      <div className="flex gap-2 mb-6">
+        {(Object.keys(KLASSE_CONFIG) as Klasse[]).map(k => {
+          const c = KLASSE_CONFIG[k]; const actief = klasse === k
+          return (
+            <button key={k} onClick={() => wisselKlasse(k)}
+              className="font-head font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-lg border transition-all"
+              style={actief
+                ? { background: c.kleur + '22', borderColor: c.kleur, color: c.kleur }
+                : { background: 'transparent', borderColor: '#333', color: '#555' }}>
+              {k}
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-3 mb-5">
+        <input type="text" placeholder="Zoek rijder of team..." value={zoek}
+          onChange={e => setZoek(e.target.value)}
+          className="font-ui text-sm px-4 py-2 rounded-lg bg-brand-card border border-brand-border text-brand-light placeholder-brand-muted focus:outline-none transition-colors w-full md:w-64" />
+        <div className="flex flex-wrap gap-1.5">
+          <button onClick={() => setMerkFilter(null)}
+            className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded border transition-colors"
+            style={!merkFilter ? { background: cfg.kleur + '22', borderColor: cfg.kleur, color: cfg.kleur } : { background: 'transparent', borderColor: '#333', color: '#555' }}>
+            Alle
+          </button>
+          {merken.map(m => {
+            const mk = MERK_KLEUREN[m] ?? cfg.kleur; const ac = merkFilter === m
+            return (
+              <button key={m} onClick={() => setMerkFilter(ac ? null : m)}
+                className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded border transition-colors"
+                style={ac ? { background: mk + '22', borderColor: mk, color: mk } : { background: 'transparent', borderColor: '#333', color: '#555' }}>
+                {m}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div className="rounded-xl overflow-hidden" style={{ background: '#111', border: '1px solid #1e1e1e' }}>
+        <div className="grid items-center"
+          style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: '#0a0a0a', borderBottom: '1px solid #222' }}>
+          <div /><div />
+          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Rijder</span></div>
+          <div className="flex justify-center py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span></div>
+          <div className="px-2 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Motor</span></div>
+          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Team</span></div>
+        </div>
+        {gefilterd.map((r, i) => (
+          <RijderRij key={r.id} rijder={r} klasse={klasse} isEven={i % 2 === 0} onKlik={() => setPopup(r)} />
+        ))}
+        {gefilterd.length === 0 && (
+          <div className="py-16 text-center font-ui text-sm text-white/30">Geen rijders gevonden.</div>
+        )}
+      </div>
+
+      {popup && <RijderPopup rijder={popup} klasse={klasse} onSluit={() => setPopup(null)} />}
+    </div>
+  )
+}
