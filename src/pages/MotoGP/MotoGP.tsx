@@ -37,6 +37,7 @@ const RIJDER_INFO: Record<string, {
   geboortedatum: string; leeftijd: number; geboorteplaats: string
   lengte: string; debuut: string; wereldtitels: number
   bikeModel: string; motor: string; omschrijving: string
+  overzichtTekst?: string; motorTekst?: string
 }> = {
   // MotoGP
   bagnaia:        { geboortedatum: '14 jan. 1997',  leeftijd: 28, geboorteplaats: 'Torino, Italië',       lengte: '1.78 m', debuut: '2019, Qatar',     wereldtitels: 2, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Francesco Bagnaia is tweevoudig wereldkampioen MotoGP en verdedigt zijn titel in 2026 met de nieuwste Ducati Desmosedici.' },
@@ -57,7 +58,11 @@ const RIJDER_INFO: Record<string, {
   bastianini:     { geboortedatum: '30 dec. 1997',  leeftijd: 27, geboorteplaats: 'Rimini, Italië',       lengte: '1.82 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Enea Bastianini rijdt in 2026 voor KTM Tech3 en wil zijn snelheid omzetten in consistente resultaten.' },
   miller:         { geboortedatum: '18 jan. 1995',  leeftijd: 30, geboorteplaats: 'Townsville, Australië',lengte: '1.73 m', debuut: '2015, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Jack Miller is een populaire rijder die in 2026 de Pramac Yamaha op de kaart wil zetten.' },
   razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',      lengte: '1.75 m', debuut: '2026, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.' },
-  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.' },
+  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',
+    omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.',
+    overzichtTekst: `Kleurstelling:\nDe motor van Zarco is voorzien van de iconische rode, witte en groene Castrol-kleuren, in combinatie met zwarte en blauwe accenten.\n\nSpecificaties:\nHet is een 1000cc V4 viertaktmotor met een vermogen van ruim 240 pk, wat zorgt voor topsnelheden van meer dan 360 km/u.\n\nOntwikkelingsstatus:\nDit is het laatste seizoen dat de RC213V (die sinds 2012 meedoet) in deze vorm wordt gebruikt, aangezien de sport in 2027 overstapt op 850cc. Omdat Honda zich al volop richt op de nieuwe 850cc-motor voor 2027, heeft HRC besloten de ontwikkeling van de huidige RC213V te staken.\n\nZarco's ervaring:\nZarco testte de nieuwste specificaties (waaronder een verbeterd chassis en aerodynamica) die de motor meer grip gaven.`,
+    motorTekst: `HONDA RC213V (2026) — TECHNISCHE SPECIFICATIES\n\nMOTOR & PRESTATIES\nEngine Type        : Vloeistofgekoeld, viertakt, DOHC 4-kleppen, 90° V-4\nCilinderinhoud     : 1.000 cc\nMaximaal vermogen  : Meer dan 300 pk (>180 kW)\nTopsnelheid        : > 360 km/u\nBrandstofcapaciteit: 22 liter\n\nCHASSIS & AFMETINGEN\nFrame              : Aluminium dubbelbuis (Twin-tube)\nTotale lengte      : 2.052 mm\nTotale breedte     : 645 mm\nGewicht            : 157 kg (FIM-limiet)\n\nOPHANGING\nVoorvering         : Öhlins telescopische upside-down voorvork\nAchtervering       : Öhlins schokdemper met Honda Pro-Link\nWielen             : 17-inch magnesium (Michelin MotoGP-spec)\n\nREMSYSTEEM\nVoorremmen         : Dubbele Brembo carbon remschijven\nAchterrem          : Enkele stalen Brembo remschijf\n\nELEKTRONICA\nECU                : Magneti Marelli (Unified MotoGP)\nUitlaat            : SC-Project titanium 4-in-2`,
+  },
   moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',  lengte: '1.70 m', debuut: '2025, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.' },
   marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',       lengte: '1.76 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.' },
   mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',        lengte: '1.74 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.' },
@@ -258,37 +263,38 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
   const klasseKleur = KLASSE_CONFIG[klasse].kleur
   const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
   const info        = RIJDER_INFO[rijder.id]
-  const [tab, setTab]             = useState<'overzicht' | 'motor' | 'stats'>('overzicht')
-  const [standings, setStandings] = useState<Standing[]>([])
-
-  useEffect(() => {
-    fetchMGPStandings(klasse).then(setStandings)
-  }, [klasse])
+  const [tab, setTab] = useState<'overzicht' | 'motor' | 'stats'>('overzicht')
 
   const tabs = [
-    { id: 'overzicht' as const, label: 'Overzicht'      },
-    { id: 'motor'     as const, label: 'Motor'           },
-    { id: 'stats'     as const, label: 'Statistieken'    },
+    { id: 'overzicht' as const, label: 'Overzicht'    },
+    { id: 'motor'     as const, label: 'Motor'         },
+    { id: 'stats'     as const, label: 'Statistieken'  },
   ]
+
+  // Motor tekst per rijder uit RIJDER_INFO
+  const motorTekst = info?.motorTekst ?? info?.omschrijving ?? ''
+  const overzichtTekst = info?.overzichtTekst ?? info?.omschrijving ?? ''
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.88)' }} onClick={onSluit}>
       <div className="relative w-full max-w-4xl rounded-2xl overflow-hidden flex"
-        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '90vh', minHeight: 500 }}
+        style={{ background: '#0f0f0f', border: `1px solid ${klasseKleur}50`, maxHeight: '90vh', minHeight: 520 }}
         onClick={e => e.stopPropagation()}>
 
-        {/* ── LINKER PANEEL ── */}
-        <div className="relative flex-shrink-0 flex flex-col"
-          style={{ width: 240, background: `linear-gradient(180deg, ${klasseKleur}22 0%, #0a0a0a 60%)` }}>
+        {/* ── LINKER PANEEL — scrollbaar ── */}
+        <div className="relative flex-shrink-0 flex flex-col overflow-y-auto"
+          style={{ width: 240, background: `linear-gradient(180deg, ${klasseKleur}22 0%, #0a0a0a 60%)`, maxHeight: '90vh' }}>
 
-          <div className="px-5 pt-4 pb-1">
+          {/* Team naam */}
+          <div className="px-5 pt-4 pb-1 flex-shrink-0">
             <span className="font-ui text-[10px] font-bold uppercase tracking-[2px]" style={{ color: klasseKleur }}>
               {rijder.team}
             </span>
           </div>
 
-          <div className="px-5 pb-2">
+          {/* Naam + vlag + klasse */}
+          <div className="px-5 pb-2 flex-shrink-0">
             <div className="font-ui text-base text-white/70">{rijder.voornaam}</div>
             <div className="font-head font-black text-3xl uppercase text-white leading-tight">{rijder.naam}</div>
             <div className="flex items-center gap-2 mt-1">
@@ -306,7 +312,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
           </div>
 
           {/* Rijder foto */}
-          <div className="relative flex-1 overflow-hidden mx-3 rounded-xl" style={{ minHeight: 200 }}>
+          <div className="relative flex-shrink-0 mx-3 rounded-xl overflow-hidden" style={{ height: 260 }}>
             <RiderImg rijder={rijder} klasse={klasse}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
             <div className="absolute bottom-0 left-0 right-0 h-20"
@@ -318,40 +324,36 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
           </div>
 
           {/* Persoonlijke info */}
-          <div className="px-4 py-4 space-y-2">
+          <div className="px-4 py-4 space-y-3 flex-shrink-0">
             {info ? (
-              <>
-                {[
-                  { icon: '📅', label: 'Geboortedatum', val: `${info.geboortedatum} (${info.leeftijd})` },
-                  { icon: '📍', label: 'Geboorteplaats', val: info.geboorteplaats },
-                  { icon: '📏', label: 'Lengte',          val: info.lengte },
-                  { icon: '🏁', label: 'Debuut MotoGP',   val: info.debuut },
-                  { icon: '🏆', label: 'Wereldtitels',    val: String(info.wereldtitels) },
-                ].map(({ icon, label, val }) => (
-                  <div key={label} className="flex items-start gap-2">
-                    <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
-                    <div>
-                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
-                      <div className="font-ui text-xs text-white/80">{val}</div>
-                    </div>
+              [
+                { icon: '📅', label: 'Geboortedatum', val: `${info.geboortedatum} (${info.leeftijd})` },
+                { icon: '📍', label: 'Geboorteplaats', val: info.geboorteplaats },
+                { icon: '📏', label: 'Lengte',          val: info.lengte },
+                { icon: '🏁', label: 'Debuut MotoGP',   val: info.debuut },
+                { icon: '🏆', label: 'Wereldtitels',    val: String(info.wereldtitels) },
+              ].map(({ icon, label, val }) => (
+                <div key={label} className="flex items-start gap-2">
+                  <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
+                  <div>
+                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+                    <div className="font-ui text-xs text-white/80">{val}</div>
                   </div>
-                ))}
-              </>
+                </div>
+              ))
             ) : (
-              <>
-                {[
-                  { icon: '#️⃣', label: 'Racenummer', val: `#${rijder.nummer}` },
-                  { icon: '🏭', label: 'Merk',        val: rijder.merk },
-                ].map(({ icon, label, val }) => (
-                  <div key={label} className="flex items-start gap-2">
-                    <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
-                    <div>
-                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
-                      <div className="font-ui text-xs text-white/80">{val}</div>
-                    </div>
+              [
+                { icon: '#️⃣', label: 'Racenummer', val: `#${rijder.nummer}` },
+                { icon: '🏭', label: 'Merk',        val: rijder.merk },
+              ].map(({ icon, label, val }) => (
+                <div key={label} className="flex items-start gap-2">
+                  <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
+                  <div>
+                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+                    <div className="font-ui text-xs text-white/80">{val}</div>
                   </div>
-                ))}
-              </>
+                </div>
+              ))
             )}
           </div>
         </div>
@@ -360,7 +362,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
         <div className="flex-1 flex flex-col overflow-hidden">
 
           {/* Tabs + sluit */}
-          <div className="flex items-center justify-between px-6 pt-5 pb-0"
+          <div className="flex items-center justify-between px-6 pt-5 pb-0 flex-shrink-0"
             style={{ borderBottom: `1px solid ${klasseKleur}25` }}>
             <div className="flex gap-1">
               {tabs.map(t => (
@@ -379,11 +381,13 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
             </button>
           </div>
 
+          {/* Tab inhoud — scrollbaar */}
           <div className="flex-1 overflow-y-auto px-6 py-5">
 
             {/* ── OVERZICHT ── */}
             {tab === 'overzicht' && (
-              <div className="space-y-5">
+              <div className="space-y-4">
+                {/* Info blokjes */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { label: 'Team',          val: rijder.team },
@@ -398,7 +402,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
                   ))}
                 </div>
 
-                {/* Motor preview */}
+                {/* Motor preview — voor + zij aanzicht */}
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
@@ -406,17 +410,26 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
                       {info?.bikeModel ?? rijder.merk} · 2026 Motor
                     </span>
                   </div>
-                  <div className="rounded-xl flex items-center justify-center p-4"
-                    style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}25`, height: 150 }}>
-                    <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 16px ${merkKleur}50)` }} />
+                  <div className="rounded-xl overflow-hidden flex items-center justify-center gap-2 p-4"
+                    style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}25`, minHeight: 200 }}>
+                    {/* Voor-aanzicht */}
+                    <div style={{ width: '38%', height: 180 }}>
+                      <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 12px ${merkKleur}50)` }} />
+                    </div>
+                    {/* Zij-aanzicht */}
+                    <div style={{ width: '58%', height: 180 }}>
+                      <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 12px ${merkKleur}50)` }} />
+                    </div>
                   </div>
                 </div>
 
-                {info?.omschrijving && (
-                  <div className="rounded-xl p-4"
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p className="font-ui text-sm text-white/60 leading-relaxed">{info.omschrijving}</p>
+                {/* Info tekst — scrollbaar blok */}
+                {overzichtTekst && (
+                  <div className="rounded-xl p-4 overflow-y-auto"
+                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', maxHeight: 160 }}>
+                    <p className="font-ui text-sm text-white/60 leading-relaxed whitespace-pre-line">{overzichtTekst}</p>
                   </div>
                 )}
               </div>
@@ -424,27 +437,26 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 
             {/* ── MOTOR TAB ── */}
             {tab === 'motor' && (
-              <div className="space-y-5">
+              <div className="space-y-4">
                 <div>
-                  <div className="font-head font-black text-2xl text-white mb-0.5">
-                    {info?.bikeModel ?? rijder.merk}
-                  </div>
+                  <div className="font-head font-black text-2xl text-white mb-0.5">{info?.bikeModel ?? rijder.merk}</div>
                   <div className="font-ui text-xs text-white/40 uppercase tracking-wider">2026 · {klasse}</div>
                 </div>
 
                 {/* Motor groot liggend */}
-                <div className="rounded-2xl flex items-center justify-center p-6"
-                  style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 200 }}>
+                <div className="rounded-2xl flex items-center justify-center p-5"
+                  style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 210 }}>
                   <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
                     style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 8px 24px ${merkKleur}60)` }} />
                 </div>
 
+                {/* Specs 2x2 */}
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { icon: '⚙️', label: 'Motor',    val: info?.motor ?? rijder.merk },
-                    { icon: '🏗️', label: 'Klasse',   val: klasse },
-                    { icon: '🔄', label: 'Banden',    val: 'Michelin' },
-                    { icon: '🏁', label: 'Team',      val: rijder.team },
+                    { icon: '⚙️', label: 'Motor',   val: info?.motor ?? rijder.merk },
+                    { icon: '🏗️', label: 'Klasse',  val: klasse },
+                    { icon: '🔄', label: 'Banden',  val: 'Michelin' },
+                    { icon: '🏁', label: 'Team',    val: rijder.team },
                   ].map(({ icon, label, val }) => (
                     <div key={label} className="rounded-xl p-3 flex items-center gap-3"
                       style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
@@ -457,10 +469,11 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
                   ))}
                 </div>
 
-                {info?.omschrijving && (
-                  <div className="rounded-xl p-4"
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p className="font-ui text-sm text-white/60 leading-relaxed">{info.omschrijving}</p>
+                {/* Motor tekst scrollbaar */}
+                {motorTekst && (
+                  <div className="rounded-xl p-4 overflow-y-auto"
+                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', maxHeight: 200 }}>
+                    <p className="font-ui text-sm text-white/60 leading-relaxed whitespace-pre-line">{motorTekst}</p>
                   </div>
                 )}
               </div>
@@ -468,8 +481,8 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 
             {/* ── STATISTIEKEN TAB ── */}
             {tab === 'stats' && (
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 mb-1">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
                   <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
                   <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoenstatistieken 2026</span>
                 </div>
@@ -505,165 +518,3 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
   )
 }
 
-function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse: Klasse; isEven: boolean; onKlik: () => void }) {
-  const klasseKleur = KLASSE_CONFIG[klasse].kleur
-  const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
-
-  return (
-    <div className="relative grid items-center group transition-all cursor-pointer hover:brightness-110"
-      style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent', borderBottom: '1px solid rgba(255,255,255,0.06)', minHeight: 80 }}
-      onClick={onKlik}>
-      <div className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r" style={{ background: klasseKleur }} />
-
-      {/* Vlag */}
-      <div className="flex items-center justify-center pl-3">
-        <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
-          className="rounded-sm" style={{ width: 28, height: 18, objectFit: 'cover' }}
-          onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
-      </div>
-
-      {/* Rijder foto */}
-      <div className="flex items-center justify-center py-2">
-        <div className="overflow-hidden rounded-lg" style={{ width: 96, height: 72 }}>
-          <RiderImg rijder={rijder} klasse={klasse}
-            style={{ width: 96, height: 72, objectFit: 'cover', objectPosition: 'top center' }} />
-        </div>
-      </div>
-
-      {/* Naam */}
-      <div className="flex items-center gap-2 px-4">
-        <span className="font-ui text-sm text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">{rijder.voornaam}</span>
-        <span className="font-head font-black text-lg uppercase text-white tracking-wide whitespace-nowrap">{rijder.naam}</span>
-      </div>
-
-      {/* Nummer */}
-      <div className="flex items-center justify-center">
-        <span className="font-head font-black text-sm w-11 h-8 flex items-center justify-center rounded"
-          style={{ background: klasseKleur + '33', color: klasseKleur, border: `1px solid ${klasseKleur}55` }}>
-          {rijder.nummer}
-        </span>
-      </div>
-
-      {/* Motor */}
-      <div className="flex items-center justify-center rounded-lg mx-2"
-        style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
-        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
-          style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
-      </div>
-
-      {/* Team */}
-      <div className="flex items-center gap-2 px-4">
-        <div className="w-0.5 self-stretch my-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
-        <span className="font-ui text-sm text-white/40 group-hover:text-white transition-colors truncate">{rijder.team}</span>
-      </div>
-    </div>
-  )
-}
-
-// ─── Hoofdpagina ──────────────────────────────────────────────────────────────
-export default function MotoGP() {
-  const [klasse, setKlasse]         = useState<Klasse>('MotoGP')
-  const [zoek, setZoek]             = useState('')
-  const [merkFilter, setMerkFilter] = useState<string | null>(null)
-  const [popup, setPopup]           = useState<Rijder | null>(null)
-
-  const grid = klasse === 'MotoGP' ? MOTOGP_GRID : klasse === 'Moto2' ? MOTO2_GRID : MOTO3_GRID
-  const cfg  = KLASSE_CONFIG[klasse]
-
-  const merken = Array.from(new Set(grid.map(r => r.merk)))
-
-  const gefilterd = grid.filter(r => {
-    const matchMerk = !merkFilter || r.merk === merkFilter
-    const matchZoek = !zoek || `${r.voornaam} ${r.naam} ${r.team} ${r.merk}`.toLowerCase().includes(zoek.toLowerCase())
-    return matchMerk && matchZoek
-  })
-
-  // Reset filter bij wisselen klasse
-  function wisselKlasse(k: Klasse) {
-    setKlasse(k); setMerkFilter(null); setZoek('')
-  }
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-10">
-
-      {/* ── Header ── */}
-      <div className="mb-1" style={{ color: MGP_ORANJE }}>
-        <span className="font-ui text-[10px] font-bold uppercase tracking-[3px]">2026 Seizoen</span>
-      </div>
-      <div className="flex flex-col md:flex-row md:items-end gap-3 mb-6">
-        <h1 className="font-head font-black text-5xl uppercase tracking-tight leading-none">
-          Moto<span style={{ color: MGP_ORANJE }}>GP</span>
-        </h1>
-        <span className="font-ui text-sm text-white/40 md:mb-1">
-          {cfg.sub} · {grid.length} rijders
-        </span>
-      </div>
-
-      {/* ── Klasse tabs ── */}
-      <div className="flex gap-2 mb-6">
-        {(Object.keys(KLASSE_CONFIG) as Klasse[]).map(k => {
-          const c      = KLASSE_CONFIG[k]
-          const actief = klasse === k
-          return (
-            <button key={k} onClick={() => wisselKlasse(k)}
-              className="font-head font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-lg border transition-all"
-              style={actief
-                ? { background: c.kleur + '22', borderColor: c.kleur, color: c.kleur }
-                : { background: 'transparent', borderColor: '#333', color: '#555' }}>
-              {k}
-            </button>
-          )
-        })}
-      </div>
-
-      {/* ── Filters ── */}
-      <div className="flex flex-col md:flex-row gap-3 mb-5">
-        <input type="text" placeholder="Zoek rijder of team..."
-          value={zoek} onChange={e => setZoek(e.target.value)}
-          className="font-ui text-sm px-4 py-2 rounded-lg bg-brand-card border border-brand-border text-brand-light placeholder-brand-muted focus:outline-none transition-colors w-full md:w-64"
-          style={{ '--tw-ring-color': cfg.kleur } as any} />
-        <div className="flex flex-wrap gap-1.5">
-          <button onClick={() => setMerkFilter(null)}
-            className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded border transition-colors"
-            style={!merkFilter ? { background: cfg.kleur + '22', borderColor: cfg.kleur, color: cfg.kleur } : { background: 'transparent', borderColor: '#333', color: '#555' }}>
-            Alle
-          </button>
-          {merken.map(m => {
-            const mk = MERK_KLEUREN[m] ?? cfg.kleur
-            const ac = merkFilter === m
-            return (
-              <button key={m} onClick={() => setMerkFilter(ac ? null : m)}
-                className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded border transition-colors"
-                style={ac ? { background: mk + '22', borderColor: mk, color: mk } : { background: 'transparent', borderColor: '#333', color: '#555' }}>
-                {m}
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* ── Tabel ── */}
-      <div className="rounded-xl overflow-hidden" style={{ background: '#111', border: '1px solid #1e1e1e' }}>
-        {/* Header */}
-        <div className="grid items-center"
-          style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: '#0a0a0a', borderBottom: '1px solid #222' }}>
-          <div /><div />
-          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Rijder</span></div>
-          <div className="flex justify-center py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span></div>
-          <div className="px-2 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Motor</span></div>
-          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Team</span></div>
-        </div>
-
-        {gefilterd.map((r, i) => (
-          <RijderRij key={r.id} rijder={r} klasse={klasse} isEven={i % 2 === 0} onKlik={() => setPopup(r)} />
-        ))}
-
-        {gefilterd.length === 0 && (
-          <div className="py-16 text-center font-ui text-sm text-white/30">Geen rijders gevonden.</div>
-        )}
-      </div>
-
-      {popup && <RijderPopup rijder={popup} klasse={klasse} onSluit={() => setPopup(null)} />}
-    </div>
-  )
-}
