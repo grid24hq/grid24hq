@@ -444,91 +444,94 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
           </div>
         )}
 
-        {/* ── MOTOR TAB ── */}
-        {tab === 'motor' && (
-          <div className="space-y-4">
-            <div>
-              <div className="font-head font-black text-2xl text-white mb-0.5">
-                {info?.bikeModel ?? rijder.merk}
-              </div>
-              <div className="font-ui text-xs text-white/40 uppercase tracking-wider">
-                2026 · {klasse}
-              </div>
-            </div>
+				{/* ── MOTOR TAB ── */}
+				{tab === 'motor' && (
+				  <div className="space-y-4">
+					<div>
+					  <div className="font-head font-black text-2xl text-white mb-0.5">
+						{info?.bikeModel ?? rijder.merk}
+					  </div>
+					  <div className="font-ui text-xs text-white/40 uppercase tracking-wider">
+						2026 · {klasse}
+					  </div>
+					</div>
 
-            {/* Motor groot liggend */}
-            <div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
-                 style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '240px' }}>
-              <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
-                       style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 12px 28px ${merkKleur}50)` }} />
-            </div>
+					{/* Motor groot liggend */}
+					<div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
+						 style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '240px' }}>
+					  <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
+							   style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 12px 28px ${merkKleur}50)` }} />
+					</div>
 
-            {/* Specificaties Grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: '🛠️', label: 'Motor', val: info?.motor ?? rijder.merk },
-                { icon: '🏍️', label: 'Klasse', val: klasse },
-                { icon: '🍩', label: 'Banden', val: 'Michelin' },
-                { icon: '🏁', label: 'Team', val: rijder.team },
-              ].map(({ icon, label, val }) => (
-                <div key={label} className="rounded-xl p-3 flex items-center gap-3"
-                     style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                  <span className="text-lg">{icon}</span>
-                  <div>
-                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
-                    <div className="font-ui text-xs font-semibold text-white">{val}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+					{/* Specificaties Grid */}
+					<div className="grid grid-cols-2 gap-3">
+					  {[
+						{ icon: '🛠️', label: 'Motor', val: info?.motor ?? rijder.merk },
+						{ icon: '🏍️', label: 'Klasse', val: klasse },
+						{ icon: '🍩', label: 'Banden', val: 'Michelin' },
+						{ icon: '🏁', label: 'Team', val: rijder.team },
+					  ].map(({ icon, label, val }) => (
+						<div key={label} className="rounded-xl p-3 flex items-center gap-3"
+							 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+						  <span className="text-lg">{icon}</span>
+						  <div>
+							<div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+							<div className="font-ui text-xs font-semibold text-white">{val}</div>
+						  </div>
+						</div>
+					  ))}
+					</div>
 
-            {/* Omschrijving */}
-            {info?.omschrijving && (
-              <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-                <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
-              </div>
-            )}
-          </div>
-        )}
+					{/* Omschrijving */}
+					{info?.omschrijving && (
+					  <div className="rounded-xl p-3 bg-white/5 border border-white/10">
+						<p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
+					  </div>
+					)}
+				  </div>
+				)}
 
-        {/* ── STATISTIEKEN TAB ── */}
-        {tab === 'statistieken' && (
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
-              <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoensstatistieken 2026</span>
-            </div>
+				{/* ── STATISTIEKEN TAB ── */}
+				{tab === 'statistieken' && (
+				  <div className="space-y-4">
+					<div className="flex items-center gap-2 mb-1">
+					  <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+					  <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoensstatistieken 2026</span>
+					</div>
 
-            {/* Grid met Statistieken */}
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { label: 'Races', val: stats?.races ?? '-', icon: '🏁' },
-                { label: 'Overwinningen', val: stats?.wins ?? '-', icon: '🏆' },
-                { label: 'Podiums', val: stats?.podiums ?? '-', icon: '🥇' },
-                { label: 'Poles', val: stats?.poles ?? '-', icon: '⚡' },
-                { label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
-                { label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
-              ].map(({ label, val, icon, color }) => (
-                <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
-                  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
-                  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
-                    {val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
-                  </div>
+					{/* Grid met Statistieken */}
+					<div className="grid grid-cols-3 gap-3">
+					  {[
+						{ label: 'Races', val: stats?.races ?? '-', icon: '🏁' },
+						{ label: 'Overwinningen', val: stats?.wins ?? '-', icon: '🏆' },
+						{ label: 'Podiums', val: stats?.podiums ?? '-', icon: '🥇' },
+						{ label: 'Poles', val: stats?.poles ?? '-', icon: '⚡' },
+						{ label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
+						{ label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
+					  ].map(({ label, val, icon, color }) => (
+						<div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
+						  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
+						  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
+							{val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
+						  </div>
+						  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
+						</div>
+					  ))}
+					</div>
+				  </div>
+				)}
+
+			{/* Omschrijving */}
+			{info?.omschrijving && (
+			  <div className="rounded-xl p-3 bg-white/5 border border-white/10">
+				<p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
+			  </div>
                   <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
                 </div>
               ))}
             </div>
           </div>
         )}
-
-    {/* Omschrijving */}
-    {info?.omschrijving && (
-      <div className="rounded-xl p-3 bg-white/5 border border-white/10">
-        <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
-      </div>
-    )}
-  </div>
-)}
 
             {/* Grid met Statistieken */}
 <div className="grid grid-cols-3 gap-3">
