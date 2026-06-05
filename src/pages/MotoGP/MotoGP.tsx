@@ -380,95 +380,146 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
 
           <div className="flex-1 overflow-y-auto px-6 py-5">
 
-            {/* ── OVERZICHT ── */}
-            {tab === 'overzicht' && (
-              <div className="space-y-5">
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: 'Team',          val: rijder.team },
-                    { label: 'Racenummer',    val: `#${rijder.nummer}` },
-                    { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
-                  ].map(({ label, val }) => (
-                    <div key={label} className="rounded-xl p-3"
-                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-1">{label}</div>
-                      <div className="font-ui text-sm font-semibold text-white truncate">{val}</div>
+            {/* ── OVERZICHT TAB ── */}
+        {tab === 'overzicht' && (
+          <div className="flex flex-col h-full justify-between space-y-4">
+            {/* Bovenste rij: Info & Stand compact naast elkaar */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-start">
+              {/* LINKER KANT (2 cols): Info blokken onder elkaar */}
+              <div className="md:col-span-2 flex flex-col gap-2.5">
+                {[
+                  { label: 'Team', val: rijder.team },
+                  { label: 'Racenummer', val: `#${rijder.nummer}` },
+                  { label: 'Nationaliteit', val: rijder.landCode.toUpperCase() },
+                ].map(({ label, val }) => (
+                  <div key={label} className="rounded-xl p-3 bg-white/5 border border-white/10">
+                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30 mb-0.5">{label}</div>
+                    <div className="font-ui text-xs font-semibold text-white truncate">{val}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* RECHTER KANT (3 cols): Kampioenschapsstand Smaller */}
+              <div className="md:col-span-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="font-ui text-[9px] uppercase tracking-[1px] text-white/40 mb-2">Stand 2026</div>
+                  {standings && standings.length > 0 ? (
+                    <div className="space-y-1.5 max-h-[125px] overflow-y-auto pr-1">
+                      {standings.map((s) => (
+                        <div key={s.naam} className="flex items-center justify-between text-xs py-1 border-b border-white/5 last:border-0">
+                          <span className="font-head font-black text-white/40 w-4">{s.pos}</span>
+                          <span className="font-ui text-white/80 flex-1 truncate ml-1">{s.naam}</span>
+                          <span className="font-head font-black" style={{ color: klasseKleur }}>{s.punten}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    <div className="text-[11px] font-ui text-white/30 py-4 text-center">Geen data beschikbaar via API</div>
+                  )}
                 </div>
+              </div>
+            </div>
 
-                {/* Motor preview */}
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
-                    <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
-                      {info?.bikeModel ?? rijder.merk} · 2026 Motor
-                    </span>
-                  </div>
-                  <div className="rounded-xl flex items-center justify-center p-4"
-                    style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}25`, height: 150 }}>
-                    <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 16px ${merkKleur}50)` }} />
-                  </div>
-                </div>
+            {/* Onderste gedeelte: Grote liggende motor over de volledige breedte */}
+            <div className="flex-1 flex flex-col justify-end pt-1">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+                <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">
+                  {info?.bikeModel ?? rijder.merk} · 2026 Motor
+                </span>
+              </div>
+              <div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
+                   style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '170px' }}>
+                <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
+                         style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 8px 24px ${merkKleur}50)` }} />
+              </div>
+            </div>
 
-                {info?.omschrijving && (
-                  <div className="rounded-xl p-4"
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p className="font-ui text-sm text-white/60 leading-relaxed">{info.omschrijving}</p>
-                  </div>
-                )}
+            {/* Rijderomschrijving direct onder de grote motor */}
+            {info?.omschrijving && (
+              <div className="rounded-xl p-3 bg-white/5 border border-white/10">
+                <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
               </div>
             )}
-
-            {/* ── MOTOR TAB ── */}
-{tab === 'motor' && (
-  <div className="space-y-4">
-    <div>
-      <div className="font-head font-black text-2xl text-white mb-0.5">
-        {info?.bikeModel ?? rijder.merk}
-      </div>
-      <div className="font-ui text-xs text-white/40 uppercase tracking-wider">
-        2026 · {klasse}
-      </div>
-    </div>
-
-    {/* Motor groot liggend */}
-    <div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
-         style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '240px' }}>
-      <BikeImg 
-        team={rijder.team} 
-        merk={rijder.merk} 
-        klasse={klasse} 
-        type="side"
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'contain', 
-          scale: '1.15', 
-          filter: `drop-shadow(0 12px 28px ${merkKleur}50)` 
-        }} 
-      />
-    </div>
-
-    {/* Specificaties Grid */}
-    <div className="grid grid-cols-2 gap-3">
-      {[
-        { icon: '🛠️', label: 'Motor', val: info?.motor ?? rijder.merk },
-        { icon: '🏍️', label: 'Klasse', val: klasse },
-        { icon: '🍩', label: 'Banden', val: 'Michelin' },
-        { icon: '🏁', label: 'Team', val: rijder.team },
-      ].map(({ icon, label, val }) => (
-        <div key={label} className="rounded-xl p-3 flex items-center gap-3"
-             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
-          <span className="text-lg">{icon}</span>
-          <div>
-            <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
-            <div className="font-ui text-xs font-semibold text-white">{val}</div>
           </div>
-        </div>
-      ))}
-    </div>
+        )}
+
+        {/* ── MOTOR TAB ── */}
+        {tab === 'motor' && (
+          <div className="space-y-4">
+            <div>
+              <div className="font-head font-black text-2xl text-white mb-0.5">
+                {info?.bikeModel ?? rijder.merk}
+              </div>
+              <div className="font-ui text-xs text-white/40 uppercase tracking-wider">
+                2026 · {klasse}
+              </div>
+            </div>
+
+            {/* Motor groot liggend */}
+            <div className="rounded-xl flex items-center justify-center p-4 bg-gradient-to-br from-white/[0.02] to-transparent border border-white/10"
+                 style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.01))`, height: '240px' }}>
+              <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} type="side"
+                       style={{ width: '100%', height: '100%', objectFit: 'contain', scale: '1.15', filter: `drop-shadow(0 12px 28px ${merkKleur}50)` }} />
+            </div>
+
+            {/* Specificaties Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { icon: '🛠️', label: 'Motor', val: info?.motor ?? rijder.merk },
+                { icon: '🏍️', label: 'Klasse', val: klasse },
+                { icon: '🍩', label: 'Banden', val: 'Michelin' },
+                { icon: '🏁', label: 'Team', val: rijder.team },
+              ].map(({ icon, label, val }) => (
+                <div key={label} className="rounded-xl p-3 flex items-center gap-3"
+                     style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                  <span className="text-lg">{icon}</span>
+                  <div>
+                    <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+                    <div className="font-ui text-xs font-semibold text-white">{val}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Omschrijving */}
+            {info?.omschrijving && (
+              <div className="rounded-xl p-3 bg-white/5 border border-white/10">
+                <p className="font-ui text-xs text-white/60 leading-relaxed">{info.omschrijving}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── STATISTIEKEN TAB ── */}
+        {tab === 'statistieken' && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-4 h-0.5 rounded-full" style={{ background: klasseKleur }} />
+              <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/40">Seizoensstatistieken 2026</span>
+            </div>
+
+            {/* Grid met Statistieken */}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { label: 'Races', val: stats?.races ?? '-', icon: '🏁' },
+                { label: 'Overwinningen', val: stats?.wins ?? '-', icon: '🏆' },
+                { label: 'Podiums', val: stats?.podiums ?? '-', icon: '🥇' },
+                { label: 'Poles', val: stats?.poles ?? '-', icon: '⚡' },
+                { label: 'Snelste Rondes', val: stats?.fastestLaps ?? '-', icon: '⏱️' },
+                { label: 'Punten', val: stats?.punten ?? '-', icon: '📊', color: klasseKleur },
+              ].map(({ label, val, icon, color }) => (
+                <div key={label} className="rounded-xl p-4 bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center min-h-[100px] transition-all hover:bg-white/[0.05]">
+                  <div className="text-xl mb-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">{icon}</div>
+                  <div className="font-head font-black text-xl text-white tracking-wide" style={color ? { color } : {}}>
+                    {val === '-' ? <span className="text-white/40 font-normal">-</span> : val}
+                  </div>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/40 mt-1 font-medium">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
     {/* Omschrijving */}
     {info?.omschrijving && (
