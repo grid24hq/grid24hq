@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Red Bull KTM Tech3
+Racenummer: #12
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Volledig Red Bull-oranje met agressieve Tech3-branding op een fabrieksondersteunde KTM-machine.
+
+Specificaties:
+Aangedreven door de brute 1000cc KTM V4-motor, goed voor een vermogen van meer dan 295 pk.
+
+Status & Ervaring:
+Maverick 'Top Gun' Viñales zit in zijn tweede contractjaar bij Tech3. Wanneer Viñales zijn befaamde 'flow' te pakken heeft, beschikt hij over een ongeëvenaarde bochtensnelheid waarmee hij de fabrieksmotoren van KTM serieus kan uitdagen voor de overwinning.
+
+=== MOTOR ===
+KTM RC16 (TECH3-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 360 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Stalen buizenframe
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : WP Apex telescopische upside-down voorvork
+Achtervering        : WP Apex schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaat

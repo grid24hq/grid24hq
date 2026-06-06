@@ -1,0 +1,39 @@
+=== OVERZICHT ===
+Team: LCR Honda
+Racenummer: #11
+Nationaliteit: Braziliaans (BR)
+
+Kleurstelling:
+De machine van Moreira is uitgevoerd in de bekende rood-witte Idemitsu-kleuren sponsoring, gecombineerd met donkere carbon-accenten.
+
+Specificaties:
+Het betreft de fabrieksondersteunde 1000cc V4 viertaktmotor met ruim 240 pk en topsnelheden die de 360 km/u passeren.
+
+Ontwikkelingsstatus & Ervaring:
+Als regerend Moto2-wereldkampioen maakt Diogo Moreira in 2026 zijn felbegeerde debuut in de koningsklasse. Aangezien HRC de focus al volledig heeft verlegd naar het 850cc-project voor 2027, rijdt Moreira dit overgangsjaar op een stabiel doorontwikkeld chassis om kostbare MotoGP-ervaring op te doen.
+
+=== MOTOR ===
+HONDA RC213V (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, DOHC 4-kleppen, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 300 pk (>180 kW)
+Topsnelheid         : > 360 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium dubbelbuis (Twin-tube)
+Gewicht             : 157 kg (FIM-limiet)
+Totale lengte       : 2.052 mm
+Totale breedte      : 645 mm
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper met Honda Pro-Link
+Wielen              : 17-inch magnesium (Michelin MotoGP-spec)
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : SC-Project titanium 4-in-2

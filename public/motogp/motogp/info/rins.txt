@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Monster Energy Yamaha MotoGP Team
+Racenummer: #42
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Zwart-blauw Monster Energy fabriekscamouflage met de persoonlijke subtiele gele accenten van Alex Rins.
+
+Specificaties:
+Aangedreven door de gloednieuwe vloeistofgekoelde 1000cc V4-krachtbron met een topsnelheid van boven de 355 km/u.
+
+Status & Ervaring:
+Alex Rins speelt met zijn enorme technische achtergrond een sleutelrol in de ontwikkeling van de nieuwe Yamaha V4-krachtbron. Zijn feedback op het gebied van vermogensafgifte is cruciaal om het legendarische Yamaha-bochtengedrag te behouden bij dit nieuwe motorconcept.
+
+=== MOTOR ===
+YAMAHA YZR-M1 V4 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, DOHC 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 285 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium delta-box twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaatsysteem

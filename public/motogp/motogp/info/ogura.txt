@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Trackhouse MotoGP Team
+Racenummer: #79
+Nationaliteit: Japans (JP)
+
+Kleurstelling:
+Het Amerikaanse rood-wit-blauw van Trackhouse Racing, stijlvol gecombineerd met Ogura's persoonlijke Japanse helm- en nummerdetails.
+
+Specificaties:
+De 1000cc Aprilia RS-GP krachtbron met pneumatische klepbediening en een top van boven de 355 km/u.
+
+Status & Ervaring:
+Na een intens debuutseizoen jaagt Ai Ogura nu met veel meer zelfvertrouwen op stabiele top 10-klasseringen. Zijn rustige, uiterst berekende rijstijl helpt het team om de Aprilia-elektronica onder wisselende gripniveaus optimaal af te stellen.
+
+=== MOTOR ===
+APRILIA RS-GP (TRACKHOUSE-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 290 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium / carbon composiet frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : SC-Project titanium uitlaatsysteem

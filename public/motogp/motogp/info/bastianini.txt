@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Red Bull KTM Tech3
+Racenummer: #23
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het flitsende Red Bull-oranje van de Tech3-satellietstal, aangevuld met Bastianini's vertrouwde witte en roze details.
+
+Specificaties:
+De 1000cc KTM V4-krachtbron, gekoppeld aan het stalen frame, levert topsnelheden die de 360 km/u aantikken.
+
+Status & Ervaring:
+Enea 'The Beast' Bastianini staat bekend om zijn fabelachtige bandenmanagement. In de slotfase van de races is hij vaak de snelste man op de baan. Samen met Viñales vormt hij een van de meest ervaren en gevaarlijke duo's op de huidige grid.
+
+=== MOTOR ===
+KTM RC16 (TECH3-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 360 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Stalen buizenframe
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : WP Apex telescopische upside-down voorvork
+Achtervering        : WP Apex schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaat

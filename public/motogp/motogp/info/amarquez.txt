@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Gresini Racing MotoGP
+Racenummer: #73
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het unieke en stijlvolle lichtblauw (Gresini-blauw) afgewerkt met felle rode accentstrepen.
+
+Specificaties:
+Een high-performance 1000cc V4 viertaktmotor die beschikt over een vermogen van dik over de 295 pk.
+
+Status & Ervaring:
+Alex Marquez begint aan een stabiel en vertrouwd vierde seizoen bij de Gresini-familie. Hij fungeert als de ervaren rot binnen het team en weet onder wisselende weersomstandigheden vaak te verrassen met sterke podiumplaatsen.
+
+=== MOTOR ===
+DUCATI DESMOSEDICI GP25/26 (GRESINI) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 358 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium systeem

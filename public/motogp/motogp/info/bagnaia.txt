@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Ducati Lenovo Team
+Racenummer: #63
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het herkenbare en felle Ducati-fabrieksrood met strakke zwarte en neon-rode racestrepen.
+
+Specificaties:
+Voorzien van de oppermachtige 1000cc Desmosedici V4-krachtbron met een vermogen dat ver over de 300 pk heen gaat.
+
+Status & Ervaring:
+Francesco 'Pecco' Bagnaia vormt in 2026 samen met Marc Marquez het absolute 'dream team' binnen de Ducati-fabriek. Bagnaia kent de aerodynamica en de fijne kneepjes van de Desmosedici als geen ander en vecht vanaf de eerste race puur voor de wereldtitel.
+
+=== MOTOR ===
+DUCATI DESMOSEDICI GP26 — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4 met Desmodromische klepbediening
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 300 pk
+Topsnelheid         : > 362 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper met progressief linksysteem
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium systeem

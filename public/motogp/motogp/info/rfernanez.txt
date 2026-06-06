@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Trackhouse MotoGP Team
+Racenummer: #25
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+De opvallende, Amerikaanse vlag-geïnspireerde livery met sterren en strepen in rood, wit en blauw.
+
+Specificaties:
+Uitgerust met de aerodynamisch geavanceerde Aprilia 1000cc V4, goed voor ruim 290 pk.
+
+Status & Ervaring:
+Raul Fernandez heeft de volledige steun van de Amerikaanse renstal. Fernandez heeft in het verleden bewezen dat hij over één snelle ronde ongenaakbaar kan zijn. In 2026 richt hij zich op een constantere racepace tijdens de volledige Grand Prix-zondagen.
+
+=== MOTOR ===
+APRILIA RS-GP (TRACKHOUSE-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4 met pneumatische kleppen
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 290 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium / carbon composiet frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : SC-Project titanium uitlaatsysteem

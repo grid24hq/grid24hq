@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Prima Pramac Racing
+Racenummer: #43 (of custom #54)
+Nationaliteit: Turks (TR)
+
+Kleurstelling:
+De flitsende en herkenbare Pramac-livery bestaande uit dieppaars, neon-groen en helderwit.
+
+Specificaties:
+Uitgerust met de gloednieuwe 1000cc Yamaha V4-krachtbron met fabrieksondersteuning, goed voor ruim 285 pk.
+
+Status & Ervaring:
+De absolute sensatie van de 2026-grid! Veelvuldig WorldSBK-wereldkampioen Toprak Razgatlioglu maakt eindelijk zijn officiële MotoGP-debuut. Zijn wereldberoemde, spectaculaire remtechniek (waarbij het achterwiel loskomt) trekt direct alle media-aandacht in de pitbox van Pramac Yamaha.
+
+=== MOTOR ===
+YAMAHA YZR-M1 V4 (PRAMAC-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, DOHC 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 285 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium delta-box frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaatsysteem

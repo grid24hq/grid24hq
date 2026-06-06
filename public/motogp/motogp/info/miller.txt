@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Prima Pramac Racing
+Racenummer: #43
+Nationaliteit: Australisch (AU)
+
+Kleurstelling:
+Het opvallende Pramac-paars met neon-groene vlakken en witte sponsorlogo's op een Yamaha-kuip.
+
+Specificaties:
+De door de fabriek geleverde 1000cc Yamaha V4-motor, goed voor topsnelheden die de 355 km/u aantikken.
+
+Status & Ervaring:
+Jack 'Thriller' Miller brengt een schat aan ervaring mee naar Pramac nu ze de overstap naar Yamaha hebben gemaakt. Miller staat erom bekend dat hij onder natte en wisselende omstandigheden buitengewoon snel is en is goud waard voor de data-ontwikkeling van de nieuwe V4.
+
+=== MOTOR ===
+YAMAHA YZR-M1 V4 (PRAMAC-SPEC) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, DOHC 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 285 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium delta-box frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaatsysteem

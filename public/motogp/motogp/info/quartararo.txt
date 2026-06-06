@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Monster Energy Yamaha MotoGP Team
+Racenummer: #20
+Nationaliteit: Frans (FR)
+
+Kleurstelling:
+Het agressieve matzwart en diepblauw in een camouflagepatroon, gedomineerd door de felle groene 'M' van Monster Energy.
+
+Specificaties:
+De gloednieuwe 1000cc V-4 viertaktmotor (Yamaha's splinternieuwe concept voor 2026) met een geschat vermogen van ruim 285 pk.
+
+Status & Ervaring:
+Het jaar 2026 is historisch voor Fabio Quartararo. Yamaha heeft na decennia afscheid genomen van de traditionele vier-in-lijn motor en heeft speciaal voor hem een krachtig V4-blok gebouwd. Quartararo gebruikt zijn vloeiende rijstijl om deze nieuwe machine naar de top te loodsen.
+
+=== MOTOR ===
+YAMAHA YZR-M1 V4 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, DOHC 90° V-4 (Nieuw motorconcept)
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 285 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium delta-box twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaatsysteem

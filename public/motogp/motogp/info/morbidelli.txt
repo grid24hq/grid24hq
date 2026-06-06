@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Pertamina Enduro VR46 Racing Team
+Racenummer: #21
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het herkenbare VR46-fluorgelig gemixt met het strakke wit en rood van hoofdsponsor Pertamina Enduro.
+
+Specificaties:
+Uitgerust met de 1000cc Desmosedici V4-krachtbron, goed voor een topsnelheid van circa 358 km/u.
+
+Status & Ervaring:
+Franco Morbidelli brengt een enorme bak ervaring mee naar de renstal van zijn mentor Valentino Rossi. 'Franky' staat bekend om zijn constante racetempo en soepele rijstijl, waarmee hij de bandenslijtage tijdens de lange zondagsraces perfect onder controle houdt.
+
+=== MOTOR ===
+DUCATI DESMOSEDICI GP25/26 (VR46) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 358 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium systeem

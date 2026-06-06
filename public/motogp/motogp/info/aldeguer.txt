@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Gresini Racing MotoGP
+Racenummer: #54
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het herkenbare Gresini-lichtblauw met de flitsende rode racestrepen en de persoonlijke nummer-54-accenten.
+
+Specificaties:
+Voorzien van de krachtige 1000cc Ducati V4-krachtbron met een top van ruim boven de 355 km/u.
+
+Status & Ervaring:
+Fermin Aldeguer is de jonge Spaanse sensatie. Na een indrukwekkend leerjaar in de MotoGP, laat hij nu zijn pure snelheid zien. Het vloeiende bochtengedrag van de Ducati sluit perfect aan op de hoge bochtensnelheid die hij heeft meegenomen uit de Moto2.
+
+=== MOTOR ===
+DUCATI DESMOSEDICI GP25/26 (GRESINI) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 358 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium twin-spar frame
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium systeem

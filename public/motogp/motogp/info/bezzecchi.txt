@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Aprilia Racing
+Racenummer: #72
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het officiële matzwart van de Aprilia-fabriek met felle neon-gele en rode racestrepen.
+
+Specificaties:
+Voorzien van de krachtige 1000cc V4 met pneumatische klepbediening en een topsnelheid van ver over de 355 km/u.
+
+Status & Ervaring:
+Marco Bezzecchi heeft na een wenperiode zijn draai volledig gevonden op de RS-GP. Hij vormt samen met Martin een dynamisch rijdersduo dat bekend staat om hun aanvallende rijstijl tijdens de hectische Sprintraces.
+
+=== MOTOR ===
+APRILIA RS-GP (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4 met pneumatische kleppen
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 290 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium dubbelbuis met carbon composiet delen
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper met Aprilia APS-linksysteem
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : SC-Project titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Aprilia Racing
+Racenummer: #1 (of #89)
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Stijlvol matzwart in combinatie met de flitsende Aprilia-rode en paarse sponsorlijnen.
+
+Specificaties:
+Een 1000cc 90° V-4 viertaktmotor uitgerust met pneumatische kleppen, die een vermogen levert van ruim 290 pk.
+
+Status & Ervaring:
+Als regerend titelkandidaat heeft Jorge Martin de Aprilia-fabrieksmachine volledig naar zijn hand gezet. De motor blinkt in 2026 uit in bochtensnelheid en stabiliteit aan de voorkant, wat perfect aansluit bij de extreme 'lean angles' van Martin.
+
+=== MOTOR ===
+APRILIA RS-GP (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4 met pneumatische kleppen
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Ruim 290 pk
+Topsnelheid         : > 355 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Aluminium dubbelbuis met carbon composiet delen
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : Öhlins telescopische upside-down voorvork
+Achtervering        : Öhlins schokdemper met Aprilia APS-linksysteem
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : SC-Project titanium uitlaatsysteem

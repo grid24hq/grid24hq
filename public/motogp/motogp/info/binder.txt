@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Red Bull KTM Factory Racing
+Racenummer: #33
+Nationaliteit: Zuid-Afrikaans (ZA)
+
+Kleurstelling:
+De herkenbare Red Bull fabriekskleuren: donkerblauw metallic met fel KTM-oranje en de bekende rode stier.
+
+Specificaties:
+Een 1000cc V4-krachtbron met meer dan 295 pk, gekoppeld aan een stalen buizenframe voor maximale mechanische grip.
+
+Status & Ervaring:
+Brad Binder brengt jarenlange KTM-ervaring naar het team. Binder staat bekend als een echte 'zondagsrijder' die dankzij een agressieve remtechniek en subliem bandenbeheer altijd plekken goedmaakt tijdens de hoofdrace.
+
+=== MOTOR ===
+KTM RC16 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type         : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud      : 1.000 cc
+Maximaal vermogen   : Meer dan 295 pk
+Topsnelheid         : > 360 km/u
+Brandstofcapaciteit : 22 liter
+
+CHASSIS & AFMETINGEN
+Frame               : Stalen buizenframe
+Gewicht             : 157 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering          : WP Apex telescopische upside-down voorvork
+Achtervering        : WP Apex achterschokdemper
+Voorremmen          : Dubbele Brembo carbon remschijven
+Achterrem           : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU                 : Magneti Marelli (Unified MotoGP)
+Uitlaat             : Akrapovič titanium uitlaat
