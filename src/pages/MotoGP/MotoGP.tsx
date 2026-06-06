@@ -87,13 +87,13 @@ const RIJDER_INFO: Record<string, {
   razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',       lengte: '1.75 m', debuut: '2026, Qatar',  wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',  omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.',
     bikeFront: 'pramac_yamaha_razgatlioglu_front', bikeSide: 'pramac_yamaha_side' },
   zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',     lengte: '1.74 m', debuut: '2017, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.',
-    bikeFront: 'lcr_honda_zarco_front',        bikeSide: 'lcr_honda_side' },
-  moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',   lengte: '1.70 m', debuut: '2025, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.',
-    bikeFront: 'lcr_honda_mir_front',          bikeSide: 'lcr_honda_side' },
-  marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',        lengte: '1.76 m', debuut: '2021, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.',
-    bikeFront: 'lcr_honda_marini_front',       bikeSide: 'honda_hrc_side' },
-  mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',         lengte: '1.74 m', debuut: '2019, Qatar',  wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.',
     bikeFront: 'honda_hrc_zarco_front',        bikeSide: 'honda_hrc_side' },
+  moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',   lengte: '1.70 m', debuut: '2025, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij Honda HRC Castrol in 2026.',
+    bikeFront: 'honda_hrc_moreira_front',      bikeSide: 'honda_hrc_side' },
+  marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',        lengte: '1.76 m', debuut: '2021, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor LCR Honda.',
+    bikeFront: 'lcr_honda_marini_front',       bikeSide: 'lcr_honda_side' },
+  mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',         lengte: '1.74 m', debuut: '2019, Qatar',  wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Joan Mir is wereldkampioen van 2020 en rijdt in 2026 voor LCR Honda.',
+    bikeFront: 'lcr_honda_mir_front',          bikeSide: 'lcr_honda_side' },
 }
 
 
@@ -137,10 +137,10 @@ const MOTOGP_GRID = [
   { id: 'bastianini',     voornaam: 'Enea',      naam: 'BASTIANINI',      landCode: 'it', nummer: 23, merk: 'KTM',      team: 'Red Bull KTM Tech3'           },
   { id: 'miller',         voornaam: 'Jack',      naam: 'MILLER',          landCode: 'au', nummer: 43, merk: 'Yamaha',   team: 'Prima Pramac Yamaha'          },
   { id: 'razgatlioglu',   voornaam: 'Toprak',    naam: 'RAZGATLIOĞLU',    landCode: 'tr', nummer: 7,  merk: 'Yamaha',   team: 'Prima Pramac Yamaha'          },
-  { id: 'zarco',          voornaam: 'Johann',    naam: 'ZARCO',           landCode: 'fr', nummer: 5,  merk: 'Honda',    team: 'LCR Honda'                    },
-  { id: 'moreira',        voornaam: 'Diogo',     naam: 'MOREIRA',         landCode: 'br', nummer: 11, merk: 'Honda',    team: 'LCR Honda'                    },
-  { id: 'marini',         voornaam: 'Luca',      naam: 'MARINI',          landCode: 'it', nummer: 10, merk: 'Honda',    team: 'Honda HRC Castrol'            },
-  { id: 'mir',            voornaam: 'Joan',      naam: 'MIR',             landCode: 'es', nummer: 36, merk: 'Honda',    team: 'Honda HRC Castrol'            },
+  { id: 'zarco',          voornaam: 'Johann',    naam: 'ZARCO',           landCode: 'fr', nummer: 5,  merk: 'Honda',    team: 'Honda HRC Castrol'            },
+  { id: 'moreira',        voornaam: 'Diogo',     naam: 'MOREIRA',         landCode: 'br', nummer: 11, merk: 'Honda',    team: 'Honda HRC Castrol'            },
+  { id: 'marini',         voornaam: 'Luca',      naam: 'MARINI',          landCode: 'it', nummer: 10, merk: 'Honda',    team: 'LCR Honda'                    },
+  { id: 'mir',            voornaam: 'Joan',      naam: 'MIR',             landCode: 'es', nummer: 36, merk: 'Honda',    team: 'LCR Honda'                    },
 ]
 
 // ─── MOTO2 GRID ───────────────────────────────────────────────────────────────
