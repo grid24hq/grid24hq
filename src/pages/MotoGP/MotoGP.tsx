@@ -38,10 +38,13 @@ const RIJDER_INFO: Record<string, {
   lengte: string; debuut: string; wereldtitels: number
   bikeModel: string; motor: string; omschrijving: string
   overzichtTekst?: string; motorTekst?: string
+  bikeFront?: string; bikeSide?: string
 }> = {
   // MotoGP
-  bagnaia:        { geboortedatum: '14 jan. 1997',  leeftijd: 28, geboorteplaats: 'Torino, Italië',       lengte: '1.78 m', debuut: '2019, Qatar',     wereldtitels: 2, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Francesco Bagnaia is tweevoudig wereldkampioen MotoGP en verdedigt zijn titel in 2026 met de nieuwste Ducati Desmosedici.' },
-  mmarquez:       { geboortedatum: '17 feb. 1993',  leeftijd: 32, geboorteplaats: 'Cervera, Spanje',      lengte: '1.68 m', debuut: '2013, Qatar',     wereldtitels: 8, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Marc Márquez is de meest succesvolle rijder van zijn generatie met 8 wereldtitels en rijdt in 2026 voor het fabrieksteam van Ducati.' },
+  bagnaia:        { geboortedatum: '14 jan. 1997',  leeftijd: 28, geboorteplaats: 'Torino, Italië',       lengte: '1.78 m', debuut: '2019, Qatar',     wereldtitels: 2, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Francesco Bagnaia is tweevoudig wereldkampioen MotoGP en verdedigt zijn titel in 2026 met de nieuwste Ducati Desmosedici.',
+    bikeFront: 'bagnaia_ducati_lenovo_front', bikeSide: 'ducati_lenovo_side' },
+  mmarquez:       { geboortedatum: '17 feb. 1993',  leeftijd: 32, geboorteplaats: 'Cervera, Spanje',      lengte: '1.68 m', debuut: '2013, Qatar',     wereldtitels: 8, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Marc Márquez is de meest succesvolle rijder van zijn generatie met 8 wereldtitels en rijdt in 2026 voor het fabrieksteam van Ducati.',
+    bikeFront: 'mmarquez_ducati_lenovo_front', bikeSide: 'ducati_lenovo_side' },
   martin:         { geboortedatum: '29 jan. 1998',  leeftijd: 27, geboorteplaats: 'Madrid, Spanje',       lengte: '1.80 m', debuut: '2021, Qatar',     wereldtitels: 1, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Jorge Martín is regerend wereldkampioen en maakt in 2026 de overstap naar Aprilia Racing.' },
   bezzecchi:      { geboortedatum: '26 sep. 1998',  leeftijd: 26, geboorteplaats: 'Rimini, Italië',       lengte: '1.73 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Marco Bezzecchi is een van de meest opvallende talenten van zijn generatie en rijdt in 2026 voor Aprilia Racing.' },
   acosta:         { geboortedatum: '25 mei 2004',   leeftijd: 21, geboorteplaats: 'Murcia, Spanje',       lengte: '1.73 m', debuut: '2024, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Pedro Acosta geldt als het grootste talent van zijn generatie en rijdt in 2026 voor het KTM fabrieksteam.' },
@@ -180,41 +183,19 @@ type Klasse = 'MotoGP' | 'Moto2' | 'Moto3'
 // MotoGP bikes: public/motogp/motogp/bikes/{team_id}.webp
 // Moto2  bikes: public/motogp/moto2/bikes/{team_id}.webp
 // Moto3  bikes: public/motogp/moto3/bikes/{team_id}.webp
-const   TEAM_BIKE_ID: Record<string, string> = {
+const TEAM_BIKE_ID: Record<string, string> = {
   // MotoGP
-  'Ducati Lenovo Team':          'ducati_lenovo_side',
-  'Ducati Lenovo Team':          'mmarquez_ducati_lenovo_front',
-  'Ducati Lenovo Team':          'bagnaia_ducati_lenovo_front',
-  'Gresini Racing':              'gresini_side', 
-  'Gresini Racing':              'amarquez_gresini_front',
-  'Gresini Racing':              'aldeguer_gresini_front',
-  'Pertamina VR46 Racing Team':  'vr46_side',
-  'Pertamina VR46 Racing Team':  'digiannantonio_vr46_front',
-  'Pertamina VR46 Racing Team':  'morbidelli_vr46__front',
-  'Aprilia Racing':              'aprilia_racing_side',
-  'Aprilia Racing':              'bezzecchi_aprilia_racing_front',
-  'Aprilia Racing':              'martin_aprilia_racing_front',
-  'Trackhouse Racing':           'trackhouse_side',
-  'Trackhouse Racing':           'trackhouse_ogura_front',
-  'Trackhouse Racing':           'trackhouse_rfernanez_front',
-  'Red Bull KTM Factory Racing': 'ktm_factory_side',
-  'Red Bull KTM Factory Racing': 'ktm_factory_acosta_front',
-  'Red Bull KTM Factory Racing': 'ktm_factory_binder_front.',
-  'Red Bull KTM Tech3':          'ktm_tech3_side_',
-  'Red Bull KTM Tech3':          'ktm_tech3_vinales_front',
-  'Red Bull KTM Tech3':          'ktm_tech3_bastianini_front',
-  'LCR Honda':                   'lcr_honda_side',
-  'LCR Honda':                   'lcr_honda_mir_front',
-  'LCR Honda':                   'lcr_honda_marini_front',
-  'Honda HRC Castrol':           'honda_hrc_side',
-  'Honda HRC Castrol':           'honda_hrc_zarco_front',
-  'Honda HRC Castrol':           'honda_hrc_moreira_front',
-  'Pramac Yamaha':               'pramac_yamaha_side',
-  'Pramac Yamaha':               'pramac_yamaha_razgatlioglu_front',
-  'Pramac Yamaha':               'pramac_yamaha_miller_front',
-  'Yamaha Monster':              'yamaha_monster_side',
-  'Yamaha Monster':              'yamaha_monster_quartararo_front',
-  'Yamaha Monster':              'yamaha_monster_rins_front',
+  'Ducati Lenovo Team':          'ducati_lenovo',
+  'Gresini Racing':              'gresini',
+  'Pertamina VR46 Racing Team':  'vr46',
+  'Aprilia Racing':              'aprilia_racing',
+  'Trackhouse Racing':           'trackhouse',
+  'Red Bull KTM Factory Racing': 'ktm_factory',
+  'Red Bull KTM Tech3':          'ktm_tech3',
+  'Monster Energy Yamaha':       'yamaha_monster',
+  'Prima Pramac Yamaha':         'pramac_yamaha',
+  'LCR Honda':                   'lcr_honda',
+  'Honda HRC Castrol':           'honda_hrc',
   // Moto2
   'MSI Racing Team':             'boscoscuro',
   'Aspar Team':                  'kalex_aspar',
@@ -254,11 +235,29 @@ function teamBikeId(team: string, klasse: Klasse): string {
   return team.split(' ')[0].toLowerCase()
 }
 
-function BikeImg({ team, merk, klasse, style }: { team: string; merk: string; klasse: Klasse; style?: React.CSSProperties }) {
-  const id  = teamBikeId(team, klasse)
-  const pad = `/motogp/${klasse.toLowerCase()}/bikes/${id}`
+function BikeImg({ team, merk, klasse, rijderId, style }: { team: string; merk: string; klasse: Klasse; rijderId?: string; style?: React.CSSProperties }) {
+  // Als rijderId meegegeven: gebruik bikeSide uit RIJDER_INFO als fallback pad
+  const info    = rijderId ? RIJDER_INFO[rijderId] : undefined
+  const bestand = info?.bikeSide ?? teamBikeId(team, klasse)
+  const pad     = `/motogp/${klasse.toLowerCase()}/bikes/${bestand}`
   return (
     <img src={`${pad}.webp`} alt={team} style={style}
+      onError={e => {
+        const img = e.currentTarget as HTMLImageElement
+        if (img.src.includes('.webp')) img.src = `${pad}.svg`
+        else if (img.src.includes('.svg')) img.src = `${pad}.png`
+        else img.style.visibility = 'hidden'
+      }} />
+  )
+}
+
+// Voor-aanzicht afbeelding (rijder-specifiek)
+function BikeFrontImg({ rijderId, team, merk, klasse, style }: { rijderId: string; team: string; merk: string; klasse: Klasse; style?: React.CSSProperties }) {
+  const info    = RIJDER_INFO[rijderId]
+  const bestand = info?.bikeFront ?? teamBikeId(team, klasse)
+  const pad     = `/motogp/${klasse.toLowerCase()}/bikes/${bestand}`
+  return (
+    <img src={`${pad}.webp`} alt={`${rijderId} front`} style={style}
       onError={e => {
         const img = e.currentTarget as HTMLImageElement
         if (img.src.includes('.webp')) img.src = `${pad}.svg`
@@ -434,14 +433,14 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
                   </div>
                   <div className="rounded-xl overflow-hidden flex items-center justify-center gap-2 p-4"
                     style={{ background: `linear-gradient(135deg, ${merkKleur}12, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}25`, minHeight: 200 }}>
-                    {/* Voor-aanzicht */}
+                    {/* Voor-aanzicht — rijder-specifiek */}
                     <div style={{ width: '38%', height: 180 }}>
-                      <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                      <BikeFrontImg rijderId={rijder.id} team={rijder.team} merk={rijder.merk} klasse={klasse}
                         style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 12px ${merkKleur}50)` }} />
                     </div>
-                    {/* Zij-aanzicht */}
+                    {/* Zij-aanzicht — team-specifiek */}
                     <div style={{ width: '58%', height: 180 }}>
-                      <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                      <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} rijderId={rijder.id}
                         style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 4px 12px ${merkKleur}50)` }} />
                     </div>
                   </div>
