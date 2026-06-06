@@ -1,0 +1,41 @@
+=== OVERZICHT ===
+Kleurstelling:
+De motor van Zarco is voorzien van de iconische rode, witte en groene Castrol-kleuren, in combinatie met zwarte en blauwe accenten.
+
+Specificaties:
+Het is een 1000cc V4 viertaktmotor met een vermogen van ruim 240 pk, wat zorgt voor topsnelheden van meer dan 360 km/u.
+
+Ontwikkelingsstatus:
+Dit is het laatste seizoen dat de RC213V (die sinds 2012 meedoet) in deze vorm wordt gebruikt, aangezien de sport in 2027 overstapt op 850cc. Omdat Honda zich al volop richt op de nieuwe 850cc-motor voor 2027, heeft HRC besloten de ontwikkeling van de huidige RC213V te staken.
+
+Zarco's ervaring:
+Zarco testte de nieuwste specificaties (waaronder een verbeterd chassis en aerodynamica) die de motor meer grip gaven.
+
+=== MOTOR ===
+HONDA RC213V (2026) — TECHNISCHE SPECIFICATIES
+
+MOTOR & PRESTATIES
+Engine Type        : Vloeistofgekoeld, viertakt, DOHC 4-kleppen, 90° V-4
+Cilinderinhoud     : 1.000 cc
+Maximaal vermogen  : Meer dan 300 pk (>180 kW)
+Topsnelheid        : > 360 km/u
+Brandstofcapaciteit: 22 liter
+
+CHASSIS & AFMETINGEN
+Frame              : Aluminium dubbelbuis (Twin-tube)
+Totale lengte      : 2.052 mm
+Totale breedte     : 645 mm
+Gewicht            : 157 kg (FIM-limiet)
+
+OPHANGING
+Voorvering         : Öhlins telescopische upside-down voorvork
+Achtervering       : Öhlins schokdemper met Honda Pro-Link
+Wielen             : 17-inch magnesium (Michelin MotoGP-spec)
+
+REMSYSTEEM
+Voorremmen         : Dubbele Brembo carbon remschijven
+Achterrem          : Enkele stalen Brembo remschijf
+
+ELECTRONICA
+ECU                : Magneti Marelli (Unified MotoGP)
+Uitlaat            : SC-Project titanium 4-in-2
