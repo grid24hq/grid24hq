@@ -305,7 +305,7 @@ function useRijderTeksten(rijderId: string, klasse: Klasse): RijderTeksten | nul
   return teksten
 }
 
-({ team, merk, klasse, rijderId, style }: { team: string; merk: string; klasse: Klasse; rijderId?: string; style?: React.CSSProperties }) {
+function BikeImg({ team, merk, klasse, rijderId, style }: { team: string; merk: string; klasse: Klasse; rijderId?: string; style?: React.CSSProperties }) {
   // Als rijderId meegegeven: gebruik bikeSide uit RIJDER_INFO als fallback pad
   const info    = rijderId ? RIJDER_INFO[rijderId] : undefined
   const bestand = info?.bikeSide ?? teamBikeId(team, klasse)
