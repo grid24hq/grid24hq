@@ -1,4 +1,4 @@
-// ─── MotoGP 2026 — MotoGP / Moto2 / Moto3 grid pagina ────────────────────────
+// ─── MotoGP 2026 — MotoGP grid pagina ────────────────────────────────────────
 //
 // MAPPENSTRUCTUUR AFBEELDINGEN:
 //
@@ -7,17 +7,9 @@
 //   motogp/
 //     riders/       ← rijder foto's    (320×240 px WebP, bv: marquez.webp)
 //     bikes/        ← motor per merk   (400×200 px WebP, bv: ducati.webp)
-//   moto2/
-//     riders/       ← rijder foto's    (320×240 px WebP)
-//     bikes/        ← motor per merk   (400×200 px WebP, bv: kalex.webp)
-//   moto3/
-//     riders/       ← rijder foto's    (320×240 px WebP)
-//     bikes/        ← motor per merk   (400×200 px WebP, bv: ktm_moto3.webp)
 //
 // MERK IDs (voor bikes map):
 //   MotoGP: ducati, aprilia, ktm, yamaha, honda
-//   Moto2:  kalex, boscoscuro, forward
-//   Moto3:  ktm_moto3, honda_moto3
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect } from 'react'
@@ -101,8 +93,6 @@ const RIJDER_INFO: Record<string, {
 // ─── Klasse kleuren ───────────────────────────────────────────────────────────
 const KLASSE_CONFIG = {
   MotoGP: { kleur: '#f97316', label: 'MotoGP',  sub: 'Koningsklasse' },
-  Moto2:  { kleur: '#3b82f6', label: 'Moto2',   sub: 'Intermediaire klasse' },
-  Moto3:  { kleur: '#22c55e', label: 'Moto3',   sub: 'Lichtste klasse' },
 }
 
 // ─── Merk kleuren ─────────────────────────────────────────────────────────────
@@ -112,9 +102,6 @@ const MERK_KLEUREN: Record<string, string> = {
   KTM:        '#ff6600',
   Yamaha:     '#0033cc',
   Honda:      '#cc0000',
-  Kalex:      '#3b82f6',
-  Boscoscuro: '#8b5cf6',
-  Forward:    '#f59e0b',
 }
 
 // ─── MOTOGP GRID ─────────────────────────────────────────────────────────────
@@ -143,71 +130,11 @@ const MOTOGP_GRID = [
   { id: 'mir',            voornaam: 'Joan',      naam: 'MIR',             landCode: 'es', nummer: 36, merk: 'Honda',    team: 'LCR Honda'                    },
 ]
 
-// ─── MOTO2 GRID ───────────────────────────────────────────────────────────────
-const MOTO2_GRID = [
-  { id: 'garcia',      voornaam: 'Sergio',   naam: 'GARCIA',      landCode: 'es', nummer: 3,  merk: 'Boscoscuro', team: 'MSI Racing Team'              },
-  { id: 'alonso',      voornaam: 'David',    naam: 'ALONSO',      landCode: 'co', nummer: 80, merk: 'Kalex',      team: 'Aspar Team'                   },
-  { id: 'holgado',     voornaam: 'Daniel',   naam: 'HOLGADO',     landCode: 'es', nummer: 96, merk: 'Kalex',      team: 'Aspar Team'                   },
-  { id: 'guevara',     voornaam: 'Izan',     naam: 'GUEVARA',     landCode: 'es', nummer: 28, merk: 'Kalex',      team: 'Aspar Team'                   },
-  { id: 'baltus',      voornaam: 'Barry',    naam: 'BALTUS',      landCode: 'be', nummer: 7,  merk: 'Kalex',      team: 'Fantic Racing'                },
-  { id: 'arbolino',    voornaam: 'Tony',     naam: 'ARBOLINO',    landCode: 'it', nummer: 14, merk: 'Kalex',      team: 'Fantic Racing'                },
-  { id: 'canet',       voornaam: 'Aron',     naam: 'CANET',       landCode: 'es', nummer: 44, merk: 'Kalex',      team: 'Fantic Racing'                },
-  { id: 'veijer',      voornaam: 'Collin',   naam: 'VEIJER',      landCode: 'nl', nummer: 95, merk: 'Kalex',      team: 'Red Bull KTM Ajo'             },
-  { id: 'rueda',       voornaam: 'Jose A.',  naam: 'RUEDA',       landCode: 'es', nummer: 98, merk: 'Kalex',      team: 'Red Bull KTM Ajo'             },
-  { id: 'roberts',     voornaam: 'Joe',      naam: 'ROBERTS',     landCode: 'us', nummer: 16, merk: 'Kalex',      team: 'American Racing Team'         },
-  { id: 'gonzalez',    voornaam: 'Manuel',   naam: 'GONZALEZ',    landCode: 'es', nummer: 18, merk: 'Kalex',      team: 'Intact GP'                    },
-  { id: 'agius',       voornaam: 'Senna',    naam: 'AGIUS',       landCode: 'au', nummer: 81, merk: 'Kalex',      team: 'Intact GP'                    },
-  { id: 'salac',       voornaam: 'Filip',    naam: 'SALAC',       landCode: 'cz', nummer: 12, merk: 'Boscoscuro', team: 'Marc VDS Racing'              },
-  { id: 'oncu',        voornaam: 'Deniz',    naam: 'ÖNCÜ',        landCode: 'tr', nummer: 53, merk: 'Boscoscuro', team: 'Marc VDS Racing'              },
-  { id: 'vietti',      voornaam: 'Celestino',naam: 'VIETTI',      landCode: 'it', nummer: 13, merk: 'Boscoscuro', team: 'Beta Tools SpeedRS Team'      },
-  { id: 'lopezm2',     voornaam: 'Alonso',   naam: 'LOPEZ',       landCode: 'es', nummer: 21, merk: 'Boscoscuro', team: 'MSI Racing Team'              },
-  { id: 'escrig',      voornaam: 'Alex',     naam: 'ESCRIG',      landCode: 'es', nummer: 11, merk: 'Forward',    team: 'KLINT Forward Factory Team'   },
-  { id: 'ferrandez',   voornaam: 'Alberto',  naam: 'FERRANDEZ',   landCode: 'es', nummer: 54, merk: 'Forward',    team: 'Forward Factory Team'         },
-  { id: 'munoz',       voornaam: 'Daniel',   naam: 'MUNOZ',       landCode: 'co', nummer: 17, merk: 'Kalex',      team: 'Preicanos Racing Team'        },
-  { id: 'aji',         voornaam: 'Mario',    naam: 'AJI',         landCode: 'id', nummer: 64, merk: 'Kalex',      team: 'Idemitsu Honda Team Asia'     },
-  { id: 'furusato',    voornaam: 'Taiyo',    naam: 'FURUSATO',    landCode: 'jp', nummer: 72, merk: 'Kalex',      team: 'Honda Team Asia'              },
-  { id: 'sasaki',      voornaam: 'Ayumu',    naam: 'SASAKI',      landCode: 'jp', nummer: 71, merk: 'Kalex',      team: 'RW Racing GP'                 },
-  { id: 'vandengoorbergh', voornaam: 'Zonta', naam: 'VAN DEN GOORBERGH', landCode: 'nl', nummer: 84, merk: 'Kalex', team: 'RW Racing GP'              },
-  { id: 'huertas',     voornaam: 'Adrian',   naam: 'HUERTAS',     landCode: 'es', nummer: 99, merk: 'Kalex',      team: 'Italtrans Racing Team'        },
-]
-
-// ─── MOTO3 GRID ───────────────────────────────────────────────────────────────
-const MOTO3_GRID = [
-  { id: 'moodley',     voornaam: 'Ruche',    naam: 'MOODLEY',     landCode: 'za', nummer: 21, merk: 'KTM',   team: 'BOE Motorsports'           },
-  { id: 'buchanan',    voornaam: 'Cormac',   naam: 'BUCHANAN',    landCode: 'nz', nummer: 14, merk: 'KTM',   team: 'BOE Motorsports'           },
-  { id: 'rammerstorfer',voornaam: 'Leo',     naam: 'RAMMERSTORFER',landCode: 'at',nummer: 5,  merk: 'KTM',   team: 'CIP Green Power'           },
-  { id: 'cruces',      voornaam: 'Adrian',   naam: 'CRUCES',      landCode: 'es', nummer: 11, merk: 'KTM',   team: 'CIP Green Power'           },
-  { id: 'ogden',       voornaam: 'Scott',    naam: 'OGDEN',       landCode: 'gb', nummer: 19, merk: 'KTM',   team: 'CIP Green Power'           },
-  { id: 'bertelle',    voornaam: 'Matteo',   naam: 'BERTELLE',    landCode: 'it', nummer: 18, merk: 'KTM',   team: 'LEVELUP-MTA'               },
-  { id: 'ogorman',     voornaam: 'Casey',    naam: "O'GORMAN",    landCode: 'ie', nummer: 67, merk: 'KTM',   team: 'LEVELUP-MTA'               },
-  { id: 'quiles',      voornaam: 'Maximo',   naam: 'QUILES',      landCode: 'es', nummer: 28, merk: 'KTM',   team: 'Aspar Team'                },
-  { id: 'rios',        voornaam: 'Jesus',    naam: 'RIOS',        landCode: 'es', nummer: 54, merk: 'KTM',   team: 'Aspar Team'                },
-  { id: 'esteban',     voornaam: 'Joel',     naam: 'ESTEBAN',     landCode: 'es', nummer: 78, merk: 'KTM',   team: 'Aspar Team'                },
-  { id: 'uriarte',     voornaam: 'Brian',    naam: 'URIARTE',     landCode: 'es', nummer: 51, merk: 'KTM',   team: 'Red Bull KTM Ajo'          },
-  { id: 'carpe',       voornaam: 'Alvaro',   naam: 'CARPE',       landCode: 'es', nummer: 83, merk: 'KTM',   team: 'Red Bull KTM Ajo'          },
-  { id: 'perrone',     voornaam: 'Valentin', naam: 'PERRONE',     landCode: 'ar', nummer: 73, merk: 'KTM',   team: 'Red Bull KTM Tech3'        },
-  { id: 'munozm3',     voornaam: 'David',    naam: 'MUNOZ',       landCode: 'co', nummer: 64, merk: 'KTM',   team: 'Intact GP'                 },
-  { id: 'oshea',       voornaam: 'Eddie',    naam: "O'SHEA",      landCode: 'gb', nummer: 8,  merk: 'Honda', team: 'MLav Racing'               },
-  { id: 'salmela',     voornaam: 'Rico',     naam: 'SALMELA',     landCode: 'fi', nummer: 27, merk: 'Honda', team: 'MLav Racing'               },
-  { id: 'kelso',       voornaam: 'Joel',     naam: 'KELSO',       landCode: 'au', nummer: 66, merk: 'Honda', team: 'MLav Racing'               },
-  { id: 'pratama',     voornaam: 'Veda',     naam: 'PRATAMA',     landCode: 'id', nummer: 9,  merk: 'Honda', team: 'Honda Team Asia'           },
-  { id: 'carraro',     voornaam: 'Nicola',   naam: 'CARRARO',     landCode: 'it', nummer: 10, merk: 'Honda', team: 'Rivacold Snipers Team'     },
-  { id: 'morelli',     voornaam: 'Marco',    naam: 'MORELLI',     landCode: 'it', nummer: 97, merk: 'Honda', team: 'Snipers Team'              },
-  { id: 'almansa',     voornaam: 'David',    naam: 'ALMANSA',     landCode: 'es', nummer: 22, merk: 'Honda', team: 'Leopard Racing'            },
-  { id: 'afernandez',  voornaam: 'Adrian',   naam: 'FERNÁNDEZ',   landCode: 'es', nummer: 31, merk: 'Honda', team: 'Leopard Racing'            },
-  { id: 'pini',        voornaam: 'Guido',    naam: 'PINI',        landCode: 'it', nummer: 94, merk: 'Honda', team: 'Leopard Racing'            },
-  { id: 'danish',      voornaam: 'Hakim',    naam: 'DANISH',      landCode: 'my', nummer: 13, merk: 'Honda', team: 'SIC58 Squadra Corse'       },
-  { id: 'yamanaka',    voornaam: 'Ryusei',   naam: 'YAMANAKA',    landCode: 'jp', nummer: 6,  merk: 'KTM',   team: 'MT Helmets MSI'            },
-]
-
 type Rijder = { id: string; voornaam: string; naam: string; landCode: string; nummer: number; merk: string; team: string }
-type Klasse = 'MotoGP' | 'Moto2' | 'Moto3'
+type Klasse = 'MotoGP'
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 // ─── Team → bestandsnaam mapping ─────────────────────────────────────────────
 // MotoGP bikes: public/motogp/motogp/bikes/{team_id}.webp
-// Moto2  bikes: public/motogp/moto2/bikes/{team_id}.webp
-// Moto3  bikes: public/motogp/moto3/bikes/{team_id}.webp
 const TEAM_BIKE_ID: Record<string, string> = {
   // MotoGP
   'Ducati Lenovo Team':          'ducati_lenovo',
@@ -221,37 +148,6 @@ const TEAM_BIKE_ID: Record<string, string> = {
   'Prima Pramac Yamaha':         'pramac_yamaha',
   'LCR Honda':                   'lcr_honda',
   'Honda HRC Castrol':           'honda_hrc',
-  // Moto2
-  'MSI Racing Team':             'boscoscuro',
-  'Aspar Team':                  'kalex_aspar',
-  'Fantic Racing':               'kalex_fantic',
-  'Red Bull KTM Ajo':            'kalex_ajo',
-  'American Racing Team':        'kalex_american',
-  'Intact GP':                   'kalex_intact',
-  'Marc VDS Racing':             'boscoscuro_marcvds',
-  'Beta Tools SpeedRS Team':     'boscoscuro_speedrs',
-  'KLINT Forward Factory Team':  'forward',
-  'Forward Factory Team':        'forward',
-  'Preicanos Racing Team':       'kalex_preicanos',
-  'Idemitsu Honda Team Asia':    'kalex_asia',
-  'Honda Team Asia':             'kalex_honda_asia',
-  'RW Racing GP':                'kalex_rw',
-  'Italtrans Racing Team':       'kalex_italtrans',
-  // Moto3
-  'BOE Motorsports':             'ktm_boe',
-  'CIP Green Power':             'ktm_cip',
-  'LEVELUP-MTA':                 'ktm_mta',
-  'Aspar Team Moto3':            'ktm_aspar_m3',
-  'Red Bull KTM Ajo Moto3':      'ktm_ajo_m3',
-  'Red Bull KTM Tech3 Moto3':    'ktm_tech3_m3',
-  'Intact GP Moto3':             'ktm_intact_m3',
-  'MLav Racing':                 'honda_mlav',
-  'Honda Team Asia Moto3':       'honda_asia_m3',
-  'Rivacold Snipers Team':       'honda_snipers',
-  'Snipers Team':                'honda_snipers',
-  'Leopard Racing':              'honda_leopard',
-  'SIC58 Squadra Corse':         'honda_sic58',
-  'MT Helmets MSI':              'ktm_msi',
 }
 
 function teamBikeId(team: string, klasse: Klasse): string {
@@ -656,12 +552,12 @@ function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse:
 
 // ─── Hoofdpagina ──────────────────────────────────────────────────────────────
 export default function MotoGP() {
-  const [klasse, setKlasse]         = useState<Klasse>('MotoGP')
   const [zoek, setZoek]             = useState('')
   const [merkFilter, setMerkFilter] = useState<string | null>(null)
   const [popup, setPopup]           = useState<Rijder | null>(null)
 
-  const grid = klasse === 'MotoGP' ? MOTOGP_GRID : klasse === 'Moto2' ? MOTO2_GRID : MOTO3_GRID
+  const klasse: Klasse = 'MotoGP'
+  const grid = MOTOGP_GRID
   const cfg  = KLASSE_CONFIG[klasse]
   const merken = Array.from(new Set(grid.map(r => r.merk)))
 
@@ -670,10 +566,6 @@ export default function MotoGP() {
     const matchZoek = !zoek || `${r.voornaam} ${r.naam} ${r.team} ${r.merk}`.toLowerCase().includes(zoek.toLowerCase())
     return matchMerk && matchZoek
   })
-
-  function wisselKlasse(k: Klasse) {
-    setKlasse(k); setMerkFilter(null); setZoek('')
-  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-10">
@@ -685,21 +577,6 @@ export default function MotoGP() {
           Moto<span style={{ color: MGP_ORANJE }}>GP</span>
         </h1>
         <span className="font-ui text-sm text-white/40 md:mb-1">{cfg.sub} · {grid.length} rijders</span>
-      </div>
-
-      <div className="flex gap-2 mb-6">
-        {(Object.keys(KLASSE_CONFIG) as Klasse[]).map(k => {
-          const c = KLASSE_CONFIG[k]; const actief = klasse === k
-          return (
-            <button key={k} onClick={() => wisselKlasse(k)}
-              className="font-head font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-lg border transition-all"
-              style={actief
-                ? { background: c.kleur + '22', borderColor: c.kleur, color: c.kleur }
-                : { background: 'transparent', borderColor: '#333', color: '#555' }}>
-              {k}
-            </button>
-          )
-        })}
       </div>
 
       <div className="flex flex-col md:flex-row gap-3 mb-5">
