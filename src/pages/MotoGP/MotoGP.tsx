@@ -33,42 +33,67 @@ async function fetchMGPStandings(klasse: string): Promise<Standing[]> {
 }
 
 // ─── Statische rijder info ────────────────────────────────────────────────────
+// overzichtTekst en motorTekst worden geladen vanuit:
+//   public/motogp/motogp/info/{rijderId}.txt   (MotoGP)
+//   public/motogp/moto2/info/{rijderId}.txt    (Moto2)
+//   public/motogp/moto3/info/{rijderId}.txt    (Moto3)
+//
+// Formaat van het .txt bestand:
+//   === OVERZICHT ===
+//   ... tekst voor het Overzicht-tabblad ...
+//   === MOTOR ===
+//   ... tekst voor het Motor-tabblad ...
 const RIJDER_INFO: Record<string, {
   geboortedatum: string; leeftijd: number; geboorteplaats: string
   lengte: string; debuut: string; wereldtitels: number
   bikeModel: string; motor: string; omschrijving: string
-  overzichtTekst?: string; motorTekst?: string
   bikeFront?: string; bikeSide?: string
 }> = {
   // MotoGP
-  bagnaia:        { geboortedatum: '14 jan. 1997',  leeftijd: 28, geboorteplaats: 'Torino, Italië',       lengte: '1.78 m', debuut: '2019, Qatar',     wereldtitels: 2, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Francesco Bagnaia is tweevoudig wereldkampioen MotoGP en verdedigt zijn titel in 2026 met de nieuwste Ducati Desmosedici.',
-    bikeFront: 'bagnaia_ducati_lenovo_front', bikeSide: 'ducati_lenovo_side' },
-  mmarquez:       { geboortedatum: '17 feb. 1993',  leeftijd: 32, geboorteplaats: 'Cervera, Spanje',      lengte: '1.68 m', debuut: '2013, Qatar',     wereldtitels: 8, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Marc Márquez is de meest succesvolle rijder van zijn generatie met 8 wereldtitels en rijdt in 2026 voor het fabrieksteam van Ducati.',
+  bagnaia:        { geboortedatum: '14 jan. 1997',  leeftijd: 28, geboorteplaats: 'Torino, Italië',        lengte: '1.78 m', debuut: '2019, Qatar',  wereldtitels: 2, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Francesco Bagnaia is tweevoudig wereldkampioen MotoGP en verdedigt zijn titel in 2026 met de nieuwste Ducati Desmosedici.',
+    bikeFront: 'bagnaia_ducati_lenovo_front',  bikeSide: 'ducati_lenovo_side' },
+  mmarquez:       { geboortedatum: '17 feb. 1993',  leeftijd: 32, geboorteplaats: 'Cervera, Spanje',       lengte: '1.68 m', debuut: '2013, Qatar',  wereldtitels: 8, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Marc Márquez is de meest succesvolle rijder van zijn generatie met 8 wereldtitels en rijdt in 2026 voor het fabrieksteam van Ducati.',
     bikeFront: 'mmarquez_ducati_lenovo_front', bikeSide: 'ducati_lenovo_side' },
-  martin:         { geboortedatum: '29 jan. 1998',  leeftijd: 27, geboorteplaats: 'Madrid, Spanje',       lengte: '1.80 m', debuut: '2021, Qatar',     wereldtitels: 1, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Jorge Martín is regerend wereldkampioen en maakt in 2026 de overstap naar Aprilia Racing.' },
-  bezzecchi:      { geboortedatum: '26 sep. 1998',  leeftijd: 26, geboorteplaats: 'Rimini, Italië',       lengte: '1.73 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Marco Bezzecchi is een van de meest opvallende talenten van zijn generatie en rijdt in 2026 voor Aprilia Racing.' },
-  acosta:         { geboortedatum: '25 mei 2004',   leeftijd: 21, geboorteplaats: 'Murcia, Spanje',       lengte: '1.73 m', debuut: '2024, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Pedro Acosta geldt als het grootste talent van zijn generatie en rijdt in 2026 voor het KTM fabrieksteam.' },
-  binder:         { geboortedatum: '22 sep. 1995',  leeftijd: 29, geboorteplaats: 'Potchefstroom, Z-A',  lengte: '1.76 m', debuut: '2020, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Brad Binder is een van de meest consistente rijders in het veld en vertegenwoordigt Zuid-Afrika in MotoGP.' },
-  quartararo:     { geboortedatum: '20 apr. 1999',  leeftijd: 26, geboorteplaats: 'Nice, Frankrijk',      lengte: '1.69 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Fabio Quartararo was wereldkampioen in 2021 en probeert in 2026 Yamaha terug naar de top te brengen.' },
-  rins:           { geboortedatum: '8 dec. 1995',   leeftijd: 29, geboorteplaats: 'Barcelona, Spanje',    lengte: '1.75 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Alex Rins is een ervaren rijder die in 2026 zijn kracht bundelt met Yamaha.' },
-  morbidelli:     { geboortedatum: '4 dec. 1994',   leeftijd: 30, geboorteplaats: 'Rome, Italië',         lengte: '1.75 m', debuut: '2018, Qatar',     wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Franco Morbidelli rijdt in 2026 voor het VR46 team van zijn mentor Valentino Rossi.' },
-  digiannantonio: { geboortedatum: '10 okt. 1998',  leeftijd: 26, geboorteplaats: 'Rome, Italië',         lengte: '1.72 m', debuut: '2022, Qatar',     wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Fabio Di Giannantonio maakt indruk in MotoGP en wil in 2026 zijn eerste overwinning behalen.' },
-  aldeguer:       { geboortedatum: '19 jan. 2003',  leeftijd: 22, geboorteplaats: 'Murcia, Spanje',       lengte: '1.76 m', debuut: '2025, Qatar',     wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Fermin Aldeguer is een van de meest veelbelovende rijders en maakt zijn volledig debuut in 2026.' },
-  amarquez:       { geboortedatum: '23 apr. 1996',  leeftijd: 29, geboorteplaats: 'Cervera, Spanje',      lengte: '1.68 m', debuut: '2020, Qatar',     wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',     omschrijving: 'Alex Márquez rijdt samen met zijn broer Marc bij Gresini Racing op een Ducati.' },
-  rfernandez:     { geboortedatum: '22 nov. 2000',  leeftijd: 24, geboorteplaats: 'Murcia, Spanje',       lengte: '1.73 m', debuut: '2022, Qatar',     wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Raul Fernández liet indrukwekkende prestaties zien bij Trackhouse en rijdt in 2026 op een Aprilia.' },
-  ogura:          { geboortedatum: '4 okt. 2001',   leeftijd: 23, geboorteplaats: 'Aichi, Japan',         lengte: '1.68 m', debuut: '2024, Japan',     wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4',    omschrijving: 'Ai Ogura maakte indruk in Moto2 en bevestigt zijn klasse in 2026 bij Trackhouse Racing.' },
-  vinales:        { geboortedatum: '12 jan. 1995',  leeftijd: 30, geboorteplaats: 'Figueres, Spanje',     lengte: '1.71 m', debuut: '2015, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Maverick Viñales is een voormalige race-winnaar die in 2026 overstapt naar KTM Tech3.' },
-  bastianini:     { geboortedatum: '30 dec. 1997',  leeftijd: 27, geboorteplaats: 'Rimini, Italië',       lengte: '1.82 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',        omschrijving: 'Enea Bastianini rijdt in 2026 voor KTM Tech3 en wil zijn snelheid omzetten in consistente resultaten.' },
-  miller:         { geboortedatum: '18 jan. 1995',  leeftijd: 30, geboorteplaats: 'Townsville, Australië',lengte: '1.73 m', debuut: '2015, Qatar',     wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Jack Miller is een populaire rijder die in 2026 de Pramac Yamaha op de kaart wil zetten.' },
-  razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',      lengte: '1.75 m', debuut: '2026, Qatar',     wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',     omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.' },
-  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',    lengte: '1.74 m', debuut: '2017, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',
-    omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.',
-    overzichtTekst: `Kleurstelling:\nDe motor van Zarco is voorzien van de iconische rode, witte en groene Castrol-kleuren, in combinatie met zwarte en blauwe accenten.\n\nSpecificaties:\nHet is een 1000cc V4 viertaktmotor met een vermogen van ruim 240 pk, wat zorgt voor topsnelheden van meer dan 360 km/u.\n\nOntwikkelingsstatus:\nDit is het laatste seizoen dat de RC213V (die sinds 2012 meedoet) in deze vorm wordt gebruikt, aangezien de sport in 2027 overstapt op 850cc. Omdat Honda zich al volop richt op de nieuwe 850cc-motor voor 2027, heeft HRC besloten de ontwikkeling van de huidige RC213V te staken.\n\nZarco's ervaring:\nZarco testte de nieuwste specificaties (waaronder een verbeterd chassis en aerodynamica) die de motor meer grip gaven.`,
-    motorTekst: `HONDA RC213V (2026) — TECHNISCHE SPECIFICATIES\n\nMOTOR & PRESTATIES\nEngine Type        : Vloeistofgekoeld, viertakt, DOHC 4-kleppen, 90° V-4\nCilinderinhoud     : 1.000 cc\nMaximaal vermogen  : Meer dan 300 pk (>180 kW)\nTopsnelheid        : > 360 km/u\nBrandstofcapaciteit: 22 liter\n\nCHASSIS & AFMETINGEN\nFrame              : Aluminium dubbelbuis (Twin-tube)\nTotale lengte      : 2.052 mm\nTotale breedte     : 645 mm\nGewicht            : 157 kg (FIM-limiet)\n\nOPHANGING\nVoorvering         : Öhlins telescopische upside-down voorvork\nAchtervering       : Öhlins schokdemper met Honda Pro-Link\nWielen             : 17-inch magnesium (Michelin MotoGP-spec)\n\nREMSYSTEEM\nVoorremmen         : Dubbele Brembo carbon remschijven\nAchterrem          : Enkele stalen Brembo remschijf\n\nELEKTRONICA\nECU                : Magneti Marelli (Unified MotoGP)\nUitlaat            : SC-Project titanium 4-in-2`,
-  },
-  moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',  lengte: '1.70 m', debuut: '2025, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.' },
-  marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',       lengte: '1.76 m', debuut: '2021, Qatar',     wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.' },
-  mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',        lengte: '1.74 m', debuut: '2019, Qatar',     wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',      omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.' },
+  martin:         { geboortedatum: '29 jan. 1998',  leeftijd: 27, geboorteplaats: 'Madrid, Spanje',        lengte: '1.80 m', debuut: '2021, Qatar',  wereldtitels: 1, bikeModel: 'RS-GP26',          motor: 'Aprilia V4', omschrijving: 'Jorge Martín is regerend wereldkampioen en maakt in 2026 de overstap naar Aprilia Racing.',
+    bikeFront: 'martin_aprilia_racing_front',  bikeSide: 'aprilia_racing_side' },
+  bezzecchi:      { geboortedatum: '26 sep. 1998',  leeftijd: 26, geboorteplaats: 'Rimini, Italië',        lengte: '1.73 m', debuut: '2021, Qatar',  wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4', omschrijving: 'Marco Bezzecchi is een van de meest opvallende talenten van zijn generatie en rijdt in 2026 voor Aprilia Racing.',
+    bikeFront: 'bezzecchi_aprilia_racing_front', bikeSide: 'aprilia_racing_side' },
+  acosta:         { geboortedatum: '25 mei 2004',   leeftijd: 21, geboorteplaats: 'Murcia, Spanje',        lengte: '1.73 m', debuut: '2024, Qatar',  wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',     omschrijving: 'Pedro Acosta geldt als het grootste talent van zijn generatie en rijdt in 2026 voor het KTM fabrieksteam.',
+    bikeFront: 'ktm_factory_acosta_front',     bikeSide: 'ktm_factory_side' },
+  binder:         { geboortedatum: '22 sep. 1995',  leeftijd: 29, geboorteplaats: 'Potchefstroom, Z-A',   lengte: '1.76 m', debuut: '2020, Qatar',  wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',     omschrijving: 'Brad Binder is een van de meest consistente rijders in het veld en vertegenwoordigt Zuid-Afrika in MotoGP.',
+    bikeFront: 'ktm_factory_binder_front',     bikeSide: 'ktm_factory_side' },
+  quartararo:     { geboortedatum: '20 apr. 1999',  leeftijd: 26, geboorteplaats: 'Nice, Frankrijk',       lengte: '1.69 m', debuut: '2019, Qatar',  wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',  omschrijving: 'Fabio Quartararo was wereldkampioen in 2021 en probeert in 2026 Yamaha terug naar de top te brengen.',
+    bikeFront: 'yamaha_monster_quartararo_front', bikeSide: 'yamaha_monster_side' },
+  rins:           { geboortedatum: '8 dec. 1995',   leeftijd: 29, geboorteplaats: 'Barcelona, Spanje',     lengte: '1.75 m', debuut: '2017, Qatar',  wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',  omschrijving: 'Alex Rins is een ervaren rijder die in 2026 zijn kracht bundelt met Yamaha.',
+    bikeFront: 'yamaha_monster_rins_front',    bikeSide: 'yamaha_monster_side' },
+  morbidelli:     { geboortedatum: '4 dec. 1994',   leeftijd: 30, geboorteplaats: 'Rome, Italië',          lengte: '1.75 m', debuut: '2018, Qatar',  wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Franco Morbidelli rijdt in 2026 voor het VR46 team van zijn mentor Valentino Rossi.',
+    bikeFront: 'morbidelli_vr46__front',       bikeSide: 'vr46_side' },
+  digiannantonio: { geboortedatum: '10 okt. 1998',  leeftijd: 26, geboorteplaats: 'Rome, Italië',          lengte: '1.72 m', debuut: '2022, Qatar',  wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Fabio Di Giannantonio maakt indruk in MotoGP en wil in 2026 zijn eerste overwinning behalen.',
+    bikeFront: 'digiannantonio_vr46_front',    bikeSide: 'vr46_side' },
+  aldeguer:       { geboortedatum: '19 jan. 2003',  leeftijd: 22, geboorteplaats: 'Murcia, Spanje',        lengte: '1.76 m', debuut: '2025, Qatar',  wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Fermin Aldeguer is een van de meest veelbelovende rijders en maakt zijn volledig debuut in 2026.',
+    bikeFront: 'aldeguer_gresini_front',       bikeSide: 'gresini_side' },
+  amarquez:       { geboortedatum: '23 apr. 1996',  leeftijd: 29, geboorteplaats: 'Cervera, Spanje',       lengte: '1.68 m', debuut: '2020, Qatar',  wereldtitels: 0, bikeModel: 'Desmosedici GP26', motor: 'Ducati V4',  omschrijving: 'Alex Márquez rijdt samen met zijn broer Marc bij Gresini Racing op een Ducati.',
+    bikeFront: 'amarquez_gresini_front',       bikeSide: 'gresini_side' },
+  rfernandez:     { geboortedatum: '22 nov. 2000',  leeftijd: 24, geboorteplaats: 'Murcia, Spanje',        lengte: '1.73 m', debuut: '2022, Qatar',  wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4', omschrijving: 'Raul Fernández liet indrukwekkende prestaties zien bij Trackhouse en rijdt in 2026 op een Aprilia.',
+    bikeFront: 'trackhouse_rfernanez_front',   bikeSide: 'trackhouse_side' },
+  ogura:          { geboortedatum: '4 okt. 2001',   leeftijd: 23, geboorteplaats: 'Aichi, Japan',          lengte: '1.68 m', debuut: '2024, Japan',  wereldtitels: 0, bikeModel: 'RS-GP26',          motor: 'Aprilia V4', omschrijving: 'Ai Ogura maakte indruk in Moto2 en bevestigt zijn klasse in 2026 bij Trackhouse Racing.',
+    bikeFront: 'trackhouse_ogura_front',       bikeSide: 'trackhouse_side' },
+  vinales:        { geboortedatum: '12 jan. 1995',  leeftijd: 30, geboorteplaats: 'Figueres, Spanje',      lengte: '1.71 m', debuut: '2015, Qatar',  wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',     omschrijving: 'Maverick Viñales is een voormalige race-winnaar die in 2026 overstapt naar KTM Tech3.',
+    bikeFront: 'ktm_tech3_vinales_front',      bikeSide: 'ktm_tech3_side_' },
+  bastianini:     { geboortedatum: '30 dec. 1997',  leeftijd: 27, geboorteplaats: 'Rimini, Italië',        lengte: '1.82 m', debuut: '2021, Qatar',  wereldtitels: 0, bikeModel: 'RC16',             motor: 'KTM V4',     omschrijving: 'Enea Bastianini rijdt in 2026 voor KTM Tech3 en wil zijn snelheid omzetten in consistente resultaten.',
+    bikeFront: 'ktm_tech3_bastianini_front',   bikeSide: 'ktm_tech3_side_' },
+  miller:         { geboortedatum: '18 jan. 1995',  leeftijd: 30, geboorteplaats: 'Townsville, Australië', lengte: '1.73 m', debuut: '2015, Qatar',  wereldtitels: 0, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',  omschrijving: 'Jack Miller is een populaire rijder die in 2026 de Pramac Yamaha op de kaart wil zetten.',
+    bikeFront: 'pramac_yamaha_miller_front',   bikeSide: 'pramac_yamaha_side' },
+  razgatlioglu:   { geboortedatum: '16 okt. 1996',  leeftijd: 27, geboorteplaats: 'Alanya, Turkije',       lengte: '1.75 m', debuut: '2026, Qatar',  wereldtitels: 1, bikeModel: 'YZR-M1',           motor: 'Yamaha I4',  omschrijving: 'Toprak Razgatlioğlu is WorldSBK-kampioen en maakt in 2026 zijn MotoGP-debuut bij Prima Pramac Yamaha.',
+    bikeFront: 'pramac_yamaha_razgatlioglu_front', bikeSide: 'pramac_yamaha_side' },
+  zarco:          { geboortedatum: '16 jul. 1990',  leeftijd: 35, geboorteplaats: 'Cannes, Frankrijk',     lengte: '1.74 m', debuut: '2017, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Johann Zarco is een ervaren veteraan die in 2026 Honda helpt terug aan de top te komen.',
+    bikeFront: 'lcr_honda_zarco_front',        bikeSide: 'lcr_honda_side' },
+  moreira:        { geboortedatum: '9 apr. 2003',   leeftijd: 22, geboorteplaats: 'São Paulo, Brazilië',   lengte: '1.70 m', debuut: '2025, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Diogo Moreira is een Braziliaans talent dat zijn kans grijpt bij LCR Honda in 2026.',
+    bikeFront: 'lcr_honda_mir_front',          bikeSide: 'lcr_honda_side' },
+  marini:         { geboortedatum: '10 aug. 1996',  leeftijd: 28, geboorteplaats: 'Urbino, Italië',        lengte: '1.76 m', debuut: '2021, Qatar',  wereldtitels: 0, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Luca Marini is de halfbroer van Valentino Rossi en rijdt in 2026 voor Honda HRC Castrol.',
+    bikeFront: 'lcr_honda_marini_front',       bikeSide: 'honda_hrc_side' },
+  mir:            { geboortedatum: '1 sep. 1997',   leeftijd: 27, geboorteplaats: 'Palma, Spanje',         lengte: '1.74 m', debuut: '2019, Qatar',  wereldtitels: 1, bikeModel: 'RC213V',           motor: 'Honda V4',   omschrijving: 'Joan Mir is wereldkampioen van 2020 en werkt in 2026 hard om Honda terug naar de top te brengen.',
+    bikeFront: 'honda_hrc_zarco_front',        bikeSide: 'honda_hrc_side' },
 }
 
 
@@ -235,7 +260,52 @@ function teamBikeId(team: string, klasse: Klasse): string {
   return team.split(' ')[0].toLowerCase()
 }
 
-function BikeImg({ team, merk, klasse, rijderId, style }: { team: string; merk: string; klasse: Klasse; rijderId?: string; style?: React.CSSProperties }) {
+// ─── Info-teksten laden vanuit externe .txt bestanden ────────────────────────
+// Bestandsformaat: public/motogp/{klasse}/info/{rijderId}.txt
+// Indeling van het .txt bestand:
+//   === OVERZICHT ===
+//   ... vrije tekst voor het Overzicht-tabblad ...
+//   === MOTOR ===
+//   ... vrije tekst voor het Motor-tabblad ...
+//
+// Als een sectie ontbreekt, valt de popup terug op info.omschrijving.
+
+interface RijderTeksten { overzicht: string; motor: string }
+const rijderTekstenCache: Record<string, RijderTeksten> = {}
+
+function parseRijderTxt(raw: string): RijderTeksten {
+  const ovMatch = raw.match(/===\s*OVERZICHT\s*===([\s\S]*?)(?:===\s*MOTOR\s*===|$)/i)
+  const motMatch = raw.match(/===\s*MOTOR\s*===([\s\S]*?)(?:===|$)/i)
+  return {
+    overzicht: ovMatch ? ovMatch[1].trim() : raw.trim(),
+    motor:     motMatch ? motMatch[1].trim() : '',
+  }
+}
+
+function useRijderTeksten(rijderId: string, klasse: Klasse): RijderTeksten | null {
+  const [teksten, setTeksten] = useState<RijderTeksten | null>(
+    rijderTekstenCache[`${klasse}:${rijderId}`] ?? null
+  )
+  useEffect(() => {
+    const cacheKey = `${klasse}:${rijderId}`
+    if (rijderTekstenCache[cacheKey]) { setTeksten(rijderTekstenCache[cacheKey]); return }
+    const pad = `/motogp/${klasse.toLowerCase()}/info/${rijderId}.txt`
+    fetch(pad)
+      .then(r => r.ok ? r.text() : Promise.reject())
+      .then(raw => {
+        const parsed = parseRijderTxt(raw)
+        rijderTekstenCache[cacheKey] = parsed
+        setTeksten(parsed)
+      })
+      .catch(() => {
+        // Geen .txt gevonden — toon omschrijving als fallback (via info.omschrijving)
+        setTeksten({ overzicht: '', motor: '' })
+      })
+  }, [rijderId, klasse])
+  return teksten
+}
+
+({ team, merk, klasse, rijderId, style }: { team: string; merk: string; klasse: Klasse; rijderId?: string; style?: React.CSSProperties }) {
   // Als rijderId meegegeven: gebruik bikeSide uit RIJDER_INFO als fallback pad
   const info    = rijderId ? RIJDER_INFO[rijderId] : undefined
   const bestand = info?.bikeSide ?? teamBikeId(team, klasse)
@@ -292,9 +362,10 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
     { id: 'stats'     as const, label: 'Statistieken'  },
   ]
 
-  // Motor tekst per rijder uit RIJDER_INFO
-  const motorTekst = info?.motorTekst ?? info?.omschrijving ?? ''
-  const overzichtTekst = info?.overzichtTekst ?? info?.omschrijving ?? ''
+  // Laad teksten vanuit public/motogp/{klasse}/info/{rijderId}.txt
+  const teksten = useRijderTeksten(rijder.id, klasse)
+  const overzichtTekst = teksten?.overzicht || info?.omschrijving || ''
+  const motorTekst     = teksten?.motor     || info?.omschrijving || ''
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
