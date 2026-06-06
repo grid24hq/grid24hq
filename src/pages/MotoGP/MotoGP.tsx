@@ -643,7 +643,7 @@ function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse:
       </div>
       <div className="flex items-center justify-center rounded-lg mx-2"
         style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
-        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+        <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} rijderId={rijder.id}
           style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
       </div>
       <div className="flex items-center gap-2 px-4">
