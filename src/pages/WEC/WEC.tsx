@@ -13,8 +13,10 @@ interface Driver {
 interface Team {
   id: string
   nr: number
+  nrPad?: string   // voor nummers als 007, 009
   naam: string
   fabrikant: string
+  carModel: string  // exact bestandsnaam deel: bv 'toyota-gr010', 'aston-martin-valkyrie'
   klasse: 'Hypercar' | 'LMP2' | 'GT3 Am'
   kleur: string
   info: string
@@ -37,113 +39,309 @@ const KLASSE_KLEUR: Record<string, string> = {
   'GT3 Am':   '#22c55e',
 }
 
-// ─── WEC 2026 Teams & Drivers data ───────────────────────────────────────────
 const TEAMS: Team[] = [
+  // ── HYPERCAR ──
+  {
+    id: 'toyota-7', nr: 7, carModel: 'toyota-gr010', naam: 'Toyota Gazoo Racing', fabrikant: 'Toyota', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Toyota GR010 Hybrid — verdedigt het constructeurskampioenschap met een beproefd LMH-prototype.',
+    drivers: [
+      { id: 'kamui-kobayashi', naam: 'Kamui Kobayashi', nationaliteit: 'Japan',     vlag: '🇯🇵' },
+      { id: 'mike-conway',     naam: 'Mike Conway',      nationaliteit: 'Engeland',  vlag: '🇬🇧' },
+      { id: 'nyck-de-vries',   naam: 'Nyck de Vries',    nationaliteit: 'Nederland', vlag: '🇳🇱' },
+    ],
+  },
+  {
+    id: 'toyota-8', nr: 8, carModel: 'toyota-gr010', naam: 'Toyota Gazoo Racing', fabrikant: 'Toyota', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Toyota GR010 Hybrid — identiek package, maximale setup-vrijheid per race.',
+    drivers: [
+      { id: 'sebastien-buemi',  naam: 'Sébastien Buemi',  nationaliteit: 'Zwitserland', vlag: '🇨🇭' },
+      { id: 'brendon-hartley',  naam: 'Brendon Hartley',  nationaliteit: 'N. Zeeland',  vlag: '🇳🇿' },
+      { id: 'ryo-hirakawa',     naam: 'Ryo Hirakawa',     nationaliteit: 'Japan',       vlag: '🇯🇵' },
+    ],
+  },
+  {
+    id: 'aston-007', nr: 7, nrPad: '007', carModel: 'aston-martin-valkyrie', naam: 'Aston Martin Aramco', fabrikant: 'Aston Martin', klasse: 'Hypercar', kleur: '#006b5b',
+    info: 'Aston Martin Valkyrie AMR Pro — de ultieme hypercar rechtstreeks van de weg naar Le Mans.',
+    drivers: [
+      { id: 'harry-tincknell', naam: 'Harry Tincknell', nationaliteit: 'Engeland', vlag: '🇬🇧' },
+      { id: 'tom-gamble',      naam: 'Tom Gamble',       nationaliteit: 'Engeland', vlag: '🇬🇧' },
+    ],
+  },
+  {
+    id: 'aston-009', nr: 9, nrPad: '009', carModel: 'aston-martin-valkyrie', naam: 'Aston Martin Aramco', fabrikant: 'Aston Martin', klasse: 'Hypercar', kleur: '#006b5b',
+    info: 'Aston Martin Valkyrie AMR Pro — tweede exemplaar, dezelfde razendsnelle V12-krachtbron.',
+    drivers: [
+      { id: 'alex-riberas',    naam: 'Alex Riberas',    nationaliteit: 'Spanje',     vlag: '🇪🇸' },
+      { id: 'marco-sorensen',  naam: 'Marco Sørensen',  nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+    ],
+  },
+  {
+    id: 'cadillac-12', nr: 12, carModel: 'cadillac', naam: 'Cadillac Racing', fabrikant: 'Cadillac', klasse: 'Hypercar', kleur: '#a0001c',
+    info: 'Cadillac V-Series.R — de Amerikaanse uitdager in de Hypercar-klasse.',
+    drivers: [
+      { id: 'norman-nato',   naam: 'Norman Nato',    nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'will-stevens',  naam: 'Will Stevens',   nationaliteit: 'Engeland',  vlag: '🇬🇧' },
+    ],
+  },
+  {
+    id: 'bmw-15', nr: 15, carModel: 'bmwm-hybrid-v8', naam: 'BMW M Team WRT', fabrikant: 'BMW', klasse: 'Hypercar', kleur: '#1c69d4',
+    info: 'BMW M Hybrid V8 — BMW keert terug naar Le Mans met een moderne LMDh-hypercar.',
+    drivers: [
+      { id: 'dries-vanthoor',      naam: 'Dries Vanthoor',      nationaliteit: 'België',     vlag: '🇧🇪' },
+      { id: 'kevin-magnussen',     naam: 'Kevin Magnussen',     nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+      { id: 'raffaele-marciello',  naam: 'Raffaele Marciello',  nationaliteit: 'Italië',     vlag: '🇮🇹' },
+    ],
+  },
+  {
+    id: 'genesis-17', nr: 17, carModel: 'genesis', naam: 'Genesis X Gran Berlinetta', fabrikant: 'Genesis', klasse: 'Hypercar', kleur: '#c0a020',
+    info: 'Genesis X Gran Berlinetta — het Koreaanse luxemerk maakt zijn debuut in de Hypercar-klasse.',
+    drivers: [
+      { id: 'andre-lotterer',      naam: 'André Lotterer',      nationaliteit: 'Duitsland', vlag: '🇩🇪' },
+      { id: 'luis-felipe-derani',  naam: 'Luis Felipe Derani',  nationaliteit: 'Brazilië',  vlag: '🇧🇷' },
+      { id: 'mathys-jaubert',      naam: 'Mathys Jaubert',      nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+    ],
+  },
+  {
+    id: 'genesis-19', nr: 19, carModel: 'genesis', naam: 'Genesis X Gran Berlinetta', fabrikant: 'Genesis', klasse: 'Hypercar', kleur: '#c0a020',
+    info: 'Genesis X Gran Berlinetta — tweede exemplaar voor maximale dataverzameling.',
+    drivers: [
+      { id: 'daniel-juncadella',  naam: 'Daniel Juncadella',  nationaliteit: 'Spanje',    vlag: '🇪🇸' },
+      { id: 'mathieu-jaminet',    naam: 'Mathieu Jaminet',    nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'paul-loup-chatin',   naam: 'Paul-Loup Chatin',   nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+    ],
+  },
+  {
+    id: 'bmw-20', nr: 20, carModel: 'bmwm-hybrid-v8', naam: 'BMW M Team WRT', fabrikant: 'BMW', klasse: 'Hypercar', kleur: '#1c69d4',
+    info: 'BMW M Hybrid V8 — tweede BMW met drie topcoureurs.',
+    drivers: [
+      { id: 'rene-rast',              naam: 'René Rast',              nationaliteit: 'Duitsland', vlag: '🇩🇪' },
+      { id: 'robin-frijns',           naam: 'Robin Frijns',           nationaliteit: 'Nederland', vlag: '🇳🇱' },
+      { id: 'sheldon-van-der-linde',  naam: 'Sheldon van der Linde',  nationaliteit: 'Z. Afrika', vlag: '🇿🇦' },
+    ],
+  },
+  {
+    id: 'alpine-35', nr: 35, carModel: 'alpine-a424', naam: 'Alpine Endurance Team', fabrikant: 'Alpine', klasse: 'Hypercar', kleur: '#0093cc',
+    info: 'Alpine A424 — Alpines LMDh-prototype, aangedreven door een Mecachrome-motor.',
+    drivers: [
+      { id: 'antonio-felix-da-costa', naam: 'António Félix da Costa', nationaliteit: 'Portugal',   vlag: '🇵🇹' },
+      { id: 'charles-milesi',         naam: 'Charles Milesi',         nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
+      { id: 'ferdinand-habsburg',     naam: 'Ferdinand Habsburg',     nationaliteit: 'Oostenrijk', vlag: '🇦🇹' },
+    ],
+  },
+  {
+    id: 'alpine-36', nr: 36, carModel: 'alpine-a424', naam: 'Alpine Endurance Team', fabrikant: 'Alpine', klasse: 'Hypercar', kleur: '#0093cc',
+    info: 'Alpine A424 — tweede Alpine met een sterk trio.',
+    drivers: [
+      { id: 'frederic-makowiecki', naam: 'Frédéric Makowiecki', nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'jules-gounon',        naam: 'Jules Gounon',        nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'victor-martins',      naam: 'Victor Martins',      nationaliteit: 'Monaco',    vlag: '🇲🇨' },
+    ],
+  },
+  {
+    id: 'cadillac-38', nr: 38, carModel: 'cadillac', naam: 'Cadillac Racing', fabrikant: 'Cadillac', klasse: 'Hypercar', kleur: '#a0001c',
+    info: 'Cadillac V-Series.R — tweede Cadillac met drie ervaren coureurs.',
+    drivers: [
+      { id: 'earl-bamber',        naam: 'Earl Bamber',        nationaliteit: 'N. Zeeland', vlag: '🇳🇿' },
+      { id: 'jack-aitken',        naam: 'Jack Aitken',        nationaliteit: 'Engeland',   vlag: '🇬🇧' },
+      { id: 'sebastien-bourdais', naam: 'Sébastien Bourdais', nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
+    ],
+  },
+  {
+    id: 'ferrari-50', nr: 50, carModel: 'ferrari-499', naam: 'Ferrari AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Ferrari 499P — Il Cavallino Rampante strijdt voor de Hypercar-titel.',
+    drivers: [
+      { id: 'antonio-fuoco',   naam: 'Antonio Fuoco',   nationaliteit: 'Italië',     vlag: '🇮🇹' },
+      { id: 'miguel-molina',   naam: 'Miguel Molina',   nationaliteit: 'Spanje',     vlag: '🇪🇸' },
+      { id: 'nicklas-nielsen', naam: 'Nicklas Nielsen', nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+    ],
+  },
+  {
+    id: 'ferrari-51', nr: 51, carModel: 'ferrari-499', naam: 'Ferrari AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Ferrari 499P — twee identieke exemplaren, maximale datacollectie voor Ferrari.',
+    drivers: [
+      { id: 'alessandro-pier-guidi', naam: 'Alessandro Pier Guidi', nationaliteit: 'Italië',   vlag: '🇮🇹' },
+      { id: 'antonio-giovinazzi',    naam: 'Antonio Giovinazzi',    nationaliteit: 'Italië',   vlag: '🇮🇹' },
+      { id: 'james-calado',          naam: 'James Calado',          nationaliteit: 'Engeland', vlag: '🇬🇧' },
+    ],
+  },
+  {
+    id: 'ferrari-83', nr: 83, carModel: 'ferrari-499', naam: 'AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Ferrari 499P — derde Ferrari-entry, gedreven door een sterk internationaal trio.',
+    drivers: [
+      { id: 'philip-hanson', naam: 'Philip Hanson', nationaliteit: 'Engeland', vlag: '🇬🇧' },
+      { id: 'robert-kubica', naam: 'Robert Kubica', nationaliteit: 'Polen',    vlag: '🇵🇱' },
+      { id: 'yifei-ye',      naam: 'Yifei Ye',      nationaliteit: 'China',    vlag: '🇨🇳' },
+    ],
+  },
+  {
+    id: 'peugeot-93', nr: 93, carModel: 'peugeot-9x8', naam: 'Peugeot TotalEnergies', fabrikant: 'Peugeot', klasse: 'Hypercar', kleur: '#00aaff',
+    info: 'Peugeot 9X8 — de vleugelloze LMH, strak, snel en onmiskenbaar Frans.',
+    drivers: [
+      { id: 'nick-cassidy',      naam: 'Nick Cassidy',      nationaliteit: 'N. Zeeland', vlag: '🇳🇿' },
+      { id: 'paul-di-resta',     naam: 'Paul Di Resta',     nationaliteit: 'Schotland',  vlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+      { id: 'stoffel-vandoorne', naam: 'Stoffel Vandoorne', nationaliteit: 'België',     vlag: '🇧🇪' },
+    ],
+  },
+  {
+    id: 'peugeot-94', nr: 94, carModel: 'peugeot-9x8', naam: 'Peugeot TotalEnergies', fabrikant: 'Peugeot', klasse: 'Hypercar', kleur: '#00aaff',
+    info: 'Peugeot 9X8 — tweede exemplaar met drie topcoureurs.',
+    drivers: [
+      { id: 'loic-duval',       naam: 'Loïc Duval',       nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
+      { id: 'malthe-jakobsen',  naam: 'Malthe Jakobsen',  nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+      { id: 'theo-pourchaire',  naam: 'Théo Pourchaire',  nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
+    ],
+  },
+]
   // ── HYPERCAR ──
   {
     id: 'toyota-7', nr: 7, naam: 'Toyota Gazoo Racing', fabrikant: 'Toyota', klasse: 'Hypercar', kleur: '#e8002d',
     info: 'Toyota GR010 Hybrid — verdedigt het constructeurskampioenschap met een beproefd LMH-prototype.',
     drivers: [
-      { id: 'kobayashi',  naam: 'Kamui Kobayashi',  nationaliteit: 'Japan',       vlag: '🇯🇵' },
-      { id: 'conway',     naam: 'Mike Conway',       nationaliteit: 'Engeland',    vlag: '🇬🇧' },
-      { id: 'de-vries',   naam: 'Nyck de Vries',     nationaliteit: 'Nederland',   vlag: '🇳🇱' },
+      { id: 'kamui-kobayashi', naam: 'Kamui Kobayashi', nationaliteit: 'Japan',     vlag: '🇯🇵' },
+      { id: 'mike-conway',     naam: 'Mike Conway',      nationaliteit: 'Engeland',  vlag: '🇬🇧' },
+      { id: 'nyck-de-vries',   naam: 'Nyck de Vries',    nationaliteit: 'Nederland', vlag: '🇳🇱' },
     ],
   },
   {
     id: 'toyota-8', nr: 8, naam: 'Toyota Gazoo Racing', fabrikant: 'Toyota', klasse: 'Hypercar', kleur: '#e8002d',
     info: 'Toyota GR010 Hybrid — identiek package, maximale setup-vrijheid per race.',
     drivers: [
-      { id: 'buemi',      naam: 'Sébastien Buemi',   nationaliteit: 'Zwitserland', vlag: '🇨🇭' },
-      { id: 'hartley',    naam: 'Brendon Hartley',   nationaliteit: 'N. Zeeland',  vlag: '🇳🇿' },
-      { id: 'hirakawa',   naam: 'Ryo Hirakawa',       nationaliteit: 'Japan',       vlag: '🇯🇵' },
+      { id: 'sebastien-buemi',  naam: 'Sébastien Buemi',  nationaliteit: 'Zwitserland', vlag: '🇨🇭' },
+      { id: 'brendon-hartley',  naam: 'Brendon Hartley',  nationaliteit: 'N. Zeeland',  vlag: '🇳🇿' },
+      { id: 'ryo-hirakawa',     naam: 'Ryo Hirakawa',     nationaliteit: 'Japan',       vlag: '🇯🇵' },
+    ],
+  },
+  {
+    id: 'aston-007', nr: 7, naam: 'Aston Martin Aramco', fabrikant: 'Aston Martin', klasse: 'Hypercar', kleur: '#006b5b',
+    info: 'Aston Martin Valkyrie AMR Pro — de ultieme hypercar rechtstreeks van de weg naar Le Mans.',
+    drivers: [
+      { id: 'harry-tincknell', naam: 'Harry Tincknell', nationaliteit: 'Engeland', vlag: '🇬🇧' },
+      { id: 'tom-gamble',      naam: 'Tom Gamble',       nationaliteit: 'Engeland', vlag: '🇬🇧' },
+    ],
+    // Note: nr 007 — gebruik padNr: 007
+  } as any,
+  {
+    id: 'aston-009', nr: 9, naam: 'Aston Martin Aramco', fabrikant: 'Aston Martin', klasse: 'Hypercar', kleur: '#006b5b',
+    info: 'Aston Martin Valkyrie AMR Pro — tweede exemplaar, dezelfde razendsnelle V12-krachtbron.',
+    drivers: [
+      { id: 'alex-riberas',    naam: 'Alex Riberas',    nationaliteit: 'Spanje',   vlag: '🇪🇸' },
+      { id: 'marco-sorensen',  naam: 'Marco Sørensen',  nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+    ],
+  },
+  {
+    id: 'cadillac-12', nr: 12, naam: 'Cadillac Racing', fabrikant: 'Cadillac', klasse: 'Hypercar', kleur: '#a0001c',
+    info: 'Cadillac V-Series.R — de Amerikaanse uitdager in de Hypercar-klasse met een indrukwekkend LMDh-prototype.',
+    drivers: [
+      { id: 'norman-nato',   naam: 'Norman Nato',    nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'will-stevens',  naam: 'Will Stevens',   nationaliteit: 'Engeland',  vlag: '🇬🇧' },
+    ],
+  },
+  {
+    id: 'bmw-15', nr: 15, naam: 'BMW M Team WRT', fabrikant: 'BMW', klasse: 'Hypercar', kleur: '#1c69d4',
+    info: 'BMW M Hybrid V8 — BMW keert terug naar Le Mans met een moderne LMDh-hypercar.',
+    drivers: [
+      { id: 'dries-vanthoor',      naam: 'Dries Vanthoor',      nationaliteit: 'België',    vlag: '🇧🇪' },
+      { id: 'kevin-magnussen',     naam: 'Kevin Magnussen',     nationaliteit: 'Denemarken',vlag: '🇩🇰' },
+      { id: 'raffaele-marciello',  naam: 'Raffaele Marciello',  nationaliteit: 'Italië',    vlag: '🇮🇹' },
+    ],
+  },
+  {
+    id: 'genesis-17', nr: 17, naam: 'Genesis X Gran Berlinetta', fabrikant: 'Genesis', klasse: 'Hypercar', kleur: '#c0a020',
+    info: 'Genesis X Gran Berlinetta — het Koreaanse luxemerk maakt zijn debuut in de Hypercar-klasse.',
+    drivers: [
+      { id: 'andre-lotterer',      naam: 'André Lotterer',      nationaliteit: 'Duitsland', vlag: '🇩🇪' },
+      { id: 'luis-felipe-derani',  naam: 'Luis Felipe Derani',  nationaliteit: 'Brazilië',  vlag: '🇧🇷' },
+      { id: 'mathys-jaubert',      naam: 'Mathys Jaubert',      nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+    ],
+  },
+  {
+    id: 'genesis-19', nr: 19, naam: 'Genesis X Gran Berlinetta', fabrikant: 'Genesis', klasse: 'Hypercar', kleur: '#c0a020',
+    info: 'Genesis X Gran Berlinetta — tweede exemplaar voor maximale dataverzameling.',
+    drivers: [
+      { id: 'daniel-juncadella',  naam: 'Daniel Juncadella',  nationaliteit: 'Spanje',    vlag: '🇪🇸' },
+      { id: 'mathieu-jaminet',    naam: 'Mathieu Jaminet',    nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'paul-loup-chatin',   naam: 'Paul-Loup Chatin',   nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+    ],
+  },
+  {
+    id: 'bmw-20', nr: 20, naam: 'BMW M Team WRT', fabrikant: 'BMW', klasse: 'Hypercar', kleur: '#1c69d4',
+    info: 'BMW M Hybrid V8 — tweede BMW met drie topcoureurs.',
+    drivers: [
+      { id: 'rene-rast',               naam: 'René Rast',               nationaliteit: 'Duitsland', vlag: '🇩🇪' },
+      { id: 'robin-frijns',            naam: 'Robin Frijns',            nationaliteit: 'Nederland', vlag: '🇳🇱' },
+      { id: 'sheldon-van-der-linde',   naam: 'Sheldon van der Linde',   nationaliteit: 'Z. Afrika', vlag: '🇿🇦' },
+    ],
+  },
+  {
+    id: 'alpine-35', nr: 35, naam: 'Alpine Endurance Team', fabrikant: 'Alpine', klasse: 'Hypercar', kleur: '#0093cc',
+    info: 'Alpine A424 — Alpines LMDh-prototype, aangedreven door een Mecachrome-motor.',
+    drivers: [
+      { id: 'antonio-felix-da-costa', naam: 'António Félix da Costa', nationaliteit: 'Portugal',   vlag: '🇵🇹' },
+      { id: 'charles-milesi',         naam: 'Charles Milesi',         nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
+      { id: 'ferdinand-habsburg',     naam: 'Ferdinand Habsburg',     nationaliteit: 'Oostenrijk', vlag: '🇦🇹' },
+    ],
+  },
+  {
+    id: 'alpine-36', nr: 36, naam: 'Alpine Endurance Team', fabrikant: 'Alpine', klasse: 'Hypercar', kleur: '#0093cc',
+    info: 'Alpine A424 — tweede Alpine met een sterk trio.',
+    drivers: [
+      { id: 'frederic-makowiecki', naam: 'Frédéric Makowiecki', nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'jules-gounon',        naam: 'Jules Gounon',        nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'victor-martins',      naam: 'Victor Martins',      nationaliteit: 'Monaco',    vlag: '🇲🇨' },
+    ],
+  },
+  {
+    id: 'cadillac-38', nr: 38, naam: 'Cadillac Racing', fabrikant: 'Cadillac', klasse: 'Hypercar', kleur: '#a0001c',
+    info: 'Cadillac V-Series.R — tweede Cadillac met drie ervaren coureurs.',
+    drivers: [
+      { id: 'earl-bamber',        naam: 'Earl Bamber',        nationaliteit: 'N. Zeeland', vlag: '🇳🇿' },
+      { id: 'jack-aitken',        naam: 'Jack Aitken',        nationaliteit: 'Engeland',   vlag: '🇬🇧' },
+      { id: 'sebastien-bourdais', naam: 'Sébastien Bourdais', nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
     ],
   },
   {
     id: 'ferrari-50', nr: 50, naam: 'Ferrari AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
-    info: 'Ferrari 499P — Il Cavallino Rampante keert terug naar Le Mans met het succesvolle LMH-prototype.',
+    info: 'Ferrari 499P — Il Cavallino Rampante strijdt voor de Hypercar-titel.',
     drivers: [
-      { id: 'fuoco',      naam: 'Antonio Fuoco',     nationaliteit: 'Italië',      vlag: '🇮🇹' },
-      { id: 'molina',     naam: 'Miguel Molina',      nationaliteit: 'Spanje',      vlag: '🇪🇸' },
-      { id: 'nielsen',    naam: 'Nicklas Nielsen',    nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+      { id: 'antonio-fuoco',  naam: 'Antonio Fuoco',  nationaliteit: 'Italië',     vlag: '🇮🇹' },
+      { id: 'miguel-molina',  naam: 'Miguel Molina',  nationaliteit: 'Spanje',     vlag: '🇪🇸' },
+      { id: 'nicklas-nielsen',naam: 'Nicklas Nielsen', nationaliteit: 'Denemarken', vlag: '🇩🇰' },
     ],
   },
   {
     id: 'ferrari-51', nr: 51, naam: 'Ferrari AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
     info: 'Ferrari 499P — twee identieke exemplaren, maximale datacollectie voor Ferrari.',
     drivers: [
-      { id: 'pier-guidi', naam: 'Alessandro Pier Guidi', nationaliteit: 'Italië',  vlag: '🇮🇹' },
-      { id: 'calado',     naam: 'James Calado',           nationaliteit: 'Engeland',vlag: '🇬🇧' },
-      { id: 'giovinazzi', naam: 'Antonio Giovinazzi',     nationaliteit: 'Italië',  vlag: '🇮🇹' },
+      { id: 'alessandro-pier-guidi', naam: 'Alessandro Pier Guidi', nationaliteit: 'Italië',   vlag: '🇮🇹' },
+      { id: 'antonio-giovinazzi',    naam: 'Antonio Giovinazzi',    nationaliteit: 'Italië',   vlag: '🇮🇹' },
+      { id: 'james-calado',          naam: 'James Calado',          nationaliteit: 'Engeland', vlag: '🇬🇧' },
     ],
   },
   {
-    id: 'porsche-5', nr: 5, naam: 'Porsche Penske Motorsport', fabrikant: 'Porsche', klasse: 'Hypercar', kleur: '#c0a060',
-    info: 'Porsche 963 — het LMDh-prototype waarmee Porsche in 2023 terugkeerde naar de top van het endurance racing.',
+    id: 'ferrari-83', nr: 83, naam: 'AF Corse', fabrikant: 'Ferrari', klasse: 'Hypercar', kleur: '#e8002d',
+    info: 'Ferrari 499P — derde Ferrari-entry, gedreven door een sterk internationaal trio.',
     drivers: [
-      { id: 'campbell',   naam: 'Matt Campbell',     nationaliteit: 'Australië',   vlag: '🇦🇺' },
-      { id: 'christensen',naam: 'Michael Christensen',nationaliteit: 'Denemarken', vlag: '🇩🇰' },
-      { id: 'makowiecki', naam: 'Frédéric Makowiecki',nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-    ],
-  },
-  {
-    id: 'porsche-6', nr: 6, naam: 'Porsche Penske Motorsport', fabrikant: 'Porsche', klasse: 'Hypercar', kleur: '#c0a060',
-    info: 'Porsche 963 — aerodynamisch verfijnd voor 2026 met focus op langetermijn-consistentie.',
-    drivers: [
-      { id: 'estre',      naam: 'Kevin Estre',        nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-      { id: 'lotterer',   naam: 'André Lotterer',     nationaliteit: 'Duitsland',  vlag: '🇩🇪' },
-      { id: 'vanthoor',   naam: 'Laurens Vanthoor',   nationaliteit: 'België',     vlag: '🇧🇪' },
+      { id: 'philip-hanson',  naam: 'Philip Hanson',  nationaliteit: 'Engeland', vlag: '🇬🇧' },
+      { id: 'robert-kubica',  naam: 'Robert Kubica',  nationaliteit: 'Polen',    vlag: '🇵🇱' },
+      { id: 'yifei-ye',       naam: 'Yifei Ye',       nationaliteit: 'China',    vlag: '🇨🇳' },
     ],
   },
   {
     id: 'peugeot-93', nr: 93, naam: 'Peugeot TotalEnergies', fabrikant: 'Peugeot', klasse: 'Hypercar', kleur: '#00aaff',
-    info: 'Peugeot 9X8 — de controversiële vleugelloze LMH, strak, snel en onmiskenbaar Frans.',
+    info: 'Peugeot 9X8 — de vleugelloze LMH, strak, snel en onmiskenbaar Frans.',
     drivers: [
-      { id: 'duval',      naam: 'Loïc Duval',         nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-      { id: 'jensen',     naam: 'Paul Di Resta',      nationaliteit: 'Schotland',  vlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
-      { id: 'mikkel',     naam: 'Mikkel Jensen',      nationaliteit: 'Denemarken', vlag: '🇩🇰' },
+      { id: 'nick-cassidy',      naam: 'Nick Cassidy',      nationaliteit: 'N. Zeeland', vlag: '🇳🇿' },
+      { id: 'paul-di-resta',     naam: 'Paul Di Resta',     nationaliteit: 'Schotland',  vlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+      { id: 'stoffel-vandoorne', naam: 'Stoffel Vandoorne', nationaliteit: 'België',     vlag: '🇧🇪' },
     ],
   },
   {
-    id: 'alpine-35', nr: 35, naam: 'Alpine Endurance Team', fabrikant: 'Alpine', klasse: 'Hypercar', kleur: '#0093cc',
-    info: 'Alpine A424 — het nieuwe LMDh-prototype markeert Alpines ambitieuze terugkeer naar de Hypercar-klasse.',
+    id: 'peugeot-94', nr: 94, naam: 'Peugeot TotalEnergies', fabrikant: 'Peugeot', klasse: 'Hypercar', kleur: '#00aaff',
+    info: 'Peugeot 9X8 — tweede exemplaar met drie topcoureurs.',
     drivers: [
-      { id: 'schumacher', naam: 'Mick Schumacher',    nationaliteit: 'Duitsland',  vlag: '🇩🇪' },
-      { id: 'lapierre',   naam: 'Nicolas Lapierre',   nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-      { id: 'zhou',       naam: 'Zhou Guanyu',        nationaliteit: 'China',      vlag: '🇨🇳' },
-    ],
-  },
-  // ── LMP2 ──
-  {
-    id: 'jota-28', nr: 28, naam: 'JOTA Sport', fabrikant: 'Oreca', klasse: 'LMP2', kleur: '#f97316',
-    info: 'Oreca 07 Gibson — JOTA is een van de meest succesvolle LMP2-teams met jarenlange WEC-ervaring.',
-    drivers: [
-      { id: 'nato',       naam: 'Norman Nato',        nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-      { id: 'gonzalez',   naam: 'Oliver Jarvis',      nationaliteit: 'Engeland',   vlag: '🇬🇧' },
-    ],
-  },
-  {
-    id: 'united-22', nr: 22, naam: 'United Autosports', fabrikant: 'Oreca', klasse: 'LMP2', kleur: '#f97316',
-    info: 'Oreca 07 Gibson — United Autosports staat bekend om zijn consistentie en technische uitmuntendheid.',
-    drivers: [
-      { id: 'hanson',     naam: 'Philip Hanson',      nationaliteit: 'Engeland',   vlag: '🇬🇧' },
-      { id: 'albuquerque',naam: 'Filipe Albuquerque', nationaliteit: 'Portugal',   vlag: '🇵🇹' },
-    ],
-  },
-  // ── GT3 Am ──
-  {
-    id: 'ironlynx-85', nr: 85, naam: 'Iron Lynx', fabrikant: 'Ferrari', klasse: 'GT3 Am', kleur: '#e8002d',
-    info: 'Ferrari 296 GT3 — Iron Lynx brengt de GTE Am-erfenis voort in de nieuwe GT3-klasse.',
-    drivers: [
-      { id: 'rovera',     naam: 'Alessio Rovera',     nationaliteit: 'Italië',     vlag: '🇮🇹' },
-      { id: 'wadoux',     naam: 'Lilou Wadoux',       nationaliteit: 'Frankrijk',  vlag: '🇫🇷' },
-    ],
-  },
-  {
-    id: 'corvette-33', nr: 33, naam: 'Corvette Racing', fabrikant: 'Corvette', klasse: 'GT3 Am', kleur: '#ffcc00',
-    info: 'Chevrolet Corvette Z06 GT3.R — de iconische Amerikaanse sportwagen in de AM-klasse.',
-    drivers: [
-      { id: 'garcia',     naam: 'Antonio Garcia',     nationaliteit: 'Spanje',     vlag: '🇪🇸' },
-      { id: 'taylor-j',   naam: 'Jordan Taylor',      nationaliteit: 'VS',         vlag: '🇺🇸' },
+      { id: 'loic-duval',        naam: 'Loïc Duval',        nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
+      { id: 'malthe-jakobsen',   naam: 'Malthe Jakobsen',   nationaliteit: 'Denemarken',vlag: '🇩🇰' },
+      { id: 'theo-pourchaire',   naam: 'Théo Pourchaire',   nationaliteit: 'Frankrijk', vlag: '🇫🇷' },
     ],
   },
 ]
@@ -183,11 +381,10 @@ function KlasseBadge({ klasse }: { klasse: string }) {
 }
 
 // ─── Driver Card ──────────────────────────────────────────────────────────────
-function DriverCard({ driver, teamNr, teamId, fabrikant, klasse }: { driver: Driver; teamNr: number; teamId: string; fabrikant: string; klasse: string }) {
-  const slug   = driver.id
-  const jaar   = 2026
+function DriverCard({ driver, teamNr, nrPad, teamId, fabrikant, klasse }: { driver: Driver; teamNr: number; nrPad?: string; teamId: string; fabrikant: string; klasse: string }) {
+  const nrStr  = nrPad ?? teamNr
   const map    = KLASSE_MAP[klasse] ?? 'hypercar'
-  const src    = `/wec/${map}/drivers/${jaar}-wec-${teamNr}-${slug}.webp`
+  const src    = `/wec/${map}/drivers/2026-wec-${nrStr}-${driver.id}.webp`
   return (
     <div className="group flex flex-col items-center gap-1.5">
       <div className="relative w-full overflow-hidden rounded-md"
@@ -224,8 +421,8 @@ function DriverCard({ driver, teamNr, teamId, fabrikant, klasse }: { driver: Dri
 function TeamCard({ team }: { team: Team }) {
   const klasseKleur = KLASSE_KLEUR[team.klasse]
   const map         = KLASSE_MAP[team.klasse] ?? 'hypercar'
-  const autoModel   = team.id.replace(`${team.fabrikant.toLowerCase()}-`, '').replace(team.fabrikant.toLowerCase(), '')
-  const autoSrc     = `/wec/${map}/cars/${2026}-wec-${team.nr}-${team.fabrikant.toLowerCase().replace(/\s/g, '-')}.webp`
+  const nrStr       = team.nrPad ?? team.nr
+  const autoSrc     = `/wec/${map}/cars/2026-wec-${nrStr}-${team.carModel}.webp`
   const driverCols  = team.drivers.length === 2 ? 'grid-cols-2'
                     : team.drivers.length === 3 ? 'grid-cols-3'
                     : 'grid-cols-4'
@@ -281,7 +478,7 @@ function TeamCard({ team }: { team: Team }) {
         </div>
         <div className={`grid ${driverCols} gap-3`}>
           {team.drivers.map(d => (
-            <DriverCard key={d.id} driver={d} teamNr={team.nr} teamId={team.id} fabrikant={team.fabrikant} klasse={team.klasse} />
+            <DriverCard key={d.id} driver={d} teamNr={team.nr} nrPad={team.nrPad} teamId={team.id} fabrikant={team.fabrikant} klasse={team.klasse} />
           ))}
         </div>
       </div>
