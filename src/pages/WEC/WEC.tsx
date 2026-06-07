@@ -164,6 +164,13 @@ const RANKING: RankingEntry[] = [
   { positie: 12, nr: 33,  team: 'Corvette Racing',            drivers: 'Garcia / Taylor',                  klasse: 'GT3 Am',   punten: 29  },
 ]
 
+// ─── Klasse → mapnaam helper ──────────────────────────────────────────────────
+const KLASSE_MAP: Record<string, string> = {
+  'Hypercar': 'hypercar',
+  'LMP2':     'lmp2',
+  'GT3 Am':   'gt3',
+}
+
 // ─── Flag-unicode helper ──────────────────────────────────────────────────────
 function KlasseBadge({ klasse }: { klasse: string }) {
   const kleur = KLASSE_KLEUR[klasse] ?? '#888'
@@ -176,10 +183,11 @@ function KlasseBadge({ klasse }: { klasse: string }) {
 }
 
 // ─── Driver Card ──────────────────────────────────────────────────────────────
-function DriverCard({ driver, teamNr, teamId, fabrikant }: { driver: Driver; teamNr: number; teamId: string; fabrikant: string }) {
+function DriverCard({ driver, teamNr, teamId, fabrikant, klasse }: { driver: Driver; teamNr: number; teamId: string; fabrikant: string; klasse: string }) {
   const slug   = driver.id
   const jaar   = 2026
-  const src    = `/wec/drivers/${jaar}-wec-${teamNr}-${slug}.webp`
+  const map    = KLASSE_MAP[klasse] ?? 'hypercar'
+  const src    = `/wec/${map}/drivers/${jaar}-wec-${teamNr}-${slug}.webp`
   return (
     <div className="group flex flex-col items-center gap-1.5">
       <div className="relative w-full overflow-hidden rounded-md"
@@ -215,7 +223,9 @@ function DriverCard({ driver, teamNr, teamId, fabrikant }: { driver: Driver; tea
 // ─── Team Card ────────────────────────────────────────────────────────────────
 function TeamCard({ team }: { team: Team }) {
   const klasseKleur = KLASSE_KLEUR[team.klasse]
-  const autoSrc     = `/wec/cars/${2026}-wec-${team.nr}-${team.fabrikant.toLowerCase().replace(/\s/g, '-')}.webp`
+  const map         = KLASSE_MAP[team.klasse] ?? 'hypercar'
+  const autoModel   = team.id.replace(`${team.fabrikant.toLowerCase()}-`, '').replace(team.fabrikant.toLowerCase(), '')
+  const autoSrc     = `/wec/${map}/cars/${2026}-wec-${team.nr}-${team.fabrikant.toLowerCase().replace(/\s/g, '-')}.webp`
   const driverCols  = team.drivers.length === 2 ? 'grid-cols-2'
                     : team.drivers.length === 3 ? 'grid-cols-3'
                     : 'grid-cols-4'
@@ -271,7 +281,7 @@ function TeamCard({ team }: { team: Team }) {
         </div>
         <div className={`grid ${driverCols} gap-3`}>
           {team.drivers.map(d => (
-            <DriverCard key={d.id} driver={d} teamNr={team.nr} teamId={team.id} fabrikant={team.fabrikant} />
+            <DriverCard key={d.id} driver={d} teamNr={team.nr} teamId={team.id} fabrikant={team.fabrikant} klasse={team.klasse} />
           ))}
         </div>
       </div>
