@@ -97,48 +97,48 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left group flex items-center hover:bg-white/[0.03] transition-colors border-b border-brand-border/40 last:border-0 cursor-pointer"
+      className="w-full text-left group flex items-center hover:bg-white/[0.03] transition-colors border-b border-brand-border/40 last:border-0 cursor-pointer min-h-[88px]"
     >
       {/* Kleur accent */}
       <div className="w-0.5 self-stretch flex-shrink-0" style={{ background: klasseKleur }} />
 
-      {/* Nr */}
-      <div className="w-20 flex-shrink-0 px-3 py-3">
-        <span className="font-head text-xl font-black text-brand-orange">#{nrStr(team)}</span>
+      {/* Nr — vaste breedte */}
+      <div className="w-24 flex-shrink-0 flex items-center justify-center">
+        <span className="font-head text-2xl font-black text-brand-orange">#{nrStr(team)}</span>
       </div>
 
-      {/* Auto thumbnail */}
-      <div className="w-44 flex-shrink-0 py-2 pr-4 hidden sm:block">
-        <div className="overflow-hidden rounded-md flex items-center justify-center" style={{ background: '#0d0d0d', height: '68px' }}>
+      {/* Auto — vaste breedte, mooi gecentreerd */}
+      <div className="w-56 flex-shrink-0 px-3 hidden sm:block">
+        <div className="overflow-hidden rounded-md flex items-center justify-center" style={{ background: '#0d0d0d', height: '72px' }}>
           <img
             src={carSrc(team)}
             alt={team.carModel}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain p-1"
             onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.15' }}
           />
         </div>
       </div>
 
-      {/* Team naam + fabrikant */}
-      <div className="w-64 flex-shrink-0 py-3 pr-4">
-        <div className="flex items-center gap-2 flex-wrap mb-0.5">
-          <span className="font-head font-bold text-sm text-brand-light group-hover:text-white transition-colors">{team.naam}</span>
+      {/* Team naam + fabrikant — vaste breedte */}
+      <div className="w-72 flex-shrink-0 px-4">
+        <div className="flex items-center gap-2 flex-wrap mb-1">
+          <span className="font-head font-bold text-base text-brand-light group-hover:text-white transition-colors">{team.naam}</span>
           <KlasseBadge klasse={team.klasse} />
         </div>
         <span className="font-ui text-xs text-brand-muted">{team.fabrikant}</span>
       </div>
 
-      {/* Rijders — vult resterende ruimte */}
-      <div className="flex-1 flex items-center gap-x-4 gap-y-0.5 py-3 pr-3 flex-wrap hidden md:flex">
+      {/* Rijders — vult rest van de ruimte, gelijkmatig */}
+      <div className="flex-1 flex items-center gap-6 px-4 hidden md:flex">
         {team.drivers.map(d => (
-          <span key={d.id} className="font-ui text-xs text-brand-muted whitespace-nowrap">
+          <span key={d.id} className="font-ui text-sm text-brand-muted whitespace-nowrap">
             {d.vlag} {d.naam}
           </span>
         ))}
       </div>
 
       {/* Pijl */}
-      <div className="px-4 text-brand-muted group-hover:text-brand-orange transition-colors flex-shrink-0">
+      <div className="px-5 text-brand-muted group-hover:text-brand-orange transition-colors flex-shrink-0">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="m9 18 6-6-6-6"/>
         </svg>
