@@ -288,7 +288,7 @@ export default function WEC() {
   const [filterKlasse, setFilterKlasse] = useState<string>('Alle')
   const [zoek, setZoek] = useState('')
 
-  const klassen = ['Alle', 'Hypercar', 'GT3 Am']
+  const klassen = ['Alle', 'Hypercar', 'GT3 (LMGT3)']
 
   const gefilterd = TEAMS.filter(t => {
     const matchKlasse = filterKlasse === 'Alle' || t.klasse === filterKlasse
@@ -313,7 +313,7 @@ export default function WEC() {
               </h1>
               <SeriesBadge series="wec" size="md" />
             </div>
-            <p className="font-ui text-sm text-brand-muted">FIA WEC 2026 · Hypercar · GT3 Am</p>
+            <p className="font-ui text-sm text-brand-muted">FIA WEC 2026 · Hypercar · GT3 (LMGT3)</p>
           </div>
           <div className="flex gap-6">
             {[{ l: 'Teams', v: TEAMS.length }, { l: 'Rijders', v: TEAMS.reduce((s,t) => s + t.drivers.length, 0) }].map(s => (
@@ -348,7 +348,7 @@ export default function WEC() {
       </div>
 
       {/* ── Klasse groepen ── */}
-      {(['Hypercar', 'GT3 Am'] as const).map(klasse => {
+      {(['Hypercar', 'GT3 (LMGT3)'] as const).map(klasse => {
         const teams = gefilterd.filter(t => t.klasse === klasse)
         if (teams.length === 0) return null
         const kl = KLASSE_KLEUR[klasse]
