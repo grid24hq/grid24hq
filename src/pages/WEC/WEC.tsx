@@ -110,13 +110,13 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
       </div>
 
       {/* Auto thumbnail */}
-      <div className="w-32 flex-shrink-0 py-2 pr-3 hidden sm:block">
-        <div className="overflow-hidden rounded" style={{ aspectRatio: '900/260', background: '#111' }}>
+      <div className="w-48 flex-shrink-0 py-1.5 pr-3 hidden sm:block">
+        <div className="overflow-hidden rounded-md" style={{ background: '#0d0d0d', height: '72px' }}>
           <img
             src={carSrc(team)}
             alt={team.carModel}
-            className="w-full h-full object-cover"
-            onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.2' }}
+            className="w-full h-full object-contain object-center"
+            onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.15' }}
           />
         </div>
       </div>
@@ -253,7 +253,7 @@ export default function WEC() {
   })
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8">
 
       {/* ── Hero ── */}
       <div className="relative mb-8 overflow-hidden rounded-xl bg-brand-card border border-brand-border">
