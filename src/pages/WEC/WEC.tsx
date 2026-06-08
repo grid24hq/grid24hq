@@ -199,7 +199,7 @@ const TEAMS: Team[] = [
       { id: 'tom-gamble',      naam: 'Tom Gamble',       nationaliteit: 'Engeland', vlag: '🇬🇧' },
     ],
   },
-
+]
 
 // ─── Klassement data (gesimuleerd — vervang later door API) ──────────────────
 const RANKING: RankingEntry[] = [
