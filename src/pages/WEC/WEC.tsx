@@ -16,7 +16,7 @@ interface Team {
   naam: string
   fabrikant: string
   carModel: string
-  klasse: 'Hypercar' | 'GT3 Am'
+  klasse: 'Hypercar' | 'GT3 (LMGT3)'
   kleur: string
   info: string
   drivers: Driver[]
@@ -24,12 +24,12 @@ interface Team {
 
 // ─── Kleuren ──────────────────────────────────────────────────────────────────
 const KLASSE_KLEUR: Record<string, string> = {
-  'Hypercar': '#3b82f6',
-  'GT3 Am':   '#22c55e',
+  'Hypercar':    '#3b82f6',
+  'GT3 (LMGT3)': '#22c55e',
 }
 const KLASSE_MAP: Record<string, string> = {
-  'Hypercar': 'hypercar',
-  'GT3 Am':   'gt3',
+  'Hypercar':    'hypercar',
+  'GT3 (LMGT3)': 'gt3',
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -68,9 +68,59 @@ const TEAMS: Team[] = [
     drivers: [{ id: 'nick-cassidy', naam: 'Nick Cassidy', nationaliteit: 'N. Zeeland', vlag: '🇳🇿' }, { id: 'paul-di-resta', naam: 'Paul Di Resta', nationaliteit: 'Schotland', vlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' }, { id: 'stoffel-vandoorne', naam: 'Stoffel Vandoorne', nationaliteit: 'België', vlag: '🇧🇪' }] },
   { id: 'peugeot-94',  nr: 94,  carModel: 'peugeot-9x8',         naam: 'Peugeot TotalEnergies',      fabrikant: 'Peugeot',      klasse: 'Hypercar', kleur: '#00aaff', info: 'Peugeot 9X8 — tweede exemplaar met drie topcoureurs.',
     drivers: [{ id: 'loic-duval', naam: 'Loïc Duval', nationaliteit: 'Frankrijk', vlag: '🇫🇷' }, { id: 'malthe-jakobsen', naam: 'Malthe Jakobsen', nationaliteit: 'Denemarken', vlag: '🇩🇰' }, { id: 'theo-pourchaire', naam: 'Théo Pourchaire', nationaliteit: 'Frankrijk', vlag: '🇫🇷' }] },
+
+  // ── GT3 (LMGT3) ──
+  { id: 'ferrari-21',  nr: 21,  carModel: 'ferrari-296-gt3',     naam: 'Iron Lynx',                  fabrikant: 'Ferrari',      klasse: 'GT3 (LMGT3)', kleur: '#e8002d', info: 'Ferrari 296 GT3 — Iron Lynx in de LMGT3-klasse.',
+    drivers: [{ id: 'alessio-rovera', naam: 'Alessio Rovera', nationaliteit: 'Italië', vlag: '🇮🇹' }, { id: 'francois-heriau', naam: 'François Heriau', nationaliteit: 'Frankrijk', vlag: '🇫🇷' }, { id: 'simon-mann', naam: 'Simon Mann', nationaliteit: 'VS', vlag: '🇺🇸' }] },
+  { id: 'corvette-33', nr: 33,  carModel: 'corvette-z06-gt3',    naam: 'Corvette Racing',            fabrikant: 'Corvette',     klasse: 'GT3 (LMGT3)', kleur: '#ffcc00', info: 'Corvette Z06 GT3.R — de Amerikaanse sportwagen in LMGT3.',
+    drivers: [{ id: 'ben-keating', naam: 'Ben Keating', nationaliteit: 'VS', vlag: '🇺🇸' }, { id: 'jonny-edgar', naam: 'Jonny Edgar', nationaliteit: 'Engeland', vlag: '🇬🇧' }, { id: 'nicky-catsburg', naam: 'Nicky Catsburg', nationaliteit: 'Nederland', vlag: '🇳🇱' }] },
+  { id: 'ferrari-54',  nr: 54,  carModel: 'ferrari-296-gt3',     naam: 'Vista AF Corse',             fabrikant: 'Ferrari',      klasse: 'GT3 (LMGT3)', kleur: '#e8002d', info: 'Ferrari 296 GT3 — Vista AF Corse met drie ervaren coureurs.',
+    drivers: [{ id: 'davide-rigon', naam: 'Davide Rigon', nationaliteit: 'Italië', vlag: '🇮🇹' }, { id: 'francesco-castellacci', naam: 'Francesco Castellacci', nationaliteit: 'Italië', vlag: '🇮🇹' }, { id: 'thomas-flohr', naam: 'Thomas Flohr', nationaliteit: 'Zwitserland', vlag: '🇨🇭' }] },
+  { id: 'mclaren-58',  nr: 58,  carModel: 'mclaren-720s',        naam: 'United Autosports',          fabrikant: 'McLaren',      klasse: 'GT3 (LMGT3)', kleur: '#ff8000', info: 'McLaren 720S GT3 Evo — United Autosports in LMGT3.',
+    drivers: [{ id: 'alexander-west', naam: 'Alexander West', nationaliteit: 'Zweden', vlag: '🇸🇪' }, { id: 'benjamin-goethe', naam: 'Benjamin Goethe', nationaliteit: 'Duitsland', vlag: '🇩🇪' }, { id: 'finn-gehrsitz', naam: 'Finn Gehrsitz', nationaliteit: 'Duitsland', vlag: '🇩🇪' }] },
+  { id: 'mercedes-61', nr: 61,  carModel: 'mercedes',            naam: 'Akkodis ASP',                fabrikant: 'Mercedes',     klasse: 'GT3 (LMGT3)', kleur: '#00d2be', info: 'Mercedes-AMG GT3 — Akkodis ASP in de LMGT3-klasse.',
+    drivers: [{ id: 'martin-berry', naam: 'Martin Berry', nationaliteit: 'Australië', vlag: '🇦🇺' }, { id: 'maxime-martin', naam: 'Maxime Martin', nationaliteit: 'België', vlag: '🇧🇪' }, { id: 'rui-andrade', naam: 'Rui Andrade', nationaliteit: 'Portugal', vlag: '🇵🇹' }] },
+  { id: 'ford-77',     nr: 77,  carModel: 'ford-mustang',        naam: 'Proton Competition',         fabrikant: 'Ford',         klasse: 'GT3 (LMGT3)', kleur: '#003e99', info: 'Ford Mustang GT3 — Proton Competition met Ford power.',
+    drivers: [{ id: 'ben-tuck', naam: 'Ben Tuck', nationaliteit: 'Engeland', vlag: '🇬🇧' }, { id: 'eric-powell', naam: 'Eric Powell', nationaliteit: 'VS', vlag: '🇺🇸' }, { id: 'sebastian-priaulx', naam: 'Sebastian Priaulx', nationaliteit: 'Engeland', vlag: '🇬🇧' }] },
+  { id: 'lexus-87',    nr: 87,  carModel: 'lexus-rc-f-lmgt3',   naam: 'TOYOTA Gazoo Racing',        fabrikant: 'Lexus',        klasse: 'GT3 (LMGT3)', kleur: '#e8002d', info: 'Lexus RC F LMGT3 — Gazoo Racing in de GT3-klasse.',
+    drivers: [{ id: 'clemens-schmid', naam: 'Clemens Schmid', nationaliteit: 'Oostenrijk', vlag: '🇦🇹' }, { id: 'jose-maria-lopez', naam: 'José María López', nationaliteit: 'Argentinië', vlag: '🇦🇷' }, { id: 'petru-umbrarescu', naam: 'Petru Umbrarescu', nationaliteit: 'Roemenië', vlag: '🇷🇴' }] },
+  { id: 'ford-88',     nr: 88,  carModel: 'ford-mustang',        naam: 'Proton Competition',         fabrikant: 'Ford',         klasse: 'GT3 (LMGT3)', kleur: '#003e99', info: 'Ford Mustang GT3 — tweede Ford entry van Proton Competition.',
+    drivers: [{ id: 'giammarco-levorato', naam: 'Giammarco Levorato', nationaliteit: 'Italië', vlag: '🇮🇹' }, { id: 'logan-sargeant', naam: 'Logan Sargeant', nationaliteit: 'VS', vlag: '🇺🇸' }, { id: 'stefano-gattuso', naam: 'Stefano Gattuso', nationaliteit: 'Italië', vlag: '🇮🇹' }] },
+  { id: 'porsche-91',  nr: 91,  carModel: 'porsche-911-gt3',     naam: 'Porsche GT3 Cup',            fabrikant: 'Porsche',      klasse: 'GT3 (LMGT3)', kleur: '#c0a060', info: 'Porsche 911 GT3 R — klassiek Porsche GT3-programma.',
+    drivers: [{ id: 'ayhancan-guven', naam: 'Ayhancan Güven', nationaliteit: 'Turkije', vlag: '🇹🇷' }, { id: 'james-cottingham', naam: 'James Cottingham', nationaliteit: 'Engeland', vlag: '🇬🇧' }] },
+  { id: 'porsche-92',  nr: 92,  carModel: 'porsche-911-gt3',     naam: 'Porsche GT3 Cup',            fabrikant: 'Porsche',      klasse: 'GT3 (LMGT3)', kleur: '#c0a060', info: 'Porsche 911 GT3 R — tweede Porsche met internationaal trio.',
+    drivers: [{ id: 'riccardo-pera', naam: 'Riccardo Pera', nationaliteit: 'Italië', vlag: '🇮🇹' }, { id: 'richard-lietz', naam: 'Richard Lietz', nationaliteit: 'Oostenrijk', vlag: '🇦🇹' }, { id: 'yasser-shahin', naam: 'Yasser Shahin', nationaliteit: 'Australië', vlag: '🇦🇺' }] },
 ]
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// ─── Vlag afbeelding helper (640×480 → 20×15) ────────────────────────────────
+const VLAG_CODES: Record<string, string> = {
+  '🇯🇵': 'jp', '🇬🇧': 'gb', '🇳🇱': 'nl', '🇨🇭': 'ch', '🇳🇿': 'nz', '🇪🇸': 'es',
+  '🇩🇰': 'dk', '🇧🇪': 'be', '🇩🇪': 'de', '🇫🇷': 'fr', '🇮🇹': 'it', '🇵🇹': 'pt',
+  '🇦🇹': 'at', '🇲🇨': 'mc', '🇧🇷': 'br', '🇺🇸': 'us', '🇵🇱': 'pl', '🇨🇳': 'cn',
+  '🇿🇦': 'za', '🇦🇺': 'au', '🇸🇪': 'se', '🇹🇷': 'tr', '🇷🇴': 'ro', '🇦🇷': 'ar',
+  '🏴󠁧󠁢󠁳󠁣󠁴󠁿': 'gb',
+}
+function VlagImg({ emoji, size = 20 }: { emoji: string; size?: number }) {
+  const code = VLAG_CODES[emoji]
+  if (!code) return <span style={{ fontSize: size * 0.7 }}>{emoji}</span>
+  return (
+    <img
+      src={`/wec/flags/${code}.webp`}
+      alt={code}
+      width={size}
+      height={Math.round(size * 0.75)}
+      className="inline-block object-cover rounded-sm flex-shrink-0"
+      style={{ imageRendering: 'crisp-edges' }}
+      onError={e => {
+        const el = e.currentTarget
+        el.style.display = 'none'
+        const span = document.createElement('span')
+        span.textContent = emoji
+        el.parentNode?.insertBefore(span, el.nextSibling)
+      }}
+    />
+  )
+}
 function nrStr(team: Team) { return team.nrPad ?? String(team.nr) }
 function carSrc(team: Team) {
   const map = KLASSE_MAP[team.klasse] ?? 'hypercar'
@@ -131,8 +181,8 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
       {/* Rijders — vult rest van de ruimte, gelijkmatig */}
       <div className="flex-1 flex items-center gap-6 px-4 hidden md:flex">
         {team.drivers.map(d => (
-          <span key={d.id} className="font-ui text-sm text-brand-muted whitespace-nowrap">
-            {d.vlag} {d.naam}
+          <span key={d.id} className="font-ui text-sm text-brand-muted whitespace-nowrap flex items-center gap-1.5">
+            <VlagImg emoji={d.vlag} size={18} /> {d.naam}
           </span>
         ))}
       </div>
@@ -221,7 +271,7 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
                 </div>
                 <div className="text-center">
                   <p className="font-head font-bold text-sm text-brand-light leading-tight">{d.naam}</p>
-                  <p className="font-ui text-[11px] text-brand-muted">{d.vlag} {d.nationaliteit}</p>
+                  <p className="font-ui text-[11px] text-brand-muted flex items-center justify-center gap-1"><VlagImg emoji={d.vlag} size={14} /> {d.nationaliteit}</p>
                 </div>
               </div>
             ))}
