@@ -97,32 +97,30 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left group flex items-center gap-0 hover:bg-white/[0.03] transition-colors border-b border-brand-border/40 last:border-0 cursor-pointer"
+      className="w-full text-left group flex items-center hover:bg-white/[0.03] transition-colors border-b border-brand-border/40 last:border-0 cursor-pointer"
     >
       {/* Kleur accent */}
       <div className="w-0.5 self-stretch flex-shrink-0" style={{ background: klasseKleur }} />
 
       {/* Nr */}
-      <div className="w-16 flex-shrink-0 px-3 py-3">
-        <span className="font-head text-xl font-black text-brand-orange">
-          #{nrStr(team)}
-        </span>
+      <div className="w-20 flex-shrink-0 px-3 py-3">
+        <span className="font-head text-xl font-black text-brand-orange">#{nrStr(team)}</span>
       </div>
 
       {/* Auto thumbnail */}
-      <div className="w-48 flex-shrink-0 py-1.5 pr-3 hidden sm:block">
-        <div className="overflow-hidden rounded-md" style={{ background: '#0d0d0d', height: '72px' }}>
+      <div className="w-44 flex-shrink-0 py-2 pr-4 hidden sm:block">
+        <div className="overflow-hidden rounded-md flex items-center justify-center" style={{ background: '#0d0d0d', height: '68px' }}>
           <img
             src={carSrc(team)}
             alt={team.carModel}
-            className="w-full h-full object-contain object-center"
+            className="w-full h-full object-contain"
             onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.15' }}
           />
         </div>
       </div>
 
       {/* Team naam + fabrikant */}
-      <div className="flex-1 min-w-0 py-3 pr-3">
+      <div className="w-64 flex-shrink-0 py-3 pr-4">
         <div className="flex items-center gap-2 flex-wrap mb-0.5">
           <span className="font-head font-bold text-sm text-brand-light group-hover:text-white transition-colors">{team.naam}</span>
           <KlasseBadge klasse={team.klasse} />
@@ -130,8 +128,8 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
         <span className="font-ui text-xs text-brand-muted">{team.fabrikant}</span>
       </div>
 
-      {/* Rijders */}
-      <div className="flex items-center gap-1.5 py-3 pr-4 flex-wrap justify-end hidden md:flex">
+      {/* Rijders — vult resterende ruimte */}
+      <div className="flex-1 flex items-center gap-x-4 gap-y-0.5 py-3 pr-3 flex-wrap hidden md:flex">
         {team.drivers.map(d => (
           <span key={d.id} className="font-ui text-xs text-brand-muted whitespace-nowrap">
             {d.vlag} {d.naam}
@@ -140,7 +138,7 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
       </div>
 
       {/* Pijl */}
-      <div className="pr-4 text-brand-muted group-hover:text-brand-orange transition-colors flex-shrink-0">
+      <div className="px-4 text-brand-muted group-hover:text-brand-orange transition-colors flex-shrink-0">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="m9 18 6-6-6-6"/>
         </svg>
@@ -152,70 +150,67 @@ function TeamRij({ team, onClick }: { team: Team; onClick: () => void }) {
 // ─── Modal detail ─────────────────────────────────────────────────────────────
 function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
   const klasseKleur = KLASSE_KLEUR[team.klasse] ?? '#888'
-  const cols = team.drivers.length === 2 ? 'grid-cols-2' : team.drivers.length === 3 ? 'grid-cols-3' : 'grid-cols-4'
 
-  // Sluit bij Escape
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', fn)
-    return () => window.removeEventListener('keydown', fn)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', fn)
+      document.body.style.overflow = ''
+    }
   }, [onClose])
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
 
-      {/* Modal */}
       <div
-        className="relative bg-brand-card border border-brand-border rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="relative bg-brand-card border border-brand-border rounded-xl w-full shadow-2xl overflow-hidden"
+        style={{ maxWidth: '680px' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Kleur accent balk */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl" style={{ background: klasseKleur }} />
+        <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: klasseKleur }} />
 
         {/* Header */}
-        <div className="flex items-start justify-between p-5 pb-3">
-          <div>
-            <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <span className="font-head text-4xl font-black text-brand-orange">#{nrStr(team)}</span>
-              <KlasseBadge klasse={team.klasse} />
+        <div className="flex items-center justify-between px-5 pt-5 pb-3">
+          <div className="flex items-center gap-3">
+            <span className="font-head text-3xl font-black text-brand-orange leading-none">#{nrStr(team)}</span>
+            <div>
+              <div className="flex items-center gap-2 mb-0.5">
+                <h2 className="font-head text-lg font-bold text-brand-light leading-none">{team.naam}</h2>
+                <KlasseBadge klasse={team.klasse} />
+              </div>
+              <p className="font-ui text-xs text-brand-muted">{team.fabrikant} · {team.info}</p>
             </div>
-            <h2 className="font-head text-2xl font-bold text-brand-light">{team.naam}</h2>
-            <p className="font-ui text-sm text-brand-muted">{team.fabrikant}</p>
           </div>
-          <button
-            onClick={onClose}
-            className="text-brand-muted hover:text-brand-light transition-colors ml-4 mt-1 flex-shrink-0"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button onClick={onClose} className="text-brand-muted hover:text-brand-light transition-colors flex-shrink-0 ml-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6 6 18M6 6l12 12"/>
             </svg>
           </button>
         </div>
 
-        {/* Auto afbeelding */}
-        <div className="mx-5 mb-4 overflow-hidden rounded-lg" style={{ background: '#0d0d0d', aspectRatio: '900/260' }}>
+        {/* Auto afbeelding — breed, niet te hoog */}
+        <div className="mx-5 mb-4 overflow-hidden rounded-lg flex items-center justify-center" style={{ background: '#0d0d0d', height: '160px' }}>
           <img
             src={carSrc(team)}
             alt={`${team.naam} #${nrStr(team)}`}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-contain"
             onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.1' }}
           />
         </div>
 
-        {/* Info */}
-        <p className="font-ui text-sm text-brand-muted px-5 mb-5 leading-relaxed">{team.info}</p>
-
-        {/* Rijders */}
+        {/* Rijders — horizontale rij */}
         <div className="px-5 pb-5">
           <div className="font-ui text-[10px] text-brand-muted uppercase tracking-[2px] mb-3 flex items-center gap-2">
             <span className="block w-4 h-px bg-brand-border" />
             Rijders
           </div>
-          <div className={`grid ${cols} gap-4`}>
+          <div className="flex gap-4 justify-center flex-wrap">
             {team.drivers.map(d => (
-              <div key={d.id} className="flex flex-col items-center gap-2">
+              <div key={d.id} className="flex flex-col items-center gap-2" style={{ width: team.drivers.length === 2 ? '160px' : '140px' }}>
                 <div className="w-full overflow-hidden rounded-md" style={{ aspectRatio: '233/350', background: '#111' }}>
                   <img
                     src={driverSrc(team, d)}
