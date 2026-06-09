@@ -15,8 +15,9 @@ import { Login, Register } from '@/pages/Auth'
 
 // ── Lazy (loaded only when visited — smaller initial bundle) ──────────────────
 const WEC        = lazy(() => import('@/pages/WEC'))
-const ELMS       = lazy(() => import('@/pages/WEC/ELMS'))
-const LeMansCup  = lazy(() => import('@/pages/WEC/LeMansCup'))
+const ELMS        = lazy(() => import('@/pages/WEC/ELMS'))
+const LeMansCup   = lazy(() => import('@/pages/WEC/LeMansCup'))
+const Klassement  = lazy(() => import('@/pages/Klassement/Klassement'))
 const MotoGP     = lazy(() => import('@/pages/MotoGP'))
 const GT3      = lazy(() => import('@/pages/GT3'))
 const IMSA     = lazy(() => import('@/pages/IMSA'))
@@ -69,8 +70,9 @@ export default function App() {
             <Route element={<MainLayout />}>
               <Route index          element={<Home />} />
               <Route path="wec"       element={<WEC />} />
-              <Route path="elms"      element={<ELMS />} />
-              <Route path="lemanscup" element={<LeMansCup />} />
+              <Route path="elms"        element={<ELMS />} />
+              <Route path="lemanscup"   element={<LeMansCup />} />
+              <Route path="klassement"  element={<Klassement />} />
               <Route path="motogp"  element={<MotoGP />} />
               <Route path="gt3"     element={<GT3 />} />
               <Route path="imsa"    element={<IMSA />} />
