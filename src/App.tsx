@@ -14,8 +14,10 @@ import LiveCenter from '@/pages/LiveCenter'
 import { Login, Register } from '@/pages/Auth'
 
 // ── Lazy (loaded only when visited — smaller initial bundle) ──────────────────
-const WEC      = lazy(() => import('@/pages/WEC'))
-const MotoGP   = lazy(() => import('@/pages/MotoGP'))
+const WEC        = lazy(() => import('@/pages/WEC'))
+const ELMS       = lazy(() => import('@/pages/WEC/ELMS'))
+const LeMansCup  = lazy(() => import('@/pages/WEC/LeMansCup'))
+const MotoGP     = lazy(() => import('@/pages/MotoGP'))
 const GT3      = lazy(() => import('@/pages/GT3'))
 const IMSA     = lazy(() => import('@/pages/IMSA'))
 const WorldSBK = lazy(() => import('@/pages/WorldSBK'))
@@ -66,7 +68,9 @@ export default function App() {
             {/* ── Main layout: navbar + footer ── */}
             <Route element={<MainLayout />}>
               <Route index          element={<Home />} />
-              <Route path="wec"     element={<WEC />} />
+              <Route path="wec"       element={<WEC />} />
+              <Route path="elms"      element={<ELMS />} />
+              <Route path="lemanscup" element={<LeMansCup />} />
               <Route path="motogp"  element={<MotoGP />} />
               <Route path="gt3"     element={<GT3 />} />
               <Route path="imsa"    element={<IMSA />} />
