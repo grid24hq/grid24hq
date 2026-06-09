@@ -29,18 +29,18 @@ const FILTERS = [
 
 // ─── Firebase paden per filter ────────────────────────────────────────────────
 const FIREBASE_PADEN: Record<string, { pad: string; serie: string; klasse: string }[]> = {
-  hypercar:  [{ pad: 'WEC/2026/championship_standings/Hypercar/riders',         serie: 'WEC',      klasse: 'Hypercar' }],
-  lmp2:      [{ pad: 'ELMS/2026/championship_standings/LMP2/riders',            serie: 'ELMS',     klasse: 'LMP2' }],
-  lmp2proam: [{ pad: 'ELMS/2026/championship_standings/LMP2_ProAm/riders',      serie: 'ELMS',     klasse: 'LMP2 Pro/Am' }],
+  hypercar:  [{ pad: 'WEC/2026/championship_standings/Hypercar',         serie: 'WEC',      klasse: 'Hypercar' }],
+  lmp2:      [{ pad: 'ELMS/2026/championship_standings/LMP2',            serie: 'ELMS',     klasse: 'LMP2' }],
+  lmp2proam: [{ pad: 'ELMS/2026/championship_standings/LMP2_ProAm',      serie: 'ELMS',     klasse: 'LMP2 Pro/Am' }],
   lmp3:      [
-    { pad: 'ELMS/2026/championship_standings/LMP3/riders',                       serie: 'ELMS',     klasse: 'LMP3' },
-    { pad: 'LeMansCup/2026/championship_standings/LMP3/riders',                  serie: 'LM Cup',   klasse: 'LMP3' },
+    { pad: 'ELMS/2026/championship_standings/LMP3',                       serie: 'ELMS',     klasse: 'LMP3' },
+    { pad: 'LeMansCup/2026/championship_standings/LMP3',                  serie: 'LM Cup',   klasse: 'LMP3' },
   ],
-  lmp3proam: [{ pad: 'LeMansCup/2026/championship_standings/LMP3_ProAm/riders', serie: 'LM Cup',   klasse: 'LMP3 Pro/Am' }],
+  lmp3proam: [{ pad: 'LeMansCup/2026/championship_standings/LMP3_ProAm', serie: 'LM Cup',   klasse: 'LMP3 Pro/Am' }],
   gt3:       [
-    { pad: 'WEC/2026/championship_standings/LMGT3/riders',                       serie: 'WEC',      klasse: 'LMGT3' },
-    { pad: 'ELMS/2026/championship_standings/LMGT3/riders',                      serie: 'ELMS',     klasse: 'LMGT3' },
-    { pad: 'LeMansCup/2026/championship_standings/GT3/riders',                   serie: 'LM Cup',   klasse: 'GT3' },
+    { pad: 'WEC/2026/championship_standings/LMGT3',                       serie: 'WEC',      klasse: 'LMGT3' },
+    { pad: 'ELMS/2026/championship_standings/LMGT3',                      serie: 'ELMS',     klasse: 'LMGT3' },
+    { pad: 'LeMansCup/2026/championship_standings/GT3',                   serie: 'LM Cup',   klasse: 'GT3' },
   ],
 }
 
@@ -64,7 +64,7 @@ async function fetchFirebase(pad: string, serie: string, klasse: string): Promis
         nationaliteit: item.nationaliteit?? '',
         vlag:          item.vlag         ?? '',
         team:          item.team         ?? '',
-        nr:            item.nr           ?? 0,
+        nr:            item.nummer           ?? 0,
         punten:        item.punten       ?? 0,
         serie,
         klasse,
