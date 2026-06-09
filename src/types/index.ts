@@ -2,6 +2,8 @@
 
 export type SeriesId =
   | 'wec'
+  | 'elms'
+  | 'lemanscup'
   | 'motogp'
   | 'moto2'
   | 'moto3'
