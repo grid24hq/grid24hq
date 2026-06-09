@@ -56,7 +56,7 @@ async function fetchFirebase(pad: string, serie: string, klasse: string): Promis
     if (!data) return []
     // Firebase geeft object terug met keys als positie of rijder-id
     const items = Array.isArray(data) ? data : Object.values(data)
-    //return items
+    return items
       .filter((item: any) => item && item.naam)
       .map((item: any, i: number) => ({
         positie:       item.positie      ?? i + 1,
