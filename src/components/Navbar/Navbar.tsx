@@ -36,9 +36,10 @@ function useIsLive() {
 
 // ─── WEC dropdown items ───────────────────────────────────────────────────────
 const WEC_ITEMS = [
-  { to: '/wec',       label: 'WEC',                     sub: 'Hypercar · GT3 (LMGT3)', color: '#3b82f6' },
-  { to: '/elms',      label: 'European Le Mans Series',  sub: 'LMP2 · LMGT3 · LMP3',   color: '#f97316' },
-  { to: '/lemanscup', label: 'Michelin Le Mans Cup',     sub: 'GT3 · LMP3 · LMP3 Pro/Am', color: '#f59e0b' },
+  { to: '/wec',        label: 'WEC',                     sub: 'Hypercar · GT3 (LMGT3)',    color: '#3b82f6' },
+  { to: '/elms',       label: 'European Le Mans Series',  sub: 'LMP2 · LMGT3 · LMP3',      color: '#f97316' },
+  { to: '/lemanscup',  label: 'Michelin Le Mans Cup',     sub: 'GT3 · LMP3 · LMP3 Pro/Am', color: '#f59e0b' },
+  { to: '/klassement', label: 'Klassement 2026',          sub: 'WEC · ELMS · LM Cup',       color: '#22c55e' },
 ]
 
 function WecDropdown({ onClose }: { onClose: () => void }) {
