@@ -36,7 +36,7 @@ const MAANDEN = [
   'Juli','Augustus','September','Oktober','November','December'
 ]
 
-const SERIE_VOLGORDE = ['F1','WEC','MotoGP','GT3','IMSA','WorldSBK']
+const SERIE_VOLGORDE = ['F1','WEC','MotoGP','GT3','IMSA','WorldSBK','ELMS','MLMC']
 
 export async function getKalender(): Promise<KalenderMaand[]> {
   try {
