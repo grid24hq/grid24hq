@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]): string {
 export const SERIES_CONFIG: Record<SeriesId, { name: string; shortName: string; hex: string; label: string }> = {
   f1:         { name: 'Formula 1 World Championship',       shortName: 'F1',        hex: '#e10600', label: 'F1' },
   wec:        { name: 'FIA World Endurance Championship',   shortName: 'WEC',       hex: '#3b82f6', label: 'WEC' },
-  elms:       { name: 'European Le Mans Series',            shortName: 'ELMS',      hex: '#f97316', label: 'ELMS' },
+  elms:       { name: 'European Le Mans Series',            shortName: 'ELMS',      hex: '#06b6d4', label: 'ELMS' },
   lemanscup:  { name: 'Michelin Le Mans Cup',               shortName: 'LM Cup',    hex: '#f59e0b', label: 'LM Cup' },
   motogp:     { name: 'MotoGP World Championship',          shortName: 'MotoGP',    hex: '#f97316', label: 'MotoGP' },
   moto2:      { name: 'Moto2 World Championship',           shortName: 'Moto2',     hex: '#eab308', label: 'Moto2' },
