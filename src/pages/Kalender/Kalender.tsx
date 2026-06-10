@@ -24,7 +24,54 @@ const sessieLabels: Record<string, string> = {
   fp: 'Vrije Training',
 }
 
-// ─── Race Modal ───────────────────────────────────────────────────────────────
+// ─── Circuit SVG pad resolver ─────────────────────────────────────────────────
+// Bestandsnamen in public/circuits/ volgen het patroon: {serie}_{id}.svg
+// Voor ELMS en MLMC mappen we race-id → exacte bestandsnaam
+const ELMS_SVG: Record<string, string> = {
+  barcelona_4h:      'Barcelona_elms',
+  le_castellet_4h:   'Paul_Ricard_elms',
+  imola_4h:          'Imola_elms',
+  spa_4h:            'Spa_elms',           // gebruik fallback als dit ontbreekt
+  silverstone_4h:    'Silverstone_elms',
+  portimao_4h:       'Algarve_elms',
+}
+
+const MLMC_SVG: Record<string, string> = {
+  barcelona:         'Barcelona_mlmc',
+  le_castellet:      'Paul_Ricard_mlms',   // let op: mlms (jouw bestandsnaam)
+  road_to_le_mans:   'la_Sarthe_mlmc',
+  imola:             'Imola_mlmc',
+  spa:               'Spa_Francorchamps_mlmc',
+  silverstone:       'Silverstone_mlmc',
+  portimao:          'Algarve_mlmc',
+}
+
+function getCircuitSvgPath(serie: string, id: string): string {
+  if (serie === 'ELMS') {
+    const naam = ELMS_SVG[id]
+    return naam ? `/circuits/${naam}.svg` : `/circuits/elms_${id}.svg`
+  }
+  if (serie === 'MLMC') {
+    const naam = MLMC_SVG[id]
+    return naam ? `/circuits/${naam}.svg` : `/circuits/mlmc_${id}.svg`
+  }
+  return `/circuits/${serie.toLowerCase()}_${id}.svg`
+}
+
+// ─── ELMS / MLMC klassen pills ────────────────────────────────────────────────
+const ELMS_KLASSEN = ['LMP2', 'LMP2 Pro/Am', 'LMP3', 'LMGT3']
+const MLMC_KLASSEN = ['LMP3', 'LMP3 Pro/Am', 'GT3']
+
+const KLASSE_STIJL: Record<string, string> = {
+  'LMP2':         'bg-blue-900/40 text-blue-300 border-blue-700/40',
+  'LMP2 Pro/Am':  'bg-blue-900/30 text-blue-400 border-blue-700/30',
+  'LMP3':         'bg-orange-900/40 text-orange-300 border-orange-700/40',
+  'LMP3 Pro/Am':  'bg-orange-900/30 text-orange-400 border-orange-700/30',
+  'LMGT3':        'bg-green-900/40 text-green-300 border-green-700/40',
+  'GT3':          'bg-green-900/40 text-green-300 border-green-700/40',
+}
+
+
 function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void }) {
   const kleur   = serieKleur[race.serie] ?? '#f97316'
   const serieId = serieMap[race.serie]
@@ -96,7 +143,9 @@ function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void 
               </div>
               <div className="flex justify-between">
                 <span className="font-ui text-xs text-brand-muted">Starttijd</span>
-                <span className="font-ui text-xs text-brand-light font-semibold">{race.tijd_cet} CET</span>
+                <span className="font-ui text-xs font-semibold" style={{ color: race.tijd_cet === 'TBC' ? '#666' : undefined }}>
+                  {race.tijd_cet === 'TBC' ? 'Nog niet bevestigd' : `${race.tijd_cet} CET`}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="font-ui text-xs text-brand-muted">Lengte</span>
@@ -122,7 +171,7 @@ function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void 
               style={{ height: 160, background: `${kleur}08`, border: `1px solid ${kleur}20` }}
             >
               <img
-                src={`/circuits/${race.serie.toLowerCase()}_${race.id}.svg`}
+                src={getCircuitSvgPath(race.serie, race.id)}
                 alt={`${race.baan} layout`}
                 style={{ maxHeight: 150, maxWidth: '100%', opacity: 0.9 }}
                 onError={(e) => {
@@ -151,6 +200,23 @@ function RaceModal({ race, onClose }: { race: KalenderRace; onClose: () => void 
               <div className="font-ui text-xs text-brand-muted">{race.snelste_ronde_team}</div>
               <div className="font-ui text-xs text-brand-muted mt-1">{race.snelste_ronde_jaar}</div>
             </div>
+
+            {/* Klassen pills voor ELMS en MLMC */}
+            {(race.serie === 'ELMS' || race.serie === 'MLMC') && (
+              <div className="mt-4">
+                <div className="section-title mb-3">Klassen</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {(race.serie === 'ELMS' ? ELMS_KLASSEN : MLMC_KLASSEN).map(k => (
+                    <span
+                      key={k}
+                      className={`px-2.5 py-1 rounded text-[11px] font-ui font-bold border ${KLASSE_STIJL[k] ?? 'bg-white/10 text-white/60 border-white/10'}`}
+                    >
+                      {k}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Sessie tijden */}
             {Object.keys(race.sessies).length > 0 && (
@@ -225,7 +291,9 @@ function RaceKaart({ race, onClick }: { race: KalenderRace; onClick: () => void 
           {status === 'finished' && (
             <span className="font-ui text-[10px] text-brand-muted/50">Afgelopen</span>
           )}
-          <span className="font-ui text-[10px] text-brand-muted">{race.tijd_cet} CET</span>
+          <span className="font-ui text-[10px] text-brand-muted">
+            {race.tijd_cet === 'TBC' ? 'Tijd TBC' : `${race.tijd_cet} CET`}
+          </span>
         </div>
       </div>
     </div>
