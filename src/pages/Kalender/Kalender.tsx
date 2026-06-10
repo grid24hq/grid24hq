@@ -6,11 +6,13 @@ import type { SeriesId } from '@/types'
 // ─── Serie → SeriesId mapping ─────────────────────────────────────────────────
 const serieMap: Record<string, SeriesId> = {
   WEC: 'wec', MotoGP: 'motogp', GT3: 'gt3', IMSA: 'imsa', WorldSBK: 'wsb',
+  ELMS: 'elms', MLMC: 'lemanscup',
 }
 
 const serieKleur: Record<string, string> = {
   F1: '#e10600', WEC: '#3b82f6', MotoGP: '#f97316',
   GT3: '#22c55e', IMSA: '#a855f7', WorldSBK: '#ec4899',
+  ELMS: '#f97316', MLMC: '#f59e0b',
 }
 
 const sessieLabels: Record<string, string> = {
@@ -244,7 +246,7 @@ export default function Kalender() {
     })
   }, [])
 
-  const series = ['alle', 'F1', 'WEC', 'MotoGP', 'GT3', 'IMSA', 'WorldSBK']
+  const series = ['alle', 'F1', 'WEC', 'ELMS', 'MLMC', 'MotoGP', 'GT3', 'IMSA', 'WorldSBK']
 
   const gefilterd = maanden.map((m) => ({
     ...m,
@@ -276,7 +278,7 @@ export default function Kalender() {
                 : { background: 'transparent', color: '#888', border: '1px solid #222', cursor: 'pointer' }
               }
             >
-              {serie === 'alle' ? 'Alle series' : serie}
+              {serie === 'alle' ? 'Alle series' : serie === 'MLMC' ? 'LM Cup' : serie}
             </button>
           )
         })}
