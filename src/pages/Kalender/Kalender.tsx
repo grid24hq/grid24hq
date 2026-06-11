@@ -31,14 +31,14 @@ const ELMS_SVG: Record<string, string> = {
   barcelona_4h:      'Barcelona_elms',
   le_castellet_4h:   'Paul_Ricard_elms',
   imola_4h:          'Imola_elms',
-  spa_4h:            'Spa_elms',           // gebruik fallback als dit ontbreekt
+  spa_4h:            'Spa_Francorchamps_elms',           // gebruik fallback als dit ontbreekt
   silverstone_4h:    'Silverstone_elms',
   portimao_4h:       'Algarve_elms',
 }
 
 const MLMC_SVG: Record<string, string> = {
   barcelona:         'Barcelona_mlmc',
-  le_castellet:      'Paul_Ricard_mlms',   // let op: mlms (jouw bestandsnaam)
+  le_castellet:      'Paul_Ricard_mlmc',   // let op: mlms (jouw bestandsnaam)
   road_to_le_mans:   'la_Sarthe_mlmc',
   imola:             'Imola_mlmc',
   spa:               'Spa_Francorchamps_mlmc',
