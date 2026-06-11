@@ -12,7 +12,7 @@ const serieMap: Record<string, SeriesId> = {
 const serieKleur: Record<string, string> = {
   F1: '#e10600', WEC: '#3b82f6', MotoGP: '#f97316',
   GT3: '#22c55e', IMSA: '#a855f7', WorldSBK: '#ec4899',
-  ELMS: '#f97316', MLMC: '#f97316',
+  ELMS: '#06b6d4', MLMC: '#f59e0b',
 }
 
 const sessieLabels: Record<string, string> = {
