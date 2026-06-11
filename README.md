@@ -23,7 +23,7 @@
 
 ---
 
-## Opstarten
+## Opstarten -
 
 ```bash
 # 1. Clone
