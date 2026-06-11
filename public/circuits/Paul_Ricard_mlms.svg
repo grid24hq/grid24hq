@@ -1,12 +1,12 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 421 211">
 <style>
                     path, polyline, polygon, line, circle {
-                        stroke: #06b6d4 !important;
+                        stroke: #ffcc00 !important;
                         stroke-width: 3.5px !important;
                         fill: none !important;
                         stroke-linecap: round !important;
                         stroke-linejoin: round !important;
-                        filter: drop-shadow(0px 0px 5px #0ea5e9) !important;
+                        filter: drop-shadow(0px 0px 5px #ffe600) !important;
                     }
                 </style>
 
