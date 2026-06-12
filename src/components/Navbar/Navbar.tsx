@@ -39,14 +39,22 @@ const WEC_ITEMS = [
   { to: '/wec',        label: 'WEC',                     sub: 'Hypercar · GT3 (LMGT3)',    color: '#3b82f6' },
   { to: '/elms',       label: 'European Le Mans Series',  sub: 'LMP2 · LMGT3 · LMP3',      color: '#f97316' },
   { to: '/lemanscup',  label: 'Michelin Le Mans Cup',     sub: 'GT3 · LMP3 · LMP3 Pro/Am', color: '#f59e0b' },
-  { to: '/klassement', label: 'Klassement 2026',          sub: 'WEC · ELMS · LM Cup',       color: '#22c55e' },
 ]
 
-function WecDropdown({ onClose }: { onClose: () => void }) {
+// ─── Standen dropdown items ───────────────────────────────────────────────────
+const STANDEN_ITEMS = [
+  { to: '/standen/f1',       label: 'Formule 1',             sub: 'Rijders · Constructeurs',    color: '#e10600' },
+  { to: '/standen/wec',       label: 'WEC',                   sub: 'Hypercar · LMP2 · GT3',       color: '#3b82f6' },
+  { to: '/standen/imsa',      label: 'IMSA',                  sub: 'GTP · LMP2 · GTD · GTD Pro',  color: '#a855f7' },
+  { to: '/standen/motogp',    label: 'MotoGP',                sub: 'MotoGP · Moto2 · Moto3',      color: '#f97316' },
+  { to: '/standen/worldsbk',  label: 'WorldSBK',              sub: 'WorldSBK · WorldSSP',         color: '#ec4899' },
+]
+
+function Dropdown({ items, onClose }: { items: typeof WEC_ITEMS; onClose: () => void }) {
   return (
     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-72 bg-brand-black border border-brand-border rounded-xl shadow-2xl overflow-hidden z-50">
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-orange-500 to-yellow-500" />
-      {WEC_ITEMS.map(item => (
+      {items.map(item => (
         <NavLink
           key={item.to}
           to={item.to}
@@ -73,19 +81,23 @@ export default function Navbar() {
   const navigate             = useNavigate()
   const location             = useLocation()
   const isLive               = useIsLive()
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const [wecOpen, setWecOpen]     = useState(false)
-  const menuRef  = useRef<HTMLDivElement>(null)
-  const wecRef   = useRef<HTMLDivElement>(null)
+  const [menuOpen, setMenuOpen]       = useState(false)
+  const [wecOpen, setWecOpen]         = useState(false)
+  const [standenOpen, setStandenOpen] = useState(false)
+  const menuRef     = useRef<HTMLDivElement>(null)
+  const wecRef      = useRef<HTMLDivElement>(null)
+  const standenRef  = useRef<HTMLDivElement>(null)
 
-  const isWecActive = ['/wec', '/elms', '/lemanscup'].some(p => location.pathname.startsWith(p))
+  const isWecActive     = ['/wec', '/elms', '/lemanscup'].some(p => location.pathname.startsWith(p))
+  const isStandenActive = location.pathname.startsWith('/standen')
 
-  useEffect(() => { setMenuOpen(false); setWecOpen(false) }, [location.pathname])
+  useEffect(() => { setMenuOpen(false); setWecOpen(false); setStandenOpen(false) }, [location.pathname])
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false)
-      if (wecRef.current  && !wecRef.current.contains(e.target as Node))  setWecOpen(false)
+      if (menuRef.current    && !menuRef.current.contains(e.target as Node))    setMenuOpen(false)
+      if (wecRef.current     && !wecRef.current.contains(e.target as Node))     setWecOpen(false)
+      if (standenRef.current && !standenRef.current.contains(e.target as Node)) setStandenOpen(false)
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -102,7 +114,6 @@ export default function Navbar() {
     { to: '/',         label: t('nav.home') },
     { to: '/f1',       label: 'F1' },
     { to: '/motogp',   label: 'MotoGP' },
-    { to: '/gt3',      label: 'GT3' },
     { to: '/imsa',     label: 'IMSA' },
     { to: '/worldsbk', label: 'WorldSBK' },
     { to: '/circuits', label: t('nav.circuits') },
@@ -143,7 +154,7 @@ export default function Navbar() {
             </button>
             {wecOpen && (
               <div onMouseLeave={() => setWecOpen(false)}>
-                <WecDropdown onClose={() => setWecOpen(false)} />
+                <Dropdown items={WEC_ITEMS} onClose={() => setWecOpen(false)} />
               </div>
             )}
           </div>
@@ -153,6 +164,28 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
+
+          {/* Standen dropdown */}
+          <div ref={standenRef} className="relative">
+            <button
+              onClick={() => setStandenOpen(v => !v)}
+              onMouseEnter={() => setStandenOpen(true)}
+              className={`nav-link flex items-center gap-1 ${isStandenActive ? 'active' : ''}`}
+            >
+              Standen
+              <svg
+                width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                className={`transition-transform duration-200 ${standenOpen ? 'rotate-180' : ''}`}
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            {standenOpen && (
+              <div onMouseLeave={() => setStandenOpen(false)}>
+                <Dropdown items={STANDEN_ITEMS} onClose={() => setStandenOpen(false)} />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Desktop rechts */}
@@ -231,6 +264,28 @@ export default function Navbar() {
                 {label}
               </NavLink>
             ))}
+
+            {/* Standen sectie in mobiel menu */}
+            <div className="border border-brand-border/50 rounded-lg overflow-hidden">
+              <div className="px-4 py-2 font-ui text-[10px] text-brand-muted uppercase tracking-widest bg-white/[0.02]">
+                Standen
+              </div>
+              {STANDEN_ITEMS.map(item => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-3 transition-colors border-t border-brand-border/30 ${isActive ? 'bg-brand-orange/10 text-brand-orange' : 'text-brand-muted hover:text-brand-light hover:bg-white/5'}`
+                  }
+                >
+                  <div className="w-1 h-6 rounded-full flex-shrink-0" style={{ background: item.color }} />
+                  <div>
+                    <div className="font-ui text-sm font-semibold">{item.label}</div>
+                    <div className="font-ui text-[11px] opacity-60">{item.sub}</div>
+                  </div>
+                </NavLink>
+              ))}
+            </div>
           </div>
 
           <div className="px-4 py-3 border-t border-brand-border flex items-center justify-between">
