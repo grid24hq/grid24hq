@@ -17,7 +17,7 @@ import { Login, Register } from '@/pages/Auth'
 const WEC        = lazy(() => import('@/pages/WEC'))
 const ELMS        = lazy(() => import('@/pages/WEC/ELMS'))
 const LeMansCup   = lazy(() => import('@/pages/WEC/LeMansCup'))
-const Klassement  = lazy(() => import('@/pages/Klassement/Klassement'))
+const Standen     = lazy(() => import('@/pages/Standen/Standen'))
 const MotoGP     = lazy(() => import('@/pages/MotoGP'))
 const GT3      = lazy(() => import('@/pages/GT3'))
 const IMSA     = lazy(() => import('@/pages/IMSA'))
@@ -72,7 +72,7 @@ export default function App() {
               <Route path="wec"       element={<WEC />} />
               <Route path="elms"        element={<ELMS />} />
               <Route path="lemanscup"   element={<LeMansCup />} />
-              <Route path="klassement"  element={<Klassement />} />
+              <Route path="standen/:serie" element={<Standen />} />
               <Route path="motogp"  element={<MotoGP />} />
               <Route path="gt3"     element={<GT3 />} />
               <Route path="imsa"    element={<IMSA />} />
