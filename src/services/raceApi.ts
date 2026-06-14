@@ -72,7 +72,7 @@ const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'ELMS', 'LeMansCup', 'IMSA', 'WorldS
 export async function getSessieStatus(): Promise<Record<string, boolean>> {
   try {
     // Haalt direct de actuele /Sessie_Status.json op uit Firebase
-    const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json`)
+    const res = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json?t=${Date.now()}`)
     if (!res.ok) return {}
     const data = await res.json()
     return data ?? {}
@@ -125,7 +125,7 @@ export async function getLiveSessies(): Promise<LiveSessie[]> {
 
     for (const klasse of RACE_SERIES) {
       try {
-        const res = await fetch(`${FIREBASE_RTDB}/${klasse}.json`)
+        const res = await fetch(`${FIREBASE_RTDB}/${klasse}.json?t=${Date.now()}`)
         if (!res.ok) continue
         const jaren: Record<string, Record<string, { Algemeen_Sessie?: FirebaseAlgemeenSessie }>> | null = await res.json()
         if (!jaren) continue
@@ -168,7 +168,8 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
 
   try {
     // Correct pad: Live_Timing (zoals Python tracker schrijft)
-    const url = `${FIREBASE_RTDB}/${sessionId}/Live_Timing.json`
+    // Cache-busting timestamp om te voorkomen dat browser/CDN stale data toont
+    const url = `${FIREBASE_RTDB}/${sessionId}/Live_Timing.json?t=${Date.now()}`
     const res  = await fetch(url)
     if (!res.ok) throw new Error(`Firebase fetch fout: ${res.status}`)
 
@@ -197,16 +198,11 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
     const entries: TimingEntry[] = alleRijders.map((rijder) => {
       const isLeider = rijder.huidige_positie === 1
 
-      let gap = 'LEADER'
-      if (!isLeider) {
-        const rijderTijdMs =
-          tijdNaarMs(rijder.snelste_rondetijd) ?? tijdNaarMs(rijder.laatste_rondetijd)
-        if (rijderTijdMs !== null && leiderTijdMs !== null) {
-          const diffMs = rijderTijdMs - leiderTijdMs
-          gap = diffMs >= 0 ? `+${(diffMs / 1000).toFixed(3)}` : '-'
-        } else {
-          gap = '-'
-        }
+      // Gebruik gap/interval direct uit Firebase (formatter berekent dit al correct)
+      // Fallback naar rondetijd-berekening alleen als Firebase-gap ontbreekt
+      let gap = (rijder as any).gap ?? 'LEADER'
+      if (!gap || gap === '-0' || gap === '') {
+        gap = isLeider ? 'LEADER' : '-'
       }
 
       // Status bepalen op basis van optioneel status-veld
@@ -229,7 +225,7 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
         sector2:     rijder.sprint?.sectoren.s2 ?? '-',
         sector3:     rijder.sprint?.sectoren.s3 ?? '-',
         status,
-        pits:        rijder.endurance?.totaal_pitstops ?? 0,
+        pits:        (rijder as any).pit_count ?? rijder.endurance?.totaal_pitstops ?? 0,
       }
     })
 
