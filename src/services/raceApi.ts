@@ -60,7 +60,7 @@ export interface LiveSessie {
 }
 
 // Bekende race series — Kalender en andere keys worden overgeslagen
-const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'GT3', 'IMSA', 'WorldSBK']
+const RACE_SERIES = ['F1', 'MotoGP', 'WEC', 'ELMS', 'LeMansCup', 'IMSA', 'WorldSBK']
 
 // ─── Sessie Status (schakelaar vanuit Command Center) ─────────────────────────
 
