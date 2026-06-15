@@ -434,7 +434,7 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
                 {/* Motor groot liggend */}
                 <div className="rounded-2xl flex items-center justify-center p-5"
                   style={{ background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.02))`, border: `1px solid ${merkKleur}30`, height: 210 }}>
-                  <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse}
+                  <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} rijderId={rijder.id}
                     style={{ width: '100%', height: '100%', objectFit: 'contain', filter: `drop-shadow(0 8px 24px ${merkKleur}60)` }} />
                 </div>
 
