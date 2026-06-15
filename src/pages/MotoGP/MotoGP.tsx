@@ -506,49 +506,111 @@ function RijderPopup({ rijder, klasse, onSluit }: { rijder: Rijder; klasse: Klas
   )
 }
 
-// ─── Rijder rij ───────────────────────────────────────────────────────────────
+// ─── Rijder rij — Asymmetrical Layered Row (MotoGP) ──────────────────────────
 function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse: Klasse; isEven: boolean; onKlik: () => void }) {
   const klasseKleur = KLASSE_CONFIG[klasse].kleur
   const merkKleur   = MERK_KLEUREN[rijder.merk] ?? klasseKleur
 
   return (
-    <div className="relative grid items-center group transition-all cursor-pointer hover:brightness-110"
-      style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: isEven ? 'rgba(255,255,255,0.03)' : 'transparent', borderBottom: '1px solid rgba(255,255,255,0.06)', minHeight: 80 }}
-      onClick={onKlik}>
-      <div className="absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-r" style={{ background: klasseKleur }} />
-      <div className="flex items-center justify-center pl-3">
+    <div
+      className="relative flex items-center group cursor-pointer overflow-hidden transition-all duration-300"
+      style={{
+        background: isEven ? 'rgba(255,255,255,0.025)' : 'transparent',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        minHeight: 88,
+      }}
+      onClick={onKlik}
+      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.06)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = isEven ? 'rgba(255,255,255,0.025)' : 'transparent' }}
+    >
+      {/* Hover: gekleurde linkerkant balk in klasse-kleur */}
+      <div className="absolute left-0 top-0 h-full w-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-r"
+        style={{ background: klasseKleur }} />
+
+      {/* Groot racenummer op achtergrond — merkkleur voor extra diepte */}
+      <div className="absolute font-head font-black select-none pointer-events-none"
+        style={{
+          fontSize: 96,
+          color: merkKleur,
+          opacity: 0.07,
+          left: '28%',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          lineHeight: 1,
+          letterSpacing: '-4px',
+        }}>
+        {rijder.nummer}
+      </div>
+
+      {/* Vlag */}
+      <div className="flex-shrink-0 flex items-center justify-center pl-4" style={{ width: 44 }}>
         <img src={`/motogp/flags/${rijder.landCode}.svg`} alt={rijder.landCode}
-          className="rounded-sm" style={{ width: 28, height: 18, objectFit: 'cover' }}
+          className="rounded-sm" style={{ width: 26, height: 17, objectFit: 'cover' }}
           onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
       </div>
-      <div className="flex items-center justify-center py-2">
-        <div className="overflow-hidden rounded-lg" style={{ width: 96, height: 72 }}>
-          <RiderImg rijder={rijder} klasse={klasse}
-            style={{ width: 96, height: 72, objectFit: 'cover', objectPosition: 'top center' }} />
+
+      {/* Rijderfoto — snijdt iets omhoog uit de rij */}
+      <div className="flex-shrink-0 relative" style={{ width: 80, height: 88, overflow: 'hidden' }}>
+        <RiderImg rijder={rijder} klasse={klasse} style={{
+          width: 80, height: 100,
+          objectFit: 'cover', objectPosition: 'top center',
+          marginTop: -4,
+          filter: 'drop-shadow(2px 0 8px rgba(0,0,0,0.5))',
+        }} />
+      </div>
+
+      {/* Naam + merk + teamnaam */}
+      <div className="flex-1 flex flex-col justify-center px-5 min-w-0">
+        <div className="flex items-baseline gap-2">
+          <span className="font-ui text-sm text-white/40 group-hover:text-white/60 transition-colors">
+            {rijder.voornaam}
+          </span>
+          <span className="font-head font-black text-xl uppercase text-white tracking-wide">
+            {rijder.naam}
+          </span>
+        </div>
+        <div className="flex items-center gap-2 mt-0.5">
+          <div className="w-0.5 h-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
+          <span className="font-ui text-xs font-bold uppercase tracking-wider flex-shrink-0"
+            style={{ color: merkKleur, opacity: 0.85 }}>
+            {rijder.merk}
+          </span>
+          <span className="font-ui text-xs text-white/25">·</span>
+          <span className="font-ui text-xs text-white/30 group-hover:text-white/50 transition-colors truncate">
+            {rijder.team}
+          </span>
         </div>
       </div>
-      <div className="flex items-center gap-2 px-4">
-        <span className="font-ui text-sm text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">{rijder.voornaam}</span>
-        <span className="font-head font-black text-lg uppercase text-white tracking-wide whitespace-nowrap">{rijder.naam}</span>
-      </div>
-      <div className="flex items-center justify-center">
-        <span className="font-head font-black text-sm w-11 h-8 flex items-center justify-center rounded"
-          style={{ background: klasseKleur + '33', color: klasseKleur, border: `1px solid ${klasseKleur}55` }}>
+
+      {/* Racenummer badge */}
+      <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 56 }}>
+        <span className="font-head font-black text-sm w-10 h-8 flex items-center justify-center rounded"
+          style={{ background: klasseKleur + '28', color: klasseKleur, border: `1px solid ${klasseKleur}50` }}>
           {rijder.nummer}
         </span>
       </div>
-      <div className="flex items-center justify-center rounded-lg mx-2"
-        style={{ height: 56, background: `linear-gradient(135deg, ${merkKleur}15, rgba(255,255,255,0.03))`, border: `1px solid ${merkKleur}25` }}>
+
+      {/* Motor — licht gedraaid voor diepte, merkkleur gloed */}
+      <div className="flex-shrink-0 relative flex items-center justify-center"
+        style={{ width: 220, height: 88, overflow: 'visible' }}>
+        <div className="absolute inset-y-4 left-0 right-3 rounded-xl"
+          style={{ background: `linear-gradient(135deg, ${merkKleur}15, transparent)`, border: `1px solid ${merkKleur}22` }} />
         <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} rijderId={rijder.id}
-          style={{ width: 190, height: 46, objectFit: 'contain', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.7))' }} />
-      </div>
-      <div className="flex items-center gap-2 px-4">
-        <div className="w-0.5 self-stretch my-3 rounded-full flex-shrink-0" style={{ background: klasseKleur }} />
-        <span className="font-ui text-sm text-white/40 group-hover:text-white transition-colors truncate">{rijder.team}</span>
+          style={{
+            position: 'relative',
+            width: 200,
+            height: 68,
+            objectFit: 'contain',
+            objectPosition: 'center',
+            filter: `drop-shadow(0 3px 10px ${merkKleur}50)`,
+            transform: 'rotate(-3deg) translateX(4px)',
+            transition: 'transform 0.3s ease, filter 0.3s ease',
+          }} />
       </div>
     </div>
   )
 }
+
 
 // ─── Hoofdpagina ──────────────────────────────────────────────────────────────
 export default function MotoGP() {
@@ -603,13 +665,18 @@ export default function MotoGP() {
       </div>
 
       <div className="rounded-xl overflow-hidden" style={{ background: '#111', border: '1px solid #1e1e1e' }}>
-        <div className="grid items-center"
-          style={{ gridTemplateColumns: '40px 96px 260px 60px 200px 1fr', background: '#0a0a0a', borderBottom: '1px solid #222' }}>
-          <div /><div />
-          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Rijder</span></div>
-          <div className="flex justify-center py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span></div>
-          <div className="px-2 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Motor</span></div>
-          <div className="px-4 py-3"><span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Team</span></div>
+        <div className="flex items-center" style={{ background: '#0a0a0a', borderBottom: '1px solid #222' }}>
+          <div style={{ width: 44 }} />
+          <div style={{ width: 80 }} />
+          <div className="flex-1 px-5 py-3">
+            <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Rijder</span>
+          </div>
+          <div className="flex justify-center py-3" style={{ width: 56 }}>
+            <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span>
+          </div>
+          <div className="py-3" style={{ width: 220 }}>
+            <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Motor</span>
+          </div>
         </div>
         {gefilterd.map((r, i) => (
           <RijderRij key={r.id} rijder={r} klasse={klasse} isEven={i % 2 === 0} onKlik={() => setPopup(r)} />
