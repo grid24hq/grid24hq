@@ -443,9 +443,9 @@ function RijderRij({ rijder, isEven, onKlik }: { rijder: Rijder; isEven: boolean
           fontSize: 96,
           color: kleur,
           opacity: 0.06,
-          left: '30%',
+          left: '55%',
           top: '50%',
-          transform: 'translateY(-50%)',
+          transform: 'translate(-50%, -50%)',
           lineHeight: 1,
           letterSpacing: '-4px',
         }}>
