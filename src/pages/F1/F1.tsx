@@ -495,21 +495,20 @@ function RijderRij({ rijder, isEven, onKlik }: { rijder: Rijder; isEven: boolean
         </span>
       </div>
 
-      {/* Auto — breekt visueel uit naar rechts */}
-      <div className="flex-shrink-0 relative flex items-center"
-        style={{ width: 260, height: 88, overflow: 'visible' }}>
-        {/* Subtiele teamkleur achtergrond */}
-        <div className="absolute inset-y-3 left-0 right-4 rounded-xl"
-          style={{ background: `linear-gradient(135deg, ${kleur}12, transparent)`, border: `1px solid ${kleur}20` }} />
-        {/* Auto afbeelding — iets groter dan de rij, breedt uitkijkend */}
+      {/* Auto — brede box met teamkleur, auto volledig zichtbaar */}
+      <div className="flex-shrink-0 relative flex items-center justify-center"
+        style={{ width: 320, height: 88, overflow: 'hidden' }}>
+        {/* Teamkleur achtergrond box — zichtbaar en vol */}
+        <div className="absolute inset-y-2 left-2 right-2 rounded-xl"
+          style={{ background: `linear-gradient(135deg, ${kleur}22, ${kleur}08)`, border: `1px solid ${kleur}40` }} />
+        {/* Auto afbeelding — gecentreerd en volledig in de box */}
         <CarImg teamId={rijder.teamId} style={{
           position: 'relative',
-          width: 270,
-          height: 72,
+          width: 300,
+          height: 76,
           objectFit: 'contain',
-          objectPosition: 'center right',
-          filter: `drop-shadow(0 2px 12px ${kleur}40)`,
-          transform: 'translateX(8px)',
+          objectPosition: 'center',
+          filter: `drop-shadow(0 2px 14px ${kleur}50)`,
           transition: 'transform 0.3s ease, filter 0.3s ease',
         }} />
       </div>
@@ -578,7 +577,7 @@ export default function F1() {
           <div className="flex justify-center py-3" style={{ width: 56 }}>
             <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span>
           </div>
-          <div className="py-3" style={{ width: 260 }}>
+          <div className="py-3" style={{ width: 320 }}>
             <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Car</span>
           </div>
         </div>
