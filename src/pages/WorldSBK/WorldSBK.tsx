@@ -495,7 +495,7 @@ function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse:
 
       {/* Groot racenummer op achtergrond */}
       <div className="absolute font-head font-black select-none pointer-events-none"
-        style={{ fontSize: 96, color: merkKleur, opacity: 0.07, left: '28%', top: '50%', transform: 'translateY(-50%)', lineHeight: 1, letterSpacing: '-4px' }}>
+        style={{ fontSize: 96, color: merkKleur, opacity: 0.07, left: '55%', top: '50%', transform: 'translate(-50%, -50%)', lineHeight: 1, letterSpacing: '-4px' }}>
         {rijder.nummer}
       </div>
 
