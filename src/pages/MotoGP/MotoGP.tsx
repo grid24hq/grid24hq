@@ -590,20 +590,20 @@ function RijderRij({ rijder, klasse, isEven, onKlik }: { rijder: Rijder; klasse:
         </span>
       </div>
 
-      {/* Motor — licht gedraaid voor diepte, merkkleur gloed */}
+      {/* Motor — brede box, merkkleur achtergrond, volledig zichtbaar */}
       <div className="flex-shrink-0 relative flex items-center justify-center"
-        style={{ width: 220, height: 88, overflow: 'visible' }}>
-        <div className="absolute inset-y-4 left-0 right-3 rounded-xl"
-          style={{ background: `linear-gradient(135deg, ${merkKleur}15, transparent)`, border: `1px solid ${merkKleur}22` }} />
+        style={{ width: 280, height: 88, overflow: 'hidden' }}>
+        <div className="absolute inset-y-2 left-2 right-2 rounded-xl"
+          style={{ background: `linear-gradient(135deg, ${merkKleur}22, ${merkKleur}08)`, border: `1px solid ${merkKleur}40` }} />
         <BikeImg team={rijder.team} merk={rijder.merk} klasse={klasse} rijderId={rijder.id}
           style={{
             position: 'relative',
-            width: 200,
-            height: 68,
+            width: 240,
+            height: 72,
             objectFit: 'contain',
             objectPosition: 'center',
-            filter: `drop-shadow(0 3px 10px ${merkKleur}50)`,
-            transform: 'rotate(-3deg) translateX(4px)',
+            filter: `drop-shadow(0 3px 12px ${merkKleur}60)`,
+            transform: 'rotate(-3deg)',
             transition: 'transform 0.3s ease, filter 0.3s ease',
           }} />
       </div>
@@ -674,7 +674,7 @@ export default function MotoGP() {
           <div className="flex justify-center py-3" style={{ width: 56 }}>
             <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">#</span>
           </div>
-          <div className="py-3" style={{ width: 220 }}>
+          <div className="py-3" style={{ width: 280 }}>
             <span className="font-ui text-[11px] font-bold uppercase tracking-[2px] text-white/40">Motor</span>
           </div>
         </div>
