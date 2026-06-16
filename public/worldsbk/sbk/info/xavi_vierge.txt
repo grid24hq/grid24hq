@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Pata Maxus Yamaha WorldSBK Official Team
+Racenummer: #97
+Nationaliteit: Spaans (ESP)
+
+Kleurstelling:
+Het karakteristieke Yamaha-raceblauw, aangevuld met de prominente rood-witte logo's van Pata en de branding van Maxus.
+
+Specificaties:
+Uitgerust met de iconische 998cc vier-in-lijn crossplane (CP4) motor van Yamaha, die beschikt over een vermogen van circa 240 pk.
+
+Status & Ervaring:
+Xavi Vierge maakt in 2026 zijn debuut in de kleuren van Pata Maxus Yamaha na de overstap van Honda. Met zijn agressieve en vechtlustige instelling vormt hij een dynamisch nieuw duo met Locatelli om Yamaha terug naar de absolute top te brengen.
+
+=== MOTOR ===
+YAMAHA YZF-R1 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn (Crossplane / CP4)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Ongeveer 240 pk
+Topsnelheid : > 338 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins RVP25 telescopische upside-down voorvork
+Achtervering : Öhlins RSP40 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli / Yamaha Racing Electronic System
+Uitlaat : Akrapovič titanium uitlaat

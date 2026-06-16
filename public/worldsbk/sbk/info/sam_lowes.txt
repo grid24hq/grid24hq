@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Marc VDS Racing Team (Ducati)
+Racenummer: #14
+Nationaliteit: Brits (GBR)
+
+Kleurstelling:
+Het herkenbare en chique diep-donkerblauw van Marc VDS, versierd met de iconische brullende rode kat/leeuw en zilveren details.
+
+Specificaties:
+Aangedreven door de krachtige 998cc V4-motor van Ducati (Panigale V4 R), met een vermogen van meer dan 242 pk.
+
+Status & Ervaring:
+Sam Lowes vertegenwoordigt het prestigieuze Marc VDS Racing Team op een satellietspecificatie Ducati Panigale V4 R in 2026. Lowes staat bekend om zijn spectaculaire rijstijl met veel slide-werk bij het insturen van de bochten.
+
+=== MOTOR ===
+DUCATI PANIGALE V4 R (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 90° V-4
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 242 pk
+Topsnelheid : > 343 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium "Front Frame"
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins telescopische upside-down voorvork
+Achtervering : Öhlins achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli
+Uitlaat : Akrapovič titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: bimota by Kawasaki Racing Team (BbKRT)
+Racenummer: #47
+Nationaliteit: Italiaans (ITA)
+
+Kleurstelling:
+De exclusieve en aerodynamische Italiaanse styling van Bimota (rood-wit) gecombineerd met de subtiele, traditionele 'lime green' details van Kawasaki.
+
+Specificaties:
+De motorfiets is opgebouwd rondom het geavanceerde KB998 Rimini-chassis, aangedreven door het hoogtoerige Ninja ZX-10RR vier-in-lijn motorblok.
+
+Status & Ervaring:
+Axel Bassani vormt samen met Lowes het vurige rijdersduo voor Bimota in 2026. Bassani staat bekend om zijn agressieve duels op de baan en heeft het nieuwe chassis volledig omarmd om op de absolute limiet te kunnen strijden voor de overwinningen.
+
+=== MOTOR ===
+BIMOTA KB998 RIMINI (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn (Kawasaki-krachtbron)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 240 pk
+Topsnelheid : > 340 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Exclusief Bimota hybride chassis
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Showa telescopische upside-down voorvork
+Achtervering : Showa BFRC achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli
+Uitlaat : Akrapovič titanium uitlaat

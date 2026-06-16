@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Honda HRC
+Racenummer: #35
+Nationaliteit: Thais (THA)
+
+Kleurstelling:
+De bekende en strakke HRC-kleuren: een basis van wit met de iconische rode en blauwe Honda-racestrepen.
+
+Specificaties:
+Uitgerust met de extreem snelle 1000cc vier-in-lijn motor van de Honda CBR1000RR-R, die beschikt over een vermogen van meer dan 242 pk.
+
+Status & Ervaring:
+Somkiat Chantra maakt deel uit van de indrukwekkende Honda HRC-fabrieksopstelling voor 2026. Met zijn explosieve Moto2-rijstijl brengt hij een flinke dosis agressie mee naar het team om de CBR-R constant naar de top te pushen op het rechte stuk.
+
+=== MOTOR ===
+HONDA CBR1000RR-R FIREBLADE SP (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn
+Cilinderinhoud : 1.000 cc
+Maximaal vermogen : Meer dan 242 pk
+Topsnelheid : > 346 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium diamantframe
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins telescopische upside-down voorvork
+Achtervering : Öhlins achterschokdemper met Pro-Link
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli (HRC-software mapping)
+Uitlaat : Akrapovič titanium uitlaat

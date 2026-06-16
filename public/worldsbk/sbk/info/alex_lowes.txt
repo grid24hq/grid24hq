@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: bimota by Kawasaki Racing Team (BbKRT)
+Racenummer: #22
+Nationaliteit: Brits (GBR)
+
+Kleurstelling:
+De exclusieve en aerodynamische Italiaanse styling van Bimota (rood-wit) gecombineerd met de subtiele, traditionele 'lime green' details van Kawasaki.
+
+Specificaties:
+De motorfiets combineert het legendarische Italiaanse KB998 Rimini-chassis met het brute en betrouwbare Ninja ZX-10RR motorblok (ruim 240 pk).
+
+Status & Ervaring:
+Alex Lowes is uitgegroeid tot de dragende kracht van het prestigieuze Bimota/Kawasaki-project in 2026. Lowes gebruikt zijn verfijnde bochtensnelheid om de unieke stuureigenschappen van het Bimota-chassis om te zetten in constante top 5-klasseringen en podiumgevechten.
+
+=== MOTOR ===
+BIMOTA KB998 RIMINI (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn (Kawasaki-krachtbron)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 240 pk
+Topsnelheid : > 341 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Exclusief Bimota hybride chassis (chroom-molybuis gecombineerd met aluminium platen)
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Showa telescopische upside-down voorvork
+Achtervering : Showa BFRC achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli
+Uitlaat : Akrapovič titanium uitlaat

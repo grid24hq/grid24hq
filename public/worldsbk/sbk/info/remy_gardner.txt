@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: GYTR GRT Yamaha WorldSBK Team
+Racenummer: #87
+Nationaliteit: Australisch (AU)
+
+Kleurstelling:
+Het officiële Yamaha-raceblauw gecombineerd met witte GYTR-bestickering en de felle rode accenten van de hoofdsponsor.
+
+Specificaties:
+Uitgerust met de krachtige 1000cc crossplane vier-in-lijn motor van de Yamaha YZF-R1, goed voor een vermogen van ruim 230 pk.
+
+Status & Ervaring:
+Voormalig Moto2-wereldkampioen Remy Gardner begint aan zijn vierde opeenvolgende jaar bij het GRT Yamaha-team. Met meerdere WorldSBK-podiums op zijn naam is de snelle Australiër een constante uitdager voor de top 5-posities en het podium.
+
+=== MOTOR ===
+YAMAHA YZF-R1 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 4-cilinder-in-lijn met crossplane krukas
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 230 pk
+Topsnelheid : > 340 km/u
+Brandstofcapaciteit : 21 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame
+Gewicht : 168 kg (FIM WorldSBK-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins 46mm upside-down voorvork
+Achtervering : Öhlins RSP40 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli / Yamaha Racing SE
+Uitlaat : Akrapovič titanium uitlaatsysteem

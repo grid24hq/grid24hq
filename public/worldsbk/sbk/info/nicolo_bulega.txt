@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Aruba.it Racing - Ducati
+Racenummer: #11
+Nationaliteit: Italiaans (ITA)
+
+Kleurstelling:
+Het legendarische en felle Ducati-race-rood, gecombineerd met de strakke zwarte en witte accenten van hoofdsponsor Aruba.it.
+
+Specificaties:
+Uitgerust met de hoogtoerige 998cc V4-motor van Ducati, die beschikt over een vermogen van meer dan 245 pk.
+
+Status & Ervaring:
+Nicolò Bulega is de absolute kopman binnen het fabrieksteam van Ducati voor het seizoen 2026. Na sterke voorgaande jaren is de Panigale V4 R volledig afgestemd op zijn vloeiende en loepzuivere rijstijl, waarmee hij vanaf de eerste race meestrijdt voor de wereldtitel.
+
+=== MOTOR ===
+DUCATI PANIGALE V4 R (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 90° V-4 (Desmodromische klepbediening)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 245 pk
+Topsnelheid : > 345 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium "Front Frame" (Ducati Corse structuur)
+Gewicht : 168 kg (FIM-limiet inclusief WorldSBK-restricties)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins RVP25 telescopische upside-down voorvork
+Achtervering : Öhlins RSP40 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven (WorldSBK-reglement)
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli (WorldSBK-gespecificeerd)
+Uitlaat : Akrapovič titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Yamaha Motoxracing WorldSBK Team
+Racenummer: #54
+Nationaliteit: Turks (TR)
+
+Kleurstelling:
+Overwegend matzwart en wit met de kenmerkende Yamaha-blauwe racestrepen en flitsende rode accenten.
+
+Specificaties:
+Uitgerust met de 1000cc crossplane vier-in-lijn motor van de Yamaha YZF-R1, goed voor een vermogen van ruim 230 pk.
+
+Status & Ervaring:
+Het jonge Turkse talent Bahattin Sofuoglu blijft voor het tweede opeenvolgende jaar trouw aan het onafhankelijke Motoxracing Yamaha-team. Na een leerzaam debuutjaar in 2025 heeft hij de beschikking over verbeterde fabrieksupdates om stabiel in de punten te rijden.
+
+=== MOTOR ===
+YAMAHA YZF-R1 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 4-cilinder-in-lijn met crossplane krukas
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 230 pk
+Topsnelheid : > 340 km/u
+Brandstofcapaciteit : 21 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame
+Gewicht : 168 kg (FIM WorldSBK-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins TTX25 upside-down voorvork
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli / Yamaha Racing SE
+Uitlaat : SC-Project titanium uitlaatsysteem

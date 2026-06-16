@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Yamaha Motoxracing WorldSBK Team
+Racenummer: #13
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Overwegend matzwart en wit met de kenmerkende Yamaha-blauwe racestrepen en flitsende rode accenten.
+
+Specificaties:
+Uitgerust met de 1000cc crossplane vier-in-lijn motor van de Yamaha YZF-R1, goed voor een vermogen van ruim 230 pk.
+
+Status & Ervaring:
+De 20-jarige Italiaan Mattia Rato maakt na een sterk seizoen in het Italiaanse kampioenschap (CIV) en een knap WorldSSP-debuut onverwacht vroeg de overstap naar de zware 1000cc-machines. Hij stapt in de box naast Sofuoglu als veelbelovende WorldSBK-rookie om zonder druk te leren.
+
+=== MOTOR ===
+YAMAHA YZF-R1 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 4-cilinder-in-lijn met crossplane krukas
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 230 pk
+Topsnelheid : > 340 km/u
+Brandstofcapaciteit : 21 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame
+Gewicht : 168 kg (FIM WorldSBK-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins TTX25 upside-down voorvork
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Magneti Marelli / Yamaha Racing SE
+Uitlaat : SC-Project titanium uitlaatsysteem

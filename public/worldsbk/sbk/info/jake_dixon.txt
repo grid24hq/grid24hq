@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Honda HRC
+Racenummer: #96
+Nationaliteit: Brits (GBR)
+
+Kleurstelling:
+De bekende en strakke HRC-kleuren: een basis van wit met de iconische rode en blauwe Honda-racestrepen.
+
+Specificaties:
+Uitgerust met de hoogtoerige 1000cc vier-in-lijn motor van de Honda CBR1000RR-R, goed voor een vermogen van ruim 242 pk.
+
+Status & Ervaring:
+De Brit Jake Dixon voegt zich in 2026 bij het fabrieksteam van Honda HRC. Bekend om zijn charisma en vastberadenheid, gebruikt hij de wintertests om de ingrijpend vernieuwde elektronica en het chassis van de Fireblade volledig naar zijn hand te zetten.
+
+=== MOTOR ===
+HONDA CBR1000RR-R FIREBLADE SP (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn
+Cilinderinhoud : 1.000 cc
+Maximaal vermogen : Meer dan 242 pk
+Topsnelheid : > 345 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium diamantframe
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins telescopische upside-down voorvork
+Achtervering : Öhlins achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli (HRC-software mapping)
+Uitlaat : Akrapovič titanium uitlaat

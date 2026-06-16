@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: ROKiT BMW Motorrad WorldSBK Team
+Racenummer: #88
+Nationaliteit: Portugees (POR)
+
+Kleurstelling:
+De herkenbare, strakke witte basis van BMW gecombineerd met de zwarte, rode en turquoise branding van hoofdsponsor ROKiT.
+
+Specificaties:
+Aangedreven door de krachtige 999cc vier-in-lijn motor van BMW met ShiftCam-technologie, goed voor ruim 240 pk.
+
+Status & Ervaring:
+Miguel Oliveira heeft de overstap gemaakt vanuit de MotoGP naar de WorldSBK als een van de absolute topaankopen voor BMW in 2026. Zijn verfijnde, vloeiende rijstijl en technische feedback moeten de BMW M 1000 RR helpen om constante overwinningen binnen te slepen.
+
+=== MOTOR ===
+BMW M 1000 RR (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, vier-in-lijn (BMW ShiftCam)
+Cilinderinhoud : 999 cc
+Maximaal vermogen : Meer dan 240 pk
+Topsnelheid : > 340 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium brugframe
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins telescopische upside-down voorvork
+Achtervering : Öhlins achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : BMW Motorrad Motorsport ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

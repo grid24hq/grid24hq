@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Barni Spark Racing Team
+Racenummer: #5
+Nationaliteit: Italiaans (ITA)
+
+Kleurstelling:
+Een opvallende en agressieve mix van glanzend zwart, Spark-geel en Ducati-rood, gepresenteerd tijdens de 2026 livery-onthulling.
+
+Specificaties:
+Uitgerust met de hoogwaardige 998cc V4-motor van Ducati, die beschikt over een vermogen van meer dan 245 pk.
+
+Status & Ervaring:
+Yari Montella behoudt zijn vaste plek binnen het Barni Spark Racing Team voor het seizoen 2026. Met de komst van de ervaren Bautista als teamgenoot heeft Montella de perfecte benchmark om door te groeien tot een constante podiumrijder in de koningsklasse.
+
+=== MOTOR ===
+DUCATI PANIGALE V4 R (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 90° V-4 (Desmodromische klepbediening)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 245 pk
+Topsnelheid : > 344 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium "Front Frame"
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins telescopische upside-down voorvork
+Achtervering : Öhlins achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli (WorldSBK-gespecificeerd)
+Uitlaat : Akrapovič titanium uitlaatsysteem

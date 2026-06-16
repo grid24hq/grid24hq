@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Aruba.it Racing - Ducati
+Racenummer: #7
+Nationaliteit: Spaans (ESP)
+
+Kleurstelling:
+Het legendarische en felle Ducati-race-rood, gecombineerd met de strakke zwarte en witte accenten van hoofdsponsor Aruba.it.
+
+Specificaties:
+Uitgerust met de hoogtoerige 998cc V4-motor van Ducati, die beschikt over een vermogen van meer dan 245 pk.
+
+Status & Ervaring:
+Iker Lecuona heeft voor het seizoen 2026 de overstap gemaakt naar het officiële Aruba.it Racing - Ducati fabrieksteam. Met zijn agressieve rijstijl probeert hij de brute kracht van de Panigale V4 R optimaal te benutten om een vaste podiumkandidaat te worden.
+
+=== MOTOR ===
+DUCATI PANIGALE V4 R (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 90° V-4 (Desmodromische klepbediening)
+Cilinderinhoud : 998 cc
+Maximaal vermogen : Meer dan 245 pk
+Topsnelheid : > 345 km/u
+Brandstofcapaciteit : 24 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium "Front Frame" (Ducati Corse structuur)
+Gewicht : 168 kg (FIM-limiet)
+
+OPHANGING & REMMEN
+Voorvering : Öhlins RVP25 telescopische upside-down voorvork
+Achtervering : Öhlins RSP40 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : Marelli (WorldSBK-gespecificeerd)
+Uitlaat : Akrapovič titanium uitlaatsysteem
