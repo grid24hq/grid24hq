@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Kawasaki WorldSSP Team
+Racenummer: #52
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het legendarische en felle Kawasaki-limegroen gecombineerd met diepzwarte accenten en sponsorlogo's.
+
+Specificaties:
+Aangedreven door de krachtige 636cc viercilindermotor van de Kawasaki Ninja ZX-6R, die binnen de WorldSSP 'Next Generation'-regels is afgesteld op maximale prestaties.
+
+Status & Ervaring:
+Na zijn overstap vanuit de Moto2 heeft de Spanjaard Jeremy Alcoba zich snel ontpopt tot een absolute kopman op de gifgroene machine. In 2026 zet hij zijn sterke vorm door bij het fabrieksteam met vaste jacht op podiumplaatsen en top 5-klasseringen.
+
+=== MOTOR ===
+KAWASAKI NINJA ZX-6R 636 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 4-cilinder-in-lijn, DOHC
+Cilinderinhoud : 636 cc
+Maximaal vermogen : Ongeveer 140-145 pk (volgens FIM-balansregels)
+Topsnelheid : > 295 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Geperst aluminium perimeterframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Showa Big Piston Front Fork (BPF) rspecificatie
+Achtervering : Uni-Trak achterwielophanging met Öhlins schokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met radiale klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Akrapovič titanium race-uitlaatsysteem

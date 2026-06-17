@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Flembbo by Racing Development
+Racenummer: #73
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Een flitsend en herkenbaar Flembbo-design met sportieve rode, gele en zwarte patronen op het kuipwerk.
+
+Specificaties:
+Klaargemaakt met een scherp afgestelde Supersport-krachtbron, optimaal gebalanceerd voor de Europese en mondiale circuits.
+
+Status & Ervaring:
+De Italiaan Jacopo Cretaro verdedigt de kleuren van het Flembbo-team. Cretaro richt zich in dit competitieve veld op het constant finishen in de punten en het achter zich laten van de overige onafhankelijke rijders.
+
+=== MOTOR ===
+FLEMBBO RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt racemotor
+Cilinderinhoud : Voldoet aan WorldSSP-limieten
+Maximaal vermogen : Ongeveer 140 pk
+Topsnelheid : > 290 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium buizen of balkenframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Volledig instelbare race-voorvork
+Achtervering : Gekoppelde achterdemper met instelbare demping
+Voorremmen : Dubbele stalen remschijven met race-remklauwen
+Achterrem : Enkele stalen remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Performance race-uitlaat

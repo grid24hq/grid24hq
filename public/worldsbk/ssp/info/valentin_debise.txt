@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: ZXMOTO Factory Evan Bros Racing
+Racenummer: #53
+Nationaliteit: Frans (FR)
+
+Kleurstelling:
+Het opvallende fabrieksschema van het Chinese ZXMOTO, gecombineerd met de traditionele zilver-zwarte accenten van het gerenommeerde Evan Bros Racing.
+
+Specificaties:
+Uitgerust met de gloednieuwe, krachtige 820cc driecilinder racemotor van de ZXMOTO 820RR, die speciaal is ontwikkeld voor de 'Next Generation' WorldSSP-klasse.
+
+Status & Ervaring:
+De zeer ervaren Franse rot Valentin Debise is speerpunt van het ambitieuze ZXMOTO-project in samenwerking met het topteam Evan Bros. Debise bewijst in 2026 de pure snelheid van de nieuwe machine door direct mee te strijden om overwinningen in het kampioenschap.
+
+=== MOTOR ===
+ZXMOTO 820RR (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn, DOHC
+Cilinderinhoud : 820 cc
+Maximaal vermogen : Ongeveer 145-148 pk (binnen FIM balance of performance)
+Topsnelheid : > 298 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium buizen/balken hybride frame
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down rsvork
+Achtervering : Öhlins TTX36 monoshock
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : SC-Project of Akrapovič titanium uitlaatsysteem

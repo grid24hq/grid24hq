@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Feel Racing WorldSSP Team
+Racenummer: #65
+Nationaliteit: Duits (DE)
+
+Kleurstelling:
+Een strak, professioneel en corporate designschema met hoofdzakelijk donkere en rode tinten van Feel Racing.
+
+Specificaties:
+Uitgerust met een competitieve Supersport-machine die door de ervaren technici van Feel Racing tot in de kleinste puntjes is opgebouwd.
+
+Status & Ervaring:
+De sympathieke Duitser Philipp Öttl keert na enkele jaren in de zware WorldSBK-klasse terug naar de WorldSSP, de klasse waarin hij voorheen grote successen en podiums vierde. Bij Feel Racing start hij als een van de meest ervaren rotten in het veld.
+
+=== MOTOR ===
+FEEL RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt multi-cilinder racemotor
+Cilinderinhoud : Conform WorldSSP Next-Gen reglementen
+Maximaal vermogen : Ongeveer 143-146 pk
+Topsnelheid : > 295 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium race-chassis
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins volledig instelbare race-voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met radiale remklauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Titanium high-performance uitlaatsysteem

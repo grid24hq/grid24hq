@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Honda Racing World Supersport
+Racenummer: #22
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het legendarische HRC-tricolore (rood, wit, blauw) met de persoonlijke roze en zwarte logo's van Carrasco.
+
+Specificaties:
+Aangedreven door de hoogtoerige 599cc Honda CBR600RR viercilinder.
+
+Status & Ervaring:
+Als voormalig WorldSSP300-wereldkampioene schrijft Ana Carrasco geschiedenis door fulltime uit te komen in de zware WorldSSP-klasse op de officiële Honda. Haar ongekende vechtlust en ervaring maken haar een gevaarlijke klant in de felle gevechten in de middenmoot.
+
+=== MOTOR ===
+HONDA CBR600RR (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 4-cilinder-in-lijn, vloeistofgekoeld, DOHC
+Cilinderinhoud : 599 cc
+Maximaal vermogen : ca. 142 pk
+Topsnelheid : > 281 km/u
+Brandstofcapaciteit : 16,5 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium twin-spar frame
+Gewicht : Gereguleerd conform FIM-gewicht
+
+OPHANGING & REMMEN
+Voorvering : Showa of Öhlins race-voorvork
+Achtervering : Showa / Öhlins achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Arrow of Akrapovič titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Pata Yamaha Ten Kate Racing
+Racenummer: #31
+Nationaliteit: Japans (JP)
+
+Kleurstelling:
+Het iconische Ten Kate-blauw met witte accenten en prominente Pata- sponsoring op de gloednieuwe Yamaha R9.
+
+Specificaties:
+Uitgerust met de officiële fabrieks-ondersteunde Yamaha YZF-R9 driecilinder, klaargemaakt door het legendarische Nederlandse Ten Kate-team.
+
+Status & Ervaring:
+De regerend Japans Superbike-kampioen Yuki Okamoto rijdt zijn tweede seizoen bij de Nederlandse tuners uit Nieuwleusen. Met zijn vloeiende en loepzuivere Japanse stijl is hij na een leerjaar klaar om constant voor het podium te vechten.
+
+=== MOTOR ===
+YAMAHA YZF-R9 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 3-cilinder-in-lijn (CP3), crossplane-concept, DOHC
+Cilinderinhoud : 890 cc
+Maximaal vermogen : ca. 145 pk (FIM BOP-afgesteld)
+Topsnelheid : > 289 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame (Ten Kate geoptimaliseerd)
+Gewicht : FIM WorldSSP minimumgewicht
+
+OPHANGING & REMMEN
+Voorvering : Öhlins geavanceerde upside-down voorvork
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium race-uitlaatsysteem

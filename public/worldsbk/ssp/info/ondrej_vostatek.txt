@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Compos Racing Team
+Racenummer: #50
+Nationaliteit: Tsjechisch (CZ)
+
+Kleurstelling:
+Strakke, herkenbare Compos-bestickering in blauw, wit en zwart op de kuipdelen van de Britse driecilinder.
+
+Specificaties:
+Uitgerust met de iconische 765cc driecilindermotor van Triumph (Street Triple RS), die in WorldSSP-trim goed is voor zo'n 145 pk.
+
+Status & Ervaring:
+De talentvolle Tsjech Ondřej Vostatek rijdt in 2026 voor het professionele Compos Racing Team. Vostatek heeft inmiddels een solide dosis ervaring opgebouwd in de WorldSSP-klasse en vecht stabiel mee om de puntenposities.
+
+=== MOTOR ===
+TRIUMPH STREET TRIPLE RS 765 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 12 kleppen, DOHC, 3-cilinder-in-lijn
+Cilinderinhoud : 765 cc
+Maximaal vermogen : Ongeveer 145 pk
+Topsnelheid : > 295 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium balkenframe met tweedelig gegoten subframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins of Showa upside-down voorvork met volledige instelbaarheid
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met race-remklauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Arrow of Akrapovič titanium race-uitlaatsysteem

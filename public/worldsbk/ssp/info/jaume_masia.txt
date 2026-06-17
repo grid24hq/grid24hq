@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Orelac Racing Verdnatura
+Racenummer: #5
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het herkenbare groen met wit en zwart van het Orelac-team, aangevuld met felle persoonlijke accenten van Masia.
+
+Specificaties:
+Uitgerust met de uiterst competitieve Ducati Panigale V2, de tweecilinder die bekendstaat om zijn brute koppel onderin.
+
+Status & Ervaring:
+Voormalig Moto3-wereldkampioen Jaume Masia is na zijn overstap uit de GP-paddock uitgegroeid tot een absolute titelkandidaat in de WorldSSP. De Spanjaard heeft zijn draai op de Orelac Ducati volledig gevonden en vecht constant mee om overwinningen en polepositions.
+
+=== MOTOR ===
+DUCATI PANIGALE V2 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Superquadro: L-Twin cilinder, 4 kleppen per cilinder, Desmodromisch
+Cilinderinhoud : 955 cc
+Maximaal vermogen : ca. 145 pk (FIM BOP-beperkt)
+Topsnelheid : > 290 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Monocoque aluminium frame
+Gewicht : Gereguleerd volgens FIM WorldSSP-gewichtstabel
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork met racing cartridges
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen schijven met monoblock klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium race-uitlaat

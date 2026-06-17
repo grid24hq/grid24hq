@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: EAB Racing Team
+Racenummer: #43
+Nationaliteit: Deens (DK)
+
+Kleurstelling:
+Het herkenbare en strakke Nederlandse zwart met zilver en felle EAB-logo's op het kuipwerk.
+
+Specificaties:
+Uitgerust met de uiterst competitieve Ducati Panigale V2 tweecilinder.
+
+Status & Ervaring:
+De Deen Simon Jespersen, de ultieme 'supersub' uit het verleden, heeft zijn welverdiende vaste fulltime zitje bij het Nederlandse EAB Racing Team. Jespersen staat erom bekend direct vanaf de eerste training snel te zijn en is een vaste klant voor de top 10.
+
+=== MOTOR ===
+DUCATI PANIGALE V2 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Superquadro L-Twin, Desmodromisch
+Cilinderinhoud : 955 cc
+Maximaal vermogen : ca. 145 pk
+Topsnelheid : > 289 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium monocoque
+Gewicht : FIM WorldSSP-limiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

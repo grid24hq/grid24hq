@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: AS bLU cRU Racing Team
+Racenummer: #57
+Nationaliteit: Indonesisch (ID)
+
+Kleurstelling:
+Het officiële Yamaha bLU cRU-blauw, gecombineerd met wit en de specifieke logo's van het AS-raceteam.
+
+Specificaties:
+Uitgerust met de gloednieuwe 890cc driecilindermotor van de Yamaha YZF-R9, die vanaf het seizoen 2025/2026 de nieuwe standaard vormt voor Yamaha in WorldSSP.
+
+Status & Ervaring:
+Het Indonesische supertalent Aldi Mahendra stroomt via het bLU cRU-programma door naar het hoogste Supersport-niveau. Mahendra staat bekend om zijn felle rijstijl en geldt als een van de meest veelbelovende Aziatische rijders van dit moment.
+
+=== MOTOR ===
+YAMAHA YZF-R9 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn CP3, DOHC
+Cilinderinhoud : 890 cc
+Maximaal vermogen : Ongeveer 145 pk (begrenst via FIM ride-by-wire)
+Topsnelheid : > 296 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Gegoten aluminium Deltabox frame
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : KYB of Öhlins volledig instelbare voorvork
+Achtervering : Öhlins of KYB achterdemper met linksysteem
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 met Yamaha-mapprogrammatuur
+Uitlaat : Akrapovič titanium race-uitlaat

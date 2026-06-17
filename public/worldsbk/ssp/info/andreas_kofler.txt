@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Motorsport Kofler
+Racenummer: #19
+Nationaliteit: Oostenrijks (AT)
+
+Kleurstelling:
+Overwegend wit, rood en zwart, passend bij de Oostenrijkse teamidentiteit van de familie Kofler.
+
+Specificaties:
+Uitgerust met de uiterst stabiele Ducati Panigale V2 Next-Gen machine.
+
+Status & Ervaring:
+Andreas Kofler rijdt in zijn eigen vertrouwde familieteam. Na sterke seizoenen in de IDM Supersport-klassen maakt hij stappen op het allerhoogste wereldniveau, waarbij hij zich focust op het constant finishen in de WK-punten.
+
+=== MOTOR ===
+DUCATI PANIGALE V2 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 90° V-Twin (L-Twin) Superquadro
+Cilinderinhoud : 955 cc
+Maximaal vermogen : ca. 145 pk
+Topsnelheid : > 289 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium monocoque
+Gewicht : FIM WorldSSP-limiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo schijven
+Achterrem : Enkele Brembo schijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

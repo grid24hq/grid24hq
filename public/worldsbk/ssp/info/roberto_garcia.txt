@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: GMT94 Yamaha
+Racenummer: #37
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het klassieke en herkenbare diepblauw van de Franse GMT94-stal met witte en gele sponsoraccenten.
+
+Specificaties:
+Aangedreven door de gloednieuwe Yamaha YZF-R9 driecilinder krachtbron.
+
+Status & Ervaring:
+Het jonge Spaanse toptalent Roberto Garcia heeft de felbegeerde plek gekregen bij het legendarische Franse GMT94-team van Christophe Guyot. Garcia staat bekend om zijn snelle leercurve en is een van de dark horses voor podiums.
+
+=== MOTOR ===
+YAMAHA YZF-R9 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 3-cilinder-in-lijn, vloeistofgekoeld, DOHC
+Cilinderinhoud : 890 cc
+Maximaal vermogen : ca. 145 pk
+Topsnelheid : > 288 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Gegoten aluminium frame
+Gewicht : Gereguleerd conform FIM-regels
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

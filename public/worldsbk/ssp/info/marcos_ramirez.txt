@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: QJMOTOR Factory Racing
+Racenummer: #24
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Flitsend Chinees fabrieksknalrood gecombineerd met zilveren graphics en zwarte racestrepen.
+
+Specificaties:
+Uitgerust met de QJMOTOR SRK 800 RS Next-Gen racer.
+
+Status & Ervaring:
+De snelle Spanjaard Marcos Ramirez is de absolute topaankoop van de Chinese fabrikant voor het 2026-seizoen. Overgekomen met veel snelheid uit de Moto2, vormt hij een ijzersterk koningskoppel met De Rosa om QJMOTOR naar historische podiumsplatsen te loodsen.
+
+=== MOTOR ===
+QJMOTOR SRK 800 RS (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 4-cilinder-in-lijn, vloeistofgekoeld
+Cilinderinhoud : 778 cc
+Maximaal vermogen : ca. 145 pk (BOP gereguleerd)
+Topsnelheid : > 286 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Stalen/Aluminium buizenframe-hybride
+Gewicht : FIM WorldSSP minimumlimiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins geavanceerde upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : SC-Project titanium uitlaatsysteem

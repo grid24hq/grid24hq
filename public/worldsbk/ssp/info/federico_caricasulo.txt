@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: ZXMOTO Factory Evan Bros Racing
+Racenummer: #64
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het opvallende fabrieksschema van het Chinese ZXMOTO, gecombineerd met de traditionele zilver-zwarte accenten van het gerenommeerde Evan Bros Racing.
+
+Specificaties:
+Uitgerust met de gloednieuwe, krachtige 820cc driecilinder racemotor van de ZXMOTO 820RR, die speciaal is ontwikkeld voor de 'Next Generation' WorldSSP-klasse.
+
+Status & Ervaring:
+De ervaren Italiaanse winnaar Federico Caricasulo vormt een ijzersterk duo met Debise op de fabrieks-ZXMOTO. 'Carica' brengt jarenlange WorldSSP-ervaring en titelkennis met zich mee om het nieuwe motormerk zo snel mogelijk naar de absolute top te loodsen.
+
+=== MOTOR ===
+ZXMOTO 820RR (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn, DOHC
+Cilinderinhoud : 820 cc
+Maximaal vermogen : Ongeveer 145-148 pk (binnen FIM balance of performance)
+Topsnelheid : > 298 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium buizen/balken hybride frame
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down rsvork
+Achtervering : Öhlins TTX36 monoshock
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : SC-Project of Akrapovič titanium uitlaatsysteem

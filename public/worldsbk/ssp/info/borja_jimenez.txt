@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: WRP Racing
+Racenummer: #91
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Een flitsend en modern designschema met overwegend donkere basistinten, afgewisseld met felle WRP-sponsoraccenten.
+
+Specificaties:
+Aangedreven door een high-performance WorldSSP-motorblok, klaargemaakt volgens de strikte reglementen van de Supersport-klasse.
+
+Status & Ervaring:
+De Spanjaard Borja Jimenez vormt een team met Svoboda bij WRP Racing. Jimenez staat bekend als een solide en constante rijder die op Europese circuits erg sterk uit de voeten kan en aast op regelmatige finishes in de WK-punten.
+
+=== MOTOR ===
+WRP RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt multi-cilinder motor
+Cilinderinhoud : Conform WorldSSP klasse-reglement
+Maximaal vermogen : Ongeveer 140-145 pk
+Topsnelheid : > 291 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Lichtgewicht aluminium of stalen buizenframe (afhankelijk van model)
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Volledig instelbare upside-down race-voorvork
+Achtervering : Öhlins progressieve achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Titanium race-uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Renzi Corse
+Racenummer: #44
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Wit en diep race-blauw met rode en gouden sponsoraccenten op de Italiaanse Ducati.
+
+Specificaties:
+Uitgerust met de krachtige 955cc Ducati Panigale V2 tweecilinder.
+
+Status & Ervaring:
+De razendsnelle Spanjaard Hector Garzó brengt bakken vol ervaring en pure snelheid mee naar Renzi Corse. Garzó staat erom bekend dat hij onder alle omstandigheden direct om de podiumplaatsen kan strijden.
+
+=== MOTOR ===
+DUCATI PANIGALE V2 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Superquadro L-Twin, 4 kleppen per cilinder
+Cilinderinhoud : 955 cc
+Maximaal vermogen : ca. 145 pk
+Topsnelheid : > 291 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium monocoque frame
+Gewicht : FIM WorldSSP-limiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Honda Racing World Supersport (CBR600RR Official Team)
+Racenummer: #6
+Nationaliteit: Frans (FR)
+
+Kleurstelling:
+Het iconische HRC-tricolore: glanzend rood, wit en diepblauw met officiële Honda-bestickering.
+
+Specificaties:
+De vernieuwde Honda CBR600RR viercilinder, een legendarisch en super wendbaar platform in de WorldSSP-geschiedenis.
+
+Status & Ervaring:
+De rappe Fransman Corentin Perolari keert met het officiële Honda-project terug in de schijnwerpers. Bekend om zijn agressieve rijstijl probeert hij de hoogtoerige CBR600RR stabiel in de top 10 te nestelen tussen het Next-Gen geweld.
+
+=== MOTOR ===
+HONDA CBR600RR (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-cilinder-in-lijn, DOHC, 16 kleppen
+Cilinderinhoud : 599 cc
+Maximaal vermogen : ca. 142 pk
+Topsnelheid : > 280 km/u
+Brandstofcapaciteit : 16,5 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium diamantframe
+Gewicht : FIM WorldSSP minimumgewicht
+
+OPHANGING & REMMEN
+Voorvering : Showa / Öhlins aangepaste upside-down voorvork
+Achtervering : Showa / Öhlins Pro-Link achterschokdemper
+Voorremmen : Dubbele Brembo schijven met Nissin of Brembo raceklauwen
+Achterrem : Enkele stalen remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič of Arrow race-uitlaatsysteem

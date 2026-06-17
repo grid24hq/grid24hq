@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: PTR Triumph Factory Racing
+Racenummer: #69
+Nationaliteit: Brits (GB)
+
+Kleurstelling:
+Het officiële fabrieksschema van Triumph Racing, gekenmerkt door Brits race-groen, zwart en zilvergrijze accenten.
+
+Specificaties:
+Aangedreven door de rasechte 765cc driecilinder van de Triumph Street Triple RS, die bekend staat om zijn unieke, huilende motorgeluid.
+
+Status & Ervaring:
+De strijdlustige Brit Tom Booth-Amos is de absolute speerpunt van het Triumph-fabrieksproject gerund door PTR. Booth-Amos staat erom bekend dat hij nooit opgeeft en geldt in 2026 als een vaste podiumkandidaat in de Supersport-klasse.
+
+=== MOTOR ===
+TRIUMPH STREET TRIPLE RS 765 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 12 kleppen, DOHC, 3-cilinder-in-lijn
+Cilinderinhoud : 765 cc
+Maximaal vermogen : Ongeveer 145 pk
+Topsnelheid : > 295 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium balkenframe met gegoten subframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins rsvork met volledige instelbaarheid
+Achtervering : Öhlins TTX36 achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met race-remklauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Akrapovič titanium race-uitlaatsysteem

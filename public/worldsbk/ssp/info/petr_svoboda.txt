@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: WRP Racing
+Racenummer: #55
+Nationaliteit: Tsjechisch (CZ)
+
+Kleurstelling:
+Een flitsend en modern designschema met overwegend donkere basistinten, afgewisseld met felle WRP-sponsoraccenten.
+
+Specificaties:
+Aangedreven door een high-performance WorldSSP-motorblok, klaargemaakt volgens de strikte reglementen van de Supersport-klasse.
+
+Status & Ervaring:
+De jonge Tsjech Petr Svoboda maakt de overstap naar de zwaardere WorldSSP-klasse na indrukwekkende seizoenen in de WorldSSP300. Binnen het WRP Racing-team krijgt hij de kans om te rijpen en zich te meten met de absolute wereldtop.
+
+=== MOTOR ===
+WRP RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt multi-cilinder motor
+Cilinderinhoud : Conform WorldSSP klasse-reglement
+Maximaal vermogen : Ongeveer 140-145 pk
+Topsnelheid : > 290 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Lichtgewicht aluminium of stalen buizenframe (afhankelijk van model)
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Volledig instelbare upside-down race-voorvork
+Achtervering : Öhlins progressieve achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Titanium race-uitlaatsysteem

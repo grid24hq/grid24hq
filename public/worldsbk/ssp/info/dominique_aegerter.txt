@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Kawasaki WorldSSP Team
+Racenummer: #77
+Nationaliteit: Zwitsers (CH)
+
+Kleurstelling:
+Het legendarische en felle Kawasaki-limegroen gecombineerd met diepzwarte accenten en sponsorlogo's.
+
+Specificaties:
+Aangedreven door de krachtige 636cc viercilindermotor van de Kawasaki Ninja ZX-6R, optimaal geprepareerd door het fabrieksteam.
+
+Status & Ervaring:
+Tweevoudig WorldSSP-wereldkampioen Dominique 'Domi' Aegerter keert in 2026 terug naar de klasse waar hij destijds zo dominant regeerde. De ervaren en razendsnelle Zwitser voegt met zijn komst enorm veel titelfactor en vechtlust toe aan het officiële fabrieksteam van Kawasaki.
+
+=== MOTOR ===
+KAWASAKI NINJA ZX-6R 636 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 4-cilinder-in-lijn, DOHC
+Cilinderinhoud : 636 cc
+Maximaal vermogen : Ongeveer 142-145 pk
+Topsnelheid : > 296 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Geperst aluminium perimeterframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Showa Big Piston Front Fork (BPF) race-trim
+Achtervering : Uni-Trak achterwielophanging met Öhlins schokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met radiale klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Akrapovič titanium race-uitlaatsysteem

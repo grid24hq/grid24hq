@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Pata Yamaha Ten Kate Racing
+Racenummer: #61
+Nationaliteit: Turks (TR)
+
+Kleurstelling:
+Het iconische Pata-wit/blauw gecombineerd met de herkenbare flitsende details van het Nederlandse Ten Kate Racing-team.
+
+Specificaties:
+Aangedreven door de krachtige 890cc driecilinder Yamaha YZF-R9, volledig geprepareerd in de legendarische werkplaats in Nieuwleusen.
+
+Status & Ervaring:
+De spectaculaire Can Öncü maakt de prestigieuze overstap naar Ten Kate Racing, het meest succesvolle WorldSSP-team aller tijden. Na zijn eerdere successen en herstel van blessures is het doel in 2026 glashelder: vechten voor de wereldtitel onder leiding van mentor Kenan Sofuoğlu.
+
+=== MOTOR ===
+YAMAHA YZF-R9 TEN KATE SPEC (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn CP3
+Cilinderinhoud : 890 cc
+Maximaal vermogen : Ongeveer 145-147 pk (FIM gebalanceerd)
+Topsnelheid : > 297 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium Deltabox frame, geoptimaliseerd door Ten Kate
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins TRX race-voorvork
+Achtervering : Öhlins TTX36 GP achterschokdemper
+Voorremmen : Brembo T-Drive stalen remschijven met raceklauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (Ten Kate afgestelde software)
+Uitlaat : Akrapovič titanium race-uitlaatsysteem

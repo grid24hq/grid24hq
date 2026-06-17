@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Motozoo by Madforce Dubai
+Racenummer: #88
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Het karakteristieke en zeer opvallende 'wilde' Motozoo-design, gecombineerd met de nieuwe invloeden en logo's van co-sponsor Madforce Dubai.
+
+Specificaties:
+Uitgerust met een rasechte Supersport machine die mechanisch tot het uiterste is geprepareerd voor maximale prestaties in het satellietteam.
+
+Status & Ervaring:
+De Italiaan Andrea Giombini komt in 2026 uit voor het kleurrijke Motozoo-team. Giombini is een gretige coureur die zich stap voor stap omhoog vecht in het felbevochten WorldSSP-middenveld om aansluiting te vinden bij de top 10.
+
+=== MOTOR ===
+MOTOZOO RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt multi-cilinder motor
+Cilinderinhoud : Voldoet aan WorldSSP Next-Gen reglementen
+Maximaal vermogen : Ongeveer 140-143 pk
+Topsnelheid : > 293 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium balkenframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Volledig instelbare race-voorvork
+Achtervering : Instelbare monoshock met rshub
+Voorremmen : Dubbele stalen remschijven met Brembo klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Performance titanium race-uitlaat

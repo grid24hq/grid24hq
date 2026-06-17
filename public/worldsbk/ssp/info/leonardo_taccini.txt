@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Ecosantagata Althea Racing Team
+Racenummer: #10
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Matzwart gecombineerd met flitsend wit en de typische groen-witte Ecosantagata-hoofdsponsoring op het Ducati-kuipwerk.
+
+Specificaties:
+Uitgerust met de machtige 955cc Ducati Panigale V2 tweecilinder.
+
+Status & Ervaring:
+Leonardo Taccini rijdt voor het prestigieuze Althea Racing-team. Hij kent de paddock goed en richt zich in dit competitieve Italiaanse kampioenschapsteam op constante puntenposities en uitschieters richting de top 5.
+
+=== MOTOR ===
+DUCATI PANIGALE V2 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Superquadro L-Twin, Desmodromische klepbediening
+Cilinderinhoud : 955 cc
+Maximaal vermogen : ca. 145 pk (binnen BOP-regels)
+Topsnelheid : > 290 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium monocoque chassis
+Gewicht : Conform FIM-minimumgewicht
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork met race-cartridges
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen schijven
+Achterrem : Enkele Brembo schijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

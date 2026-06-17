@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: QJMOTOR Factory Racing
+Racenummer: #3
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Opvallend fabrieksknalrood gecombineerd met zilvergrijze en zwarte graphics van de Chinese fabrikant.
+
+Specificaties:
+Uitgerust met de QJMOTOR SRK 800 RS, aangedreven door een krachtige viercilinder-in-lijn krachtbron die is geoptimaliseerd volgens de WorldSSP Next Generation-reglementen.
+
+Status & Ervaring:
+De zeer ervaren Italiaanse veteraan Raffaele De Rosa leidt het fabrieksproject van QJMOTOR voor het tweede opeenvolgende seizoen. Met zijn enorme data-kennis is hij de perfecte ontwikkelingsrijder om de Chinese machine naar regelmatige top 10-klasseringen te loodsen.
+
+=== MOTOR ===
+QJMOTOR SRK 800 RS (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, viertakt, 4-cilinder-in-lijn, DOHC
+Cilinderinhoud : 778 cc
+Maximaal vermogen : ca. 145 pk (binnen FIM BOP-limieten)
+Topsnelheid : > 285 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Stalen/Aluminium buizenframe-hybride
+Gewicht : Voldoet aan FIM WorldSSP minimumlimiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins of Marzocchi high-spec upside-down voorvork
+Achtervering : Öhlins TTX geavanceerde achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met race-remklauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik (FIM WorldSSP verplichte eenheids-ECU)
+Uitlaat : SC-Project / Arrow titanium uitlaatsysteem

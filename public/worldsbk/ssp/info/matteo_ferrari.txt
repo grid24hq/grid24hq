@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: WRP Racing
+Racenummer: #11
+Nationaliteit: Italiaans (IT)
+
+Kleurstelling:
+Zwart en neongeel gecombineerd met de strakke WRP-merkuitstraling op een gestroomlijnd kuipwerk.
+
+Specificaties:
+Aangedreven door de snelle driecilinder MV Agusta F3 800 RR (of Triumph-platform afhankelijk van de WRP-fabriekskeuze voor 2026), een motor met een uniek geluid en uitstekende topsnelheid.
+
+Status & Ervaring:
+Voormalig MotoE-wereldkampioen Matteo Ferrari is een gevestigde naam in de internationale motorsport. Met zijn loepzuivere rijstijl en schat aan ervaring brengt hij het WRP Racing-team naar een hoger plan en strijdt hij geregeld mee om de podiumplekken.
+
+=== MOTOR ===
+MV AGUSTA F3 800 RR / COMPOSITE (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 3-cilinder-in-lijn, viertakt, 12 kleppen
+Cilinderinhoud : 798 cc
+Maximaal vermogen : ca. 146 pk
+Topsnelheid : > 292 km/u
+Brandstofcapaciteit : 16,5 liter
+
+CHASSIS & AFMETINGEN
+Frame : ALS Stalen buizen/Aluminium zijplaten
+Gewicht : FIM WorldSSP-limiet
+
+OPHANGING & REMMEN
+Voorvering : Öhlins upside-down voorvork
+Achtervering : Öhlins TTX monoshock
+Voorremmen : Dubbele Brembo schijven
+Achterrem : Enkele Brembo schijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Arrow / Akrapovič titanium uitlaatsysteem

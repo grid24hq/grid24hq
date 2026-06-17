@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Compos Racing Team
+Racenummer: #25
+Nationaliteit: Tsjechisch (CZ)
+
+Kleurstelling:
+Strakke zwart-wit geblokte en blauwe patronen, representatief voor de sponsoren van het Compos Racing Team.
+
+Specificaties:
+Uitgerust met de betrouwbare en snelle Kawasaki Ninja ZX-6R (of vergelijkbaar Next-Gen platform binnen Compos).
+
+Status & Ervaring:
+Ex-WorldSBK-rijder Oliver König gebruikt zijn ervaring op de zware machines om nu te schitteren in de WorldSSP-klasse. De Tsjech kent de circuits op zijn duimpje en is de logische kopman binnen het Compos-team.
+
+=== MOTOR ===
+KAWASAKI NINJA ZX-6R (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 4-cilinder-in-lijn, viertakt, vloeistofgekoeld
+Cilinderinhoud : 636 cc
+Maximaal vermogen : ca. 143 pk
+Topsnelheid : > 283 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium perimeter frame
+Gewicht : FIM WorldSSP minimumgewicht
+
+OPHANGING & REMMEN
+Voorvering : Showa / Öhlins upside-down voorvork
+Achtervering : Öhlins Uni-Trak achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Arrow / Akrapovič titanium uitlaatsysteem

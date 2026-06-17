@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: GMT94 Yamaha
+Racenummer: #94
+Nationaliteit: Frans (FR)
+
+Kleurstelling:
+Het herkenbare en geliefde GMT94-raceblauw met Franse rode en witte accenten, gecombineerd met prominente sponsorlogo's.
+
+Specificaties:
+Uitgerust met de nieuwe 890cc driecilinder Yamaha YZF-R9, door de ervaren GMT94-crew klaargemaakt voor het allerhoogste niveau.
+
+Status & Ervaring:
+Voormalig WorldSSP-wereldkampioen Lucas Mahias is de absolute kopman van het Franse GMT94-team. Mahias is een van de meest agressieve en spectaculaire rijders op de grid en gebruikt zijn bakken aan ervaring om de nieuwe Yamaha R9 naar het podium te loodsen.
+
+=== MOTOR ===
+YAMAHA YZF-R9 GMT94 SPEC (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn CP3, DOHC
+Cilinderinhoud : 890 cc
+Maximaal vermogen : Ongeveer 145 pk
+Topsnelheid : > 296 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Gegoten aluminium Deltabox frame
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins volledig instelbare race-voorvork
+Achtervering : Öhlins TTX36 GP achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met radiale klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (GMT94 race-mapping)
+Uitlaat : Akrapovič titanium uitlaatsysteem

@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Cerba Yamaha Racing Team
+Racenummer: #20
+Nationaliteit: Andorrees (AD)
+
+Kleurstelling:
+Blauw en wit met de medische rode/zwarte sponsorlogo's van Cerba op de nieuwe kuipdelen.
+
+Specificaties:
+Uitgerust met de gloednieuwe Yamaha YZF-R9 driecilinder krachtbron.
+
+Status & Ervaring:
+De ervaren ex-Moto2-coureur Xavi Cardelús brengt zijn vloeiende GP-rijstijl over naar het WorldSSP-kampioenschap. Binnen het Spaanse Cerba-team hoopt hij de nieuwe driecilinder Yamaha snel naar de voorste gelederen van het onafhankelijke klassement te sturen.
+
+=== MOTOR ===
+YAMAHA YZF-R9 (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : 3-cilinder, vloeistofgekoeld, 4 kleppen per cilinder
+Cilinderinhoud : 890 cc
+Maximaal vermogen : ca. 145 pk
+Topsnelheid : > 287 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Aluminium gegoten frame
+Gewicht : FIM WorldSSP minimumgewicht
+
+OPHANGING & REMMEN
+Voorvering : Öhlins racing upside-down voorvork
+Achtervering : Öhlins TTX achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 eenheids-ECU
+Uitlaat : Akrapovič titanium uitlaatsysteem

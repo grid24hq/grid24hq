@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: Orelac Racing Verdnatura
+Racenummer: #70
+Nationaliteit: Brits (GB)
+
+Kleurstelling:
+Het bekende, opvallende groen-witte kleurenschema van het Spaanse Orelac Racing met Verdnatura-bestickering.
+
+Specificaties:
+Uitgerust met een competitieve Supersport machine die volgens de Next-Generation reglementen is klaargestoomd voor het WK.
+
+Status & Ervaring:
+De jonge Brit Josh Whatley maakt na zijn seizoenen in de Moto3 de overstap naar de grotere en zwaardere productiemachines in het WorldSSP-kampioenschap. Whatley gebruikt 2026 als een belangrijk leerjaar binnen het ervaren Orelac-team.
+
+=== MOTOR ===
+ORELAC RACING SUPERSPORT (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt multi-cilinder motor
+Cilinderinhoud : Conform WorldSSP klasse-reglement
+Maximaal vermogen : Ongeveer 140-143 pk
+Topsnelheid : > 292 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Lichtgewicht aluminium perimeter of balkenframe
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Volledig instelbare upside-down race-voorvork
+Achtervering : Race-monoshock achterdemper (Öhlins)
+Voorremmen : Dubbele Brembo stalen remschijven
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 (FIM WorldSSP verplicht)
+Uitlaat : Race-uitlaatsysteem
