@@ -1,0 +1,36 @@
+=== OVERZICHT ===
+Team: AS bLU cRU Racing Team
+Racenummer: #75
+Nationaliteit: Spaans (ES)
+
+Kleurstelling:
+Het officiële Yamaha bLU cRU-blauw, gecombineerd met strakke witte vlakken en de specifieke logo's van het AS-raceteam.
+
+Specificaties:
+Uitgerust met de gloednieuwe 890cc driecilindermotor van de Yamaha YZF-R9, voorzien van volledige fabrieksondersteuning van Yamaha.
+
+Status & Ervaring:
+Voormalig Moto3-wereldkampioen Albert Arenas is de absolute topaankoop voor het AS bLU cRU-project. Arenas heeft zijn pure Grand Prix-snelheid direct meegenomen naar de WorldSSP en geldt op de nieuwe Yamaha R9 als de grote WK-leider en titelfavoriet van het 2026-seizoen.
+
+=== MOTOR ===
+YAMAHA YZF-R9 FACTORY SPEC (2026) — TECHNISCHE SPECIFICATIES
+MOTOR & PRESTATIES
+Engine Type : Vloeistofgekoeld, 4-takt, 3-cilinder-in-lijn CP3, DOHC
+Cilinderinhoud : 890 cc
+Maximaal vermogen : Ongeveer 146 pk (binnen FIM-restricties)
+Topsnelheid : > 297 km/u
+Brandstofcapaciteit : 17 liter
+
+CHASSIS & AFMETINGEN
+Frame : Gegoten aluminium Deltabox frame
+Gewicht : Minimale FIM-limiet voor WorldSSP
+
+OPHANGING & REMMEN
+Voorvering : Öhlins rsvork met volledige instelbaarheid
+Achtervering : Öhlins TTX36 GP achterschokdemper
+Voorremmen : Dubbele Brembo stalen remschijven met radiale klauwen
+Achterrem : Enkele stalen Brembo remschijf
+
+ELECTRONICA & UITLAAT
+ECU : MecTronik MKE7 met fabrieksprogrammatuur
+Uitlaat : Akrapovič titanium race-uitlaatsysteem
