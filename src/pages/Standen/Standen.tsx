@@ -68,7 +68,7 @@ const SERIES: Record<string, SerieConfig> = {
     },
   },
   imsa: {
-    titel: 'IMSA', subtitel: 'IMSA WeatherTech SportsCar Championship 2026',
+    titel: 'WeatherTech', subtitel: 'IMSA WeatherTech SportsCar Championship 2026',
     filters: [
       { id: 'alle',  label: 'Alle',  kleur: '#888' },
       { id: 'gtp',   label: 'GTP',   kleur: '#3b82f6' },
@@ -127,7 +127,7 @@ async function fetchFirebase(pad: string, serie: string, klasse: string): Promis
         nationaliteit: item.nationaliteit?? '',
         vlag:          item.vlag         ?? '',
         team:          item.team         ?? '',
-        nr:            item.nr           ?? 0,
+        nr:            item.nr ?? item.nummer ?? 0,
         punten:        item.punten       ?? 0,
         serie,
         klasse,
@@ -148,7 +148,8 @@ const VLAG_CODES: Record<string, string> = {
   '🇨🇦':'ca','🇦🇷':'ar','🇧🇬':'bg','🏴󠁧󠁢󠁳󠁣󠁴󠁿':'gb',
 }
 function VlagImg({ emoji }: { emoji: string }) {
-  const code = VLAG_CODES[emoji]
+  // Accepteer zowel emoji (🇳🇱) als directe landcode (nl, gb, etc.)
+  const code = VLAG_CODES[emoji] ?? (emoji?.length <= 4 ? emoji : undefined)
   if (!code) return <span className="text-sm">{emoji}</span>
   return (
     <img
