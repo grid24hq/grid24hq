@@ -50,6 +50,70 @@ const MERK_KLEUR: Record<string, string> = {
   Mercedes:     '#00d2be',
 }
 
+// ─── Driver landcodes ──────────────────────────────────────────────────────────
+const DRIVER_FLAGS: Record<string, string> = {
+  AJAllmendinger:'us', ColinBraun:'us', ScottDixon:'nz', TomBlomqvist:'gb',
+  AlexPalou:'es', KakuOhta:'jp', NickYelloly:'gb', RengervanderZande:'nl',
+  DriesVanthoor:'be', ReneRast:'de', RobinFrijns:'nl', SheldonvanderLinde:'za',
+  KevinMagnussen:'dk', MarcoWittmann:'de', PhilippEng:'at', RaffaeleMarciello:'ch',
+  FilipeAlbuquerque:'pt', RickyTaylor:'us', WillStevens:'gb',
+  ColtonHerta:'us', JordanTaylor:'us', LouisDeletraz:'ch',
+  AlexanderSims:'gb', AntonioGarcia:'es', MarvinKirchhofer:'de',
+  NickyCatsburg:'nl', NicoVarrone:'ar', TommyMilner:'us',
+  KevinEstre:'fr', LaurensVanthoor:'be', MattCampbell:'au',
+  FelipeNasr:'br', JulienAndlauer:'fr', LaurinHeinrich:'de',
+  ChrisCumming:'gb', EnzoFittipaldi:'br', ManuelEspiritoSanto:'pt', PietroFittipaldi:'br',
+  ConnorZilisch:'us', EarlBamber:'nz', FrederikVesti:'dk', JackAitken:'gb',
+  FerdinandHabsburg:'at', JacobAbel:'us', LoganSargeant:'us', NaveenRao:'us',
+  GeorgeKolovos:'us', JakubSmiechowski:'pl', NickCassidy:'nz', NolanSiegel:'us',
+  AntonioFelixdaCosta:'pt', BijoyGarg:'us', JeremyClarke:'ie', TomDillman:'fr',
+  BenKeating:'us', HarryTincknell:'gb', MishaGoikhberg:'us', ParkerThompson:'ca',
+  JohnFarano:'ca', KyffinSimpson:'ky', SebastianAlvarez:'mx', SebastienBourdais:'fr',
+  BenHanley:'gb', HunterMcElrea:'au', MikkelJensen:'dk', PhilFayer:'us',
+  DylanMurr:'us', FrancoisPerrodo:'fr', MatthieuVaxiviere:'fr', NicklasNielsen:'dk',
+  BenBarker:'gb', DennisOlsen:'no', MikeRockenfeller:'de',
+  ChristopherMies:'de', FredericVervisch:'be', SebastianPraulx:'de',
+  DuduBarrichello:'br', MattiaDrudi:'it', TomGamble:'gb', ZacharieRobichon:'ca',
+  AyhancanGuven:'tr', KlausBachler:'at', RicardoFeller:'ch', ThomasPreining:'at',
+  AndreaCaldarelli:'it', JamesHinchcliffe:'ca', MirkoBortolotti:'it', SandyMitchell:'gb',
+  AlessandroPierGuidi:'it', DanielSerra:'br', DavideRigon:'it',
+  DeanMacDonald:'gb', JuirVips:'ee', MaxEsterson:'us', NikitaJohnson:'us',
+  ChazMostert:'au', KennyHabul:'no', MaroEngel:'de', WillPower:'au',
+  AntonioFuoco:'it', LilouWadoux:'fr', SimonMann:'us', TommasoMosca:'it',
+  AlessioPicariello:'be', HarryKing:'gb', NickTandy:'gb',
+  ChristianRasmussen:'dk', DaneCameron:'us', JonnyEdgar:'gb', PJHyett:'us',
+  AlexRiberas:'es', MarcoSorensen:'dk', RomanDeAngelis:'ca', RossGunn:'gb',
+  BenGreen:'gb', LarsKern:'de', MatthewBell:'gb', OreyFidani:'ca',
+  AlbertCosta:'es', LorenzoPatrese:'it', MannyFranco:'us', ThierryVermeulen:'nl',
+  AlexQuinn:'us', GeorgeKurtz:'us', MaltheJakobsen:'dk', TobySowery:'gb',
+  CasperStevenson:'gb', GIacomoAltoe:'mc', HenrickHedman:'se', MatteoCairoli:'it',
+  CharlieEastwood:'ie', MasonFilippi:'us', SalihYoluc:'tr', ScottMcLaughlin:'nz',
+  AnthonyBartone:'us', FabianSchiller:'de', JulesGounon:'fr', MaximilianGoetz:'de',
+  TillBechtolsheimer:'gb', CoreyLewis:'us', JakeWalker:'us', JoeyHand:'us',
+  BrendanIribe:'us', DavidFumanelli:'it', FrederikSchandorff:'dk', OllieMillroy:'gb',
+  JobVanUitert:'nl', JonField:'us', OliverJarvis:'gb', SethLucas:'us',
+  KaylenFrederick:'us', NicoPino:'cl', TijmenvanderHelm:'nl',
+  JamesRoe:'ie', LinHodenius:'se', RalfAron:'ee', ScottAndrews:'au',
+  JohnPotter:'us', MadisonSnow:'us', NickiThiim:'dk', SpencerPumpelly:'us',
+  MorrisSchuring:'nl', RiccardoPera:'it', RichardLietz:'at', RyanHardwick:'us',
+  DaveMusial:'us', DaveMusialJr:'us', PeterLudwig:'de', RyanYardley:'gb',
+  FelipeFraga:'br', JensonAltzman:'us', RomainGrosjean:'fr', SheenaMonk:'us',
+  ConnorDePhillippi:'us', DanHarper:'gb', MaxHesse:'de', NeilVerhagen:'us',
+  DillonMachavern:'us', EricZitza:'us', JanHeylen:'be', SvenMuller:'de',
+  CharlesMilesi:'fr', DavidHeinemeierHansson:'dk', MathiasBeche:'ch', TobiLutke:'de',
+  KentonKoch:'us', OnofrioTriarsi:'it', RobertMegennis:'us', YifeiYe:'cn',
+  FrancisSelldorff:'us', JensKlingmann:'de', PatrickGallagher:'us', RobbyFoley:'us',
+  DanGoldburg:'us', GregoireSaucy:'ch', PaulDiResta:'gb', RasmusLindh:'se',
+  CarlBennett:'au', RoryvanderSteur:'us', SebastienBaud:'fr', ValentinHasseClot:'fr',
+  AaronTelitz:'us', BenjaminPedersen:'dk', EstebanMasson:'fr',
+  BenBarnicoat:'gb', JackHawksworth:'gb', KyleKirkwood:'us',
+  DannyFormal:'us', GrahamDoyle:'ie', MarcusEricsson:'se', TrentHindman:'us',
+  JasonHart:'gb', LucaStolz:'de', MaximiMartin:'be',
+  IndyDontje:'nl', LucasAuer:'at', PhilipEllis:'ch', RussellWard:'us',
+  AdamAdelson:'us', CallumIlott:'gb', ElliottSkeer:'us', TomSargent:'us',
+}
+
+
 // ─── Team interface ───────────────────────────────────────────────────────────
 interface Team {
   id: string           // map-naam = bestandspad
@@ -142,6 +206,18 @@ const TEAMS_CLEAN = TEAMS.filter((t, i, arr) => arr.findIndex(x => x.id === t.id
     if (av !== bv) return av - bv
     return a.nr - b.nr
   })
+
+// ─── Vlag helper ─────────────────────────────────────────────────────────────
+function DriverFlag({ driver, style, className }: { driver: string; style?: React.CSSProperties; className?: string }) {
+  const code = DRIVER_FLAGS[driver]
+  if (!code) return null
+  return (
+    <img src={`/imsa/flags/${code}.svg`} alt={code}
+      className={className} style={style}
+      onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
+  )
+}
+
 
 // ─── Afbeelding helpers ───────────────────────────────────────────────────────
 function AutoImg({ team, style }: { team: Team; style?: React.CSSProperties }) {
@@ -296,9 +372,10 @@ function TeamPopup({ team, onSluit }: { team: Team; onSluit: () => void }) {
                             <DriverImg team={team} driver={d}
                               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                           </div>
-                          <span className="font-ui text-[9px] text-white/50 text-center leading-tight" style={{ maxWidth: 64 }}>
-                            {voornaam}<br /><span className="text-white/80 font-bold">{achternaam}</span>
-                          </span>
+                          <div className="flex items-center justify-center gap-1">
+                            <DriverFlag driver={d} style={{ width: 14, height: 10, objectFit: 'cover', borderRadius: 1 }} />
+                            <span className="font-ui text-[9px] text-white/80 font-bold">{achternaam}</span>
+                          </div>
                         </div>
                       )
                     })}
@@ -323,7 +400,8 @@ function TeamPopup({ team, onSluit }: { team: Team; onSluit: () => void }) {
                       <div>
                         <div className="font-ui text-sm text-white/50">{voornaam}</div>
                         <div className="font-head font-black text-xl uppercase text-white">{achternaam}</div>
-                        <div className="flex items-center gap-1.5 mt-1">
+                        <div className="flex items-center gap-2 mt-1.5">
+                          <DriverFlag driver={d} style={{ width: 22, height: 15, objectFit: 'cover', borderRadius: 2 }} />
                           <div className="w-0.5 h-3 rounded-full" style={{ background: kleur }} />
                           <span className="font-ui text-xs text-white/40">{team.team}</span>
                         </div>
@@ -390,13 +468,16 @@ function TeamRij({ team, isEven, onKlik }: { team: Team; isEven: boolean; onKlik
           <span className="font-ui text-xs text-white/25">·</span>
           <span className="font-ui text-xs text-white/30 truncate">{team.auto}</span>
         </div>
-        {/* Driver namen preview */}
-        <div className="flex items-center gap-1 mt-1 flex-wrap">
+        {/* Driver namen preview met vlaggetjes */}
+        <div className="flex items-center gap-2 mt-1 flex-wrap">
           {team.drivers.map((d, i) => {
             const { achternaam } = formatDriverNaam(d)
             return (
-              <span key={d} className="font-ui text-[10px] text-white/25 group-hover:text-white/50 transition-colors">
-                {achternaam}{i < team.drivers.length - 1 ? ' ·' : ''}
+              <span key={d} className="flex items-center gap-1">
+                <DriverFlag driver={d} style={{ width: 16, height: 11, objectFit: 'cover', borderRadius: 2, opacity: 0.7 }} />
+                <span className="font-ui text-[10px] text-white/25 group-hover:text-white/50 transition-colors">
+                  {achternaam}{i < team.drivers.length - 1 ? ' ·' : ''}
+                </span>
               </span>
             )
           })}
