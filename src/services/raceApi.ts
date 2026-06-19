@@ -118,9 +118,23 @@ export async function getChampionshipStandings(
   }
 }
 
-/** Haalt alle actieve sessies op — doorzoekt alleen bekende race series */
+/** Haalt alleen ACTIEVE sessies op — filtert op Sessie_Status === true */
 export async function getLiveSessies(): Promise<LiveSessie[]> {
   try {
+    // Stap 1: Haal Sessie_Status op — alleen sessies met true zijn live
+    const statusRes = await fetch(`${FIREBASE_RTDB}/Sessie_Status.json?t=${Date.now()}`)
+    if (!statusRes.ok) return []
+    const statusData: Record<string, boolean> | null = await statusRes.json()
+    if (!statusData) return []
+
+    // Alleen de gp-sleutels die écht op true staan
+    const actieveGPs = Object.entries(statusData)
+      .filter(([, v]) => v === true)
+      .map(([k]) => k)
+
+    if (actieveGPs.length === 0) return []
+
+    // Stap 2: Zoek per actieve GP de bijbehorende data op in Firebase
     const sessies: LiveSessie[] = []
 
     for (const klasse of RACE_SERIES) {
@@ -132,7 +146,8 @@ export async function getLiveSessies(): Promise<LiveSessie[]> {
 
         for (const [jaar, gps] of Object.entries(jaren)) {
           for (const [gp, gpData] of Object.entries(gps)) {
-            if (gpData?.Algemeen_Sessie) {
+            // Alleen toevoegen als Sessie_Status[gp] === true
+            if (actieveGPs.includes(gp) && gpData?.Algemeen_Sessie) {
               sessies.push({
                 klasse,
                 jaar,
