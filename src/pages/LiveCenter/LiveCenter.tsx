@@ -29,7 +29,8 @@ function Countdown({ targetDate }: { targetDate: string }) {
   const [p, setP] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   useEffect(() => {
     function upd() {
-      const diff = new Date(targetDate).getTime() - Date.now()
+      const now  = Date.now()
+      const diff = new Date(targetDate).getTime() - now
       if (diff <= 0) { setP({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
       setP({
         days:    Math.floor(diff / 86_400_000),
@@ -321,7 +322,10 @@ export default function LiveCenter() {
                     </span>
                   </div>
                   <div className="font-head font-black text-2xl uppercase text-white mb-1">{actieveSessie.gpNaam}</div>
-                  <div className="font-ui text-sm text-brand-muted mb-4">{actieveSessie.status}</div>
+                  <div className="font-ui text-sm text-brand-muted mb-1">{actieveSessie.status}</div>
+                  {actieveSessie.circuit && (
+                    <div className="font-ui text-xs text-brand-muted/70 mb-3">📍 {actieveSessie.circuit}</div>
+                  )}
                   {actieveSessie.weer && (
                     <div className="flex gap-4 font-ui text-xs text-brand-muted">
                       <span>🌡 Baan: {actieveSessie.weer.baan}</span>
