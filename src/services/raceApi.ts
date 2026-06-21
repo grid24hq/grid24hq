@@ -30,6 +30,7 @@ interface FirebaseRijderData {
 interface FirebaseAlgemeenSessie {
   laatste_update: string
   status:         string
+  circuit?:       string
   weer?: {
     baan:     string
     lucht:    string
@@ -51,12 +52,13 @@ const api = axios.create({
 // ─── Live sessie detectie ─────────────────────────────────────────────────────
 
 export interface LiveSessie {
-  klasse:  string   // "F1", "MotoGP", etc.
-  jaar:    string   // "2026"
-  gp:      string   // "canada_gp"
-  gpNaam:  string   // "Canada GP"
-  status:  string   // "GREEN FLAG"
-  weer?:   FirebaseAlgemeenSessie['weer']
+  klasse:   string   // "F1", "MotoGP", etc.
+  jaar:     string   // "2026"
+  gp:       string   // "canada_gp"
+  gpNaam:   string   // "Canada GP"
+  status:   string   // "GREEN FLAG"
+  circuit?: string   // "Automotodrom Brno"
+  weer?:    FirebaseAlgemeenSessie['weer']
 }
 
 // Bekende race series — Kalender en andere keys worden overgeslagen
@@ -152,9 +154,10 @@ export async function getLiveSessies(): Promise<LiveSessie[]> {
                 klasse,
                 jaar,
                 gp,
-                gpNaam: gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-                status: gpData.Algemeen_Sessie.status,
-                weer:   gpData.Algemeen_Sessie.weer,
+                gpNaam:  gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+                status:  gpData.Algemeen_Sessie.status,
+                circuit: gpData.Algemeen_Sessie.circuit,
+                weer:    gpData.Algemeen_Sessie.weer,
               })
             }
           }
@@ -239,6 +242,7 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
         sector1:     rijder.sprint?.sectoren.s1 ?? '-',
         sector2:     rijder.sprint?.sectoren.s2 ?? '-',
         sector3:     rijder.sprint?.sectoren.s3 ?? '-',
+        tyre:        rijder.sprint?.banden ? `${rijder.sprint.banden.voor}/${rijder.sprint.banden.achter}` : undefined,
         status,
         pits:        (rijder as any).pit_count ?? rijder.endurance?.totaal_pitstops ?? 0,
       }
