@@ -338,7 +338,7 @@ export default function LiveCenter() {
                   </div>
                   {/* Rechts: circuit SVG */}
                   {actieveSessie.circuit_slug && (
-                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 180, height: 140 }}>
+                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 260, height: 200 }}>
                       <img
                         src={`/motogp/livetime_circuits/${actieveSessie.circuit_slug}.svg`}
                         alt={actieveSessie.circuit ?? ''}
