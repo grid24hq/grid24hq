@@ -314,23 +314,37 @@ export default function LiveCenter() {
             {/* Rechts: als live → live badge + sessie info, anders → championship standings */}
             {isNuLive && actieveSessie ? (
               <div className="rounded-xl p-5 flex flex-col justify-between" style={{ background: '#1c1c1c', border: `2px solid ${kleur}` }}>
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-3 h-3 rounded-full animate-pulse" style={{ background: kleur, boxShadow: `0 0 8px ${kleur}` }} />
-                    <span className="font-ui text-xs font-bold uppercase tracking-wider" style={{ color: kleur }}>
-                      {actieveSessie.klasse} — Live nu
-                    </span>
+                <div className="flex gap-4">
+                  {/* Links: sessie info */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-3 h-3 rounded-full animate-pulse" style={{ background: kleur, boxShadow: `0 0 8px ${kleur}` }} />
+                      <span className="font-ui text-xs font-bold uppercase tracking-wider" style={{ color: kleur }}>
+                        {actieveSessie.klasse} — Live nu
+                      </span>
+                    </div>
+                    <div className="font-head font-black text-2xl uppercase text-white mb-1">{actieveSessie.gpNaam}</div>
+                    <div className="font-ui text-sm text-brand-muted mb-1">{actieveSessie.status}</div>
+                    {actieveSessie.circuit && (
+                      <div className="font-ui text-xs text-brand-muted/70 mb-3">📍 {actieveSessie.circuit}</div>
+                    )}
+                    {actieveSessie.weer && (
+                      <div className="flex gap-4 font-ui text-xs text-brand-muted">
+                        <span>🌡 Baan: {actieveSessie.weer.baan}</span>
+                        <span>💨 Lucht: {actieveSessie.weer.lucht}</span>
+                        <span>{actieveSessie.weer.conditie}</span>
+                      </div>
+                    )}
                   </div>
-                  <div className="font-head font-black text-2xl uppercase text-white mb-1">{actieveSessie.gpNaam}</div>
-                  <div className="font-ui text-sm text-brand-muted mb-1">{actieveSessie.status}</div>
-                  {actieveSessie.circuit && (
-                    <div className="font-ui text-xs text-brand-muted/70 mb-3">📍 {actieveSessie.circuit}</div>
-                  )}
-                  {actieveSessie.weer && (
-                    <div className="flex gap-4 font-ui text-xs text-brand-muted">
-                      <span>🌡 Baan: {actieveSessie.weer.baan}</span>
-                      <span>💨 Lucht: {actieveSessie.weer.lucht}</span>
-                      <span>{actieveSessie.weer.conditie}</span>
+                  {/* Rechts: circuit SVG */}
+                  {actieveSessie.circuit_slug && (
+                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 180, height: 140 }}>
+                      <img
+                        src={`/motogp/livetime_circuits/${actieveSessie.circuit_slug}.svg`}
+                        alt={actieveSessie.circuit ?? ''}
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'brightness(0) invert(1) opacity(0.7)' }}
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
                     </div>
                   )}
                 </div>
