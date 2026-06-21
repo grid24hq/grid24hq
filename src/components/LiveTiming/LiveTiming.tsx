@@ -149,7 +149,7 @@ export default function LiveTiming({ sessionId, klasse, sessieNaam, status, land
           <table className="w-full text-left">
             <thead>
               <tr style={{ background: '#0d0d0d', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-                {['P', 'Rijder', '#', 'Time / Gap P.', 'Time / Gap F.', 'Last Lap', 'Team'].map(h => (
+                {['P', 'Rijder', '#', 'S1', 'S2', 'S3', 'Last Lap', 'Gap', 'Gap Leader', 'Team'].map(h => (
                   <th key={h} className="px-3 py-2.5 font-ui text-[10px] font-semibold uppercase tracking-wider text-brand-muted whitespace-nowrap">
                     {h}
                   </th>
@@ -206,6 +206,26 @@ export default function LiveTiming({ sessionId, klasse, sessieNaam, status, land
                       </span>
                     </td>
 
+                    {/* Sector 1 */}
+                    <td className="px-3 py-2.5 font-mono text-xs text-brand-muted whitespace-nowrap">
+                      {entry.sector1 !== '-' ? <span className="text-purple-400">{entry.sector1}</span> : <span className="text-brand-muted/40">—</span>}
+                    </td>
+
+                    {/* Sector 2 */}
+                    <td className="px-3 py-2.5 font-mono text-xs text-brand-muted whitespace-nowrap">
+                      {entry.sector2 !== '-' ? <span className="text-blue-400">{entry.sector2}</span> : <span className="text-brand-muted/40">—</span>}
+                    </td>
+
+                    {/* Sector 3 */}
+                    <td className="px-3 py-2.5 font-mono text-xs text-brand-muted whitespace-nowrap">
+                      {entry.sector3 !== '-' ? <span className="text-green-400">{entry.sector3}</span> : <span className="text-brand-muted/40">—</span>}
+                    </td>
+
+                    {/* Last lap */}
+                    <td className="px-3 py-2.5 font-mono text-xs text-brand-light whitespace-nowrap">
+                      {entry.lastLapTime}
+                    </td>
+
                     {/* Gap to previous */}
                     <td className="px-3 py-2.5 font-mono text-xs whitespace-nowrap">
                       {isLeider
@@ -217,11 +237,6 @@ export default function LiveTiming({ sessionId, klasse, sessieNaam, status, land
                     {/* Gap to first */}
                     <td className="px-3 py-2.5 font-mono text-xs text-brand-muted whitespace-nowrap">
                       {isLeider ? <span style={{ color: cfg.kleur }}>—0</span> : entry.gapToLeader}
-                    </td>
-
-                    {/* Last lap */}
-                    <td className="px-3 py-2.5 font-mono text-xs text-brand-light whitespace-nowrap">
-                      {entry.lastLapTime}
                     </td>
 
                     {/* Team */}
