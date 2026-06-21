@@ -31,6 +31,7 @@ interface FirebaseAlgemeenSessie {
   laatste_update: string
   status:         string
   circuit?:       string
+  circuit_slug?:  string
   weer?: {
     baan:     string
     lucht:    string
@@ -52,13 +53,14 @@ const api = axios.create({
 // ─── Live sessie detectie ─────────────────────────────────────────────────────
 
 export interface LiveSessie {
-  klasse:   string   // "F1", "MotoGP", etc.
-  jaar:     string   // "2026"
-  gp:       string   // "canada_gp"
-  gpNaam:   string   // "Canada GP"
-  status:   string   // "GREEN FLAG"
-  circuit?: string   // "Automotodrom Brno"
-  weer?:    FirebaseAlgemeenSessie['weer']
+  klasse:        string
+  jaar:          string
+  gp:            string
+  gpNaam:        string
+  status:        string
+  circuit?:      string
+  circuit_slug?: string
+  weer?:         FirebaseAlgemeenSessie['weer']
 }
 
 // Bekende race series — Kalender en andere keys worden overgeslagen
@@ -154,10 +156,11 @@ export async function getLiveSessies(): Promise<LiveSessie[]> {
                 klasse,
                 jaar,
                 gp,
-                gpNaam:  gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-                status:  gpData.Algemeen_Sessie.status,
-                circuit: gpData.Algemeen_Sessie.circuit,
-                weer:    gpData.Algemeen_Sessie.weer,
+                gpNaam:       gp.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+                status:       gpData.Algemeen_Sessie.status,
+                circuit:      gpData.Algemeen_Sessie.circuit,
+                circuit_slug: gpData.Algemeen_Sessie.circuit_slug,
+                weer:         gpData.Algemeen_Sessie.weer,
               })
             }
           }
