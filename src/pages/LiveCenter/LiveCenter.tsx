@@ -223,7 +223,7 @@ function GeenLive() {
       <div className="text-5xl mb-4">🏁</div>
       <h2 className="font-head font-black text-2xl uppercase tracking-wide mb-3">Geen live sessies</h2>
       <p className="font-ui text-sm text-brand-muted max-w-sm mx-auto">
-        Zodra je via het Command Center een sessie start verschijnt de live timing hier automatisch.
+        Zodra een sessie start verschijnt de live timing hier.
       </p>
     </div>
   )
