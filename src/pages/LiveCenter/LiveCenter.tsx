@@ -65,32 +65,87 @@ const SERIE_KLEUR: Record<string, string> = {
   MLMC:     '#ec4899',
 }
 
-// ─── Mini kaartje per race (bij meerdere op zelfde dag) ───────────────────────
-function MiniRaceCard({ race }: { race: KalenderRace }) {
-  const kleur = SERIE_KLEUR[race.serie] ?? '#f97316'
-  const sessieKeys = Object.entries(race.sessies ?? {})
+// ─── Upcoming Event kaart met tabs ────────────────────────────────────────────
+function UpcomingEventCard() {
+  const [komende, setKomende]   = useState<KalenderRace[]>([])
+  const [actieveTab, setActieveTab] = useState(0)
+
+  useEffect(() => {
+    getKalender().then(maanden => {
+      const vandaag = new Date(); vandaag.setHours(0, 0, 0, 0)
+      const alleKomend = maanden.flatMap(m => m.races)
+        .filter(r => new Date(r.datum) >= vandaag)
+        .sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
+
+      if (alleKomend.length === 0) { setKomende([]); return }
+
+      // Pak de datum van de eerstvolgende race en alle races op die dag
+      const eersteDatum = alleKomend[0].datum.slice(0, 10)
+      const opZelfdeDag = alleKomend.filter(r => r.datum.slice(0, 10) === eersteDatum)
+      setKomende(opZelfdeDag)
+    })
+  }, [])
+
+  if (komende.length === 0) return (
+    <div className="rounded-xl p-5 flex items-center justify-center" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)', minHeight: 200 }}>
+      <span className="font-ui text-xs text-brand-muted">Laden...</span>
+    </div>
+  )
+
+  const volgend    = komende[actieveTab] ?? komende[0]
+  const kleur      = SERIE_KLEUR[volgend.serie] ?? '#f97316'
+  const sessieKeys = Object.entries(volgend.sessies ?? {})
+  const meerdere   = komende.length > 1
+
   return (
-    <div className="rounded-xl p-4 flex flex-col" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.08)', borderTop: `3px solid ${kleur}` }}>
-      <div className="flex items-center gap-2 mb-2">
-        <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider" style={{ background: kleur + '22', color: kleur }}>
-          {race.serie}
-        </span>
+    <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <div className="font-ui text-[10px] font-bold uppercase tracking-[2px] text-brand-muted mb-3">
+        {meerdere ? 'Upcoming events' : 'Upcoming event'}
       </div>
-      <div className="font-head font-black text-base uppercase text-white leading-tight mb-0.5">
-        {race.naam}
+
+      {/* Tabs — alleen tonen als er meerdere series zijn */}
+      {meerdere && (
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {komende.map((race, i) => {
+            const tabKleur = SERIE_KLEUR[race.serie] ?? '#f97316'
+            const isActief = i === actieveTab
+            return (
+              <button
+                key={`${race.serie}-${race.id}`}
+                onClick={() => setActieveTab(i)}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-md font-ui text-[10px] font-bold uppercase tracking-wider transition-all"
+                style={isActief
+                  ? { background: tabKleur + '25', border: `1px solid ${tabKleur}`, color: tabKleur }
+                  : { background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', color: '#666' }}
+              >
+                {race.serie}
+              </button>
+            )
+          })}
+        </div>
+      )}
+
+      {/* Race info */}
+      <div className="font-ui text-sm font-semibold text-brand-light mb-0.5">{volgend.land}</div>
+      <div className="font-head font-black text-2xl uppercase text-white mb-1">
+        {volgend.stad?.toUpperCase() ?? volgend.land.toUpperCase()}
       </div>
-      <div className="font-ui text-[10px] text-brand-muted mb-3">{race.baan}</div>
-      <Countdown targetDate={race.datum} />
+      <div className="font-ui text-xs text-brand-muted mb-4">
+        {new Date(volgend.datum).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} · {volgend.baan}
+      </div>
+
+      <Countdown targetDate={volgend.datum} />
+
       {sessieKeys.length > 0 && (
-        <div className="mt-3">
-          <div className="font-ui text-[9px] uppercase tracking-[2px] text-brand-muted mb-1.5">Key sessions (times local to you)</div>
-          <div className="flex flex-wrap gap-1.5">
+        <div className="mt-4">
+          <div className="font-ui text-[9px] uppercase tracking-[2px] text-brand-muted mb-2">Key sessions (times local to you)</div>
+          <div className="flex flex-wrap gap-2">
             {sessieKeys.slice(0, 4).map(([key, sessie]) => {
               const isSprint = key.includes('sprint')
               const isRace   = key === 'race' || key === 'race1' || key === 'race2'
               return (
-                <span key={key} className="flex items-center gap-1 font-ui text-[9px] font-semibold">
-                  <span className="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase"
+                <span key={key} className="flex items-center gap-1.5 font-ui text-[10px] font-semibold">
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
                     style={{ background: isSprint ? '#9333ea' : isRace ? '#e10600' : '#374151', color: '#fff' }}>
                     {isSprint ? 'SPR' : isRace ? 'RAC' : 'FP'}
                   </span>
@@ -103,95 +158,7 @@ function MiniRaceCard({ race }: { race: KalenderRace }) {
           </div>
         </div>
       )}
-    </div>
-  )
-}
 
-// ─── Upcoming Event kaart ─────────────────────────────────────────────────────
-function UpcomingEventCard() {
-  const [komende, setKomende] = useState<KalenderRace[]>([])
-
-  useEffect(() => {
-    getKalender().then(maanden => {
-      const vandaag = new Date(); vandaag.setHours(0, 0, 0, 0)
-      const alleKomend = maanden.flatMap(m => m.races)
-        .filter(r => new Date(r.datum) >= vandaag)
-        .sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime())
-
-      if (alleKomend.length === 0) { setKomende([]); return }
-
-      // Pak de datum van de eerstvolgende race
-      const eersteDatum = alleKomend[0].datum.slice(0, 10)
-
-      // Pak ALLE races op die datum (meerdere series mogelijk)
-      const opZelfdeDag = alleKomend.filter(r => r.datum.slice(0, 10) === eersteDatum)
-      setKomende(opZelfdeDag)
-    })
-  }, [])
-
-  if (komende.length === 0) return (
-    <div className="rounded-xl p-5 flex items-center justify-center" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)', minHeight: 200 }}>
-      <span className="font-ui text-xs text-brand-muted">Laden...</span>
-    </div>
-  )
-
-  const eerste = komende[0]
-  const datumLabel = new Date(eerste.datum).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })
-
-  // Eén race → originele grote kaart
-  if (komende.length === 1) {
-    const volgend = eerste
-    const sessieKeys = Object.entries(volgend.sessies ?? {})
-    return (
-      <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <div className="font-ui text-[10px] font-bold uppercase tracking-[2px] text-brand-muted mb-3">Upcoming event</div>
-        <div className="font-ui text-sm font-semibold text-brand-light mb-0.5">{volgend.land}</div>
-        <div className="font-head font-black text-2xl uppercase text-white mb-1">{volgend.stad?.toUpperCase() ?? volgend.land.toUpperCase()}</div>
-        <div className="font-ui text-xs text-brand-muted mb-4">
-          {new Date(volgend.datum).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} · {volgend.baan}
-        </div>
-        <Countdown targetDate={volgend.datum} />
-        {sessieKeys.length > 0 && (
-          <div className="mt-4">
-            <div className="font-ui text-[9px] uppercase tracking-[2px] text-brand-muted mb-2">Key sessions (times local to you)</div>
-            <div className="flex flex-wrap gap-2">
-              {sessieKeys.slice(0, 4).map(([key, sessie]) => {
-                const isSprint = key.includes('sprint')
-                const isRace   = key === 'race' || key === 'race1' || key === 'race2'
-                return (
-                  <span key={key} className="flex items-center gap-1.5 font-ui text-[10px] font-semibold">
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
-                      style={{ background: isSprint ? '#9333ea' : isRace ? '#e10600' : '#374151', color: '#fff' }}>
-                      {isSprint ? 'SPR' : isRace ? 'RAC' : 'FP'}
-                    </span>
-                    <span className="text-brand-muted">
-                      {new Date(sessie.datum).toLocaleDateString('en-GB', { weekday: 'short' })} {sessie.tijd_cet}
-                    </span>
-                  </span>
-                )
-              })}
-            </div>
-          </div>
-        )}
-        <Link to="/kalender" className="mt-4 inline-block font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors">
-          View schedule
-        </Link>
-      </div>
-    )
-  }
-
-  // Meerdere races op zelfde dag → grid met mini kaartjes
-  return (
-    <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.1)' }}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="font-ui text-[10px] font-bold uppercase tracking-[2px] text-brand-muted">Upcoming events</div>
-        <div className="font-ui text-[10px] text-brand-muted">{datumLabel}</div>
-      </div>
-      <div className={`grid gap-3 ${komende.length === 2 ? 'grid-cols-2' : 'grid-cols-2'}`}>
-        {komende.map(race => (
-          <MiniRaceCard key={`${race.serie}-${race.id}`} race={race} />
-        ))}
-      </div>
       <Link to="/kalender" className="mt-4 inline-block font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors">
         View schedule
       </Link>
