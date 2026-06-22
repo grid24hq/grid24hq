@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+// Uses Open-Meteo — completely free, no API key required
+// Docs: https://open-meteo.com/en/docs
+
 const BASE = 'https://api.open-meteo.com/v1'
 
 export interface CircuitWeather {
@@ -45,21 +48,26 @@ export async function getCircuitWeather(
   lat: number,
   lon: number,
 ): Promise<CircuitWeather> {
-  // Gecorrigeerd: We gebruiken direct de komma-gescheiden string, maar Axios kan deze vervormen.
-  // Door de params direct in de URL string te zetten via URLSearchParams omzeilen we Axios encoding problemen.
-  const queryParams = new URLSearchParams({
-    latitude: lat.toString(),
-    longitude: lon.toString(),
-    current: 'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,is_day',
-    timezone: 'auto',
-    forecast_days: '1'
-  });
+  const { data } = await axios.get(`${BASE}/forecast`, {
+    params: {
+      latitude:              lat,
+      longitude:             lon,
+      current:               [
+        'temperature_2m',
+        'relative_humidity_2m',
+        'apparent_temperature',
+        'precipitation',
+        'weather_code',
+        'wind_speed_10m',
+        'wind_direction_10m',
+        'is_day',
+      ].join(','),
+      timezone:              'auto',
+      forecast_days:         1,
+    },
+  })
 
-  const { data } = await axios.get(`${BASE}/forecast?${queryParams.toString()}`);
-
-  const c = data.current;
-  if (!c) throw new Error("Geen actuele weerdata ontvangen van Open-Meteo");
-
+  const c = data.current
   return {
     temperature:  c.temperature_2m,
     windspeed:    c.wind_speed_10m,
@@ -80,19 +88,23 @@ export async function getCircuitForecast(
   lon: number,
   days: number = 7,
 ): Promise<WeatherForecastDay[]> {
-  const queryParams = new URLSearchParams({
-    latitude: lat.toString(),
-    longitude: lon.toString(),
-    daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
-    timezone: 'auto',
-    forecast_days: days.toString()
-  });
+  const { data } = await axios.get(`${BASE}/forecast`, {
+    params: {
+      latitude:       lat,
+      longitude:      lon,
+      daily:          [
+        'weather_code',
+        'temperature_2m_max',
+        'temperature_2m_min',
+        'precipitation_sum',
+        'wind_speed_10m_max',
+      ].join(','),
+      timezone:       'auto',
+      forecast_days:  days,
+    },
+  })
 
-  const { data } = await axios.get(`${BASE}/forecast?${queryParams.toString()}`);
-
-  const d = data.daily;
-  if (!d) throw new Error("Geen voorspellingsdata ontvangen van Open-Meteo");
-
+  const d = data.daily
   return (d.time as string[]).map((date: string, i: number) => ({
     date,
     maxTemp:          d.temperature_2m_max[i],
