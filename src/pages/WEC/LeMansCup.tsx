@@ -76,7 +76,7 @@ const TEAMS: Team[] = [
   { id:'m-4',  nr:4,   naam:'DKR Engineering',    fabrikant:'Duqueine', carModel:'duqueine-d09',     klasse:'LMP3', kleur:'#666666', info:'Duqueine D09 — DKR Engineering #4.',
     drivers:[{id:'jules-caranta',naam:'Jules Caranta',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'mikaeel-pitamber',naam:'Mikaeel Pitamber',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
   { id:'m-42', nr:42,  naam:'Duqueine Team',      fabrikant:'Duqueine', carModel:'duqueine-m30-d08', klasse:'LMP3', kleur:'#6366f1', info:'Duqueine M30-D08 — Duqueine Team.',
-    drivers:[{id:'lena-buhler',naam:'Lena Bühler',nationaliteit:'Zwitserland',vlag:'🇨🇭'},{id:'zack-scoular',naam:'Zack Scoular',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
+    drivers:[{id:'sergio-sette-camara',naam:'Sergio Sette Câmara',nationaliteit:'Brazilië',vlag:'🇧🇷'},{id:'ameerh-naran',naam:'Ameerh Naran',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
   { id:'m-43', nr:43,  naam:'NM Racing Team',     fabrikant:'Ligier',   carModel:'ligier-js-p325',   klasse:'LMP3', kleur:'#003366', info:'Ligier JS P325 — NM Racing Team.',
     drivers:[{id:'christian-jorgensen',naam:'Christian Jørgensen',nationaliteit:'Denemarken',vlag:'🇩🇰'},{id:'william-karlsson',naam:'William Karlsson',nationaliteit:'Zweden',vlag:'🇸🇪'}] },
   { id:'m-5',  nr:5,   naam:'MV2S Racing',        fabrikant:'Ligier',   carModel:'ligier-js-p325',   klasse:'LMP3', kleur:'#003366', info:'Ligier JS P325 — MV2S Racing #5.',
