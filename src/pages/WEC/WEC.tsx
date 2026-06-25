@@ -212,8 +212,8 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
 
           {/* Team logo + merk logo */}
           <div className="px-4 pt-5 pb-2 flex items-center justify-between min-h-[64px]">
-            <TeamLogo naam={team.naam} size={52}/>
-            <MerkLogo fabrikant={team.fabrikant} size={36}/>
+            <TeamLogo naam={team.naam} size={80}/>
+            <MerkLogo fabrikant={team.fabrikant} size={52}/>
           </div>
 
           {/* Nummer + naam */}
@@ -276,7 +276,7 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
               <div className="space-y-5">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <MerkLogo fabrikant={team.fabrikant} size={18}/>
+                    <MerkLogo fabrikant={team.fabrikant} size={24}/>
                     <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/35">{team.fabrikant} · 2026</span>
                   </div>
                   <div className="rounded-xl flex items-center justify-center"
@@ -352,7 +352,7 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
                     </div>
                     <div className="font-ui text-xs text-white/35 uppercase tracking-wider mt-0.5">2026 · {team.klasse}</div>
                   </div>
-                  <MerkLogo fabrikant={team.fabrikant} size={48}/>
+                  <MerkLogo fabrikant={team.fabrikant} size={64}/>
                 </div>
                 <div className="rounded-2xl flex items-center justify-center"
                   style={{background:`linear-gradient(135deg,${mk}16,rgba(255,255,255,0.02))`,border:`1px solid ${mk}32`,height:200}}>
