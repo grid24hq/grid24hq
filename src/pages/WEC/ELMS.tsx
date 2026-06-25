@@ -191,8 +191,17 @@ function TeamRij({ team, isEven, onKlik }: { team: Team; isEven: boolean; onKlik
   )
 }
 
+
+function TeamLogo({ naam, size=48 }: { naam: string; size?: number }) {
+  const [err, setErr] = useState(false)
+  if (err) return null
+  return <img src={`/wec/all_team_logos/${naam.toLowerCase().replace(/\s+/g,'-')}.webp`} alt={naam}
+    onError={()=>setErr(true)} style={{width:size,height:size,objectFit:'contain'}}/>
+}
+
 function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
-  const c = KLASSE_KLEUR[team.klasse]??'#888'
+  const c  = KLASSE_KLEUR[team.klasse]??'#888'
+  const mk = MERK_KLEUR[team.fabrikant]??c
   const [tab, setTab] = useState<'overzicht'|'rijders'|'auto'>('overzicht')
   useEffect(()=>{
     const fn=(e:KeyboardEvent)=>{if(e.key==='Escape')onClose()}
@@ -203,70 +212,165 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
   return(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{background:'rgba(0,0,0,0.88)'}} onClick={onClose}>
       <div className="relative w-full max-w-4xl rounded-2xl overflow-hidden flex"
-        style={{background:'#0f0f0f',border:`1px solid ${c}50`,maxHeight:'90vh',minHeight:500}} onClick={e=>e.stopPropagation()}>
-        <div className="relative flex-shrink-0 flex flex-col" style={{width:240,background:`linear-gradient(180deg,${c}22 0%,#0a0a0a 60%)`,overflowY:'auto',maxHeight:'90vh'}}>
-          <div className="px-5 pt-5 pb-1"><span className="font-ui text-[10px] font-bold uppercase tracking-[2px]" style={{color:c}}>{team.klasse}</span></div>
-          <div className="px-5 pb-2">
-            <div className="font-head font-black text-5xl leading-none" style={{color:c}}>#{team.nr}</div>
-            <div className="font-head font-black text-lg uppercase text-white mt-1 leading-tight">{team.naam}</div>
-            <div className="flex items-center gap-1.5 mt-2"><div className="w-0.5 h-3 rounded-full" style={{background:c}}/><span className="font-ui text-xs font-bold uppercase" style={{color:c}}>{team.fabrikant}</span></div>
+        style={{background:'#0f0f0f',border:`1px solid ${c}50`,maxHeight:'90vh',minHeight:520}} onClick={e=>e.stopPropagation()}>
+
+        {/* ── LINKER PANEEL ── */}
+        <div className="relative flex-shrink-0 flex flex-col"
+          style={{width:230,background:`linear-gradient(180deg,${c}20 0%,#080808 55%)`,overflowY:'auto',maxHeight:'90vh'}}>
+          <div className="relative px-4 pt-5 pb-2">
+            <div className="w-full flex items-center justify-center"
+              style={{height:100,background:'rgba(255,255,255,0.03)',borderRadius:12,border:`1px solid ${c}20`,padding:'10px 16px'}}>
+              <TeamLogo naam={team.naam} size={160}/>
+            </div>
+          </div>
+          <div className="px-4 pb-2">
+            <div className="font-head font-black leading-none" style={{fontSize:52,color:c}}>#{team.nr}</div>
+            <div className="font-head font-black text-base uppercase text-white leading-tight mt-0.5">{team.naam}</div>
+            <div className="flex items-center gap-1.5 mt-1.5">
+              <div className="w-0.5 h-3 rounded-full" style={{background:mk}}/>
+              <span className="font-ui text-[11px] font-bold uppercase tracking-wider" style={{color:mk}}>{team.fabrikant}</span>
+            </div>
             <div className="mt-2"><KlasseBadge klasse={team.klasse}/></div>
           </div>
-          <div className="mx-3 my-3 rounded-xl flex items-center justify-center" style={{background:`linear-gradient(135deg,${c}15,rgba(255,255,255,0.02))`,border:`1px solid ${c}30`,height:140}}>
-            <img src={carSrc(team)} alt={team.carModel} style={{width:'100%',height:'100%',objectFit:'contain',padding:12,filter:`drop-shadow(0 4px 16px ${c}50)`}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
+          <div className="mx-3 mt-2 mb-3 rounded-xl flex items-center justify-center"
+            style={{background:`linear-gradient(135deg,${mk}18,rgba(255,255,255,0.02))`,border:`1px solid ${mk}35`,height:120}}>
+            <img src={carSrc(team)} alt={team.carModel}
+              style={{width:'100%',height:'100%',objectFit:'contain',padding:10,filter:`drop-shadow(0 4px 12px ${mk}55)`}}
+              onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
           </div>
-          <div className="px-4 pb-5"><p className="font-ui text-[11px] text-white/40 leading-relaxed">{team.info}</p></div>
+          <div className="px-4 pb-3 space-y-2">
+            {[
+              {icon:'🏎️',label:'Auto',   val:team.carModel.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase())},
+              {icon:'🏁',label:'Klasse', val:team.klasse},
+              {icon:'🔢',label:'Nummer', val:`#${team.nr}`},
+              {icon:'👥',label:'Rijders',val:`${team.drivers.length} coureurs`},
+            ].map(({icon,label,val})=>(
+              <div key={label} className="flex items-start gap-2">
+                <span className="text-xs mt-0.5 flex-shrink-0">{icon}</span>
+                <div>
+                  <div className="font-ui text-[9px] uppercase tracking-wider text-white/30">{label}</div>
+                  <div className="font-ui text-xs text-white/75">{val}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="px-4 pb-5 mt-auto">
+            <p className="font-ui text-[10px] text-white/35 leading-relaxed">{team.info}</p>
+          </div>
         </div>
+
+        {/* ── RECHTER PANEEL ── */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex items-center justify-between px-6 pt-5 flex-shrink-0" style={{borderBottom:`1px solid ${c}25`}}>
-            <div className="flex gap-1">
+          <div className="flex items-center justify-between px-6 pt-5 pb-0 flex-shrink-0" style={{borderBottom:`1px solid ${c}22`}}>
+            <div className="flex gap-0">
               {tabs.map(t=>(
-                <button key={t.id} onClick={()=>setTab(t.id)} className="font-ui text-xs font-bold uppercase tracking-wider px-4 py-2.5 transition-all"
-                  style={tab===t.id?{color:c,borderBottom:`2px solid ${c}`}:{color:'rgba(255,255,255,0.35)',borderBottom:'2px solid transparent'}}>{t.label}</button>
+                <button key={t.id} onClick={()=>setTab(t.id)} className="font-ui text-xs font-bold uppercase tracking-wider px-5 py-3 transition-all"
+                  style={tab===t.id?{color:c,borderBottom:`2px solid ${c}`}:{color:'rgba(255,255,255,0.3)',borderBottom:'2px solid transparent'}}>{t.label}</button>
               ))}
             </div>
-            <button onClick={onClose} className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors text-sm mb-1">✕</button>
+            <button onClick={onClose} className="w-8 h-8 rounded-full flex items-center justify-center text-white/35 hover:text-white hover:bg-white/10 transition-all text-sm mb-1">✕</button>
           </div>
           <div className="flex-1 overflow-y-auto px-6 py-5">
+
+            {/* OVERZICHT */}
+            {tab==='overzicht'&&(
+              <div className="space-y-5">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/35">{team.fabrikant} · 2026</span>
+                  </div>
+                  <div className="rounded-xl flex items-center justify-center"
+                    style={{background:`linear-gradient(135deg,${mk}14,rgba(255,255,255,0.02))`,border:`1px solid ${mk}28`,height:160}}>
+                    <img src={carSrc(team)} alt={team.naam}
+                      style={{width:'100%',height:'100%',objectFit:'contain',padding:16,filter:`drop-shadow(0 6px 20px ${mk}60)`}}
+                      onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-4 h-0.5 rounded-full" style={{background:c}}/>
+                    <span className="font-ui text-[10px] uppercase tracking-[2px] text-white/35">Rijders</span>
+                  </div>
+                  <div className="flex gap-3 flex-wrap">
+                    {team.drivers.map(d=>(
+                      <div key={d.id} className="flex flex-col items-center gap-1.5">
+                        <div className="rounded-xl overflow-hidden" style={{width:76,height:95,background:'rgba(255,255,255,0.04)',border:`1px solid ${c}30`}}>
+                          <img src={drvSrc(team,d)} alt={d.naam} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.06'}}/>
+                        </div>
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-1 mb-0.5"><VlagImg emoji={d.vlag} size={12}/></div>
+                          <div className="font-head font-bold text-[11px] text-white leading-tight">{d.naam.split(' ').pop()}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {[{label:'Team',val:team.naam},{label:'Nummer',val:`#${team.nr}`},{label:'Fabrikant',val:team.fabrikant},
+                    {label:'Klasse',val:team.klasse},{label:'Coureurs',val:String(team.drivers.length)},{label:'Seizoen',val:'2026'}]
+                    .map(({label,val})=>(
+                    <div key={label} className="rounded-xl p-3" style={{background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.07)'}}>
+                      <div className="font-ui text-[9px] uppercase tracking-wider text-white/28 mb-1">{label}</div>
+                      <div className="font-ui text-xs font-semibold text-white truncate">{val}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* RIJDERS */}
             {tab==='rijders'&&(
               <div className="space-y-3">
-                {team.drivers.map(d=>(
-                  <div key={d.id} className="flex items-center gap-4 rounded-xl p-3" style={{background:'rgba(255,255,255,0.04)',border:`1px solid ${c}20`}}>
-                    <div className="flex-shrink-0 rounded-xl overflow-hidden" style={{width:76,height:95,background:'rgba(255,255,255,0.03)'}}>
-                      <img src={drvSrc(team,d)} alt={d.naam} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
+                {team.drivers.map((d,i)=>(
+                  <div key={d.id} className="flex items-center gap-0 rounded-xl overflow-hidden"
+                    style={{background:'rgba(255,255,255,0.04)',border:`1px solid ${c}20`}}>
+                    <div className="flex-shrink-0" style={{width:90,height:110,background:`linear-gradient(135deg,${c}15,rgba(255,255,255,0.02))`}}>
+                      <img src={drvSrc(team,d)} alt={d.naam} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.06'}}/>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-ui text-sm text-white/50">{d.naam.split(' ').slice(0,-1).join(' ')}</div>
+                    <div className="flex-1 px-4 py-3">
+                      <div className="font-ui text-xs text-white/40">{d.naam.split(' ').slice(0,-1).join(' ')}</div>
                       <div className="font-head font-black text-2xl uppercase text-white leading-tight">{d.naam.split(' ').pop()}</div>
-                      <div className="flex items-center gap-2 mt-1.5"><VlagImg emoji={d.vlag} size={18}/><div className="w-0.5 h-3 rounded-full" style={{background:c}}/><span className="font-ui text-xs text-white/40">{d.nationaliteit}</span></div>
+                      <div className="flex items-center gap-2 mt-2">
+                        <VlagImg emoji={d.vlag} size={18}/>
+                        <div className="w-0.5 h-3 rounded-full" style={{background:c}}/>
+                        <span className="font-ui text-xs text-white/40">{d.nationaliteit}</span>
+                      </div>
                     </div>
+                    <div className="pr-5 font-head font-black text-5xl select-none" style={{color:c,opacity:0.15}}>{i+1}</div>
                   </div>
                 ))}
               </div>
             )}
+
+            {/* AUTO */}
             {tab==='auto'&&(
               <div className="space-y-5">
-                <div><div className="font-head font-black text-2xl text-white mb-0.5">{team.carModel.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase())}</div><div className="font-ui text-xs text-white/40 uppercase tracking-wider">2026 · {team.klasse}</div></div>
-                <div className="rounded-2xl flex items-center justify-center p-6" style={{background:`linear-gradient(135deg,${c}15,rgba(255,255,255,0.02))`,border:`1px solid ${c}30`,height:190}}>
-                  <img src={carSrc(team)} alt={team.naam} style={{width:'100%',height:'100%',objectFit:'contain',filter:`drop-shadow(0 8px 24px ${c}70)`}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-head font-black text-2xl text-white leading-tight">
+                      {team.carModel.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase())}
+                    </div>
+                    <div className="font-ui text-xs text-white/35 uppercase tracking-wider mt-0.5">2026 · {team.klasse}</div>
+                  </div>
+                </div>
+                <div className="rounded-2xl flex items-center justify-center"
+                  style={{background:`linear-gradient(135deg,${mk}16,rgba(255,255,255,0.02))`,border:`1px solid ${mk}32`,height:200}}>
+                  <img src={carSrc(team)} alt={team.naam}
+                    style={{width:'100%',height:'100%',objectFit:'contain',padding:20,filter:`drop-shadow(0 8px 24px ${mk}70)`}}
+                    onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
                 </div>
                 <div className="rounded-xl p-4" style={{background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.06)'}}>
-                  <p className="font-ui text-sm text-white/60 leading-relaxed">{team.info}</p>
+                  <p className="font-ui text-sm text-white/55 leading-relaxed">{team.info}</p>
                 </div>
-              </div>
-            )}
-            {tab==='overzicht'&&(
-              <div className="space-y-5">
-                <div className="rounded-xl flex items-center justify-center p-4" style={{background:`linear-gradient(135deg,${c}12,rgba(255,255,255,0.02))`,border:`1px solid ${c}25`,height:150}}>
-                  <img src={carSrc(team)} alt={team.naam} style={{width:'100%',height:'100%',objectFit:'contain',filter:`drop-shadow(0 6px 20px ${c}60)`}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
-                </div>
-                <div className="flex gap-3 flex-wrap">
-                  {team.drivers.map(d=>(
-                    <div key={d.id} className="flex flex-col items-center gap-1.5">
-                      <div className="rounded-xl overflow-hidden" style={{width:72,height:90,background:'rgba(255,255,255,0.04)',border:`1px solid ${c}30`}}>
-                        <img src={drvSrc(team,d)} alt={d.naam} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} onError={e=>{(e.currentTarget as HTMLImageElement).style.opacity='0.08'}}/>
+                <div className="grid grid-cols-2 gap-3">
+                  {[{label:'Fabrikant',val:team.fabrikant},{label:'Klasse',val:team.klasse},{label:'Nummer',val:`#${team.nr}`},{label:'Seizoen',val:'2026'}]
+                    .map(({label,val})=>(
+                    <div key={label} className="rounded-xl p-3 flex items-center gap-3" style={{background:'rgba(255,255,255,0.04)',border:`1px solid ${c}18`}}>
+                      <div className="w-0.5 h-6 rounded-full flex-shrink-0" style={{background:mk}}/>
+                      <div>
+                        <div className="font-ui text-[9px] uppercase tracking-wider text-white/28">{label}</div>
+                        <div className="font-ui text-sm font-semibold text-white">{val}</div>
                       </div>
-                      <div className="text-center"><VlagImg emoji={d.vlag} size={12}/><div className="font-head font-bold text-[11px] text-white leading-tight">{d.naam.split(' ').pop()}</div></div>
                     </div>
                   ))}
                 </div>
