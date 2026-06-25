@@ -180,14 +180,14 @@ function MerkLogo({ fabrikant, size=40 }: { fabrikant: string; size?: number }) 
   if (err) return null
   const src = `/wec/all_car_logos/${fabrikant.toLowerCase().replace(/\s+/g,'-')}.webp`
   return <img src={src} alt={fabrikant} onError={()=>setErr(true)}
-    style={{width:size,height:size,objectFit:'contain',objectPosition:'center'}}/>
+    style={{maxWidth:'100%',maxHeight:'100%',width:'auto',height:'auto',objectFit:'contain'}}/>
 }
 function TeamLogo({ naam, size=48 }: { naam: string; size?: number }) {
   const [err, setErr] = useState(false)
   if (err) return null
   const src = `/wec/all_team_logos/${naam.toLowerCase().replace(/\s+/g,'-')}.webp`
   return <img src={src} alt={naam} onError={()=>setErr(true)}
-    style={{width:size,height:size,objectFit:'contain',objectPosition:'center'}}/>
+    style={{maxWidth:'100%',maxHeight:'100%',width:'auto',height:'auto',objectFit:'contain'}}/>
 }
 
 function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
@@ -210,10 +210,15 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
         <div className="relative flex-shrink-0 flex flex-col"
           style={{width:230,background:`linear-gradient(180deg,${c}20 0%,#080808 55%)`,overflowY:'auto',maxHeight:'90vh'}}>
 
-          {/* Team logo + merk logo */}
-          <div className="px-4 pt-5 pb-2 flex items-center justify-between min-h-[64px]">
-            <TeamLogo naam={team.naam} size={80}/>
-            <MerkLogo fabrikant={team.fabrikant} size={52}/>
+          {/* Team logo groot + merk logo klein rechtsonder */}
+          <div className="relative px-4 pt-5 pb-2">
+            <div className="w-full flex items-center justify-center"
+              style={{height:100,background:'rgba(255,255,255,0.03)',borderRadius:12,border:`1px solid ${c}20`,padding:'10px 16px'}}>
+              <TeamLogo naam={team.naam} size={160}/>
+            </div>
+            <div className="absolute bottom-3 right-5">
+              <MerkLogo fabrikant={team.fabrikant} size={32}/>
+            </div>
           </div>
 
           {/* Nummer + naam */}
