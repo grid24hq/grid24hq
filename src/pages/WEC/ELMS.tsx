@@ -37,7 +37,7 @@ function KlasseBadge({ klasse }: { klasse: string }) {
 
 const TEAMS: Team[] = [
   // ── LMP2 ──
-  { id:'e-10', nr:10, naam:'Nielsen Racing',            fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2', kleur:'#ff0000', info:'Oreca 07 Gibson — Nielsen Racing.',
+  { id:'e-10', nr:10, naam:'Vector Sport',            fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2', kleur:'#ff0000', info:'Oreca 07 Gibson — Nielsen Racing.',
     drivers:[{id:'pietro-fittipaldi',naam:'Pietro Fittipaldi',nationaliteit:'Brazilië',vlag:'🇧🇷'},{id:'ryan-cullen',naam:'Ryan Cullen',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'vladislav-lomko',naam:'Vladislav Lomko',nationaliteit:'Rusland',vlag:'🇷🇺'}] },
   { id:'e-18', nr:18, naam:'IDEC Sport',                fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2', kleur:'#004080', info:'Oreca 07 Gibson — IDEC Sport.',
     drivers:[{id:'jamie-chadwick',naam:'Jamie Chadwick',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'laurents-horr',naam:'Laurents Hörr',nationaliteit:'Duitsland',vlag:'🇩🇪'},{id:'valerio-rinicella',naam:'Valerio Rinicella',nationaliteit:'Italië',vlag:'🇮🇹'}] },
