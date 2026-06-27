@@ -91,7 +91,7 @@ const TEAMS: Team[] = [
     drivers:[{id:'giammarco-levorato',naam:'Giammarco Levorato',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'logan-sargeant',naam:'Logan Sargeant',nationaliteit:'VS',vlag:'🇺🇸'},{id:'stefano-gattuso',naam:'Stefano Gattuso',nationaliteit:'Italië',vlag:'🇮🇹'}] },
   { id:'wec-gt3-91', nr:91, naam:'Porsche GT3 Cup',        fabrikant:'Porsche',  carModel:'porsche-911-gt3',    klasse:'GT3 (LMGT3)', kleur:'#c0a060', info:'Porsche 911 GT3 R.',
     drivers:[{id:'ayhancan-guven',naam:'Ayhancan Güven',nationaliteit:'Turkije',vlag:'🇹🇷'},{id:'james-cottingham',naam:'James Cottingham',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'timur-boguslavskiy',naam:'Timur Boguslavskiy',nationaliteit:'Rusland',vlag:'🇷🇺'}] },
-  { id:'wec-gt3-92', nr:92, naam:'Porsche GT3 Cup',        fabrikant:'Porsche',  carModel:'porsche-911-gt3',    klasse:'GT3 (LMGT3)', kleur:'#c0a060', info:'Porsche 911 GT3 R.',
+  { id:'wec-gt3-92', nr:92, naam:'Porsche GT3 Cup Manthey',        fabrikant:'Porsche',  carModel:'porsche-911-gt3',    klasse:'GT3 (LMGT3)', kleur:'#c0a060', info:'Porsche 911 GT3 R.',
     drivers:[{id:'riccardo-pera',naam:'Riccardo Pera',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'richard-lietz',naam:'Richard Lietz',nationaliteit:'Oostenrijk',vlag:'🇦🇹'},{id:'yasser-shahin',naam:'Yasser Shahin',nationaliteit:'Australië',vlag:'🇦🇺'}] },
 ]
 
