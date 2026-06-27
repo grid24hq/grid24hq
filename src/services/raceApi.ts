@@ -210,12 +210,6 @@ export async function getLiveTiming(sessionId: string): Promise<TimingEntry[]> {
       (a, b) => a.huidige_positie - b.huidige_positie
     )
 
-    // Leider referentietijd
-    const leider      = alleRijders.find(r => r.huidige_positie === 1)
-    const leiderTijdMs = leider
-      ? (tijdNaarMs(leider.snelste_rondetijd) ?? tijdNaarMs(leider.laatste_rondetijd))
-      : null
-
     const entries: TimingEntry[] = alleRijders.map((rijder) => {
       const isLeider = rijder.huidige_positie === 1
 
