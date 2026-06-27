@@ -335,3 +335,48 @@ export async function getRaceResults(eventId: string): Promise<RaceResult[]> {
   const { data } = await api.get<ApiResponse<RaceResult[]>>(`/events/${eventId}/results`)
   return data.data
 }
+
+
+// ─── Algemeen_Sessie ophalen ──────────────────────────────────────────────────
+// Wordt gebruikt door LiveTiming component om sessie-info, weer en status te laden
+// Pad: /{serie}/{jaar}/{gp}/Algemeen_Sessie
+
+export interface AlgemeenSessie {
+  status?:          string          // 'Live' | 'Finished' | 'Red Flag' | 'SC'
+  sessie_naam?:     string          // 'Grand Prix' | 'Kwalificatie' | 'Sprint Race'
+  circuit?:         string          // 'Red Bull Ring, Austria'
+  circuit_slug?:    string          // 'at' (voor kaartweergave)
+  event?:           string          // 'F1 Austria GP'
+  ronden_totaal?:   number | string // 71
+  race_klok?:       string          // '23:03:16' (WEC)
+  verstreken_seconden?: number      // WEC
+  laatste_update?:  string          // ISO timestamp
+  weer?: {
+    // Nieuwe velden (f1_formatter na update):
+    lucht_temp?:        number | string
+    baan_temp?:         number | string
+    luchtvochtigheid?:  number | string
+    wind_speed?:        number | string
+    droog_nat?:         string       // 'Dry' | 'Wet'
+    // Legacy velden (MotoGP/WEC formatters):
+    lucht?:             string       // '33.3°C'
+    baan?:              string       // '52.6°C'
+    conditie?:          string       // 'Clear' | 'Droog'
+  }
+}
+
+/**
+ * Haalt Algemeen_Sessie op voor een sessie.
+ * sessionId formaat: "F1/2026/austria_gp"
+ * Geeft null terug als het pad niet bestaat of Firebase onbereikbaar is.
+ */
+export async function getAlgemeenSessie(sessionId: string): Promise<AlgemeenSessie | null> {
+  if (!sessionId) return null
+  try {
+    const res = await fetch(`${FIREBASE_RTDB}/${sessionId}/Algemeen_Sessie.json?t=${Date.now()}`)
+    if (!res.ok) return null
+    return await res.json() as AlgemeenSessie
+  } catch {
+    return null
+  }
+}
