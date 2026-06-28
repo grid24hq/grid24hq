@@ -134,27 +134,38 @@ function UpcomingEventCard() {
         {new Date(volgend.datum).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} · {volgend.baan}
       </div>
 
-      <Countdown targetDate={volgend.datum} />
+      <Countdown targetDate={`${volgend.datum}T${volgend.tijd_cet ?? '15:00'}:00`} />
 
       {sessieKeys.length > 0 && (
         <div className="mt-4">
           <div className="font-ui text-[9px] uppercase tracking-[2px] text-brand-muted mb-2">Key sessions (times local to you)</div>
           <div className="flex flex-wrap gap-2">
-            {sessieKeys.slice(0, 4).map(([key, sessie]) => {
-              const isSprint = key.includes('sprint')
-              const isRace   = key === 'race' || key === 'race1' || key === 'race2'
-              return (
-                <span key={key} className="flex items-center gap-1.5 font-ui text-[10px] font-semibold">
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
-                    style={{ background: isSprint ? '#9333ea' : isRace ? '#e10600' : '#374151', color: '#fff' }}>
-                    {isSprint ? 'SPR' : isRace ? 'RAC' : 'FP'}
+            {[...sessieKeys]
+              .sort(([, a], [, b]) => {
+                const da = new Date(`${a.datum}T${a.tijd_cet}:00`).getTime()
+                const db = new Date(`${b.datum}T${b.tijd_cet}:00`).getTime()
+                return da - db
+              })
+              .slice(0, 5)
+              .map(([key, sessie]) => {
+                const isSprint = key.includes('sprint')
+                const isRace   = key === 'race' || key === 'race1' || key === 'race2'
+                const isKwali  = key.includes('kwal') || key.includes('qual')
+                const label    = isSprint ? 'SPR' : isRace ? 'RAC' : isKwali ? 'Q' : 'FP'
+                const bg       = isSprint ? '#9333ea' : isRace ? '#e10600' : isKwali ? '#f59e0b' : '#374151'
+                const dt       = new Date(`${sessie.datum}T${sessie.tijd_cet}:00`)
+                return (
+                  <span key={key} className="flex items-center gap-1.5 font-ui text-[10px] font-semibold">
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase"
+                      style={{ background: bg, color: '#fff' }}>
+                      {label}
+                    </span>
+                    <span className="text-brand-muted">
+                      {dt.toLocaleDateString('en-GB', { weekday: 'short' })} {dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                    </span>
                   </span>
-                  <span className="text-brand-muted">
-                    {new Date(sessie.datum).toLocaleDateString('en-GB', { weekday: 'short' })} {sessie.tijd_cet}
-                  </span>
-                </span>
-              )
-            })}
+                )
+              })}
           </div>
         </div>
       )}
@@ -241,7 +252,7 @@ function ChampionshipStandingsWidget({ klasse, kleur }: { klasse: string; kleur:
       )}
 
       <div className="px-5 py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <Link to={`/${klasse.toLowerCase()}`}
+        <Link to={`/standen/${klasse.toLowerCase()}`}
           className="font-ui text-[10px] font-bold uppercase tracking-wider px-3 py-2 rounded border border-white/20 text-brand-muted hover:text-white hover:border-white/40 transition-colors inline-block">
           View full standings
         </Link>
@@ -430,6 +441,9 @@ export default function LiveCenter() {
               <LiveTiming
                 sessionId={`${actieveSessie.klasse}/${actieveSessie.jaar}/${actieveSessie.gp}`}
                 klasse={actieveSessie.klasse}
+                sessieNaam={actieveSessie.status}
+                status={actieveSessie.status}
+                land={actieveSessie.gpNaam}
               />
             ) : (
               /* Grote championship standings tabel als race klaar/gestopt is */
