@@ -441,9 +441,6 @@ export default function LiveCenter() {
               <LiveTiming
                 sessionId={`${actieveSessie.klasse}/${actieveSessie.jaar}/${actieveSessie.gp}`}
                 klasse={actieveSessie.klasse}
-                sessieNaam={actieveSessie.status}
-                status={actieveSessie.status}
-                land={actieveSessie.gpNaam}
               />
             ) : (
               /* Grote championship standings tabel als race klaar/gestopt is */
