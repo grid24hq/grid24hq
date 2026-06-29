@@ -82,7 +82,7 @@ const TEAMS: Team[] = [
     drivers:[{id:'antonio-fuoco',naam:'Antonio Fuoco',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'francois-perrodo',naam:'François Perrodo',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'matthieu-vaxiviere',naam:'Matthieu Vaxivière',nationaliteit:'Frankrijk',vlag:'🇫🇷'}] },
   { id:'e-pa-88', nr:88, naam:'Proton Competition',    fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#c0a060', info:'Oreca 07 Gibson — Felbermayr Proton Pro/Am.',
     drivers:[{id:'horst-felbermayr',naam:'Horst Felbermayr',nationaliteit:'Oostenrijk',vlag:'🇦🇹'},{id:'horst-felix-felbermayr',naam:'Horst Felix Felbermayr',nationaliteit:'Oostenrijk',vlag:'🇦🇹'},{id:'rene-binder',naam:'René Binder',nationaliteit:'Oostenrijk',vlag:'🇦🇹'}] },
-  { id:'e-pa-99', nr:99, naam:'Ao By TfS',                fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#ff0000', info:'Oreca 07 Gibson — Prema Racing Pro/Am.',
+  { id:'e-pa-99', nr:99, naam:'AO BY TFS',                fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#ff0000', info:'Oreca 07 Gibson — Prema Racing Pro/Am.',
     drivers:[{id:'dane-cameron',naam:'Dane Cameron',nationaliteit:'VS',vlag:'🇺🇸'},{id:'louis-deletraz',naam:'Louis Delétraz',nationaliteit:'Zwitserland',vlag:'🇨🇭'},{id:'pj-hyett',naam:'PJ Hyett',nationaliteit:'VS',vlag:'🇺🇸'}] },
   // ── LMGT3 ──
   { id:'e-23', nr:23, naam:'United Autosports',   fabrikant:'McLaren',      carModel:'mclaren-720s-lmgt3-evo',    klasse:'LMGT3', kleur:'#ff6600', info:'McLaren 720S LMGT3 Evo — United Autosports.',
