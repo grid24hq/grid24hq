@@ -192,11 +192,11 @@ function TeamRij({ team, isEven, onKlik }: { team: Team; isEven: boolean; onKlik
 }
 
 
-function TeamLogo({ naam, size=48 }: { naam: string; size?: number }) {
+function TeamLogo({ naam }: { naam: string }) {
   const [err, setErr] = useState(false)
   if (err) return null
   return <img src={`/wec/all_team_logos/${naam.toLowerCase().replace(/\s+/g,'-')}.webp`} alt={naam}
-    onError={()=>setErr(true)} style={{width:size,height:size,objectFit:'contain'}}/>
+    onError={()=>setErr(true)} style={{maxWidth:'100%',maxHeight:'100%',width:'auto',height:'auto',objectFit:'contain'}}/>
 }
 
 function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
