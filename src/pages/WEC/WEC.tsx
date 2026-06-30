@@ -176,11 +176,53 @@ function TeamRij({ team, isEven, onKlik }: { team: Team; isEven: boolean; onKlik
 
 // ─── Logo helpers ─────────────────────────────────────────────────────────────
 
-function TeamLogo({ naam, size=48 }: { naam: string; size?: number }) {
+// Exacte bestandsnamen per team-id (public/wec/all_team_logos/)
+const TEAM_LOGO: Record<string, string> = {
+  // Hypercar
+  'wec-35':      'apline-endurance-team-no35.webp',
+  'wec-36':      'apline-endurance-team-no36.webp',
+  'wec-007':     'aston-martin-thor-team-no007.webp',
+  'wec-009':     'aston-martin-thor-team-no008.webp',
+  'wec-15':      'bmw-m-team-wrt-no15.webp',
+  'wec-20':      'bmw-m-team-wrt-no20.webp',
+  'wec-12':      'cadillac-hertz-team-jota-no12.webp',
+  'wec-38':      'cadillac-hertz-team-jota-no38.webp',
+  'wec-50':      'ferrari-af-corse-no50.webp',
+  'wec-51':      'ferrari-af-corse-no51.webp',
+  'wec-83':      'af-corse-no83.webp',
+  'wec-17':      'genesis-magma-racing-no17.webp',
+  'wec-19':      'genesis-magma-racing-no19.webp',
+  'wec-93':      'peugeot-totalenergies-no93.webp',
+  'wec-94':      'peugeot-totalenergies-no94.webp',
+  'wec-7':       'toyota-racing-no7.webp',
+  'wec-8':       'toyota-racing-no8.webp',
+  // LMGT3
+  'wec-gt3-23':  'heart-of-racing-team-no23.webp',
+  'wec-gt3-27':  'heart-of-racing-team-no27.webp',
+  'wec-gt3-32':  'team-wrt-no32.webp',
+  'wec-gt3-69':  'team-wrt-no69.webp',
+  'wec-gt3-33':  'tf-sport-no33.webp',
+  'wec-gt3-34':  'racing-team-turkey-by-tf-no34.webp',
+  'wec-gt3-21':  'vista-af-corse-no21.webp',
+  'wec-gt3-54':  'vista-af-corse-no54.webp',
+  'wec-gt3-77':  'proton-competition-no77.webp',
+  'wec-gt3-88':  'proton-competition-no88.webp',
+  'wec-gt3-78':  'akkodis-asp-tean-no78.webp',
+  'wec-gt3-87':  'akkodis-asp-tean-no87.webp',
+  'wec-gt3-10':  'garage-59-no10.webp',
+  'wec-gt3-58':  'garage-59-no58.webp',
+  'wec-gt3-61':  'iron-lynx-no61.webp',
+  'wec-gt3-79':  'iron-lynx-no79.webp',
+  'wec-gt3-91':  'manthey-dk-engineering-no91.webp',
+  'wec-gt3-92':  'the-bend-manthey-no92.webp',
+}
+
+function TeamLogo({ id, naam }: { id: string; naam: string }) {
   const [err, setErr] = useState(false)
   if (err) return null
-  const src = `/wec/all_team_logos/${naam.toLowerCase().replace(/\s+/g,'-')}.webp`
-  return <img src={src} alt={naam} onError={()=>setErr(true)}
+  const file = TEAM_LOGO[id]
+  if (!file) return null
+  return <img src={`/wec/all_team_logos/${file}`} alt={naam} onError={()=>setErr(true)}
     style={{maxWidth:'100%',maxHeight:'100%',width:'auto',height:'auto',objectFit:'contain'}}/>
 }
 
@@ -208,7 +250,7 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
           <div className="px-4 pt-5 pb-3">
             <div className="w-full flex items-center justify-center"
               style={{height:110,background:'rgba(255,255,255,0.04)',borderRadius:12,border:`1px solid ${c}25`,padding:'12px'}}>
-              <TeamLogo naam={team.naam}/>
+              <TeamLogo id={team.id} naam={team.naam}/>
             </div>
           </div>
 
