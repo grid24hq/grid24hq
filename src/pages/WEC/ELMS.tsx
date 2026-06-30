@@ -82,7 +82,7 @@ const TEAMS: Team[] = [
     drivers:[{id:'antonio-fuoco',naam:'Antonio Fuoco',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'francois-perrodo',naam:'François Perrodo',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'matthieu-vaxiviere',naam:'Matthieu Vaxivière',nationaliteit:'Frankrijk',vlag:'🇫🇷'}] },
   { id:'e-pa-88', nr:88, naam:'Proton Competition',    fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#c0a060', info:'Oreca 07 Gibson — Felbermayr Proton Pro/Am.',
     drivers:[{id:'horst-felbermayr',naam:'Horst Felbermayr',nationaliteit:'Oostenrijk',vlag:'🇦🇹'},{id:'horst-felix-felbermayr',naam:'Horst Felix Felbermayr',nationaliteit:'Oostenrijk',vlag:'🇦🇹'},{id:'rene-binder',naam:'René Binder',nationaliteit:'Oostenrijk',vlag:'🇦🇹'}] },
-  { id:'e-pa-99', nr:99, naam:'AO BY TFS',                fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#ff0000', info:'Oreca 07 Gibson — Prema Racing Pro/Am.',
+  { id:'e-pa-99', nr:99, naam:'Ao By TfS',                fabrikant:'Oreca', carModel:'oreca-07', klasse:'LMP2 Pro/Am', kleur:'#ff0000', info:'Oreca 07 Gibson — Prema Racing Pro/Am.',
     drivers:[{id:'dane-cameron',naam:'Dane Cameron',nationaliteit:'VS',vlag:'🇺🇸'},{id:'louis-deletraz',naam:'Louis Delétraz',nationaliteit:'Zwitserland',vlag:'🇨🇭'},{id:'pj-hyett',naam:'PJ Hyett',nationaliteit:'VS',vlag:'🇺🇸'}] },
   // ── LMGT3 ──
   { id:'e-23', nr:23, naam:'United Autosports',   fabrikant:'McLaren',      carModel:'mclaren-720s-lmgt3-evo',    klasse:'LMGT3', kleur:'#ff6600', info:'McLaren 720S LMGT3 Evo — United Autosports.',
@@ -93,7 +93,7 @@ const TEAMS: Team[] = [
     drivers:[{id:'custodio-toledo',naam:'Custodio Toledo',nationaliteit:'Brazilië',vlag:'🇧🇷'},{id:'lilou-wadoux',naam:'Lilou Wadoux',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'riccardo-agostini',naam:'Riccardo Agostini',nationaliteit:'Italië',vlag:'🇮🇹'}] },
   { id:'e-51', nr:51, naam:'AF Corse',            fabrikant:'Ferrari',      carModel:'ferrari-296-lmgt3',         klasse:'LMGT3', kleur:'#e8002d', info:'Ferrari 296 LMGT3 — AF Corse.',
     drivers:[{id:'charles-henri-samani',naam:'Charles-Henri Samani',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'conrad-laursen',naam:'Conrad Laursen',nationaliteit:'Denemarken',vlag:'🇩🇰'},{id:'davide-rigon',naam:'Davide Rigon',nationaliteit:'Italië',vlag:'🇮🇹'}] },
-  { id:'e-54', nr:54, naam:'High Class Racing',          fabrikant:'Porsche',      carModel:'porsche-911-gt3-r-lmgt3',   klasse:'LMGT3', kleur:'#c0a060', info:'Porsche 911 GT3 R LMGT3 — Dinamic GT.',
+  { id:'e-54', nr:54, naam:'Dinamic GT',          fabrikant:'Porsche',      carModel:'porsche-911-gt3-r-lmgt3',   klasse:'LMGT3', kleur:'#c0a060', info:'Porsche 911 GT3 R LMGT3 — Dinamic GT.',
     drivers:[{id:'anders-fjordbach',naam:'Anders Fjordbach',nationaliteit:'Denemarken',vlag:'🇩🇰'},{id:'dennis-andersen',naam:'Dennis Andersen',nationaliteit:'Denemarken',vlag:'🇩🇰'},{id:'laurin-heinrich',naam:'Laurin Heinrich',nationaliteit:'Duitsland',vlag:'🇩🇪'}] },
   { id:'e-55', nr:55, naam:'Spirit of Race',      fabrikant:'Ferrari',      carModel:'ferrari-296-lmgt3',         klasse:'LMGT3', kleur:'#e8002d', info:'Ferrari 296 LMGT3 — Spirit of Race.',
     drivers:[{id:'david-perel',naam:'David Perel',nationaliteit:'Z. Afrika',vlag:'🇿🇦'},{id:'duncan-cameron',naam:'Duncan Cameron',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'matthew-griffin',naam:'Matthew Griffin',nationaliteit:'Ierland',vlag:'🇮🇪'}] },
@@ -219,8 +219,8 @@ function TeamModal({ team, onClose }: { team: Team; onClose: () => void }) {
           style={{width:230,background:`linear-gradient(180deg,${c}20 0%,#080808 55%)`,overflowY:'auto',maxHeight:'90vh'}}>
           <div className="relative px-4 pt-5 pb-2">
             <div className="w-full flex items-center justify-center"
-              style={{height:100,background:'rgba(255,255,255,0.03)',borderRadius:12,border:`1px solid ${c}20`,padding:'10px 16px'}}>
-              <TeamLogo naam={team.naam} size={160}/>
+              style={{height:110,background:'rgba(255,255,255,0.04)',borderRadius:12,border:`1px solid ${c}25`,padding:'12px'}}>
+              <TeamLogo naam={team.naam}/>
             </div>
           </div>
           <div className="px-4 pb-2">
