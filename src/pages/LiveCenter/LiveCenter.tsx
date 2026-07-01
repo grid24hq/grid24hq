@@ -29,9 +29,13 @@ function Countdown({ targetDate }: { targetDate: string }) {
   const [p, setP] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   useEffect(() => {
     function upd() {
-      const now  = Date.now()
-      const diff = new Date(targetDate).getTime() - now
-      if (diff <= 0) { setP({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
+      const now    = Date.now()
+      const target = new Date(targetDate).getTime()
+      const diff   = target - now
+      // Vang zowel "in het verleden" als "ongeldige datum" (NaN) af.
+      // Let op: NaN <= 0 is altijd false in JS, dus zonder Number.isFinite-check
+      // sluipt een kapotte datum hier doorheen en krijg je NaN in de UI.
+      if (!Number.isFinite(diff) || diff <= 0) { setP({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
       setP({
         days:    Math.floor(diff / 86_400_000),
         hours:   Math.floor((diff % 86_400_000) / 3_600_000),
@@ -94,8 +98,18 @@ function UpcomingEventCard() {
 
   const volgend    = komende[actieveTab] ?? komende[0]
   const kleur      = SERIE_KLEUR[volgend.serie] ?? '#f97316'
-  const sessieKeys = Object.entries(volgend.sessies ?? {})
   const meerdere   = komende.length > 1
+
+  // Alleen tijden gebruiken die er echt geldig uitzien ("HH:MM").
+  // Firebase levert soms een lege string ("") ipv undefined/null terug —
+  // '' ?? fallback geeft dan nog steeds '' terug, dus daarom hier expliciet checken.
+  const geldigeTijd = (t?: string) => !!t && /^\d{1,2}:\d{2}$/.test(t)
+
+  const raceTijd = geldigeTijd(volgend.tijd_cet) ? volgend.tijd_cet : '15:00'
+
+  // Sessies zonder geldige datum/tijd overslaan i.p.v. "Invalid Date" tonen
+  const sessieKeys = Object.entries(volgend.sessies ?? {})
+    .filter(([, sessie]) => !!sessie?.datum && geldigeTijd(sessie?.tijd_cet))
 
   return (
     <div className="rounded-xl p-5 h-full" style={{ background: '#1c1c1c', border: '1px solid rgba(255,255,255,0.1)' }}>
@@ -134,7 +148,7 @@ function UpcomingEventCard() {
         {new Date(volgend.datum).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase()} · {volgend.baan}
       </div>
 
-      <Countdown targetDate={`${volgend.datum}T${volgend.tijd_cet ?? '15:00'}:00`} />
+      <Countdown targetDate={`${volgend.datum}T${raceTijd}:00`} />
 
       {sessieKeys.length > 0 && (
         <div className="mt-4">
