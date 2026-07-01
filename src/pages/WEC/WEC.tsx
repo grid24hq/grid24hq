@@ -22,9 +22,9 @@ const MERK_KLEUR: Record<string, string> = {
 // carModel = exact wat na het nummer staat in de bestandsnaam
 const TEAMS: Team[] = [
   // ── Hypercar ──
-  { id:'wec-35',  nr:35,  naam:'Alpine Endurance Team',    fabrikant:'Alpine',       carModel:'alpine-a424',           klasse:'Hypercar', kleur:'#0093cc', info:'Alpine A424 — Alpine Endurance Team.',
+  { id:'wec-35',  nr:35,  naam:'Alpine Endurance Team',    fabrikant:'Alpine',       carModel:'alpine-A424',           klasse:'Hypercar', kleur:'#0093cc', info:'Alpine A424 — Alpine Endurance Team.',
     drivers:[{id:'antonio-felix-da-costa',naam:'António Félix da Costa',nationaliteit:'Portugal',vlag:'🇵🇹'},{id:'charles-milesi',naam:'Charles Milesi',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'ferdinand-habsburg',naam:'Ferdinand Habsburg',nationaliteit:'Oostenrijk',vlag:'🇦🇹'}] },
-  { id:'wec-36',  nr:36,  naam:'Alpine Endurance Team',    fabrikant:'Alpine',       carModel:'alpine-a424',           klasse:'Hypercar', kleur:'#0093cc', info:'Alpine A424 — Alpine Endurance Team.',
+  { id:'wec-36',  nr:36,  naam:'Alpine Endurance Team',    fabrikant:'Alpine',       carModel:'alpine-A424',           klasse:'Hypercar', kleur:'#0093cc', info:'Alpine A424 — Alpine Endurance Team.',
     drivers:[{id:'frederic-makowiecki',naam:'Frédéric Makowiecki',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'jules-gounon',naam:'Jules Gounon',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'victor-martins',naam:'Victor Martins',nationaliteit:'Monaco',vlag:'🇲🇨'}] },
   { id:'wec-007', nr:7,   nrPad:'007', naam:'Aston Martin Thor Team',  fabrikant:'Aston Martin', carModel:'aston-martin-valkyrie', klasse:'Hypercar', kleur:'#006b5b', info:'Aston Martin Valkyrie — Aston Martin Thor Team.',
     drivers:[{id:'harry-tincknell',naam:'Harry Tincknell',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'tom-gamble',naam:'Tom Gamble',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
@@ -38,11 +38,11 @@ const TEAMS: Team[] = [
     drivers:[{id:'norman-nato',naam:'Norman Nato',nationaliteit:'Frankrijk',vlag:'🇫🇷'},{id:'will-stevens',naam:'Will Stevens',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
   { id:'wec-38',  nr:38,  naam:'Cadillac Hertz Team Jota', fabrikant:'Cadillac',     carModel:'cadillac-V-Serie.R',              klasse:'Hypercar', kleur:'#a0001c', info:'Cadillac V-Series.R — Cadillac Hertz Team Jota.',
     drivers:[{id:'earl-bamber',naam:'Earl Bamber',nationaliteit:'N. Zeeland',vlag:'🇳🇿'},{id:'jack-aitken',naam:'Jack Aitken',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'sebastien-bourdais',naam:'Sébastien Bourdais',nationaliteit:'Frankrijk',vlag:'🇫🇷'}] },
-  { id:'wec-50',  nr:50,  naam:'Ferrari AF Corse',         fabrikant:'Ferrari',      carModel:'ferrari-499',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — Ferrari AF Corse.',
+  { id:'wec-50',  nr:50,  naam:'Ferrari AF Corse',         fabrikant:'Ferrari',      carModel:'ferrari-499-P',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — Ferrari AF Corse.',
     drivers:[{id:'antonio-fuoco',naam:'Antonio Fuoco',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'miguel-molina',naam:'Miguel Molina',nationaliteit:'Spanje',vlag:'🇪🇸'},{id:'nicklas-nielsen',naam:'Nicklas Nielsen',nationaliteit:'Denemarken',vlag:'🇩🇰'}] },
-  { id:'wec-51',  nr:51,  naam:'Ferrari AF Corse',         fabrikant:'Ferrari',      carModel:'ferrari-499',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — Ferrari AF Corse.',
+  { id:'wec-51',  nr:51,  naam:'Ferrari AF Corse',         fabrikant:'Ferrari',      carModel:'ferrari-499-P',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — Ferrari AF Corse.',
     drivers:[{id:'alessandro-pier-guidi',naam:'Alessandro Pier Guidi',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'antonio-giovinazzi',naam:'Antonio Giovinazzi',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'james-calado',naam:'James Calado',nationaliteit:'Engeland',vlag:'🇬🇧'}] },
-  { id:'wec-83',  nr:83,  naam:'AF Corse',                 fabrikant:'Ferrari',      carModel:'ferrari-499',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — AF Corse.',
+  { id:'wec-83',  nr:83,  naam:'AF Corse',                 fabrikant:'Ferrari',      carModel:'ferrari-499-P',           klasse:'Hypercar', kleur:'#e8002d', info:'Ferrari 499P — AF Corse.',
     drivers:[{id:'philip-hanson',naam:'Philip Hanson',nationaliteit:'Engeland',vlag:'🇬🇧'},{id:'robert-kubica',naam:'Robert Kubica',nationaliteit:'Polen',vlag:'🇵🇱'},{id:'yifei-ye',naam:'Yifei Ye',nationaliteit:'China',vlag:'🇨🇳'}] },
   { id:'wec-17',  nr:17,  naam:'Genesis Magma Racing',     fabrikant:'Genesis',      carModel:'genesis',               klasse:'Hypercar', kleur:'#c0a020', info:'Genesis GMR-001 Hypercar — Genesis Magma Racing.',
     drivers:[{id:'andre-lotterer',naam:'André Lotterer',nationaliteit:'Duitsland',vlag:'🇩🇪'},{id:'luis-felipe-derani',naam:'Luis Felipe Derani',nationaliteit:'Brazilië',vlag:'🇧🇷'},{id:'mathys-jaubert',naam:'Mathys Jaubert',nationaliteit:'Frankrijk',vlag:'🇫🇷'}] },
