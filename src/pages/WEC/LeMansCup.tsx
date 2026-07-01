@@ -237,7 +237,7 @@ function TeamLogo({ id, naam }: { id: string; naam: string }) {
   if (err) return null
   const file = TEAM_LOGO[id]
   if (!file) return null
-  return <img src={`/wec/all_team_logos/${file}`} alt={naam} onError={()=>setErr(true)}
+  return <img src={`/wec/lemanscup/all_team_logos/${file}`} alt={naam} onError={()=>setErr(true)}
     style={{maxWidth:'100%',maxHeight:'100%',width:'auto',height:'auto',objectFit:'contain'}}/>
 }
 
