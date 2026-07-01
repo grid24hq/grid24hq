@@ -198,7 +198,7 @@ const TEAM_LOGO: Record<string, string> = {
   'm-4':      'nielsen-racing-no4.webp',
   'm-5':      '23-events-racing-no5.webp',
   'm-6':      'ans-motorsport-no6.webp',
-  'm-8':      'btw-mueck-motorsport-no-8.webp',
+  'm-8':      'bwt-mueck-motorsport-no-8.webp',    // txt zegt btw- maar echte naam is bwt- (BWT Muecke)
   'm-9':      'ans-motorsport-no9.webp',
   'm-12':     'brutal-fish-campos-racing-no12.webp',
   'm-15':     'vector-sport-rlr-no15.webp',
@@ -214,7 +214,7 @@ const TEAM_LOGO: Record<string, string> = {
   'm-68':     'm-racing-no68.webp',
   'm-70':     'team-virage-no70.webp',
   'm-85':     'r-ace-gp-no85.webp',
-  'm-87':     'r-ace-gp-no86.webp',
+  'm-87':     'clx-motorsport-no87.webp',           // was: r-ace-gp-no86.webp (verkeerd team!)
   'm-92':     'forestier-racing-by-vps-no92.webp',
   'm-97':     'clx-motorsport-no97.webp',
   'm-99':     'more-motorsport-no99.webp',
