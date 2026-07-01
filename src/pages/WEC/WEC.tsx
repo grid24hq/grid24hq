@@ -179,10 +179,10 @@ function TeamRij({ team, isEven, onKlik }: { team: Team; isEven: boolean; onKlik
 // Exacte bestandsnamen per team-id (public/wec/all_team_logos/)
 const TEAM_LOGO: Record<string, string> = {
   // Hypercar
-  'wec-35':      'apline-endurance-team-no35.webp',
-  'wec-36':      'apline-endurance-team-no36.webp',
+  'wec-35':      'alpine-endurance-team-no35.webp',
+  'wec-36':      'alpine-endurance-team-no36.webp',
   'wec-007':     'aston-martin-thor-team-no007.webp',
-  'wec-009':     'aston-martin-thor-team-no008.webp',
+  'wec-009':     'aston-martin-thor-team-no009.webp',
   'wec-15':      'bmw-m-team-wrt-no15.webp',
   'wec-20':      'bmw-m-team-wrt-no20.webp',
   'wec-12':      'cadillac-hertz-team-jota-no12.webp',
@@ -207,8 +207,8 @@ const TEAM_LOGO: Record<string, string> = {
   'wec-gt3-54':  'vista-af-corse-no54.webp',
   'wec-gt3-77':  'proton-competition-no77.webp',
   'wec-gt3-88':  'proton-competition-no88.webp',
-  'wec-gt3-78':  'akkodis-asp-tean-no78.webp',
-  'wec-gt3-87':  'akkodis-asp-tean-no87.webp',
+  'wec-gt3-78':  'akkodis-asp-team-no78.webp',
+  'wec-gt3-87':  'akkodis-asp-team-no87.webp',
   'wec-gt3-10':  'garage-59-no10.webp',
   'wec-gt3-58':  'garage-59-no58.webp',
   'wec-gt3-61':  'iron-lynx-no61.webp',
