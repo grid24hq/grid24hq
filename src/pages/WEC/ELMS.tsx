@@ -198,8 +198,8 @@ const TEAM_LOGO: Record<string, string> = {
   'e-9':      'proton-competition-no9.webp',
   'e-10':     'vector-sport-no10.webp',
   'e-18':     'idec-sport-no18.webp',
-  'e-22':     'united-autosports.webp',
-  'e-24':     'nielsen-r.webp',
+  'e-22':     'united-autosports-no22.webp',       // was: united-autosports.webp (ontbrak no22)
+  'e-24':     'nielsen-racing-no24.webp',           // was: nielsen-r.webp (onvolledig)
   'e-25':     'algarve-pro-racing-no25.webp',
   'e-28':     'idec-sport-no28.webp',
   'e-29':     'forestier-racing-by-panis-no29.webp',
@@ -220,7 +220,7 @@ const TEAM_LOGO: Record<string, string> = {
   'e-pa-88':  'proton-competition-no88.webp',
   'e-pa-99':  'ao-by-tf-no99.webp',
   // LMP3
-  'e-4':      'dkr-engineering-no4.webp',
+  'e-4':      'dkr-engineering-no4.webp',           // was: dkr-engineering-no4.webp.webp (dubbel .webp)
   'e-5':      'rinaldi-racing-no5.webp',
   'e-8':      'team-virage-no8.webp',
   'e-11':     'eurointernational-no11.webp',
@@ -234,7 +234,7 @@ const TEAM_LOGO: Record<string, string> = {
   'e-23':     'united-autosports-no23.webp',
   'e-33':     'tf-sport-no33.webp',
   'e-50':     'richard-mile-af-corse-no50.webp',
-  'e-51':     'af-corse-.webp',
+  'e-51':     'af-corse-no51.webp',                 // was: af-corse-.webp (ONTBRAK no51!)
   'e-54':     'high-class-racing-no54.webp',
   'e-55':     'spirit-of-race-no55.webp',
   'e-59':     'garage-59-no59.webp',
