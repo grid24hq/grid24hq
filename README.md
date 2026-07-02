@@ -1,29 +1,29 @@
 # Grid24HQ 🏁
 
-**The Ultimate Racing Hub** — WEC · GT3 · MotoGP · WorldSBK · Endurance
+**The Ultimate Racing Hub** — F1 · WEC · GT3 · MotoGP · WorldSBK · IMSA · Endurance
 
-> Live timing · Race data · Circuits · Teams · Live Center
+> Live timing · Race data · Circuits · Teams · Kalender · Standen · Live Center
 
 ---
 
 ## Tech stack
 
 | Onderdeel  | Technologie                        |
-|------------|------------------------------------|
-| Frontend   | React 18 + Vite + TypeScript       |
-| Styling    | Tailwind CSS (custom design tokens)|
-| Routing    | React Router v6                    |
-| State      | Zustand + React Query (TanStack)   |
-| Auth       | Firebase Authentication            |
-| Database   | Cloud Firestore                    |
-| Email      | Resend (via Cloudflare Worker)     |
-| i18n       | i18next (NL + EN)                  |
-| Hosting    | Cloudflare Pages                   |
-| Repo       | GitHub                             |
+|------------|-------------------------------------|
+| Frontend   | React 18 + Vite + TypeScript        |
+| Styling    | Tailwind CSS (custom design tokens) |
+| Routing    | React Router v6                     |
+| State      | Zustand + React Query (TanStack)    |
+| Auth       | Firebase Authentication             |
+| Database   | Cloud Firestore + Realtime Database |
+| Email      | Resend (via Cloudflare Worker)      |
+| i18n       | i18next (NL + EN)                   |
+| Hosting    | Cloudflare Pages                    |
+| Repo       | GitHub                              |
 
 ---
 
-## Opstarten -
+## Opstarten
 
 ```bash
 # 1. Clone
@@ -41,6 +41,26 @@ cp .env.example .env
 npm run dev
 # Open: http://localhost:5173
 ```
+
+---
+
+## Hoe de live timing werkt
+
+Grid24HQ zelf haalt geen data live op bij de bron — dat gebeurt via een losse tool,
+de **Command Center**, die lokaal draait (niet in deze repo, niet gehost).
+
+```
+Timing-site (bron)  →  Command Center (lokaal, localhost:5000)  →  Firebase  →  Grid24HQ website
+```
+
+- De Command Center (Python/Flask) grabt en formatteert live timing data per raceserie
+  (F1, MotoGP, Moto2/3, WEC/ELMS, IMSA, WorldSBK) en pusht die naar Firebase Realtime Database.
+- Een aparte **API Sniffer** (localhost:5005) wordt gebruikt om nieuwe timing-endpoints van
+  timing-sites te ontdekken, zodat er nieuwe formatters/grabbers gebouwd kunnen worden.
+- De website (`useLive` / `useRace` hooks, `raceApi.ts`) pollt Firebase en toont de live tab
+  zodra een sessie op "LIVE" staat, anders de kampioenschapsstanden.
+- Beide tools draaien alleen lokaal op de PC van de beheerder — geen publieke API, geen
+  deployment nodig voor die kant van de pipeline.
 
 ---
 
@@ -97,8 +117,13 @@ grid24hq/
     │   ├── Home/
     │   │   ├── Home.tsx
     │   │   └── index.ts
-    │   ├── WEC/
+    │   ├── F1/
+    │   │   ├── F1.tsx
+    │   │   └── index.ts
+    │   ├── WEC/                ← WEC + ELMS + Le Mans Cup
     │   │   ├── WEC.tsx
+    │   │   ├── ELMS.tsx
+    │   │   ├── LeMansCup.tsx
     │   │   └── index.ts
     │   ├── MotoGP/
     │   │   ├── MotoGP.tsx
@@ -112,7 +137,12 @@ grid24hq/
     │   ├── WorldSBK/
     │   │   ├── WorldSBK.tsx
     │   │   └── index.ts
-    │   ├── LiveCenter/        ← 🔒 login vereist
+    │   ├── Kalender/           ← racekalender alle series
+    │   │   ├── Kalender.tsx
+    │   │   └── index.ts
+    │   ├── Standen/            ← kampioenschapsstanden
+    │   │   └── Standen.tsx
+    │   ├── LiveCenter/         ← 🔒 login vereist
     │   │   ├── LiveCenter.tsx
     │   │   └── index.ts
     │   ├── Circuits/
@@ -132,7 +162,8 @@ grid24hq/
     │
     ├── services/              ← externe API communicatie
     │   ├── firebase.ts        ← auth + firestore
-    │   ├── raceApi.ts         ← race events, timing, standings
+    │   ├── raceApi.ts         ← race events, live timing, standings (Firebase RTDB)
+    │   ├── kalenderApi.ts     ← racekalender data
     │   ├── weatherApi.ts      ← Open-Meteo (gratis, geen key)
     │   ├── authService.ts     ← Firebase errors → NL berichten
     │   └── resend.ts          ← email via Cloudflare Worker
@@ -189,11 +220,12 @@ import Navbar from '@/components/Navbar/Navbar' // ❌ rommelig
 ## Firebase instellen
 
 1. Ga naar [Firebase Console](https://console.firebase.google.com)
-2. Maak project aan: `grid24hq`
+2. Maak project aan: `Jou project`
 3. Voeg een Web App toe → kopieer de config
 4. Activeer: **Authentication → Email/Password + Google**
 5. Activeer: **Firestore Database**
-6. Vul de waarden in `.env`
+6. Activeer: **Realtime Database** (voor live timing data uit de Command Center)
+7. Vul de waarden in `.env`
 
 ---
 
@@ -215,15 +247,15 @@ Push naar GitHub → Cloudflare deployt automatisch.
 ## Kleurpalet (design tokens)
 
 | Token           | Waarde    | Gebruik              |
-|-----------------|-----------|----------------------|
-| `brand-black`   | `#0a0a0a` | Achtergrond          |
-| `brand-dark`    | `#111111` | Kaarten, secties     |
-| `brand-card`    | `#161616` | Card achtergrond     |
-| `brand-border`  | `#222222` | Borders              |
-| `brand-red`     | `#e63300` | Live dot, buttons    |
-| `brand-orange`  | `#ff6600` | Accenten, links      |
-| `brand-amber`   | `#ffaa00` | P1 positie           |
-| `brand-muted`   | `#888888` | Subtekst             |
+|-----------------|-----------|-----------------------|
+| `brand-black`   | `#0a0a0a` | Achtergrond           |
+| `brand-dark`    | `#111111` | Kaarten, secties      |
+| `brand-card`    | `#161616` | Card achtergrond      |
+| `brand-border`  | `#222222` | Borders               |
+| `brand-red`     | `#e63300` | Live dot, buttons     |
+| `brand-orange`  | `#ff6600` | Accenten, links       |
+| `brand-amber`   | `#ffaa00` | P1 positie            |
+| `brand-muted`   | `#888888` | Subtekst              |
 
 ---
 
@@ -234,10 +266,11 @@ Push naar GitHub → Cloudflare deployt automatisch.
 - [x] NL/EN taalwisseling
 - [x] Protected routes (Live Center)
 - [x] TypeScript types voor alle data
-- [ ] WEC live timing API koppeling
+- [x] Live timing pipeline (Command Center → Firebase) voor F1, MotoGP, Moto2/3, WEC/ELMS, IMSA, WorldSBK
+- [x] Racekalender pagina
+- [x] Kampioenschapsstanden pagina
 - [ ] Circuit detail pagina's
 - [ ] Rijder/team profielen
-- [ ] Race kalender volledig
 - [ ] Community & forums
 - [ ] Fantasy league
 - [ ] Mobile app
