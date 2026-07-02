@@ -36,9 +36,9 @@ function KlasseBadge({ klasse }: { klasse: string }) {
 
 const TEAMS: Team[] = [
   // ── GT3 — exact uit lemanscup/gt3/cars ──
-  { id:'m-10', nr:10, naam:'TF Sport',           fabrikant:'Aston Martin', carModel:'Aston-Martin-Vantage-AMR-GT3-Evo', klasse:'GT3', kleur:'#006b5b', info:'Aston Martin GT3 — TF Sport #10.',
+  { id:'m-10', nr:10, naam:'Racing Spirtt Of Leman',           fabrikant:'Aston Martin', carModel:'Aston-Martin-Vantage-AMR-GT3-Evo', klasse:'GT3', kleur:'#006b5b', info:'Aston Martin GT3 — Racing Spirtt Of Leman #10.',
     drivers:[{id:'philipp-sager',naam:'Philipp Sager',nationaliteit:'Duitsland',vlag:'🇩🇪'},{id:'valentin-hasse-clot',naam:'Valentin Hasse-Clot',nationaliteit:'Frankrijk',vlag:'🇫🇷'}] },
-  { id:'m-11', nr:11, naam:'TF Sport',           fabrikant:'Aston Martin', carModel:'Aston-Martin-Vantage-AMR-GT3-Evo', klasse:'GT3', kleur:'#006b5b', info:'Aston Martin GT3 — TF Sport #11.',
+  { id:'m-11', nr:11, naam:'Code Racing Development',           fabrikant:'Aston Martin', carModel:'Aston-Martin-Vantage-AMR-GT3-Evo', klasse:'GT3', kleur:'#006b5b', info:'Aston Martin GT3 — Code Racing Development #11.',
     drivers:[{id:'sebastian-moreno',naam:'Sebastian Moreno',nationaliteit:'Spanje',vlag:'🇪🇸'}] },
   { id:'m-17', nr:17, naam:'AF Corse',           fabrikant:'Ferrari',      carModel:'ferrari-296-GT3_Evo',      klasse:'GT3', kleur:'#e8002d', info:'Ferrari 296 GT3 — AF Corse #17.',
     drivers:[{id:'david-cleto-fumanelli',naam:'David Cleto Fumanelli',nationaliteit:'Italië',vlag:'🇮🇹'},{id:'lorenzo-ferdinando-innocenti',naam:'L.F. Innocenti',nationaliteit:'Italië',vlag:'🇮🇹'}] },
